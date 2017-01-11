@@ -6,7 +6,7 @@ if (window.Options && Options.get_tab('general')) {
 	Options.extend_tab("general", "<label id='show_top_boards'><input type='checkbox' /> "+_('Show top boards')+"</label>");
 
 	if (typeof localStorage.show_top_boards === 'undefined') {
-		localStorage.show_top_boards = 'true';
+		localStorage.show_top_boards = 'false';
 		var show_top = JSON.parse(localStorage.show_top_boards);
 	}
 

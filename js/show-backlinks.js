@@ -32,9 +32,9 @@ onready(function(){
 			if($post.length == 0)
 				return;
 		
-			$mentioned = $post.find('p.intro span.mentioned');
+			$mentioned = $post.find('span.mentioned');
 			if($mentioned.length == 0)
-				$mentioned = $('<span class="mentioned unimportant"></span>').appendTo($post.find('p.intro'));
+				$mentioned = $('<span class="mentioned unimportant post_replies">' + _('Replies:') + ' </span>').appendTo($post);
 			
 			if ($mentioned.find('a.mentioned-' + reply_id).length != 0)
 				return;

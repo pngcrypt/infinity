@@ -7,9 +7,9 @@
  * Copyright (c) 2013-2014 Marcin Łabanowski <marcin@6irc.net>
  *
  * Usage:
- *   // $config['additional_javascript'][] = 'js/jquery.min.js';
- *   // $config['additional_javascript'][] = 'js/strftime.min.js';
- *   $config['additional_javascript'][] = 'js/local-time.js';
+ *   // Vi::$config['additional_javascript'][] = 'js/jquery.min.js';
+ *   // Vi::$config['additional_javascript'][] = 'js/strftime.min.js';
+ *   Vi::$config['additional_javascript'][] = 'js/local-time.js';
  *
  */
 
@@ -49,17 +49,17 @@ $(document).ready(function(){
 		var elapsed = current - previous;
 
 		if (elapsed < msPerMinute) {
-			return 'Just now';
+			return _('Just now');
 		} else if (elapsed < msPerHour) {
-			return Math.round(elapsed/msPerMinute) + (Math.round(elapsed/msPerMinute)<=1 ? ' minute ago':' minutes ago');
+			return Math.round(elapsed/msPerMinute) + (Math.round(elapsed/msPerMinute)<=1 ? _(' minute ago'):_(' minutes ago'));
 		} else if (elapsed < msPerDay ) {
-			return Math.round(elapsed/msPerHour ) + (Math.round(elapsed/msPerHour)<=1 ? ' hour ago':' hours ago');
+			return Math.round(elapsed/msPerHour ) + (Math.round(elapsed/msPerHour)<=1 ? _(' hour ago'):_(' hours ago'));
 		} else if (elapsed < msPerMonth) {
-			return Math.round(elapsed/msPerDay) + (Math.round(elapsed/msPerDay)<=1 ? ' day ago':' days ago');
+			return Math.round(elapsed/msPerDay) + (Math.round(elapsed/msPerDay)<=1 ? _(' day ago'):_(' days ago'));
 		} else if (elapsed < msPerYear) {
-			return Math.round(elapsed/msPerMonth) + (Math.round(elapsed/msPerMonth)<=1 ? ' month ago':' months ago');
+			return Math.round(elapsed/msPerMonth) + (Math.round(elapsed/msPerMonth)<=1 ? _(' month ago'):_(' months ago'));
 		} else {
-			return Math.round(elapsed/msPerYear ) + (Math.round(elapsed/msPerYear)<=1 ? ' year ago':' years ago');
+			return Math.round(elapsed/msPerYear ) + (Math.round(elapsed/msPerYear)<=1 ? _(' year ago'):_(' years ago'));
 		}
 	}
 
@@ -73,37 +73,24 @@ $(document).ready(function(){
 
 			times[i].setAttribute('data-local', 'true');
 
-			if (localStorage.show_relative_time === 'false') {
-				times[i].innerHTML = dateformat(iso8601(t));
-				times[i].setAttribute('title', timeDifference(currentTime, postTime.getTime()));
-			} else {
+			if (localStorage.show_relative_time === 'true') {
 				times[i].innerHTML = timeDifference(currentTime, postTime.getTime());
 				times[i].setAttribute('title', dateformat(iso8601(t)));
+			} else {
+				times[i].innerHTML = dateformat(iso8601(t));
+				times[i].setAttribute('title', timeDifference(currentTime, postTime.getTime()));
 			}
-		
 		}
 	};
 
 	if (window.Options && Options.get_tab('general') && window.jQuery) {
-		var interval_id;
 		Options.extend_tab('general', '<label id="show-relative-time"><input type="checkbox">' + _('Show relative time') + '</label>');
 
 		$('#show-relative-time>input').on('change', function() {
-			if (localStorage.show_relative_time !== 'false') {
-				localStorage.show_relative_time = 'false';
-				clearInterval(interval_id);
-			} else {
-				localStorage.show_relative_time = 'true';
-				interval_id = setInterval(do_localtime, 30000, document);
-			}
+			localStorage.show_relative_time = localStorage.show_relative_time === 'true' ? 'false' : 'true';
 			// no need to refresh page
 			do_localtime(document);
 		});
-
-		if (localStorage.show_relative_time !== 'false') {
-			$('#show-relative-time>input').attr('checked','checked');
-			interval_id = setInterval(do_localtime, 30000, document);
-		}
 
 		// allow to work with auto-reload.js, etc.
 		$(document).on('new_post', function(e, post) {

@@ -1,9 +1,11 @@
 /* This file is dedicated to the public domain; you may do as you wish with it. */
 /* Note: This code expects the global variable configRoot to be set. */
 
-if (typeof _ == 'undefined') {
-  var _ = function(a) { return a; };
-}
+/* global $, _, configRoot, onready */
+/* global setting, changeSetting, settingsMenu */ // webm-settings.js
+
+(function() {
+'use strict';
 
 function setupVideo(thumb, url) {
     if (thumb.videoAlreadySetUp) return;
@@ -41,7 +43,7 @@ function setupVideo(thumb, url) {
 
     // Create video element if does not exist yet
     function getVideo() {
-        if (video == null) {
+        if (video === null) {
             video = document.createElement("video");
             video.src = url;
             video.loop = loop;
@@ -64,10 +66,10 @@ function setupVideo(thumb, url) {
 
             // Dragging to the left collapses the video
             video.addEventListener("mousedown", function(e) {
-                if (e.button == 0) mouseDown = true;
+                if (e.button === 0) mouseDown = true;
             }, false);
             video.addEventListener("mouseup", function(e) {
-                if (e.button == 0) mouseDown = false;
+                if (e.button === 0) mouseDown = false;
             }, false);
             video.addEventListener("mouseenter", function(e) {
                 mouseDown = false;
@@ -97,10 +99,10 @@ function setupVideo(thumb, url) {
             video.parentNode.parentNode.removeAttribute('style');
             thumb.style.display = "none";
 
-            video.muted = (setting("videovolume") == 0);
+            video.muted = (setting("videovolume") === 0);
             video.volume = setting("videovolume");
             video.controls = true;
-            if (video.readyState == 0) {
+            if (video.readyState === 0) {
                 video.addEventListener("loadedmetadata", expand2, false);
             } else {
                 setTimeout(expand2, 0);
@@ -137,8 +139,8 @@ function setupVideo(thumb, url) {
             video.style.position = "fixed";
             video.style.right = "0px";
             video.style.top = "0px";
-            var docRight = document.documentElement.getBoundingClientRect().right;
-            var thumbRight = thumb.querySelector("img, video").getBoundingClientRect().right;
+/*            var docRight = document.documentElement.getBoundingClientRect().right;
+            var thumbRight = thumb.querySelector("img, video").getBoundingClientRect().right;*/
             video.style.maxWidth = maxWidth + "px";
             video.style.maxHeight = "100%";
             video.style.pointerEvents = "none";
@@ -148,7 +150,7 @@ function setupVideo(thumb, url) {
             videoContainer.style.display = "inline";
             videoContainer.style.position = "fixed";
 
-            video.muted = (setting("videovolume") == 0);
+            video.muted = (setting("videovolume") === 0);
             video.volume = setting("videovolume");
             video.controls = false;
             video.play();
@@ -165,8 +167,8 @@ function setupVideo(thumb, url) {
             if (e.deltaY < 0) volume += 0.1;
             if (volume < 0) volume = 0;
             if (volume > 1) volume = 1;
-            if (video != null) {
-                video.muted = (volume == 0);
+            if (video !== null) {
+                video.muted = (volume === 0);
                 video.volume = volume;
             }
             changeSetting("videovolume", volume);
@@ -177,9 +179,9 @@ function setupVideo(thumb, url) {
     // [play once] vs [loop] controls
     function setupLoopControl(i) {
         loopControls[i].addEventListener("click", function(e) {
-            loop = (i != 0);
+            loop = (i !== 0);
             thumb.href = thumb.href.replace(/([\?&])loop=\d+/, "$1loop=" + i);
-            if (video != null) {
+            if (video !== null) {
                 video.loop = loop;
                 if (loop && video.currentTime >= video.duration) {
                     video.currentTime = 0;
@@ -196,6 +198,7 @@ function setupVideo(thumb, url) {
     for (var i = 0; i < 2; i++) {
         setupLoopControl(i);
         loopControls[i].style.whiteSpace = "nowrap";
+        loopControls[i].style.cursor = "pointer";
         fileInfo.appendChild(document.createTextNode(" "));
         fileInfo.appendChild(loopControls[i]);
     }
@@ -203,14 +206,15 @@ function setupVideo(thumb, url) {
 
 function setupVideosIn(element) {
     var thumbs = element.querySelectorAll("a.file");
+
     for (var i = 0; i < thumbs.length; i++) {
-        if (/(\.webm)|(\.mp4)$/.test(thumbs[i].pathname)) {
+        if (/\.(webm|mp4|mp3|ogg)$/.test(thumbs[i].pathname)) {
             setupVideo(thumbs[i], thumbs[i].href);
         } else {
             var m = thumbs[i].search.match(/\bv=([^&]*)/);
-            if (m != null) {
+            if (m !== null) {
                 var url = decodeURIComponent(m[1]);
-                if (/(\.webm)|(\.mp4)$/.test(url)) setupVideo(thumbs[i], url);
+                if (/\.(webm|mp4)$/.test(url)) setupVideo(thumbs[i], url);
             }
         }
     }
@@ -222,23 +226,11 @@ onready(function(){
       document.body.insertBefore(settingsMenu, document.getElementsByTagName("hr")[0]);
 
     // Setup Javascript events for videos in document now
-    setupVideosIn(document);
+    setupVideosIn(document.body);
 
-    // Setup Javascript events for videos added by updater
-    if (window.MutationObserver) {
-        var observer = new MutationObserver(function(mutations) {
-            for (var i = 0; i < mutations.length; i++) {
-                var additions = mutations[i].addedNodes;
-                if (additions == null) continue;
-                for (var j = 0; j < additions.length; j++) {
-                    var node = additions[j];
-                    if (node.nodeType == 1) {
-                        setupVideosIn(node);
-                    }
-                }
-            }
-        });
-        observer.observe(document.body, {childList: true, subtree: true});
-    }
+    $(document).on('new_post', function(ev, el){
+		setupVideosIn(el);
+    });
 });
 
+})();

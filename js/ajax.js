@@ -53,6 +53,7 @@
 					return xhr;
 				},
 				success: function(post_response, textStatus, xhr) {
+					$(document).trigger("ajax_on_success", post_response);						
 					if (post_response.error) {
 						if (post_response.banned) {
 							// You are banned. Must post the form normally so the user can see the ban message.
@@ -118,7 +119,7 @@
 				},
 				error: function(xhr, status, er) {
 					console.log(xhr);
-					alert(_('The server took too long to submit your post. Your post was probably still submitted. If it wasn\'t, 8chan might be experiencing issues right now -- please try your post again later. Error information: ') + "<div><textarea>" + JSON.stringify(xhr) + "</textarea></div>");
+					alert(_('The server took too long to submit your post. Your post was probably still submitted. If it wasn\'t, BRCHAN might be experiencing issues right now -- please try your post again later. Error information: ') + "<div><textarea>" + JSON.stringify(xhr) + "</textarea></div>");
 					$(form).find('input[type="submit"]').val(submit_txt);
 					$(form).find('input[type="submit"]').removeAttr('disabled');
 				},

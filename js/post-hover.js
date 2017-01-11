@@ -13,18 +13,20 @@
  *
  */
 
+/* global $, _, datelocale, onready */
+
 onready(function(){
+'use strict';
 
-	init_hover = function() {
+	window.init_hover = function() {
 		var link = $(this);
-
 		var id;
 		var matches;
 
 		if (link.is('[data-thread]')) {
 				id = link.attr('data-thread');
 		}
-		else if(matches = link.text().match(/^>>(?:>\/([^\/]+)\/)?(\d+)$/)) {
+		else if( (matches = link.text().match(/^>>(?:>\/([^\/]+)\/)?(\d+)$/)) ) {
 			id = matches[2];
 		}
 		else {
@@ -50,12 +52,32 @@ onready(function(){
 		var hovering = false;
 		link.hover(function(e) {
 			hovering = true;
+
+			var highlight_link = function(link, post) {
+				var postLinks;
+				var originalPost = link.parents('div.post').attr('id').replace("reply_", "").replace("inline_", "").replace("op_", "");
+				if (link.hasClass('mentioned-'+id)) {
+					postLinks = post.find('div.body a:not([rel="nofollow"])');
+					if (postLinks.length > 0) {
+						postLinks.each(function() {
+							if ($(this).text() == ">>"+originalPost) {
+								$(this).addClass('dashed-underline');
+							}
+						});
+					}
+				}
+				else
+					post.find('a.mentioned-'+originalPost).addClass('dashed-underline');
+
+			};
+
 			var start_hover = function(link) {
 				if(post.is(':visible') &&
 						post.offset().top >= $(window).scrollTop() &&
 						post.offset().top + post.height() <= $(window).scrollTop() + $(window).height()) {
 					// post is in view
 					post.addClass('highlighted');
+					highlight_link(link, post);
 				} else {
 					var newPost = post.clone();
 					newPost.find('>.reply, >br').remove();
@@ -81,27 +103,21 @@ onready(function(){
 					newPost.find('div.file img.full-image').remove();
 					
 					// Highlight references to the current post
-					if (link.hasClass('mentioned-'+id)) {
-						var postLinks = newPost.find('div.body a:not([rel="nofollow"])');
-						if (postLinks.length > 1) {
-							var originalPost = link.closest('div.post').attr('id').replace("reply_", "").replace("inline_", "");
-							postLinks.each(function() {
-								if ($(this).text() == ">>"+originalPost) {
-									$(this).addClass('dashed-underline');
-								}
-							});
-						}
-					}
+					highlight_link(link, newPost);
 					
 					var previewWidth = newPost.outerWidth(true);
 					var widthDiff = previewWidth - newPost.width();
 					var linkLeft = link.offset().left;
 					var left, top;
+					var ww = $(window).width(),
+						wh = $(window).height(),
+						scrollTop = $(window).scrollTop();
+
 					
 					if (linkLeft < $(document).width() * 0.7) {
 						left = linkLeft + link.width();
-						if (left + previewWidth > $(window).width()) {
-							newPost.css('width', $(window).width() - left - widthDiff);
+						if (left + previewWidth > ww) {
+							newPost.css('width', ww - left - widthDiff);
 						}
 					} else {
 						if (previewWidth > linkLeft) {
@@ -114,22 +130,21 @@ onready(function(){
 					
 					top = link.offset().top - 10;
 					
-					var scrollTop = $(window).scrollTop();
 					if (link.is("[data-thread]")) {
+						top -= scrollTop;
 						scrollTop = 0;
-						top -= $(window).scrollTop();	
 					}
 					
 					if(top < scrollTop + 15) {
-						top = scrollTop;
-					} else if(top > scrollTop + $(window).height() - newPost.height() - 15) {
-						top = scrollTop + $(window).height() - newPost.height() - 15;
+						top = scrollTop + 15;
+					} else if(top > scrollTop + wh - newPost.height() - 45) {
+						top = scrollTop + wh - newPost.height() - 45;
 					}
 					
-					if (newPost.height() > $(window).height()) {
+					if (newPost.height() > wh) {
 						top = scrollTop;
 					}
-					
+
 					newPost.css('top', top);
 				}
 			};
@@ -173,7 +188,7 @@ onready(function(){
 					};
 
 					var bytesToSize = function (bytes) {
-						var sizes = ['Bytes', 'KB', 'MB'];
+						var sizes = [_('Bytes'), _('KB'), _('MB')];
 						var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
 
 						return (i === 0) ? bytes +' '+ sizes[i] : (bytes / Math.pow(1024, i)).toFixed(2) +' ' +sizes[i];
@@ -214,22 +229,13 @@ onready(function(){
 							var file_ext = this.ext;
 
 							if (this.isImage && !this.isSpoiler) {
-
-								// at some point around 28/29th of Jan, 2015; all the newly  generated thumbnails switched to using jpg
-								// this is a quick hack to ensure that external preview (mostly) works with old and new posts
-
-									// Note: please update if a more accurate timestamp is known 
-								if (data.last_modified > 1422489600) {
+								if (this.ext == '.gif' || this.ext === '.webm' || this.ext === '.mp4' || this.ext === '.jpeg') {
 									this.ext = '.jpg';
-								} else {
-									if (this.ext === '.webm' || this.ext === '.mp4' || this.ext === '.jpeg') {
-										this.ext = '.jpg';
-									}
 								}
 
 								thumb_url = '/'+ board +'/thumb/' + this.tim + this.ext;
-
-							} else {
+							}
+							else {
 								thumb_url = (this.isSpoiler) ? '/static/spoiler.png' : '/static/file.png';
 							}
 
@@ -241,7 +247,7 @@ onready(function(){
 							// file infos
 							var $ele = $('<div class="file">')
 										.append($('<p class="fileinfo">')
-											.append('<span>File: </span>')
+											.append('<span>' + _('File:') + ' </span>')
 											.append('<a>'+ this.filename + file_ext +'</a>')
 											.append('<span class="unimportant"> ('+ bytesToSize(this.fsize) +', '+ this.w +'x'+ this.h +')</span>')
 										);
@@ -285,6 +291,7 @@ onready(function(){
 				return;
 			
 			post.removeClass('highlighted');
+			post.find('a.dashed-underline').removeClass('dashed-underline');
 			if(post.hasClass('hidden'))
 				post.css('display', 'none');
 			$('.post-hover').remove();
@@ -366,11 +373,11 @@ onready(function(){
 		}
 	}
 	
-	$('div.body a:not([rel="nofollow"])').each(init_hover);
+	$('div.body a:not([rel="nofollow"])').each(window.init_hover);
 	
 	// allow to work with auto-reload.js, etc.
 	$(document).on('new_post', function(e, post) {
-		$(post).find('div.body a:not([rel="nofollow"])').each(init_hover);
+		$(post).find('div.body a:not([rel="nofollow"])').each(window.init_hover);
 	});
 });
 

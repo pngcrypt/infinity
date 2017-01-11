@@ -82,7 +82,7 @@ watchlist.add = function(sel) {
 			postCount = $(sel).parents('.op').siblings('.post').length+1;
 		}
 		//Grab the reply link.
-		var threadLink = $(sel).siblings('a:contains("['+_('Reply')+']")').attr('href');
+		var threadLink = $(sel).parents('.intro').find('a[href$=".html"]').attr('href');
 		//Figure out the thread name. If anon, use the thread id.
 		if ($(sel).parent().find('.subject').length) {
 			threadName = $(sel).parent().find('.subject').text().substring(0,20);

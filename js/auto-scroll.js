@@ -15,7 +15,7 @@ $('document').ready(function () {
 			$('input.auto-scroll').prop('checked', autoScroll);
 	});
 	if (active_page == 'thread') {
-		$('span[id="updater"]').children('a').after(' (<input class="auto-scroll" type="checkbox"></input> '+_('Scroll to new posts')+')');
+		$('span[id="updater"]').children('a').after(' [ <input class="auto-scroll" type="checkbox"></input> '+_('Scroll to new posts')+' ]');
 		$('input.auto-scroll').prop('checked', autoScroll);
 		$(document).on('new_post', function (e, post) {
 			if ($('input.auto-scroll').prop('checked')) 

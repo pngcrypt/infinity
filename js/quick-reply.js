@@ -12,8 +12,9 @@
  *   $config['additional_javascript'][] = 'js/quick-reply.js';
  *
  */
-
+/* globals $, _, script_settings, highlightReply */
 (function() {
+'use strict';
 	var settings = new script_settings('quick-reply');
 	
 	var do_css = function() {
@@ -27,32 +28,49 @@
 		var reply_border_width = dummy_reply.css('borderWidth');
 		dummy_reply.remove();
 		
-		$('<style type="text/css" id="quick-reply-css">\
-		#quick-reply table {\
-			border-collapse: collapse;\
-			background: ' + reply_background + ';\
-			border-style: ' + reply_border_style + ';\
-			border-width: ' + reply_border_width + ';\
-			border-color: ' + reply_border_color + ';\
-			margin: 0;\
-			width: 100%;\
-		}\
-		</style>').appendTo($('head'));
+		$('<style type="text/css" id="quick-reply-css">'+
+		'#quick-reply table {'+
+			'border-collapse: collapse;'+
+			'background: ' + reply_background + ';'+
+			'border-style: ' + reply_border_style + ';'+
+			'border-width: ' + reply_border_width + ';'+
+			'border-color: ' + reply_border_color + ';'+
+			'margin: 0; width: 100%; box-sizing: border-box;'+
+		'}'+
+		'#quick-reply .wrap-post-options {background:' + reply_background + ';}'+
+		'</style>').appendTo($('head'));
 	};
 	
+	var $postForm;
+
+	var on_inp_change = function(inp, $dst) {
+		var id = $(inp).attr('name') ? "name" : "id";
+		var $i = $dst.find('['+id+'="' + $(inp).attr(id) + '"]');
+		if(!$i.length) return;
+		$i.val($(inp).val());
+	};
+
 	var show_quick_reply = function(){
-		if($('div.banner').length == 0)
+		if(!$('div.banner').length) {
 			return;
-		if($('#quick-reply').length != 0)
+		}
+		if($('#quick-reply').length) {
+			if($postForm.closed) {
+				$postForm.closed = false;
+				if(!$postForm.hidden)
+					$postForm.show();
+				$(window).trigger('quick-reply');
+			}
 			return;
+		}
 		
 		do_css();
 		
-		var $postForm = $('#post-form-outer').clone();
+		$postForm = $('#post-form-outer').clone();
 		
 		$postForm.clone();
 		
-		$dummyStuff = $('<div class="nonsense"></div>').appendTo($postForm.find('form'));
+		var $dummyStuff = $('<div class="nonsense"></div>').appendTo($postForm.find('form'));
 		
 		$postForm.find('table tr').each(function() {
 			var $th = $(this).children('th:first');
@@ -86,6 +104,7 @@
 				}
 	
 				// reCAPTCHA
+				var $newRow; 
 				if ($td.find('#recaptcha_widget_div').length) {
 					// Just show the image, and have it interact with the real form.
 					var $captchaimg = $td.find('#recaptcha_image img');
@@ -114,7 +133,7 @@
 					});
 					
 					// Make a new row for the response text
-					var $newRow = $('<tr><td class="recaptcha-response" colspan="2"></td></tr>');
+					$newRow = $('<tr><td class="recaptcha-response" colspan="2"></td></tr>');
 					$newRow.children().first().append(
 						$td.find('input').removeAttr('style')
 					);
@@ -123,21 +142,26 @@
 						.addClass('recaptcha_response_field')
 						.attr('placeholder', $('#recaptcha_response_field').attr('placeholder'));
 					
-					$('#recaptcha_response_field').addClass('recaptcha_response_field')
+					$('#recaptcha_response_field').addClass('recaptcha_response_field');
 					
 					$td.replaceWith($('<td class="recaptcha" colspan="2"></td>').append($('<span></span>').append($captchaimg)));
 					
 					$newRow.insertAfter(this);
 				}
+
+				if($(this).hasClass('captcha')) {
+					// replace captcha iframe
+					$td.find('#captcha').replaceWith($('<div id="captcha_qr"></div>'));
+				}
 	
 				// Upload section
 				if ($td.find('input[type="file"]').length) {
 					if ($td.find('input[name="file_url"]').length) {
-						$file_url = $td.find('input[name="file_url"]');
+						var $file_url = $td.find('input[name="file_url"]');
 						
 						if (settings.get('show_remote', false)) {
 							// Make a new row for it
-							var $newRow = $('<tr><td colspan="2"></td></tr>');
+							$newRow = $('<tr><td colspan="2"></td></tr>');
 						
 							$file_url.clone().attr('placeholder', _('Upload URL')).appendTo($newRow.find('td'));
 						
@@ -166,6 +190,10 @@
 				$td.find('small').hide();
 			}
 		});
+
+		var id = 'show-post-table-options';
+		$postForm.find('#'+id).attr('id', id+'2');
+		$postForm.find('label[for="'+id+'"]').attr('for', id+'2');
 		
 		$postForm.find('textarea[name="body"]').removeAttr('id').removeAttr('cols').attr('placeholder', _('Comment'))
 			.on('keydown', function (e) {
@@ -180,22 +208,23 @@
 		$postForm.find('br,p.board-settings,.unimportant,#oekaki,.required-field-cell').remove();
 		$postForm.find('.show-options-cell').attr('colspan', '2');
 
-		$postForm.find('table:first').prepend('<tr><th colspan="2">\
-			<span class="handle">\
-				<a class="close-btn" href="javascript:void(0)">×</a>\
-				' + _('Quick Reply') + '\
-			</span>\
-			</th></tr>');
+		$postForm.find('table:first').prepend('<tr><th colspan="2">'+
+			'<span class="handle">'+
+				'<a class="close-btn" href="javascript:void(0)">×</a>'+
+				_('Quick Reply') +
+			'</span>'+
+			'</th></tr>');
 		
 		$postForm.attr('id', 'quick-reply');
-		
+	
 		$postForm.appendTo($('body')).hide();
-		$origPostForm = $('form[name="post"]:first');
+		var $origPostForm = $('form[name="post"]:first');
 		
 		// Synchronise body text with original post form
 		$origPostForm.find('textarea[name="body"]').on('change input propertychange', function() {
 			$postForm.find('textarea[name="body"]').val($(this).val());
 		});
+
 		$postForm.find('textarea[name="body"]').on('change input propertychange', function() {
 			$origPostForm.find('textarea[name="body"]').val($(this).val());
 		});
@@ -207,13 +236,15 @@
 			$postForm.find('textarea[name="body"]').removeAttr('id');
 			$(this).attr('id', 'body');
 		});
+
 		// Synchronise other inputs
 		$origPostForm.find('input[type="text"],select').on('change input propertychange', function() {
-			$postForm.find('[name="' + $(this).attr('name') + '"]').val($(this).val());
+			on_inp_change(this, $postForm);
 		}).change();
 		$postForm.find('input[type="text"],select').on('change input propertychange', function() {
-			$origPostForm.find('[name="' + $(this).attr('name') + '"]').val($(this).val());
+			on_inp_change(this, $origPostForm);
 		});
+
 
 		if (typeof $postForm.draggable != 'undefined') {	
 			if (localStorage.quickReplyPosition) {
@@ -246,15 +277,21 @@
 		
 		$postForm.find('th .close-btn').click(function() {
 			$origPostForm.find('textarea[name="body"]').attr('id', 'body');
-			$postForm.remove();
+			
+			// remove form on close
+			$postForm.remove(); 
+			// else: hide only
+			// $postForm.closed = true;
+			// $postForm.hide();
+
 			floating_link();
 		});
-		
+
 		// Fix bug when table gets too big for form. Shouldn't exist, but crappy CSS etc.
 		$postForm.show();
 		$postForm.width($postForm.find('table').width());
 		$postForm.hide();
-		
+
 		$(window).trigger('quick-reply');
 	
 		$(window).ready(function() {
@@ -262,10 +299,16 @@
 				$(window).scroll(function() {
 					if ($(this).width() <= 600)
 						return;
-					if ($(this).scrollTop() < $origPostForm.offset().top + $origPostForm.height() - 100)
-						$postForm.fadeOut(100);
-					else
-						$postForm.fadeIn(100);
+					if ($(this).scrollTop() < $origPostForm.offset().top + $origPostForm.height() - 100) {
+						if(!$postForm.closed)
+							$postForm.fadeOut(100);
+						$postForm.hidden = true;
+					}
+					else {
+						if(!$postForm.closed)
+							$postForm.fadeIn(100);
+						$postForm.hidden = false;
+					}
 				}).scroll();
 			} else {
 				$postForm.show();
@@ -318,18 +361,18 @@
 	
 	if (settings.get('floating_link', false)) {
 		$(window).ready(function() {
-			if($('div.banner').length == 0)
+			if(!$('div.banner').length)
 				return;
-			$('<style type="text/css">\
-			a.quick-reply-btn {\
-				position: fixed;\
-				right: 0;\
-				bottom: 0;\
-				display: block;\
-				padding: 5px 13px;\
-				text-decoration: none;\
-			}\
-			</style>').appendTo($('head'));
+			$('<style type="text/css">'+
+			'a.quick-reply-btn {'+
+				'position: fixed;'+
+				'right: 0;'+
+				'bottom: 0;'+
+				'display: block;'+
+				'padding: 5px 13px;'+
+				'text-decoration: none;'+
+			'}'+
+			'</style>').appendTo($('head'));
 			
 			floating_link();
 			
