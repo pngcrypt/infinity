@@ -6,14 +6,12 @@
 defined('TINYBOARD') or exit;
 
 function gen_msgid($board, $id) {
-	global $config;
-
 	$b = preg_replace("/[^0-9a-zA-Z$]/", 'x', $board);
-	$salt = sha1($board . "|" . $id . "|" . $config['nntpchan']['salt']);
+	$salt = sha1($board . "|" . $id . "|" . Vi::$config['nntpchan']['salt']);
 	$salt = substr($salt, 0, 7);
 	$salt = base_convert($salt, 16, 36);
 
-	return "<$b.$id.$salt@".$config['nntpchan']['domain'].">";
+	return "<$b.$id.$salt@".Vi::$config['nntpchan']['domain'].">";
 }
 
 
@@ -64,8 +62,7 @@ function gen_nntp($headers, $files) {
 }
 
 function nntp_publish($msg, $id) {
-	global $config;
-	$server = $config["nntpchan"]["server"];
+	$server = Vi::$config["nntpchan"]["server"];
 	$s = fsockopen("tcp://$server");
 	fgets($s);
 	fputs($s, "MODE STREAM\r\n");
@@ -79,16 +76,14 @@ function nntp_publish($msg, $id) {
 }
 
 function post2nntp($post, $msgid) {
-	global $config;
-
 	$headers = array();
 	$files = array();
 
 	$headers['Message-Id'] = $msgid;
-	$headers['Newsgroups'] = $config['nntpchan']['group'];
+	$headers['Newsgroups'] = Vi::$config['nntpchan']['group'];
 	$headers['Date'] = time();
 	$headers['Subject'] = $post['subject'] ? $post['subject'] : "None";
-	$headers['From'] = $post['name'] . " <poster@" . $config['nntpchan']['domain'] . ">";
+	$headers['From'] = $post['name'] . " <poster@" . Vi::$config['nntpchan']['domain'] . ">";
 
 	if ($post['email'] == 'sage') {
 		$headers['X-Sage'] = true;
