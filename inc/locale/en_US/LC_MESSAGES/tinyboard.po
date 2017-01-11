@@ -1,0 +1,2138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-11 18:33+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=1;\n"
+
+#, php-format
+msgid "%d result in"
+msgid_plural "%d results in"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s without interruption"
+msgstr ""
+
+msgid "(For file and post deletion.)"
+msgstr ""
+
+msgid "(No news to show.)"
+msgstr ""
+
+msgid "(Search is case-insensitive and based on keywords. To match exact phrases, use \"quotes\". Use an asterisk (*) for wildcard.)"
+msgstr ""
+
+msgid "(must be < 200 chars)"
+msgstr ""
+
+msgid "(must be < 40 chars)"
+msgstr ""
+
+msgid "(must be all lowercase or numbers and < 30 chars)"
+msgstr ""
+
+msgid "(must contain only alphanumeric, periods and underscores)"
+msgstr ""
+
+msgid "(no comment)"
+msgstr ""
+
+msgid "(optional, for board recovery)"
+msgstr ""
+
+msgid "(or subnet)"
+msgstr ""
+
+msgid "(replaces files and can be used instead)"
+msgstr ""
+
+msgid "(this board displays your country when you post if this is unchecked)"
+msgstr ""
+
+msgid "(this replaces the thumbnails of your images with question marks)"
+msgstr ""
+
+msgid "(write this down)"
+msgstr ""
+
+msgid "(you can also write sage in the email field)"
+msgstr ""
+
+msgid "+1 captcha."
+msgstr ""
+
+msgid ". <a href=\"https://8ch.net/dnsbls_bypass.php\">Try again.</a> If it's not working, email admin@8chan.co for support."
+msgstr ""
+
+msgid ".onion"
+msgstr ""
+
+msgid ".onion users must submit captcha every"
+msgstr ""
+
+#, php-format
+msgid ".onion users need to pass security check <a target=\"new\" href=\"/tor_bypass.php?board=%s\">on this page</a>"
+msgstr ""
+
+msgid "1 image reply"
+msgid_plural "%count% image replies"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "1 post"
+msgid_plural "%count% posts"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "<a href=\"%s\" title=\"View content\" target=\"_new\">&gt;&gt;&gt;/%s/</a> %s reported %d time(s)."
+msgstr ""
+
+msgid ""
+"<p class=\"unimportant\">\"markdown\" is provided by <a href=\"http://parsedown.org/\">parsedown</a>. Note: images disabled.</p>\n"
+"\t\t\t<p class=\"unimportant\">\"html\" allows the following tags:<br/>%allowed_html%</p>\n"
+"\t\t\t<p class=\"unimportant\">\"infinity\" is the same as what is used in posts.</p>\n"
+"\t\t\t<p class=\"unimportant\">This page will not convert between formats,<br/>choose it once or do the conversion yourself!</p>"
+msgstr ""
+
+msgid "= required field"
+msgstr ""
+
+msgid "A maximum of 512 custom flags per board is enforced."
+msgstr ""
+
+msgid "ACCESS GRANTED!"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Active users"
+msgstr ""
+
+msgid "Add another tag"
+msgstr ""
+
+msgid "Add another wordfilter"
+msgstr ""
+
+msgid "Administration"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "All boards"
+msgstr ""
+
+msgid "All languages"
+msgstr ""
+
+msgid "Allow Oekaki"
+msgstr ""
+
+msgid "Allow [code][/code] tags"
+msgstr ""
+
+msgid "Allow a poster to delete his own posts"
+msgstr ""
+
+msgid "Allow post upload files via .onion service"
+msgstr ""
+
+msgid "Allow post via the .onion service"
+msgstr ""
+
+msgid "Allow posters to post upload files via Tor"
+msgstr ""
+
+msgid "Allow posters to post via the Tor onion router"
+msgstr ""
+
+msgid "Allow posters to see when a thread is bumplocked"
+msgstr ""
+
+msgid "Allow thread to be bumped"
+msgstr ""
+
+msgid "Allowed URLs:"
+msgstr ""
+
+msgid "Allowed file types"
+msgstr ""
+
+msgid "Alphabetize flags"
+msgstr ""
+
+msgid "An error has occured."
+msgstr ""
+
+msgid "Anonymous discussions"
+msgstr ""
+
+msgid "Anti-spam"
+msgstr ""
+
+msgid "Appeal reason"
+msgstr ""
+
+msgid "Appeal time"
+msgstr ""
+
+msgid "Are you sure you want to banhash this file?"
+msgstr ""
+
+msgid "Are you sure you want to delete all posts by this IP address, across all boards?"
+msgstr ""
+
+msgid "Are you sure you want to delete all posts by this IP address?"
+msgstr ""
+
+msgid "Are you sure you want to delete this file?"
+msgstr ""
+
+msgid "Are you sure you want to delete this?"
+msgstr ""
+
+msgid "Are you sure you want to demote yourself?"
+msgstr ""
+
+msgid "Are you sure you want to do that?"
+msgstr ""
+
+msgid "Are you sure you want to spoiler all images on this post?"
+msgstr ""
+
+msgid "Are you sure you want to spoiler this file?"
+msgstr ""
+
+msgid "Automatically convert ... to …"
+msgstr ""
+
+msgid "B"
+msgstr ""
+
+msgid "Bad board."
+msgstr ""
+
+msgid "Bad request."
+msgstr ""
+
+msgid "Ban"
+msgstr ""
+
+msgid "Ban & Delete"
+msgstr ""
+
+msgid "Ban appeal not found!"
+msgstr ""
+
+msgid "Ban appeals"
+msgstr ""
+
+msgid "Ban hash file"
+msgstr ""
+
+msgid "Ban list"
+msgstr ""
+
+msgid "Banned!"
+msgstr ""
+
+msgid "Banners must be &lt; 500KB and have image dimensions 300px x 100px.<br/>A maximum of 50 custom banners per board is enforced."
+msgstr ""
+
+msgid "Bans"
+msgstr ""
+
+msgid "Be careful with range bans. The bigger the range, the more likely it will affect users you didn't intend."
+msgstr ""
+
+msgid "Board"
+msgstr ""
+
+#, php-format
+msgid "Board %s doesn't exist"
+msgstr ""
+
+msgid "Board URI"
+msgstr ""
+
+msgid "Board already exists!"
+msgstr ""
+
+msgid "Board announcement"
+msgstr ""
+
+msgid "Board configuration"
+msgstr ""
+
+msgid "Board list"
+msgstr ""
+
+msgid "Board log"
+msgstr ""
+
+msgid "Board rules permit this content"
+msgstr ""
+
+msgid "Board type"
+msgstr ""
+
+msgid "Boards"
+msgstr ""
+
+msgid "Body"
+msgstr ""
+
+msgid "Bump limit"
+msgstr ""
+
+msgid "Bump order"
+msgstr ""
+
+msgid "Bypass DNSBL"
+msgstr ""
+
+msgid "CAPTCHA"
+msgstr ""
+
+msgid "Can't build the RecentPosts theme, because there are no boards to be fetched."
+msgstr ""
+
+msgid "Cannot open themes directory; check permissions."
+msgstr ""
+
+msgid "Captcha for TOR users is temporarily disabled."
+msgstr ""
+
+msgid "Catalog"
+msgstr ""
+
+msgid "Claim"
+msgstr ""
+
+msgid "Claim board"
+msgstr ""
+
+msgid "Click to load more."
+msgstr ""
+
+msgid "Click to proceed to"
+msgstr ""
+
+msgid "Click to update"
+msgstr ""
+
+msgid "Close oekaki applet"
+msgstr ""
+
+msgid "Close window"
+msgstr ""
+
+msgid "Comment"
+msgstr ""
+
+msgid "Config editor"
+msgstr ""
+
+msgid "Configuration"
+msgstr ""
+
+#, php-format
+msgid "Configuring theme: %s"
+msgstr ""
+
+msgid "Confirm action"
+msgstr ""
+
+msgid "Content is permitted by board rules"
+msgstr ""
+
+msgid "Content is permitted by global rules"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Cookie time-to-live:"
+msgstr ""
+
+msgid "Could not auto-orient image!"
+msgstr ""
+
+msgid "Could not connect to the database. Please try again later."
+msgstr ""
+
+msgid "Could not find that post."
+msgstr ""
+
+msgid "Could not find the page you are trying to edit."
+msgstr ""
+
+msgid "Could not strip EXIF metadata!"
+msgstr ""
+
+msgid "Couldn't make sense of the URL of the video you tried to embed."
+msgstr ""
+
+msgid "Couldn't open board after creation."
+msgstr ""
+
+msgid "Country flags"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Create a new page"
+msgstr ""
+
+msgid "Create a new user"
+msgstr ""
+
+msgid "Create board"
+msgstr ""
+
+msgid "Create new board"
+msgstr ""
+
+msgid "Create user"
+msgstr ""
+
+msgid "Create user boards is not allowed for you."
+msgstr ""
+
+msgid "Create user boards is not allowed."
+msgstr ""
+
+msgid "Create your board"
+msgstr ""
+
+msgid "Creation date"
+msgstr ""
+
+msgid "Currently editing raw HTML."
+msgstr ""
+
+msgid "Custom board assets"
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "Database error: "
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Debug"
+msgstr ""
+
+msgid "Debug: APC"
+msgstr ""
+
+msgid "Debug: Anti-spam"
+msgstr ""
+
+msgid "Debug: Recent posts"
+msgstr ""
+
+msgid "Debug: SQL"
+msgstr ""
+
+msgid "Default poster name"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete Post"
+msgstr ""
+
+msgid "Delete all posts by IP"
+msgstr ""
+
+msgid "Delete all posts by IP across all boards"
+msgstr ""
+
+msgid "Delete board"
+msgstr ""
+
+msgid "Delete file"
+msgstr ""
+
+msgid "Delete forever"
+msgstr ""
+
+msgid "Delete selected"
+msgstr ""
+
+msgid "Delete user"
+msgstr ""
+
+msgid "Demote"
+msgstr ""
+
+msgid "Demote global abuse report to a local report"
+msgstr ""
+
+msgid "Demote global abuse reports to local reports"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Details: "
+msgstr ""
+
+msgid "Disable \"email\" field"
+msgstr ""
+
+msgid "Disable \"name\" field"
+msgstr ""
+
+msgid "Disable \"subject\" field"
+msgstr ""
+
+msgid "Disable \"subject\" field on thread page"
+msgstr ""
+
+msgid "Disable OP image upload"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Disallow combining characters (\"Zalgo\", Vietnamese text)"
+msgstr ""
+
+msgid "Discard abuse report"
+msgstr ""
+
+msgid "Discard all abuse reports by this IP address"
+msgstr ""
+
+msgid "Discard all abuse reports on this content"
+msgstr ""
+
+msgid "Display SAGE! after saged posts"
+msgstr ""
+
+msgid "Displaying results"
+msgstr ""
+
+msgid "Displays all actions to the public"
+msgstr ""
+
+msgid "Displays your bans for the public"
+msgstr ""
+
+msgid "Do not bump"
+msgstr ""
+
+msgid "Don't allow users to repost images (same thread)"
+msgstr ""
+
+msgid "Don't allow users to repost images (whole board)"
+msgstr ""
+
+msgid "Duration"
+msgstr ""
+
+msgid "Early 404"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Edit banners"
+msgstr ""
+
+msgid "Edit board"
+msgstr ""
+
+msgid "Edit board assets"
+msgstr ""
+
+msgid "Edit board banners"
+msgstr ""
+
+msgid "Edit board flags"
+msgstr ""
+
+msgid "Edit board pages"
+msgstr ""
+
+msgid "Edit board tags"
+msgstr ""
+
+msgid "Edit board volunteers"
+msgstr ""
+
+msgid "Edit flags"
+msgstr ""
+
+msgid "Edit markup instead?"
+msgstr ""
+
+msgid "Edit post"
+msgstr ""
+
+msgid "Edit profile"
+msgstr ""
+
+msgid "Edit raw HTML instead?"
+msgstr ""
+
+msgid "Edit reassign"
+msgstr ""
+
+msgid "Edit tags"
+msgstr ""
+
+msgid "Edit user profile"
+msgstr ""
+
+msgid "Edit volunteers"
+msgstr ""
+
+#, php-format
+msgid "Editing static page: %s"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Embed"
+msgstr ""
+
+msgid "Enable CAPTCHA"
+msgstr ""
+
+msgid "Enable CAPTCHA for thread creation only"
+msgstr ""
+
+msgid "Enable dice rolling"
+msgstr ""
+
+msgid "Enter reason below..."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Error information"
+msgstr ""
+
+msgid "Existing pages"
+msgstr ""
+
+msgid "Existing post"
+msgstr ""
+
+msgid "Expired"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
+
+msgid "Fail! Don't rush!."
+msgstr ""
+
+msgid "Failed to mark up your input for some reason..."
+msgstr ""
+
+msgid "Failed to redraw image!"
+msgstr ""
+
+msgid "Failed to resize image!"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "File board"
+msgstr ""
+
+msgid "File must be PNG or GIF format."
+msgstr ""
+
+msgid "File too large!"
+msgstr ""
+
+msgid "File:"
+msgstr ""
+
+msgid "Fixed boards"
+msgstr ""
+
+msgid "Flag"
+msgstr ""
+
+msgid "Flag description"
+msgstr ""
+
+msgid "Flag description too long!"
+msgstr ""
+
+msgid "Flag image"
+msgstr ""
+
+msgid "Flags already in use"
+msgstr ""
+
+msgid "Flags are likely heavily cached by your browser and the website. Please give them time to update if you change one!"
+msgstr ""
+
+msgid "Flags must be a maximum of 48KB and 11-20 x 11-16 pixels."
+msgstr ""
+
+msgid "Flags must be in PNG format."
+msgstr ""
+
+msgid "Flood detected; Post discarded."
+msgstr ""
+
+msgid "Flush cache"
+msgstr ""
+
+msgid "Format math between [tex][/tex]"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "Full log of all actions"
+msgstr ""
+
+msgid "Full log of all actions, no usernames"
+msgstr ""
+
+msgid "GB"
+msgstr ""
+
+msgid "GeoIP"
+msgstr ""
+
+msgid "Global"
+msgstr ""
+
+msgid "Global Statistics"
+msgstr ""
+
+msgid "Global reports"
+msgstr ""
+
+msgid "Global rules permit this content"
+msgstr ""
+
+msgid "Go back"
+msgstr ""
+
+msgid "Go back and rebuild again"
+msgstr ""
+
+msgid "Go back to themes"
+msgstr ""
+
+msgid "Go to bottom "
+msgstr ""
+
+msgid "Go to top"
+msgstr ""
+
+msgid "Group"
+msgstr ""
+
+msgid "Hide NSFW boards"
+msgstr ""
+
+msgid "Hide country"
+msgstr ""
+
+msgid "Hide from boards index<br/>and do not index in search engines"
+msgstr ""
+
+msgid "Hide post options &amp; limits"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "IP"
+msgstr ""
+
+msgid "IP address"
+msgstr ""
+
+msgid "IP address notes"
+msgstr ""
+
+msgid "IP address/mask"
+msgstr ""
+
+msgid "If the global restrictions on Tor users are not enough and you would really like to stop Tor users, there is a setting in your board options. Please think carefully before enabling it."
+msgstr ""
+
+msgid "Ignore and demote global abuse reports on this post"
+msgstr ""
+
+msgid "Ignore and dismiss local AND global abuse reports on this post"
+msgstr ""
+
+msgid "Ignore and dismiss local abuse reports on this post for this board"
+msgstr ""
+
+msgid "Image board"
+msgstr ""
+
+msgid "Image size"
+msgstr ""
+
+msgid "Image wrong size!"
+msgstr ""
+
+msgid "Important: Flags must be accompanied by a description of the flag that will be shown to the users to your board. The description must not exceed 255 characters. To use flags, you also must have \"Enable user flags\" enabled on your board settings page as well as having flags uploaded on this page."
+msgstr ""
+
+msgid "Impossible to move thread; there is only one board."
+msgstr ""
+
+msgid "Impossible to promote/demote user."
+msgstr ""
+
+msgid "Install"
+msgstr ""
+
+msgid "Install theme"
+msgstr ""
+
+#, php-format
+msgid "Installed theme: %s"
+msgstr ""
+
+msgid "Invalid URI"
+msgstr ""
+
+msgid "Invalid board!"
+msgstr ""
+
+msgid "Invalid flag selection!"
+msgstr ""
+
+msgid "Invalid image."
+msgstr ""
+
+msgid "Invalid security token! Please go back and try again."
+msgstr ""
+
+msgid "Invalid subtitle"
+msgstr ""
+
+msgid "Invalid title"
+msgstr ""
+
+msgid "Invalid username"
+msgstr ""
+
+msgid "Invalid username and/or password."
+msgstr ""
+
+msgid "Invalid username and/or password. Your user may have been deleted or changed."
+msgstr ""
+
+msgid "Invalid webm uploaded."
+msgstr ""
+
+msgid "Invalid/malformed cookies."
+msgstr ""
+
+msgid "It is required to enter a subject when starting a new thread on this board."
+msgstr ""
+
+msgid "It is still pending"
+msgstr ""
+
+msgid "KB"
+msgstr ""
+
+msgid "Keep original filename"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Large"
+msgstr ""
+
+msgid "Last 1 Post"
+msgid_plural "Last %count% Posts"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Last action"
+msgstr ""
+
+msgid "Last active"
+msgstr ""
+
+msgid "Leave shadow thread"
+msgstr ""
+
+msgid "Length"
+msgstr ""
+
+msgid "Let me post!"
+msgstr ""
+
+msgid "Lock"
+msgstr ""
+
+msgid "Lock thread"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "MB"
+msgstr ""
+
+msgid "MIME type detection XSS exploit (IE) detected; post discarded."
+msgstr ""
+
+msgid "Make sure you don't forget your password:"
+msgstr ""
+
+msgid "Make thread cycle"
+msgstr ""
+
+msgid "Make thread not cycle"
+msgstr ""
+
+msgid "Make thread not sticky"
+msgstr ""
+
+msgid "Make thread sticky"
+msgstr ""
+
+msgid "Manage board"
+msgstr ""
+
+msgid "Manage themes"
+msgstr ""
+
+msgid "Manage users"
+msgstr ""
+
+msgid "Markup method"
+msgstr ""
+
+msgid "Max filesize is"
+msgstr ""
+
+msgid "Max image dimensions are"
+msgstr ""
+
+msgid "Max images per post"
+msgstr ""
+
+msgid "Max number of newlines per post"
+msgstr ""
+
+msgid "Max threads per hour board-wide"
+msgstr ""
+
+msgid "Maximum file size: %maxsz% bytes<br>Your file's size: %filesz% bytes"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Message snippet"
+msgstr ""
+
+msgid "Messages"
+msgstr ""
+
+msgid "Minimum OP text length"
+msgstr ""
+
+msgid "Moderation log"
+msgstr ""
+
+msgid "Move reply"
+msgstr ""
+
+msgid "Move reply to another board"
+msgstr ""
+
+msgid "Move thread"
+msgstr ""
+
+msgid "Move thread to another board"
+msgstr ""
+
+#, php-format
+msgid "Moved to %s."
+msgstr ""
+
+msgid "My board"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "New Ban"
+msgstr ""
+
+msgid "New PM for"
+msgstr ""
+
+msgid "New Reply"
+msgstr ""
+
+msgid "New Topic"
+msgstr ""
+
+msgid "New ban"
+msgstr ""
+
+msgid "New board"
+msgstr ""
+
+msgid "New note"
+msgstr ""
+
+msgid "New post"
+msgstr ""
+
+msgid "New user"
+msgstr ""
+
+msgid "News"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Nice try."
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "No board."
+msgstr ""
+
+msgid "No index"
+msgstr ""
+
+msgid "No mods?"
+msgstr ""
+
+msgid "No private messages for you."
+msgstr ""
+
+msgid "No reason given."
+msgstr ""
+
+msgid "No results."
+msgstr ""
+
+msgid "No."
+msgstr ""
+
+msgid "None"
+msgstr ""
+
+msgid "Nope."
+msgstr ""
+
+msgid "Not an image extension."
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Noticeboard"
+msgstr ""
+
+#, php-format
+msgid "OP must be at least %d chars on this board."
+msgstr ""
+
+#, php-format
+msgid "OPs are required to have at least %d links on this board."
+msgstr ""
+
+msgid "Oekaki"
+msgstr ""
+
+#, php-format
+msgid "Off-site link \"%s\" is not allowed in the board stylesheet"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Or URL"
+msgstr ""
+
+msgid "Other"
+msgstr ""
+
+msgid "Owner last active"
+msgstr ""
+
+msgid "PM"
+msgstr ""
+
+msgid "PM inbox"
+msgstr ""
+
+msgid "PPH"
+msgstr ""
+
+msgid "Page content"
+msgstr ""
+
+msgid "Page count"
+msgstr ""
+
+msgid "Page names must be < 255 chars and may only contain lowercase letters A-Z and digits 1-9."
+msgstr ""
+
+msgid "Page not found."
+msgstr ""
+
+msgid "Page will appear at:"
+msgstr ""
+
+msgid "Pages"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Phrase:"
+msgstr ""
+
+#, php-format
+msgid "Please edit a <a href=\"%s\">user flags</a>"
+msgstr ""
+
+msgid "Please fill out the CAPTCHA below to make your post. This is required once every 24 hours for normal users."
+msgstr ""
+
+msgid "Popular"
+msgstr ""
+
+msgid "Post ID"
+msgstr ""
+
+msgid "Post a Reply"
+msgstr ""
+
+msgid "Post even if blocked"
+msgstr ""
+
+msgid "Post last edited at"
+msgstr ""
+
+msgid "Post news entry"
+msgstr ""
+
+msgid "Post search is disabled"
+msgstr ""
+
+msgid "Post to noticeboard"
+msgstr ""
+
+#, php-format
+msgid "Post too long. Click <a href=\"%s\">here</a> to view the full text."
+msgstr ""
+
+msgid "Poster ID's"
+msgstr ""
+
+msgid "Posting mode: Reply"
+msgstr ""
+
+msgid "Posts"
+msgstr ""
+
+msgid "Posts per hour"
+msgstr ""
+
+msgid "Posts remained:"
+msgstr ""
+
+#, php-format
+msgid "Potentially unsafe import \"%s\" is not allowed in the board stylesheet"
+msgstr ""
+
+msgid "Prevent thread from being bumped"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Private message"
+msgstr ""
+
+msgid "Promote"
+msgstr ""
+
+msgid "Promote all local abuse reports to global reports"
+msgstr ""
+
+msgid "Promote local abuse report to a global report"
+msgstr ""
+
+msgid "Public action log"
+msgstr ""
+
+msgid "Public bans"
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "Random board"
+msgstr ""
+
+msgid "Raw HTML"
+msgstr ""
+
+msgid "Reason"
+msgstr ""
+
+msgid "Rebuild"
+msgstr ""
+
+msgid "Rebuild Javascript"
+msgstr ""
+
+msgid "Rebuild index pages"
+msgstr ""
+
+msgid "Rebuild replies"
+msgstr ""
+
+msgid "Rebuild themes"
+msgstr ""
+
+msgid "Rebuild thread pages"
+msgstr ""
+
+msgid "Rebuilt"
+msgstr ""
+
+#, php-format
+msgid "Rebuilt theme: %s"
+msgstr ""
+
+msgid "Recent posts"
+msgstr ""
+
+msgid "Reconfigure"
+msgstr ""
+
+msgid "Refusing to change your username because another user is already using it."
+msgstr ""
+
+msgid "Refusing to create a new page with the same name as an existing one."
+msgstr ""
+
+msgid "Refusing to create a volunteer with the same username as an existing one."
+msgstr ""
+
+msgid "Remove ban"
+msgstr ""
+
+msgid "Remove tripcode?"
+msgstr ""
+
+msgid "Replace"
+msgstr ""
+
+msgid "Replies"
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "Reply count"
+msgstr ""
+
+msgid "Reply with quote"
+msgstr ""
+
+msgid "Report"
+msgstr ""
+
+msgid "Report date"
+msgstr ""
+
+msgid "Report has already been dismissed locally"
+msgstr ""
+
+msgid "Report is already a global report"
+msgstr ""
+
+msgid "Report queue"
+msgstr ""
+
+msgid "Report rule violation (CP, etc) to global staff"
+msgstr ""
+
+msgid "Report submitted!"
+msgstr ""
+
+msgid "Reported by"
+msgstr ""
+
+msgid "Reports are already global reports"
+msgstr ""
+
+msgid "Reports have all been dismissed locally"
+msgstr ""
+
+msgid "Require image for OP"
+msgstr ""
+
+msgid "Require subject for OP"
+msgstr ""
+
+msgid "Return"
+msgstr ""
+
+msgid "Return to dashboard"
+msgstr ""
+
+msgid "Rules"
+msgstr ""
+
+msgid "SQL"
+msgstr ""
+
+msgid "Save changes"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search is case-insensitive and based on keywords. To match exact phrases, use \"quotes\". Use an asterisk (*) for wildcard.</p><p style=\"font-size:8pt;margin:5px\">You may apply the following filters to your searches: <strong>id</strong>, <strong>thread</strong>, <strong>subject</strong>, and <strong>name</strong>. To apply a filter, simply add to your query, for example, <em>name:Anonymous</em> or <em>subject:\"Some Thread\"</em>. Wildcards cannot be used in filters."
+msgstr ""
+
+msgid "Search results"
+msgstr ""
+
+msgid "Search tags"
+msgstr ""
+
+msgid "Search titles"
+msgstr ""
+
+msgid "See all boards"
+msgstr ""
+
+msgid "Seen"
+msgstr ""
+
+msgid "Select board"
+msgstr ""
+
+msgid "Send message"
+msgstr ""
+
+msgid "Set"
+msgstr ""
+
+msgid "Show oekaki applet"
+msgstr ""
+
+msgid "Show only active bans"
+msgstr ""
+
+msgid "Show post options &amp; limits"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Small"
+msgstr ""
+
+#, php-format
+msgid "Sorry, %s is too long. Max replacement is 255 characters"
+msgstr ""
+
+msgid "Sorry, max 200 wordfilters allowed."
+msgstr ""
+
+#, php-format
+msgid "Sorry, this site only allows %d pages per board."
+msgstr ""
+
+msgid "Sorry. .onion users can't upload files on this board."
+msgstr ""
+
+msgid "Sorry. The owner of this board has decided not to allow .onion users for some reason..."
+msgstr ""
+
+msgid "Sorry. The owner of this board has decided not to allow Tor posters for some reason..."
+msgstr ""
+
+msgid "Sorry. Tor users can't upload files on this board."
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Spam settings"
+msgstr ""
+
+msgid "Spin me right round..."
+msgstr ""
+
+msgid "Spoiler All"
+msgstr ""
+
+msgid "Spoiler Image"
+msgstr ""
+
+msgid "Spoiler Images"
+msgstr ""
+
+msgid "Spoiler file"
+msgstr ""
+
+msgid "Spoiler images"
+msgstr ""
+
+msgid "Staff"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Sticky"
+msgstr ""
+
+msgid "Stylesheet"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "Subtitle"
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Successfully installed and built theme."
+msgstr ""
+
+#, php-format
+msgid "Successfully rebuilt the <strong>%s</strong> theme."
+msgstr ""
+
+msgid "TB"
+msgstr ""
+
+msgid "TOR entry point"
+msgstr ""
+
+msgid "Tag"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Take deserted boards back from their owners"
+msgstr ""
+
+msgid "Target and source board are the same."
+msgstr ""
+
+msgid "Target board"
+msgstr ""
+
+msgid "Target thread"
+msgstr ""
+
+msgid "Text board"
+msgstr ""
+
+msgid "That ban doesn't exist or is not for you."
+msgstr ""
+
+#, php-format
+msgid "That file <a href=\"%s\">already exists</a> in this thread!"
+msgstr ""
+
+#, php-format
+msgid "That file <a href=\"%s\">already exists</a>!"
+msgstr ""
+
+#, php-format
+msgid "That mod <a href=\"?/users/%d\">already exists</a>!"
+msgstr ""
+
+msgid "That post doesn't exist..."
+msgstr ""
+
+msgid "That post has no files."
+msgstr ""
+
+msgid "That theme doesn't exist!"
+msgstr ""
+
+#, php-format
+msgid "The %s field is required."
+msgstr ""
+
+#, php-format
+msgid "The %s field was invalid."
+msgstr ""
+
+#, php-format
+msgid "The %s field was too long."
+msgstr ""
+
+msgid "The body was too long."
+msgstr ""
+
+msgid "The body was too short or empty."
+msgstr ""
+
+msgid "The database returned an error while processing your request. Please try again later."
+msgstr ""
+
+msgid "The file was too big."
+msgstr ""
+
+msgid "The server failed to handle your upload."
+msgstr ""
+
+msgid "The uploaded webm contains an audio or another type of additional stream."
+msgstr ""
+
+#, php-format
+msgid "The uploaded webm is longer than %d seconds."
+msgstr ""
+
+msgid "The username you've tried to enter already exists!"
+msgstr ""
+
+msgid "Themes directory doesn't exist!"
+msgstr ""
+
+#, php-format
+msgid "There are currently <strong>%s</strong> public boards, <strong>%s</strong> total. Site-wide, <strong>%s</strong> posts have been made in the last hour, with <strong>%s</strong> being made on all active boards since %s."
+msgstr ""
+
+msgid "There are no active posts."
+msgstr ""
+
+msgid "There are no boards to search!"
+msgstr ""
+
+msgid "There are no reports."
+msgstr ""
+
+msgid "There are no themes available."
+msgstr ""
+
+#, php-format
+msgid "There is already a %s board."
+msgstr ""
+
+msgid "There is already a pending appeal for this ban."
+msgstr ""
+
+msgid "There was a problem processing your webm."
+msgstr ""
+
+msgid "This board has public logs disabled. Ask the board owner to enable it."
+msgstr ""
+
+#, php-format
+msgid "This page allows you to create static pages for your board. The limit is %s pages per board.<br>You will still have to link to your pages somewhere in your board, for example in a sticky or in the board's announcement.<br>To make links in the board's announcement, use &lt;a&gt; HTML tags."
+msgstr ""
+
+msgid "This page allows you to create static pages for your imageboard."
+msgstr ""
+
+msgid "This page last updated"
+msgstr ""
+
+msgid "This was a triumph"
+msgstr ""
+
+msgid "Thread ID"
+msgstr ""
+
+msgid "Thread has reached its maximum image limit."
+msgstr ""
+
+msgid "Thread has reached its maximum reply limit."
+msgstr ""
+
+msgid "Thread locked. You may not reply at this time."
+msgstr ""
+
+msgid "Thread specified does not exist."
+msgstr ""
+
+msgid "Thumbnail"
+msgstr ""
+
+msgid "Time"
+msgstr ""
+
+msgid "Tip: Some changes made on this page won't take effect until a new post is made on your board."
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "To submit your report, please fill out the CAPTCHA below."
+msgstr ""
+
+msgid "Toggle all"
+msgstr ""
+
+msgid "Too many banners."
+msgstr ""
+
+msgid "Too many board volunteers!"
+msgstr ""
+
+msgid "Too many cites; post discarded."
+msgstr ""
+
+msgid "Too many cross-board links; post discarded."
+msgstr ""
+
+msgid "Too many flags."
+msgstr ""
+
+#, php-format
+msgid "Too many links(%d of %d)."
+msgstr ""
+
+msgid "Too many tags."
+msgstr ""
+
+msgid "Tor users may not delete posts."
+msgstr ""
+
+msgid "Tor users need to fill out the CAPTCHA every 3 hours or 5 posts, and must have cookies enabled so they can keep the \"tor\" cookie."
+msgstr ""
+
+msgid "Total posts"
+msgstr ""
+
+msgid "Tripcode"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "URI"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "USER WAS BANNED FOR THIS POST"
+msgstr ""
+
+msgid "Unban selected"
+msgstr ""
+
+msgid "Uninstall"
+msgstr ""
+
+msgid "Unique IPs to post in the last 72 hours"
+msgstr ""
+
+msgid "Unknown"
+msgstr ""
+
+msgid "Unknown file extension."
+msgstr ""
+
+msgid "Unlock thread"
+msgstr ""
+
+msgid "Unoriginal content!"
+msgstr ""
+
+#, php-format
+msgid "Unoriginal content! You have been muted for %d seconds."
+msgstr ""
+
+msgid "Unrecognized file size determination method."
+msgstr ""
+
+msgid "Unrecognized page markup method."
+msgstr ""
+
+msgid "Unsupported file format: "
+msgstr ""
+
+msgid "Unsupported image format."
+msgstr ""
+
+msgid "Update"
+msgstr ""
+
+msgid "Update flags"
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "Upload banner"
+msgstr ""
+
+msgid "Upload flag"
+msgstr ""
+
+msgid "Uploading files is disabled on this board."
+msgstr ""
+
+msgid "Use theme"
+msgstr ""
+
+msgid "User account"
+msgstr ""
+
+msgid "User actions log"
+msgstr ""
+
+msgid "User flags"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Users are not allowed to delete their own posts on this board."
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "Verification"
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "Very small"
+msgstr ""
+
+msgid "View All"
+msgstr ""
+
+msgid "View all noticeboard entries"
+msgstr ""
+
+msgid "View more logs for this user."
+msgstr ""
+
+msgid "Volunteer does not exist!"
+msgstr ""
+
+#, php-format
+msgid "Wait %s for create new thread."
+msgstr ""
+
+msgid "Wait a while before searching again, please."
+msgstr ""
+
+msgid "Warning! This IP is a Tor exit node. Tor is a global network that allows for truly anonymous posting by obfuscating the user's real IP address. Please do not ban it, all bans on Tor exit nodes are globally undone every week. On 8chan, Tor users are allowed to post five times per CAPTCHA they complete, and image uploads are not allowed."
+msgstr ""
+
+msgid "With"
+msgstr ""
+
+msgid "Wordfilters"
+msgstr ""
+
+msgid "Wordfilters may not wordfilter previous wordfilters. For example, if a filters to bb and b filters to cc, that is not allowed."
+msgstr ""
+
+msgid "Wrong password..."
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "You appealed this ban on"
+msgstr ""
+
+msgid "You are banned! ;_;"
+msgstr ""
+
+#, php-format
+msgid "You are muted! Expires in %d seconds."
+msgstr ""
+
+msgid "You are not a .onion user"
+msgstr ""
+
+msgid "You are not a mod..."
+msgstr ""
+
+#, php-format
+msgid "You are only allowed to unban %s users at a time. You tried to unban %u users."
+msgstr ""
+
+msgid "You are probably seeing this message because Javascript being disabled. This is a necessary security measure to prevent CSRF attacks."
+msgstr ""
+
+msgid "You are sending too many PMs per hour. Try again later."
+msgstr ""
+
+msgid "You can manage your board <a href=\"/mod.php?/\">HERE</a>"
+msgstr ""
+
+#, php-format
+msgid "You can not deleting OP-post after %s."
+msgstr ""
+
+msgid "You can't report that many posts at once."
+msgstr ""
+
+msgid "You cannot appeal a ban of this length."
+msgstr ""
+
+msgid "You cannot appeal this ban again."
+msgstr ""
+
+msgid "You didn't make a post."
+msgstr ""
+
+msgid "You didn't select anything to delete."
+msgstr ""
+
+msgid "You didn't select anything to report."
+msgstr ""
+
+msgid "You don't have permission to do that."
+msgstr ""
+
+msgid "You failed the CAPTCHA"
+msgstr ""
+
+msgid "You have attempted to upload too many images!"
+msgstr ""
+
+msgid "You have been banned from"
+msgstr ""
+
+msgid "You have submitted the maximum number of ban appeals allowed. You may not appeal this ban again."
+msgstr ""
+
+msgid "You last appealed this ban on"
+msgstr ""
+
+msgid "You look like a bot."
+msgstr ""
+
+msgid "You may appeal this ban again. Please enter your reasoning below."
+msgstr ""
+
+msgid "You may appeal this ban. Please enter your reasoning below."
+msgstr ""
+
+msgid "You may not PM a member of global staff who did not PM you within the last month. Try posting on /operate/ or emailing us instead: admin@8chan.co"
+msgstr ""
+
+msgid "You may now go back and make your post."
+msgstr ""
+
+msgid "You may only PM users assigned to your board"
+msgstr ""
+
+#, php-format
+msgid "You may upload %s per post."
+msgstr ""
+
+msgid "You must choose a flag to post on this board!"
+msgstr ""
+
+msgid "You must enter a flag description!"
+msgstr ""
+
+msgid "You must upload an image."
+msgstr ""
+
+msgid "You need to submit:"
+msgstr ""
+
+msgid "You seem to have mistyped the verification."
+msgstr ""
+
+msgid "You submitted an appeal for this ban on"
+msgstr ""
+
+msgid "You were banned for the following post on"
+msgstr ""
+
+msgid "You were banned from"
+msgstr ""
+
+msgid "You were banned! ;_;"
+msgstr ""
+
+#, php-format
+msgid "You'll have to wait another %s before deleting that."
+msgstr ""
+
+msgid "YouTube/Voocaroo embedding"
+msgstr ""
+
+msgid "Your IP address is"
+msgstr ""
+
+#, php-format
+msgid "Your IP address is listed in %s."
+msgstr ""
+
+msgid "Your ban was filed on"
+msgstr ""
+
+msgid "Your browser didn't submit an input when it should have."
+msgstr ""
+
+msgid "Your browser sent an invalid or no HTTP referer."
+msgstr ""
+
+msgid "Your code contained PHP syntax errors. Please go back and correct them. PHP says: "
+msgstr ""
+
+#, php-format
+msgid "Your message exceeds %d characters, please shorten it."
+msgstr ""
+
+msgid "Your new board is created and is live at"
+msgstr ""
+
+#, php-format
+msgid "Your post contains too many lines. This board only allows %d maximum."
+msgstr ""
+
+msgid "Your request looks automated; Post discarded. Try refreshing the page. If that doesn't work, please post the board, thread and browser this error occurred on on /operate/."
+msgstr ""
+
+msgid "all boards"
+msgstr ""
+
+msgid "and"
+msgstr ""
+
+msgid "and it was denied."
+msgstr ""
+
+msgid "and it was denied. You may not appeal this ban again."
+msgstr ""
+
+msgid "at"
+msgstr ""
+
+msgid "before someone else does"
+msgstr ""
+
+msgid "by"
+msgstr ""
+
+msgid "captchas out of"
+msgstr ""
+
+msgid "day"
+msgid_plural "days"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "delete"
+msgstr ""
+
+msgid "deleted?"
+msgstr ""
+
+msgid "edit"
+msgstr ""
+
+msgid "eg. \"2d1h30m\" or \"2 days\""
+msgstr ""
+
+msgid "empty"
+msgstr ""
+
+msgid "exiftool failed!"
+msgstr ""
+
+msgid "expires"
+msgstr ""
+
+msgid "fails left:"
+msgstr ""
+
+msgid "for an unspecified reason."
+msgstr ""
+
+msgid "for the following reason:"
+msgstr ""
+
+msgid "from now, which is on"
+msgstr ""
+
+msgid "has since expired. Refresh the page to continue."
+msgstr ""
+
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "if you forget your board password<br/>email admin@8chan.co from this<br/>address to request a reset; optional"
+msgstr ""
+
+msgid "integer between 0 and 1024"
+msgstr ""
+
+msgid "locks thread; replies to it with a link."
+msgstr ""
+
+msgid "log"
+msgstr ""
+
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "never"
+msgstr ""
+
+msgid "new; optional"
+msgstr ""
+
+msgid "no reason"
+msgstr ""
+
+msgid "no subject"
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "not a WebM file"
+msgstr ""
+
+msgid "note: does not validate CSS"
+msgstr ""
+
+msgid "omitted. Click reply to view."
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "out of"
+msgstr ""
+
+msgid "posts, cookies must be enabled."
+msgstr ""
+
+msgid "public; attached to post"
+msgstr ""
+
+msgid "remove"
+msgstr ""
+
+msgid "reply"
+msgstr ""
+
+msgid "required"
+msgstr ""
+
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "settings"
+msgstr ""
+
+msgid "this cannot be changed"
+msgstr ""
+
+msgid "through"
+msgstr ""
+
+msgid "unread"
+msgstr ""
+
+msgid "warning: changing your username<br/>will log you out and change all occurrences<br/>of your old username to the new one in<br/>your board's logs"
+msgstr ""
+
+msgid "week"
+msgid_plural "weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "will not expire"
+msgstr ""
+
+msgid "year"
+msgid_plural "years"
+msgstr[0] ""
+msgstr[1] ""

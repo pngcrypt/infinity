@@ -1,1 +1,1 @@
-l10n = {"File":"Fil","URL":"URL","Password":"L\u00f6senord","Delete":"Ta bort","Save":"Spara","Hello!":"Hej!","Options":"Installningar","all":"alla"," ago":"sedan","in ":"i","Auto":"Auto","All":"Alla","second(s)":"sekund(er)","minute(s)":"minut(er)","hour(s)":"tim(ar)","Download All":"H\u00e4mtar alla","(You)":"(Du)","OK":"OK"};
+l10n = {" ago":"sedan","(You)":"(Du)","All":"Alla","Auto":"Auto","Download All":"Hämtar alla","File":"Fil","OK":"OK","Options":"Installningar","URL":"URL","all":"alla","hour(s)":"tim(ar)","in ":"i","minute(s)":"minut(er)","second(s)":"sekund(er)"};
