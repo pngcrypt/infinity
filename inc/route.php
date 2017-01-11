@@ -7,55 +7,55 @@
 
 defined('TINYBOARD') or exit;
 
-function route($path) { global $config;
-  $entrypoints = array();
+function route($path) {
+	$entrypoints = array();
 
-  $entrypoints['/%b/']                       = 'sb_board';
-  $entrypoints['/%b/'.$config['file_index']] = 'sb_board';
-  $entrypoints['/%b/'.$config['file_page']]  = 'sb_board';
-  $entrypoints['/%b/%d.json']                = 'sb_api_board';
-  if ($config['api']['enabled']) {
-    $entrypoints['/%b/threads.json']         = 'sb_api';
-    $entrypoints['/%b/catalog.json']         = 'sb_api';
-  }
+	$entrypoints['/%b/']                             = 'sb_board';
+	$entrypoints['/%b/' . Vi::$config['file_index']] = 'sb_board';
+	$entrypoints['/%b/' . Vi::$config['file_page']]  = 'sb_board';
+	$entrypoints['/%b/%d.json']                      = 'sb_api_board';
 
-  $entrypoints['/%b/'.$config['dir']['res'].$config['file_page']]          = 'sb_thread';
-  $entrypoints['/%b/'.$config['dir']['res'].$config['file_page50']]        = 'sb_thread_slugcheck50';
-  if ($config['api']['enabled']) {
-    $entrypoints['/%b/'.$config['dir']['res'].'%d.json']                   = 'sb_thread';
-  }
+	if (Vi::$config['api']['enabled']) {
+		$entrypoints['/%b/threads.json'] = 'sb_api';
+		$entrypoints['/%b/catalog.json'] = 'sb_api';
+	}
 
-  $entrypoints['/*/']              = 'sb_ukko';
-  $entrypoints['/*/index.html']    = 'sb_ukko';
-  $entrypoints['/recent.html']     = 'sb_recent';
-  $entrypoints['/%b/catalog.html'] = 'sb_catalog';
-  $entrypoints['/%b/index.rss']    = 'sb_catalog';
-  $entrypoints['/sitemap.xml']     = 'sb_sitemap';
+	$entrypoints['/%b/' . Vi::$config['dir']['res'] . Vi::$config['file_page']]   = 'sb_thread';
+	$entrypoints['/%b/' . Vi::$config['dir']['res'] . Vi::$config['file_page50']] = 'sb_thread_slugcheck50';
+	if (Vi::$config['api']['enabled']) {
+		$entrypoints['/%b/' . Vi::$config['dir']['res'] . '%d.json'] = 'sb_thread';
+	}
 
-  $entrypoints = array_merge($entrypoints, $config['controller_entrypoints']);
+	$entrypoints['/*/']              = 'sb_ukko';
+	$entrypoints['/*/index.html']    = 'sb_ukko';
+	$entrypoints['/recent.html']     = 'sb_recent';
+	$entrypoints['/%b/catalog.html'] = 'sb_catalog';
+	$entrypoints['/%b/index.rss']    = 'sb_catalog';
+	$entrypoints['/sitemap.xml']     = 'sb_sitemap';
 
-  $reached = false;
+	$entrypoints = array_merge($entrypoints, Vi::$config['controller_entrypoints']);
 
-  list($request) = explode('?', $path);
+	$reached = false;
 
-  foreach ($entrypoints as $id => $fun) {
-    $id = '@^' . preg_quote($id, '@') . '$@u'; 
+	list($request) = explode('?', $path);
 
-    $id = str_replace('%b', '('.$config['board_regex'].')', $id);
-    $id = str_replace('%d', '([0-9]+)',                     $id);
-    $id = str_replace('%s', '[a-zA-Z0-9-]+',                $id);
+	foreach ($entrypoints as $id => $fun) {
+		$id = '@^' . preg_quote($id, '@') . '$@u';
 
-    $matches = null;
+		$id = str_replace('%b', '(' . Vi::$config['board_regex'] . ')', $id);
+		$id = str_replace('%d', '([0-9]+)', $id);
+		$id = str_replace('%s', '[a-zA-Z0-9-]+', $id);
 
-    if (preg_match ($id, $request, $matches)) {
-      array_shift($matches);
+		$matches = null;
 
-      $reached = array($fun, $matches);
+		if (preg_match($id, $request, $matches)) {
+			array_shift($matches);
 
-      break;
-    }
-  }
+			$reached = array($fun, $matches);
 
-  return $reached;
+			break;
+		}
+	}
+
+	return $reached;
 }
-

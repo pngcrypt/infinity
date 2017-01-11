@@ -42,15 +42,13 @@ class Remote {
 	}
 	
 	public function write($data, $remote_path) {
-		global $config;
-		
 		switch ($this->type) {
 			case 'sftp':
 				$sftp = ssh2_sftp($this->connection);
 				file_write('ssh2.sftp://' . $sftp . $remote_path, $data, true);
 				break;
 			case 'scp':
-				$file = tempnam($config['tmp'], 'tinyboard-scp');
+				$file = tempnam(Vi::$config['tmp'], 'tinyboard-scp');
 				// Write to temp file
 				file_write($file, $data);
 				

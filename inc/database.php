@@ -8,92 +8,100 @@ defined('TINYBOARD') or exit;
 
 class PreparedQueryDebug {
 	protected $query, $explain_query = false;
-	
+
 	public function __construct($query) {
-		global $pdo, $config;
 		$query = preg_replace("/[\n\t]+/", ' ', $query);
-		
-		$this->query = $pdo->prepare($query);
-		if ($config['debug'] && $config['debug_explain'] && preg_match('/^(SELECT|INSERT|UPDATE|DELETE) /i', $query))
-			$this->explain_query = $pdo->prepare("EXPLAIN $query");
+
+		$this->query = Vi::$pdo->prepare($query);
+		if (Vi::$config['debug'] && Vi::$config['debug_explain'] && preg_match('/^(SELECT|INSERT|UPDATE|DELETE) /i', $query)) {
+			$this->explain_query = Vi::$pdo->prepare("EXPLAIN $query");
+		}
 	}
+
 	public function __call($function, $args) {
-		global $config, $debug;
-		
-		if ($config['debug'] && $function == 'execute') {
+		if (Vi::$config['debug'] && $function == 'execute') {
 			if ($this->explain_query) {
 				$this->explain_query->execute() or error(db_error($this->explain_query));
 			}
 			$start = microtime(true);
 		}
-		
-		if ($this->explain_query && $function == 'bindValue')
+
+		if ($this->explain_query && $function == 'bindValue') {
 			call_user_func_array(array($this->explain_query, $function), $args);
-		
-		$return = call_user_func_array(array($this->query, $function), $args);
-		
-		if ($config['debug'] && $function == 'execute') {
-			$time = microtime(true) - $start;
-			$debug['sql'][] = array(
-				'query' => $this->query->queryString,
-				'rows' => $this->query->rowCount(),
-				'explain' => $this->explain_query ? $this->explain_query->fetchAll(PDO::FETCH_ASSOC) : null,
-				'time' => '~' . round($time * 1000, 2) . 'ms'
-			);
-			$debug['time']['db_queries'] += $time;
 		}
-		
+
+		$return = call_user_func_array(array($this->query, $function), $args);
+
+		if (Vi::$config['debug'] && $function == 'execute') {
+			$time               = microtime(true) - $start;
+			Vi::$debug['sql'][] = array(
+				'query'   => $this->query->queryString,
+				'rows'    => $this->query->rowCount(),
+				'explain' => $this->explain_query ? $this->explain_query->fetchAll(PDO::FETCH_ASSOC) : null,
+				'time'    => '~' . round($time * 1000, 2) . 'ms',
+			);
+			Vi::$debug['time']['db_queries'] += $time;
+		}
+
 		return $return;
 	}
 }
 
 function sql_open() {
-	global $pdo, $config, $debug;
-	if ($pdo)
+	if (Vi::$pdo) {
 		return true;
-	
-	
-	if ($config['debug'])
+	}
+
+	if (Vi::$config['debug']) {
 		$start = microtime(true);
-	
-	if (isset($config['db']['server'][0]) && $config['db']['server'][0] == ':')
-		$unix_socket = substr($config['db']['server'], 1);
-	else
+	}
+
+	if (isset(Vi::$config['db']['server'][0]) && Vi::$config['db']['server'][0] == ':') {
+		$unix_socket = substr(Vi::$config['db']['server'], 1);
+	} else {
 		$unix_socket = false;
-	
-	$dsn = $config['db']['type'] . ':' .
-		($unix_socket ? 'unix_socket=' . $unix_socket : 'host=' . $config['db']['server']) .
-		';dbname=' . $config['db']['database'];
-	if (!empty($config['db']['dsn']))
-		$dsn .= ';' . $config['db']['dsn'];
+	}
+
+	$dsn = Vi::$config['db']['type'] . ':' .
+		($unix_socket ? 'unix_socket=' . $unix_socket : 'host=' . Vi::$config['db']['server']) .
+		';dbname=' . Vi::$config['db']['database'];
+	if (!empty(Vi::$config['db']['dsn'])) {
+		$dsn .= ';' . Vi::$config['db']['dsn'];
+	}
+
 	try {
 		$options = array(
-			PDO::ATTR_TIMEOUT => $config['db']['timeout'],
-			PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true
+			PDO::ATTR_TIMEOUT                  => Vi::$config['db']['timeout'],
+			PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
 		);
-		if ($config['db']['persistent'])
+		if (Vi::$config['db']['persistent']) {
 			$options[PDO::ATTR_PERSISTENT] = true;
-		$pdo = new PDO($dsn, $config['db']['user'], $config['db']['password'], $options);
-		
-		if ($config['debug'])
-			$debug['time']['db_connect'] = '~' . round((microtime(true) - $start) * 1000, 2) . 'ms';
-		
-		if (mysql_version() >= 50503)
+		}
+
+		Vi::$pdo = new PDO($dsn, Vi::$config['db']['user'], Vi::$config['db']['password'], $options);
+
+		if (Vi::$config['debug']) {
+			Vi::$debug['time']['db_connect'] = '~' . round((microtime(true) - $start) * 1000, 2) . 'ms';
+		}
+
+		if (mysql_version() >= 50503) {
 			query('SET NAMES utf8mb4') or error(db_error());
-		else
+		} else {
 			query('SET NAMES utf8') or error(db_error());
-		return $pdo;
-	} catch(PDOException $e) {
+		}
+
+		return Vi::$pdo;
+	} catch (PDOException $e) {
 		$message = $e->getMessage();
-		
+
 		// Remove any sensitive information
-		$message = str_replace($config['db']['user'], '<em>hidden</em>', $message);
-		$message = str_replace($config['db']['password'], '<em>hidden</em>', $message);
-		
+		$message = str_replace(Vi::$config['db']['user'], '<em>hidden</em>', $message);
+		$message = str_replace(Vi::$config['db']['password'], '<em>hidden</em>', $message);
+
 		// Print error
-		if ($config['mask_db_error']) {
+		if (Vi::$config['mask_db_error']) {
 			error(_('Could not connect to the database. Please try again later.'));
-		} else { 
+		} else {
 			error(_('Database error: ') . $message);
 		}
 	}
@@ -101,61 +109,60 @@ function sql_open() {
 
 // 5.6.10 becomes 50610
 function mysql_version() {
-	global $pdo;
-	
-	$version = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
-	$v = explode('.', $version);
-	if (count($v) != 3)
+	$version = Vi::$pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
+	preg_match('/^(\d+)\.(\d+)\.(\d+)/', $version, $v); // MariaDB return like: "5.5.5-10.1.19-MariaDB"
+	if (count($v) != 4) {
 		return false;
-	return (int) sprintf("%02d%02d%02d", $v[0], $v[1], $v[2]);
+	}
+
+	return (int) sprintf("%02d%02d%02d", $v[1], $v[2], $v[3]);
 }
 
 function prepare($query) {
-	global $pdo, $debug, $config;
-	
-	$query = preg_replace('/``('.$config['board_regex'].')``/u', '`' . $config['db']['prefix'] . '$1`', $query);
-	
-	sql_open();
-	
-	if ($config['debug'])
-		return new PreparedQueryDebug($query);
+	$query = preg_replace('/``(' . Vi::$config['board_regex'] . ')``/u', '`' . Vi::$config['db']['prefix'] . '$1`', $query);
 
-	return $pdo->prepare($query);
+	sql_open();
+
+	if (Vi::$config['debug']) {
+		return new PreparedQueryDebug($query);
+	}
+
+	return Vi::$pdo->prepare($query);
 }
 
 function query($query) {
-	global $pdo, $debug, $config;
-	
-	$query = preg_replace('/``('.$config['board_regex'].')``/u', '`' . $config['db']['prefix'] . '$1`', $query);
-	
+	$query = preg_replace('/``(' . Vi::$config['board_regex'] . ')``/u', '`' . Vi::$config['db']['prefix'] . '$1`', $query);
+
 	sql_open();
-	
-	if ($config['debug']) {
-		if ($config['debug_explain'] && preg_match('/^(SELECT|INSERT|UPDATE|DELETE) /i', $query)) {
-			$explain = $pdo->query("EXPLAIN $query") or error(db_error());
+
+	if (Vi::$config['debug']) {
+		if (Vi::$config['debug_explain'] && preg_match('/^(SELECT|INSERT|UPDATE|DELETE) /i', $query)) {
+			$explain = Vi::$pdo->query("EXPLAIN $query") or error(db_error());
 		}
 		$start = microtime(true);
-		$query = $pdo->query($query);
-		if (!$query)
+		$query = Vi::$pdo->query($query);
+		if (!$query) {
 			return false;
-		$time = microtime(true) - $start;
-		$debug['sql'][] = array(
-			'query' => $query->queryString,
-			'rows' => $query->rowCount(),
+		}
+
+		$time           = microtime(true) - $start;
+		Vi::$debug['sql'][] = array(
+			'query'   => $query->queryString,
+			'rows'    => $query->rowCount(),
 			'explain' => isset($explain) ? $explain->fetchAll(PDO::FETCH_ASSOC) : null,
-			'time' => '~' . round($time * 1000, 2) . 'ms'
+			'time'    => '~' . round($time * 1000, 2) . 'ms',
 		);
-		$debug['time']['db_queries'] += $time;
+		Vi::$debug['time']['db_queries'] += $time;
 		return $query;
 	}
 
-	return $pdo->query($query);
+	return Vi::$pdo->query($query);
 }
 
 function db_error($PDOStatement = null) {
-	global $pdo, $db_error, $config;
+	global $db_error;
 
-	if ($config['mask_db_error']) {
+	if (Vi::$config['mask_db_error']) {
 		return _('The database returned an error while processing your request. Please try again later.');
 	}
 
@@ -164,6 +171,6 @@ function db_error($PDOStatement = null) {
 		return $db_error[2];
 	}
 
-	$db_error = $pdo->errorInfo();
+	$db_error = Vi::$pdo->errorInfo();
 	return $db_error[2];
 }
