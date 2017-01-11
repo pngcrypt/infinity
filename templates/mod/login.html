@@ -3,7 +3,7 @@
 <table style="margin-top:25px;">
 	<tr>
 		<th>
-			{% trans 'Username' %}
+			{% trans("Username") %}
 		</th>
 		<td>
 			<input type="text" name="username" size="20" maxlength="30" value="{{ username|e }}">
@@ -11,7 +11,7 @@
 	</tr>
 	<tr>
 		<th>
-			{% trans 'Password' %}
+			{% trans("Password") %}
 		</th>
 		<td>
 			<input type="password" name="password" size="20" maxlength="30" value="">
@@ -20,7 +20,7 @@
 	<tr>
 		<td></td>
 		<td>
-			<input type="submit" name="login" value="{% trans %}Continue{% endtrans %}" />
+			<input type="submit" name="login" value="{% trans("Continue") %}" />
 		</td>
 </table>
 </form>

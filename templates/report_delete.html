@@ -1,17 +1,17 @@
 <div id="post-moderation-fields">
 	{% if config.allow_delete %}
 	<div id="delete-fields">
-		{% trans %}Delete Post{% endtrans %} [<input title="Delete file only" type="checkbox" name="file" id="delete_file" />
-		 <label for="delete_file">{% trans %}File{% endtrans %}</label>] <label for="password">{% trans %}Password{% endtrans %}</label> 
+		{% trans("Delete Post") %} [<input title="Delete file only" type="checkbox" name="file" id="delete_file" />
+		 <label for="delete_file">{% trans("File") %}</label>] <label for="password">{% trans("Password") %}</label> 
 		<input id="password" type="password" name="password" size="12" maxlength="18" />
-		<input type="submit" name="delete" value="{% trans %}Delete{% endtrans %}" />
+		<input type="submit" name="delete" value="{% trans("Delete") %}" />
 	</div>
 	{% endif %}
 	
 	<div id="report-fields">
-		<label for="reason">{% trans %}Reason{% endtrans %}</label> 
+		<label for="reason">{% trans("Reason") %}</label> 
 		<input id="reason" type="text" name="reason" size="20" maxlength="30" />
-		[<input title="Global Report" type="checkbox" name="global" id="global_report" /><label for="global_report" title="Report rule violation (CP, etc) to global staff">{% trans %}Global{% endtrans %}</label>]
-		<input type="submit" name="report" value="{% trans %}Report{% endtrans %}" />
+		[<input title="Global Report" type="checkbox" name="global" id="global_report" /><label for="global_report" title="{% trans("Report rule violation (CP, etc) to global staff") %}">{% trans("Global") %}</label>]
+		<input type="submit" name="report" value="{% trans("Report") %}" />
 	</div>
 </div>

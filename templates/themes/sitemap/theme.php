@@ -2,8 +2,6 @@
 	require 'info.php';
 	
 	function sitemap_build($action, $settings, $board) {
-		global $config;
-		
 		// Possible values for $action:
 		//	- all (rebuild everything, initialization)
 		//	- news (news has been updated)
@@ -40,7 +38,7 @@
 				
 			file_write($settings['path'], Element('themes/sitemap/sitemap.xml', Array(
 				'settings' => $settings,
-				'config' => $config,
+				'config' => Vi::$config,
 				'threads' => $threads,
 				'boards' => $boards,
 			)));

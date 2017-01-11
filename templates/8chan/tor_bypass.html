@@ -1,0 +1,22 @@
+<center>
+<form method="POST">
+{% if config.tor_posting %}
+{% if not user.allow_post %}
+<p>{% trans(".onion users must submit captcha every") %} {{ (config.tor.cookie_time + time())|until }} {% trans("or") %} {{ user.posts_max }} {% trans("posts, cookies must be enabled.") %}</p>
+{% if message %}{{message}}<br/><br/>{% endif %}
+{% include 'captcha.html' %}
+{% trans("You need to submit:") %} {{ user.capchas_left }} {% trans("captchas out of") %} {{ user.capchas_need }}, {% trans("fails left:") %} {{ user.fails_left }}<br/>
+{% else %}
+{% trans("ACCESS GRANTED!") %}<br/>
+{% endif %}
+{% trans("Posts remained:") %} {{ user.posts_left }} {% trans("out of") %} {{ user.posts_max }}
+{% if user.allow_post %}<br/><i>{% trans("Cookie time-to-live:") %} {{ user.expire|until }}</i>{% endif %}
+{% if not user.allow_post %}<ul style="padding:5px;list-style:none">
+	<li><input type="submit" value="{% trans("Submit") %}"></li>
+</ul>{% endif %}
+{% else %}
+{% trans("Captcha for TOR users is temporarily disabled.") %}
+{% endif %}
+{% if board.uri %}<input type="text" name="board" value="{{ board.uri }}">{% endif %}
+</form>
+</center> 

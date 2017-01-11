@@ -3,7 +3,7 @@
 	<table>
 		<tr>
 			<th>
-				{% trans 'Thread ID' %}
+				{% trans("Thread ID") %}
 			</th>
 			<td>
 				&gt;&gt;&gt;{{ config.board_abbreviation|sprintf(board) }}{{ post }}
@@ -11,15 +11,15 @@
 		</tr>
 		<tr>
 			<th>
-				{% trans 'Leave shadow thread' %}
+				{% trans("Leave shadow thread") %}
 			</th>
 			<td>
 				<input type="checkbox" name="shadow" checked> 
-				<span class="unimportant">({% trans 'locks thread; replies to it with a link.' %})</span>
+				<span class="unimportant">({% trans("locks thread; replies to it with a link.") %})</span>
 				</td>
 		</tr>
 		<tr>
-			<th>{% trans 'Target board' %}</th>
+			<th>{% trans("Target board") %}</th>
 			<td>
 				<ul style="list-style:none;padding:0">
 					{% for targetboard in boards if targetboard.uri != board and targetboard.uri == 'meta' %}
@@ -36,7 +36,7 @@
 	</table>
 	
 	<ul style="padding:0;text-align:center;list-style:none">
-		<li><input type="submit" value="{% trans 'Move thread' %}"></li>
+		<li><input type="submit" value="{% trans("Move thread") %}"></li>
 	</ul>
 </form>
 

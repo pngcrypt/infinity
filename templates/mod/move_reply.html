@@ -3,14 +3,14 @@
 	<table>
 		<tr>
 			<th>
-				{% trans 'Post ID' %}
+				{% trans("Post ID") %}
 			</th>
 			<td>
 				&gt;&gt;&gt;{{ config.board_abbreviation|sprintf(board) }}{{ post }}
 			</td>
 		</tr>
 		<tr>
-			<th>{% trans 'Target board' %}</th>
+			<th>{% trans("Target board") %}</th>
 			<td>
 				<ul style="list-style:none;padding:0">
 					{% for targetboard in boards %}
@@ -26,7 +26,7 @@
 			<td>
 		</tr>
 		<tr>
-			<th>{% trans 'Target thread' %}</th>
+			<th>{% trans("Target thread") %}</th>
 			<td>
 				<p>If you do not want to make the post into a new thread, please specify the thread you want to move the reply to:</p>
 				<input type="text" name="target_thread"/>
@@ -35,7 +35,7 @@
 	</table>
 	
 	<ul style="padding:0;text-align:center;list-style:none">
-		<li><input type="submit" value="{% trans 'Move reply' %}"></li>
+		<li><input type="submit" value="{% trans("Move reply") %}"></li>
 	</ul>
 </form>
 

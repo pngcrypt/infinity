@@ -20,20 +20,20 @@
 		{% include 'ad_top.html' %}
 	{% endif %}
 
-        <span>{% trans 'Sort by' %}: </span>
+        <span>{% trans("Sort by") %}: </span>
         <select id="sort_by" style="display: inline-block">
-                <option selected value="bump:desc">{% trans 'Bump order' %}</option>
-                <option value="time:desc">{% trans 'Creation date' %}</option>
-                <option value="reply:desc">{% trans 'Reply count' %}</option>
-                <option value="random:desc">{% trans 'Random' %}</option>
+                <option selected value="bump:desc">{% trans("Bump order") %}</option>
+                <option value="time:desc">{% trans("Creation date") %}</option>
+                <option value="reply:desc">{% trans("Reply count") %}</option>
+                <option value="random:desc">{% trans("Random") %}</option>
         </select>
  
-        <span>{% trans 'Image size' %}: </span>
+        <span>{% trans("Image size") %}: </span>
         <select id="image_size" style="display: inline-block">
-                <option value="vsmall">{% trans 'Very small' %}</option>
-                <option selected value="small">{% trans 'Small' %}</option>
-                <option value="medium">{% trans 'Medium' %}</option>
-                <option value="large">{% trans 'Large' %}</option>
+                <option value="vsmall">{% trans("Very small") %}</option>
+                <option selected value="small">{% trans("Small") %}</option>
+                <option value="medium">{% trans("Medium") %}</option>
+                <option value="large">{% trans("Large") %}</option>
         </select>
         <div class="threads">
                 <div id="Grid">
@@ -82,7 +82,6 @@
                 <a href="https://engine.vichan.net/">vichan</a> {{ config.version }} -
                 <br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
                 <br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2016 vichan-devel
-                <br><a href="https://8ch.net/8code/">infinity</a> Copyright &copy; 2013-2015 Fredrick Brennan &amp; Infinity Development Group</p>
 		{% for footer in config.footer %}<p class="unimportant" style="text-align:center;">{{ footer }}</p>{% endfor %}
 	</footer>
 	<script type="text/javascript">{% raw %}

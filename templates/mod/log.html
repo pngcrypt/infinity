@@ -1,10 +1,10 @@
 <table class="modlog">
 	<tr>
-		<th>{% trans 'Username' %}</th>
-		<th>{% trans 'IP address' %}</th>
-		<th>{% trans 'Time' %}</th>
-		<th>{% trans 'Board' %}</th>
-		<th>{% trans 'Action' %}</th>
+		<th>{% trans("Username") %}</th>
+		<th>{% trans("IP address") %}</th>
+		<th>{% trans("Time") %}</th>
+		<th>{% trans("Board") %}</th>
+		<th>{% trans("Action") %}</th>
 	</tr>
 	{% for log in logs if log.text != 'Looked at dashboard' %}
 		<tr>
@@ -22,7 +22,7 @@
 				{% elseif log.mod == -1 %}
 					<em>system</em>
 				{% else %}
-					<em>{% trans 'deleted?' %}</em>
+					<em>{% trans("deleted?") %}</em>
 				{% endif %}
 			</td>
 			<td class="minimal">
@@ -37,7 +37,7 @@
 			</td>
 			<td class="minimal">
 				{% if log.board %}
-					<a href="?/{{ config.board_path|sprintf(log.board) }}{{ config.file_index }}">{{ config.board_abbreviation|sprintf(log.board) }}</a>
+					<a href="{% if mod %}?{% endif %}/{{ config.board_path|sprintf(log.board) }}{{ config.file_index }}">{{ config.board_abbreviation|sprintf(log.board) }}</a>
 				{% else %}
 					-
 				{% endif %}

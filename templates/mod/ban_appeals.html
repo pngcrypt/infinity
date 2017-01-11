@@ -4,77 +4,77 @@
 	<input type="hidden" name="token" value="{{ token }}">
 	<table style="margin: 5px 0">
 		<tr>
-			<th>{% trans 'Status' %}</th>
+			<th>{% trans("Status") %}</th>
 			<td>
 				{% if config.mod.view_banexpired and ban.expires != 0 and ban.expires < time() %}
-					{% trans 'Expired' %}
+					{% trans("Expired") %}
 				{% else %}
-					{% trans 'Active' %}
+					{% trans("Active") %}
 				{% endif %}
 			</td>
 		</tr>
 		{% if mod|hasPermission(config.mod.show_ip, board.uri) %}
 			<tr>
-				<th>{% trans 'IP' %}</th>
+				<th>{% trans("IP") %}</th>
 				<td>{{ ban.mask }}</td>
 			</tr>
 		{% elseif mod|hasPermission(config.mod.show_ip_less, board.uri) %}
 			<tr>
-				<th>{% trans 'IP' %}</th>
+				<th>{% trans("IP") %}</th>
 				<td>{{ ban.mask|less_ip(ban.board) }}</td>
 			</tr>
 		{% endif %}
 		<tr>
-			<th>{% trans 'Reason' %}</th>
+			<th>{% trans("Reason") %}</th>
 			<td>
 				{% if ban.reason %}
 					{{ ban.reason }}
 				{% else %}
-					<em>{% trans 'no reason' %}</em>
+					<em>{% trans("no reason") %}</em>
 				{% endif %}
 			</td>
 		</tr>
 		<tr>
-			<th>{% trans 'Board' %}</th>
+			<th>{% trans("Board") %}</th>
 			<td>
 				{% if ban.board %}
 					{{ config.board_abbreviation|sprintf(ban.board) }}
 				{% else %}
-					<em>{% trans 'all boards' %}</em>
+					<em>{% trans("all boards") %}</em>
 				{% endif %}
 			</td>
 		</tr>
 		<tr>
-			<th>{% trans 'Set' %}</th>
+			<th>{% trans("Set") %}</th>
 			<td>{{ ban.created|date(config.post_date) }}</td>
 		</tr>
 		<tr>
-			<th>{% trans 'Expires' %}</th>
+			<th>{% trans("Expires") %}</th>
 			<td>
 				{% if ban.expires %}
 					{{ ban.expires|date(config.post_date) }}
 				{% else %}
-					<em>{% trans 'never' %}</em>
+					<em>{% trans("never") %}</em>
 				{% endif %}
 			</td>
 		</tr>
 		<tr>
-			<th>{% trans 'Seen' %}</th>
+			<th>{% trans("Seen") %}</th>
 			<td>
 				{%  if ban.seen %}
-					{% trans 'Yes' %}
+					{% trans("Yes") %}
 				{%  else %}
-					{% trans 'No' %}
+					{% trans("No") %}
 				{%  endif %}
 			</td>
 		</tr>
 		<tr>
-			<th>{% trans 'Staff' %}</th>
+			<th>{% trans("Staff") %}</th>
 			<td>
 				{% if ban.username %}
 					{{ ban.username|e }}
 				{% else %}
-					<em>{% trans 'deleted?' %}</em>
+					<em>{% trans("deleted?") %}</em>
 				{% endif %}
 			</td>
 		</tr>
@@ -82,16 +82,16 @@
 
 	<table style="margin: 10px 0">
 		<tr>
-			<th>{% trans 'Appeal time' %}</th>
+			<th>{% trans("Appeal time") %}</th>
 			<td>{{ ban.time|date(config.post_date) }}</td>
 		</tr>
 		<tr>
-			<th>{% trans 'Appeal reason' %}</th>
+			<th>{% trans("Appeal reason") %}</th>
 			<td>{{ ban.message|e }}</td>
 		</tr>
 		{% if mod|hasPermission(config.mod.ban_appeals, board.uri) %}
 			<tr>
-				<th>{% trans 'Action' %}</th>
+				<th>{% trans("Action") %}</th>
 				<td>
 					<input type="hidden" name="appeal_id" value="{{ ban.id }}">
 					<input type="submit" name="unban" value="Unban"> 

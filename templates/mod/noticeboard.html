@@ -1,24 +1,24 @@
 {% if mod|hasPermission(config.mod.noticeboard_post) %}
 	<fieldset>
-		<legend>{% trans 'New post' %}</legend>
+		<legend>{% trans("New post") %}</legend>
 		<form style="margin:0" action="?/noticeboard" method="post">
 			<input type="hidden" name="token" value="{{ token }}">
 			<table>
 				<tr>
-					<th>{% trans 'Name' %}</th>
+					<th>{% trans("Name") %}</th>
 					<td>{{ mod.username|e }}</td>
 				</tr>
 				<tr>
-					<th><label for="subject">{% trans 'Subject' %}</label></th>
+					<th><label for="subject">{% trans("Subject") %}</label></th>
 					<td><input type="text" size="55" name="subject" id="subject" /></td>
 				</tr>
 				<tr>
-					<th>{% trans 'Body' %}</th>
+					<th>{% trans("Body") %}</th>
 					<td><textarea name="body" style="width:100%;height:100px"></textarea></td>
 				</tr>
 			</table>
 			<p style="text-align:center">
-				<input type="submit" value="{% trans 'Post to noticeboard' %}" />
+				<input type="submit" value="{% trans("Post to noticeboard") %}" />
 			</p>
 		</form>
 	</fieldset>
@@ -28,7 +28,7 @@
 	<div class="ban">
 		{% if mod|hasPermission(config.mod.noticeboard_delete) %}
 			<span style="float:right;padding:2px">
-				<a class="unimportant" href="?/noticeboard/delete/{{ post.id }}/{{ post.delete_token }}">[{% trans 'delete' %}]</a>
+				<a class="unimportant" href="?/noticeboard/delete/{{ post.id }}/{{ post.delete_token }}">[{% trans("delete") %}]</a>
 			</span>
 		{% endif %}
 		<h2 id="{{ post.id }}">
@@ -38,16 +38,16 @@
 			{% if post.subject %}
 				{{ post.subject|e }}
 			{% else %}
-				<em>{% trans 'no subject' %}</em>
+				<em>{% trans("no subject") %}</em>
 			{% endif %} 
 			<small class="unimportant">
-				&mdash; {% trans 'by' %} 
+				&mdash; {% trans("by") %} 
 				{% if post.username %}
 					{{ post.username|e }}
 				{% else %}
-					<em>{% trans 'deleted?' %}</em>
+					<em>{% trans("deleted?") %}</em>
 				{% endif %} 
-				{% trans 'at' %} 
+				{% trans("at") %} 
 				{{ post.time|date(config.post_date) }} 
 			</small>
 		</h2>

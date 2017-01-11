@@ -27,7 +27,7 @@
 		'title' => 'File',
 		'name' => 'file',
 		'type' => 'text',
-		'default' => $config['file_index'],
+		'default' => Vi::$config['file_index'],
 		'comment' => '(eg. "index.html")'
 	);
 	

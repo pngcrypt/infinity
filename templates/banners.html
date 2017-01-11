@@ -1,0 +1,11 @@
+{% if config.url_banner %}
+{% if config.banner_width or config.banner_height %}
+<style>.board_image {
+	{% if config.banner_width %}width:{{ config.banner_width }}px;{% endif %}
+	{% if config.banner_width %}height:{{ config.banner_height }}px;{% endif %}
+} </style>
+{% endif %}
+<div class="board_banners" data-url="{{ config.url_banner }}?json" data-timeout="{{ config.banner_timeout }}">
+<noscript><img class="board_image" src="{{ config.url_banner }}" alt=""/></noscript>
+</div>
+{% endif %}

@@ -2,7 +2,7 @@
 	<input type="hidden" name="token" value="{{ token }}">
 	<table>
 		<tr>
-			<th>To</th>
+			<th>{% trans("To") %}</th>
 			{% if mod|hasPermission(config.mod.editusers) %}
 				<td><a href="?/users/{{ id }}">{{ username|e }}</a></td>
 			{% else %}
@@ -10,10 +10,10 @@
 			{% endif %}
 		</tr>
 		<tr>
-			<th>Message</th>
+			<th>{% trans("Message") %}</th>
 			<td><textarea name="message" rows="10" cols="40">{{ message }}</textarea></td>
 		</tr>
 	</table>
 
-	<p style="text-align:center"><input type="submit" value="{% trans 'Send message' %}"></p>
+	<p style="text-align:center"><input type="submit" value="{% trans("Send message") %}"></p>
 </form>

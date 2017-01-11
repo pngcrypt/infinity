@@ -4,45 +4,114 @@
 <head>
 	<meta charset="utf-8">
 	<title>{{ settings.title }}</title>
-	{% if config.meta_keywords %}<meta name="keywords" content="{{ config.meta_keywords }}">{% endif %}
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-	{% if config.url_favicon %}<link rel="shortcut icon" href="{{ config.url_favicon }}">{% endif %}
-	<link rel="stylesheet" media="screen" href="{{ config.url_stylesheet }}">
-	{% if config.default_stylesheet.1 != '' %}<link rel="stylesheet" type="text/css" id="stylesheet" href="{{ config.uri_stylesheets }}{{ config.default_stylesheet.1 }}">{% endif %}
-	{% if config.font_awesome %}<link rel="stylesheet" href="{{ config.root }}{{ config.font_awesome_css }}">{% endif %}
+	<script type="text/javascript">
+		active_page = "page";
+	</script>
+	<script src="/static/tabcontent.js" type="text/javascript"></script>
+	{% include 'header.html' %}
+	{% if mod %}{% include 'mod/header.html' %}{% endif %}
 </head>
 <body class="8chan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %}" data-stylesheet="{% if config.default_stylesheet.1 != '' and not mod %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
 	{{ boardlist.top }}
 	<header>
-		<h1>{{ settings.title }}</h1>
-		<div class="subtitle">{{ settings.subtitle }}</div>
+		<div class="logo">
+			<span>{{ settings.title }}</span>
+			<span>{{ settings.subtitle }}</span>
+			<span></span>
+		</div>
 	</header>
-	
-	<div class="ban">
-		{% if news|count == 0 %}
-			<p style="text-align:center" class="unimportant">(No news to show.)</p>
-		{% else %}
-			{% for entry in news %}
-				<h2 id="{{ entry.id }}">
-					{% if entry.subject %}
-						{{ entry.subject }}
-					{% else %}
-						<em>no subject</em>
-					{% endif %}
-					<span class="unimportant"> &mdash; by {{ entry.name }} at {{ entry.time|date(config.post_date, config.timezone) }}</span>
-				</h2>
-				<p>{{ entry.body }}</p>
-			{% endfor %}
-		{% endif %}
+	<div class="ban oficial">
+		<h2>{% trans("Fixed boards") %}</h2>
+		{% for key,category in categories %}
+			<ul>
+				<li>{{ key }}</li>
+				{% for board in category %}
+				<li title="{{ board.subtitle }}"><a href="/{{ board.uri }}/">/{{ board.uri }}/ - {{ board.title }}</a></li>
+				{% endfor %}
+			</ul>
+		{% endfor %}
+		<div style="clear: both"></div>
+		<h2 style="text-align: center;"><a href="/boards.html">{% trans("See all boards") %}</a></h2>
 	</div>
-	
+	<br>
+	<ul class="tabs" data-persist="true">
+		<li><a href="#news">{% trans("News") %}</a></li>
+		<li><a href="#about">{% trans("About") %}</a></li>
+		<li><a href="#rules">{% trans("Rules") %}</a></li>
+	</ul>
+	<div class="tabcontents">
+		<div id="news">
+			<div class="ban">
+				{% if news|count == 0 %}
+					<p style="text-align:center" class="unimportant">{% trans("(No news to show.)") %}</p>
+				{% else %}
+					{% for entry in news %}
+						<h2 id="{{ entry.id }}">
+							{% if entry.subject %}
+								{{ entry.subject }}
+							{% else %}
+								<em>no subject</em>
+							{% endif %}
+							<span class="unimportant"> &mdash; by {{ entry.name }} at {{ entry.time|date(config.post_date, config.timezone) }}</span>
+						</h2>
+						<p>{{ entry.body }}</p>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+		<div id="about">
+			<div class="ban"><h2>BRCHAN</h2>
+			
+			<p>BRchan começou no AnonIB, mas mudou-se para .org, porque não podia suportar a lentidão do servidor e o quantidade de spams. Na época os proprietários, TiagoR² e Cogumetal, estavam planejando criar um chan com um domínio registrado e um servidor próprio, mas eles nunca fizeram isso, então R fez algo que a moderação não fez, se organizou para construir o primeiro brasileiro.</p>
+			<p>Depois de anos de glória e muita banana, em 2013, R. decidiu fechar o chan por motivos pessoais. No natal de 2015, o chan retornou com novo admin, Kalinka e uma equipe nova com proposito de ser um chan mais liberal, diferente dos concorrentes. Cá estamos fazendo história novamente.</p>
+			</div>
+		</div>
+		<div id="rules">
+			<div class="ban" id="global">
+				<h2>REGRAS PARA USO DAS BOARDS OFICIAIS</h2>
+				<ol start="1">
+					<li>Se você quebrar as regras, nós iremos deletar seu post. Faça isso repetidas vezes e nós pegaremos os hominho de volta.</li>
+					<li>O anonimato prevalecerá sempre.</li>
+					<li>Não criem meta-threads.</li>
+					<li>Não queremos saber o que ocorre em outros imageboards.</li>
+					<li>Não somos mestres do vernáculo brasileiro, mas apreciamos o bom uso de regras básicas.</li>
+					<li>A presença da moderação é um constructo social.</li>
+					<li>Não toleramos spam, flood, gore, pornografia infantil, sexualização de menores e qualquer outro tipo de ilegalidade.</li>
+					<li>Argumente com sabedoria, ignore o saci e flamewar.</li>
+				</ol>
+				<ol start="10">
+					<li>Forçadores não terão vez.</li>
+					<li>Você é responsável por seus atos.</li>
+					<li>Leia as regras novamente.</li>
+				</ol>
+				<br>
+				
+				<h2>REGRAS PARA CRIAÇÕES DE BOARDS</h2>
+				<ol start="1">
+					<li>Crie as suas boards com responsabilidade e bom senso.</li>
+					<li>Anote a senha da sua board. A administração não tem obrigação de recuperá-la pra você.</li>
+					<li>É proibida a criação de boards duplicadas e com temas iguais a de outras boards já criadas.</li>
+					<li>Mantenha e preserve a sua board. As boards inativas e abandonadas pelos seus criadores serão deletadas.</li>
+					<li>Não toleramos a criação de boards com temática de apologia a pornografia infantil, sexualização de menores e outras ilegalidades.</li>
+					<li>O anonimato prevalecerá sempre.</li>
+				</ol>
+				<br>
+				
+				<h2>REGRAS PARA O USO DAS BOARDS SECUNDÁRIAS</h2>
+				<ol start="1">
+					<li>Não toleramos pornografia infantil, sexualização de menores, ou qualquer tipo de ilegalidades e quebra de anonimato.</li>
+					<li>Valerão as regras construídas pelo criador da board secundária.</li>
+				</ol>
+				<br>
+			</div>
+		</div>
+	</div>
 	<hr/>
         <footer>
                 <p class="unimportant" style="margin-top:20px;text-align:center;">- Tinyboard +
                 <a href="https://engine.vichan.net/">vichan</a> {{ config.version }} -
                 <br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
                 <br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2016 vichan-devel
-                <br><a href="https://8ch.net/8code/">infinity</a> Copyright &copy; 2013-2015 Fredrick Brennan &amp; Infinity Development Group</p>
         </footer>
 </body>
 </html>

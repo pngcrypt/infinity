@@ -1,15 +1,15 @@
 {% if mod|hasPermission(config.mod.news) %}
 	<fieldset>
-		<legend>{% trans 'New post' %}</legend>
+		<legend>{% trans("New post") %}</legend>
 		<form style="margin:0" action="" method="post">
 			<input type="hidden" name="token" value="{{ token }}">
 			<table>
 				<tr>
 					<th>
 						{% if mod|hasPermission(config.mod.news_custom) %}
-							<label for="name">{% trans 'Name' %}</label>
+							<label for="name">{% trans("Name") %}</label>
 						{% else %}
-							{% trans 'Name' %}
+							{% trans("Name") %}
 						{% endif %}
 					</th>
 					<td>
@@ -21,16 +21,16 @@
 					</td>
 				</tr>
 				<tr>
-					<th><label for="subject">{% trans 'Subject' %}</label></th>
+					<th><label for="subject">{% trans("Subject") %}</label></th>
 					<td><input type="text" size="55" name="subject" id="subject"></td>
 				</tr>
 				<tr>
-					<th><label for="body">{% trans 'Body' %}</label></th>
+					<th><label for="body">{% trans("Body") %}</label></th>
 					<td><textarea name="body" id="body" style="width:100%;height:100px"></textarea></td>
 				</tr>
 			</table>
 			<p style="text-align:center">
-				<input type="submit" value="{% trans 'Post news entry' %}">
+				<input type="submit" value="{% trans("Post news entry") %}">
 			</p>
 		</form>
 	</fieldset>
@@ -40,7 +40,7 @@
 	<div class="ban">
 		{% if mod|hasPermission(config.mod.news_delete) %}
 			<span style="float:right;padding:2px">
-				<a class="unimportant" href="?/edit_news/delete/{{ post.id }}/{{ post.delete_token }}">[{% trans 'delete' %}]</a>
+				<a class="unimportant" href="?/edit_news/delete/{{ post.id }}/{{ post.delete_token }}">[{% trans("delete") %}]</a>
 			</span>
 		{% endif %}
 		<h2 id="{{ post.id }}">
@@ -50,10 +50,10 @@
 			{% if post.subject %}
 				{{ post.subject|e }}
 			{% else %}
-				<em>{% trans 'no subject' %}</em>
+				<em>{% trans("no subject") %}</em>
 			{% endif %} 
 			<small class="unimportant">
-				&mdash; {% trans 'by' %} {{ post.name }} {% trans 'at' %} {{ post.time|date(config.post_date) }} 
+				&mdash; {% trans("by") %} {{ post.name }} {% trans("at") %} {{ post.time|date(config.post_date) }} 
 			</small>
 		</h2>
 		<p>

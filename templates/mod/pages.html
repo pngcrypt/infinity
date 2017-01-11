@@ -3,17 +3,17 @@
 <p class="unimportant">
 {% if board %}
 {% set page_max = config.pages_max %}
-{% trans %}This page allows you to create static pages for your board. The limit is {{ page_max }} pages per board. You will still have to link to your pages somewhere in your board, for example in a sticky or in the board's announcement. To make links in the board's announcement, use &lt;a&gt; HTML tags.{% endtrans %}
+{{ "This page allows you to create static pages for your board. The limit is %s pages per board.<br>You will still have to link to your pages somewhere in your board, for example in a sticky or in the board's announcement.<br>To make links in the board's announcement, use &lt;a&gt; HTML tags."|trans|format(page_max) }}
 {% else %}
-{% trans %}This page allows you to create static pages for your imageboard.{% endtrans %}
+{% trans("This page allows you to create static pages for your imageboard.") %}
 {% endif %}
-<h2>{% trans %}Existing pages{% endtrans %}</h2>
+<h2>{% trans("Existing pages") %}</h2>
 {% if pages %}
 <form>
 <table style="margin:auto">
-<tr><th>{% trans %}URL{% endtrans %}</th><th>{% trans %}Title{% endtrans %}</th><th>{% trans %}Edit{% endtrans %}</th><th>{% trans %}Delete{% endtrans %}</tr>
+<tr><th>{% trans("URL") %}</th><th>{% trans("Title") %}</th><th>{% trans("Edit") %}</th><th>{% trans("Delete") %}</tr>
 {% for page in pages %}
-<tr><td>{{ page.name }}</td><td>{{ page.title }}</td><td><a href="?/edit_page/{{ page.id }}">{% trans %}Edit{% endtrans %}</a></td><td><a href="?/edit_pages/delete/{{ page.name }}{% if board %}/{{ board }}{% endif %}/{{ page.delete_token }}">{% trans %}Delete{% endtrans %}</a></td>
+<tr><td>{{ page.name }}</td><td>{{ page.title }}</td><td><a href="?/edit_page/{{ page.id }}">{% trans("Edit") %}</a></td><td><a href="?/edit_pages/delete/{{ page.name }}{% if board %}/{{ board }}{% endif %}/{{ page.delete_token }}">{% trans("Delete") %}</a></td>
 {% endfor %}
 {% else %}
 <em>No pages yet!</em>
@@ -21,14 +21,14 @@
 </table>
 </form>
 <hr/>
-<h2>{% trans %}Create a new page{% endtrans %}</h2>
+<h2>{% trans("Create a new page") %}</h2>
 <form method="POST">
 	<input type="hidden" name="token" value="{{ token }}">
 <table>
-<tr><th>{% trans %}URL{% endtrans %}</th><th>{% trans %}Title{% endtrans %}</th></tr>
+<tr><th>{% trans("URL") %}</th><th>{% trans("Title") %}</th></tr>
 <tr><td><input type="text" name="page"></td><td><input type="text" name="title"></td>
 </table>	
-<input type="submit" value="{% trans %}Create{% endtrans %}">
+<input type="submit" value="{% trans("Create") %}">
 </form>
 
 </div>

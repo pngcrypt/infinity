@@ -13,12 +13,12 @@
 		{% endif %}
 		<div class='banlist-opts'>
 			<div class='checkboxes'>
-				<label><input type="checkbox" id="only_not_expired"> {% trans %}Show only active bans{% endtrans %}</label>
+				<label><input type="checkbox" id="only_not_expired"> {% trans("Show only active bans") %}</label>
 			</div>
 			<div class='buttons'>
-				<input type="text" id="search" placeholder="{% trans %}Search{% endtrans %}">
+				<input type="text" id="search" placeholder="{% trans("Search") %}">
 				{% if mod %}
-				<input type="submit" name="unban" id="unban" value="{% trans 'Unban selected' %}">
+				<input type="submit" name="unban" id="unban" value="{% trans("Unban selected") %}">
 				{% endif %}
 			</div>
 

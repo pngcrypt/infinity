@@ -1,0 +1,21 @@
+<p>Below is a list of boards that either have received no owner login for two weeks, or no posts for one week. These boards are considered dead and can be taken over by anyone. To claim one of these boards and run it yourself, send an email to claim@8ch.net. Please include relevant experience with the board's subject if applicable. Most boards are given away at a first come first serve basis, but large boards with long histories may wait for multiple applications before a deicison is made. This page is regenerated every five minutes.</p>
+
+<p>Claims emails may take up to a week to be responded to depending on the board in question, and invalid claims may not be responded to at all. If you need a new board immediately and are not overly concerned with the name, it is recommended to go through the <a href="/create.php">automatic board creation</a> process instead.</p>
+
+<p>Please note, taking over a board and then making it impossible to post on via CSS tricks is not allowed. If a user of your board reports it to me, he gets the board instead. Thanks for using 8chan.co.</p>
+<table class="modlog" style="width:auto"><thead>
+<tr>
+	<th>{% trans("Board URI") %}</th>
+	<th>{% trans("Last active") %}</th>
+	<th>{% trans("Owner last active") %}</th>
+	<th>{% trans("Claim board") %}</th>
+</tr></thead><tbody>
+{% for board in delete %}
+<tr>
+	<td>/{{ board.board }}/</td>
+	<td>{{ board.last_activity_date }}</td>
+	<td>{{ board.last_mod_f }}</td>
+	<td><a href="mailto:claims@vichan.net?subject=I'd like to claim /{{ board.board }}/">Claim (opens email)</a></td>
+</tr>
+{% endfor %}
+</tbody></table>

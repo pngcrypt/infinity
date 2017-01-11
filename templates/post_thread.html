@@ -4,7 +4,6 @@
 <div class="thread" id="thread_{{ post.id }}" data-board="{{ board.uri }}">
 {% if not index %}<a id="{{ post.id }}" class="post_anchor"></a>{% endif %}
 
-{% include 'post/fileinfo.html' %}
 <div class="post op{% if post.files %} has-file{% endif %}{% if post.body_nomarkup %} body-not-empty{% endif %}" id="op_{{ post.id }}" {%if post.num_files > 1%}style='clear:both'{%endif%}><p class="intro">
 	<input type="checkbox" class="delete" name="delete_{{ post.id }}" id="delete_{{ post.id }}" />
 	<label for="delete_{{ post.id }}">
@@ -19,17 +18,18 @@
 	<a class="post_no" onclick="citeReply({{ post.id }})" href="{% if isnoko50 %}{{ post.link('q', config.file_page50) }}{% else %}{{ post.link('q') }}{% endif %}">{{ post.id }}</a>
 	{% include 'post/mod_attributes.html' %}
 	{% if index %}
-		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page|sprintf(post.id) }}">[{% trans %}Reply{% endtrans %}]</a>
+		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page|sprintf(post.id) }}">[{% trans("Reply") %}]</a>
 	{% endif %}
 	{% if isnoko50 %}
-		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page|sprintf(post.id) }}">[{% trans %}View All{% endtrans %}]</a>
+		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page|sprintf(post.id) }}">[{% trans("View All") %}]</a>
 	{% endif %}
 	{% if hasnoko50 and not isnoko50 %}
 		{% set lastcount = config.noko50_count %}
-		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page50|sprintf(post.id) }}">[{% trans %}Last 1 Post{% plural lastcount %}Last {{ count }} Posts{% endtrans %}]</a>
+		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page50|sprintf(post.id) }}">[{% trans %}Last 1 Post{% plural lastcount %}Last {{count}} Posts{% endtrans %}]</a>
 	{% endif %}
 	{% include 'post/post_controls.html' %}
 	</p>
+	{% include 'post/fileinfo.html' %}
 	<div class="body">
 		{% endfilter %}{% if index %}{{ post.body|truncate_body(post.link) }}{% else %}{{ post.body }}{% endif %}{% filter remove_whitespace %}
 		{% if post.modifiers['ban message'] %}
@@ -45,7 +45,7 @@
 					{{ count }} posts
 				{% endtrans %}
 				{% if post.omitted_images %}
-					 {% trans %}and{% endtrans %} 
+					 {% trans("and") %} 
 				{% endif %}
 			{% endif %}
 			{% if post.omitted_images %}
@@ -54,7 +54,7 @@
 				{% plural post.omitted_images %}
 					{{ count }} image replies
 				{% endtrans %}
-			{% endif %} {% trans %}omitted. Click reply to view.{% endtrans %}
+			{% endif %} {% trans("omitted. Click reply to view.") %}
 		</span>
 	{% endif %}
 	{% include 'post/edited_at.html' %}

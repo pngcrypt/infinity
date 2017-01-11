@@ -2,25 +2,25 @@
 {# Automatically removes unnecessary whitespace #}
 <div class="ban">
 	{% if ban.expires and time() >= ban.expires %}
-		<h2>{% trans %}You were banned! ;_;{% endtrans %}</h2>
+		<h2>{% trans("You were banned! ;_;") %}</h2>
 	{% else %}
-		<h2>{% trans %}You are banned! ;_;{% endtrans %}</h2>
+		<h2>{% trans("You are banned! ;_;") %}</h2>
 	{% endif %}
 	<p>
 		{% if ban.expires and time() >= ban.expires %}
-			{% trans %}You were banned from{% endtrans %}
+			{% trans("You were banned from") %}
 		{% else %}
-			{% trans %}You have been banned from{% endtrans %}
+			{% trans("You have been banned from") %}
 		{% endif %}
 			{% if ban.board %}
 				 <strong>{{ config.board_abbreviation|sprintf(ban.board) }}</strong>
 			{% else %}
-				 {% trans %}all boards{% endtrans %}
+				 {% trans("all boards") %}
 			{% endif %}
 			{% if ban.reason %}
-				 {% trans %}for the following reason:{% endtrans %}
+				 {% trans("for the following reason:") %}
 			{% else %}
-				 {% trans %}for an unspecified reason.{% endtrans %}
+				 {% trans("for an unspecified reason.") %}
 			{% endif %}
 	</p>
 	{% if ban.reason %}
@@ -29,20 +29,20 @@
 		</p>
 	{% endif %}
 	<p>
-		{% trans %}Your ban was filed on{% endtrans %} 
+		{% trans("Your ban was filed on") %} 
 			<strong>{{ ban.created|date(config.ban_date) }}</strong> 
 			{% if config.show_modname %}
 				{% if ban.username %}
-					{% trans %}by{% endtrans %} <strong> {{ ban.username }} </strong>
+					{% trans("by") %} <strong> {{ ban.username }} </strong>
 				{% else %}
-					{% trans %}by{% endtrans %} <em> 'system' </em>
+					{% trans("by") %} <em> 'system' </em>
 				{% endif %}
 			{% endif %}
-			{% trans %}and{% endtrans %} <span id="expires">	
+			{% trans("and") %} <span id="expires">	
 		{% if ban.expires and time() >= ban.expires %}
 			{% trans %} has since expired. Refresh the page to continue.{%  endtrans %}
 		{% elseif ban.expires %}
-			{% trans %}expires{% endtrans %} <span id="countdown">{{ ban.expires|until }}</span> {% trans %}from now, which is on{% endtrans %} 
+			{% trans("expires") %} <span id="countdown">{{ ban.expires|until }}</span> {% trans("from now, which is on") %} 
 			<strong>
 				{{ ban.expires|date(config.ban_date) }}
 			</strong>
@@ -56,7 +56,7 @@
 					var now = new Date().getTime();
 					var diff = Math.round((end - now) / 1000);
 					if (diff < 0) {
-						document.getElementById("expires").innerHTML = "{% trans %}has since expired. Refresh the page to continue.{% endtrans %}";
+						document.getElementById("expires").innerHTML = "{% trans("has since expired. Refresh the page to continue.") %}";
 						clearInterval(int);
 						return "";
 					} else if (diff < 60) {
@@ -79,11 +79,11 @@
 				var int = setInterval(updateExpiresTime, 1000);
 			</script>
 		{% else %}
-			<em>{% trans %}will not expire{% endtrans %}</em>.
+			<em>{% trans("will not expire") %}</em>.
 		{% endif %}
 		</span>
 	</p>
-	<p>{% trans %}Your IP address is{% endtrans %} <strong>{{ ban.ip }}</strong>.</p>
+	<p>{% trans("Your IP address is") %} <strong>{{ ban.ip }}</strong>.</p>
 
 	{% if config.ban_page_extra %}
 		<p>{{ config.ban_page_extra }}</p>
@@ -91,47 +91,47 @@
 	
 	{% if post and config.ban_show_post %}
 		<hr>
-		<p>{% trans %}You were banned for the following post on{% endtrans %} {{ board.url }}:</p>
+		<p>{% trans("You were banned for the following post on") %} {{ board.url }}:</p>
 		{{ post }}
 		<br>
 	{% endif %}
 	
-	{% if config.ban_appeals and (not ban.expires or ban.expires - ban.created > config.ban_appeals_min_length )%}
+	{% if not tor and config.ban_appeals and (not ban.expires or ban.expires - ban.created > config.ban_appeals_min_length )%}
 		<hr>
 		{% if pending_appeal %}
 			<p>
-				{% trans %}You submitted an appeal for this ban on{% endtrans %} 
-				<strong>{{ pending_appeal|date(config.ban_date) }}</strong>. {% trans %}It is still pending{% endtrans %}.
+				{% trans("You submitted an appeal for this ban on") %} 
+				<strong>{{ pending_appeal|date(config.ban_date) }}</strong>. {% trans("It is still pending") %}.
 			</p>
 		{% elseif denied_appeals|length >= config.ban_appeals_max %}
 			{% if denied_appeals|length == 1 %}
 				<p>
-					{% trans %}You appealed this ban on{% endtrans %} 
+					{% trans("You appealed this ban on") %} 
 					<strong>{{ denied_appeals[0]|date(config.ban_date) }}</strong> 
-					{% trans %}and it was denied. You may not appeal this ban again.{% endtrans %}
+					{% trans("and it was denied. You may not appeal this ban again.") %}
 				</p>
 			{% else %}
-				<p>{% trans %}You have submitted the maximum number of ban appeals allowed. You may not appeal this ban again.{% endtrans %}</p>
+				<p>{% trans("You have submitted the maximum number of ban appeals allowed. You may not appeal this ban again.") %}</p>
 			{% endif %}
 		{% else %}
 			{% if denied_appeals|length %}
 				{% if denied_appeals|length == 1 %}
 					<p>
-						{% trans %}You appealed this ban on{% endtrans %} 
+						{% trans("You appealed this ban on") %} 
 						<strong>{{ denied_appeals[0]|date(config.ban_date) }}</strong> 
-						{% trans %}and it was denied.{% endtrans %}
+						{% trans("and it was denied.") %}
 					</p>
-					<p>{% trans %}You may appeal this ban again. Please enter your reasoning below.{% endtrans %}</p>
+					<p>{% trans("You may appeal this ban again. Please enter your reasoning below.") %}</p>
 				{% else %}
 					<p>
-						{% trans %}You last appealed this ban on{% endtrans %} 
+						{% trans("You last appealed this ban on") %} 
 						<strong>{{ denied_appeals[denied_appeals|length - 1]|date(config.ban_date) }}</strong> 
-						{% trans %}and it was denied.{% endtrans %}
+						{% trans("and it was denied.") %}
 					</p>
-					<p>{% trans %}You may appeal this ban again. Please enter your reasoning below.{% endtrans %}</p>
+					<p>{% trans("You may appeal this ban again. Please enter your reasoning below.") %}</p>
 				{% endif %}
 			{% else %}
-				<p>{% trans %}You may appeal this ban. Please enter your reasoning below.{% endtrans %}</p>
+				<p>{% trans("You may appeal this ban. Please enter your reasoning below.") %}</p>
 			{% endif %}
 			<form class="ban-appeal" action="" method="post">
 				<input type="hidden" name="ban_id" value="{{ ban.id }}">

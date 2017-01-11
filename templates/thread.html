@@ -2,33 +2,28 @@
 <html>
 <head>
 	<meta charset="utf-8">
-
-        <script type="text/javascript">
+	<script type="text/javascript">
 		var active_page = "thread";
 		var board_name="{{ board.uri }}";
 	</script>
-
 	{% include 'header.html' %}
-
-	{% set meta_subject %}{% if config.thread_subject_in_title and thread.subject %}{{ thread.subject|e }}{% else %}{{ thread.body_nomarkup[:256]|remove_modifiers|e }}{% endif %}{% endset %}
-
-	<meta name="description" content="8chan /{{ board.uri }}/ - {{ board.title|e }} - {{ meta_subject }}" />
+	{% set meta_subject %}{% if config.thread_subject_in_title and thread.subject %}{{ thread.subject|e }}{% else %}{{ thread.body_nomarkup|remove_markups|remove_modifiers[:50]|e }}{% endif %}{% endset %}
+	<meta name="description" content="/{{ board.uri }}/ - {{ board.title|e }} - {{ meta_subject }}" />
 	<meta name="twitter:card" value="summary">
 	<meta property="og:title" content="{{ meta_subject }}" />
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="https://8ch.net/{{ board.uri }}/{{ config.dir.res }}{{ thread.id }}.html" />
-	{% if thread.files.0.thumb %}<meta property="og:image" content="https://8ch.net/{{ board.uri }}/{{ config.dir.thumb }}{{ thread.files.0.thumb }}" />{% endif %}
+	<meta property="og:url" content="{{ config.domain }}/{{ board.uri }}/{{ config.dir.res }}{{ thread.id }}.html" />
+	{% if thread.files.0.thumb %}<meta property="og:image" content="{{ config.domain }}/{{ board.uri }}/{{ config.dir.thumb }}{{ thread.files.0.thumb }}" />{% endif %}
 	<meta property="og:description" content="{{ thread.body_nomarkup|e }}" />
-
 	<title>{{ board.url }} - {{ meta_subject }}</title>
 </head>
-<body class="8chan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %} active-thread" data-stylesheet="{% if config.default_stylesheet.1 != '' and not mod %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
+<body class="8chan {% if not index %}replypage {% endif %}{% if mod %}is-moderator{% else %}is-not-moderator{% endif %} active-thread" data-stylesheet="{% if config.default_stylesheet.1 != '' and not mod %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">
 	{{ boardlist.top }}
 	<a name="top"></a>
 	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
-	{% if config.url_banner %}<img class="board_image" src="{{ config.url_banner }}?b={{ board.uri|url_encode }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
+	{% include 'banners.html' %}
 	<header>
-		<h1>{{ board.url }} - {{ board.title|e }}</h1>
+		<h1><a class='no_underline' href="{{ return }}">{{ board.url }} - {{ board.title|e }}</a></h1>
 		<div class="subtitle">
 			{% if board.subtitle %}
 				{% if config.allow_subtitle_html %}
@@ -37,8 +32,8 @@
 					{{ board.subtitle|e }}
 				{% endif %}
 			{% endif %}
-			{% if mod %}<p><a href="?/">{% trans %}Return to dashboard{% endtrans %}</a></p>{% endif %}
-			<p><a href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">Catalog</a></p>
+			{% if mod %}<p><a href="?/">{% trans("Return to dashboard") %}</a></p>{% endif %}
+			<p><a href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">{% trans("Catalog") %}</a></p>
 		</div>
 	</header>
 
@@ -48,8 +43,8 @@
 		{{ config.announcement }}
 	{% endif %}
 
-	<div class="banner">{% trans %}Posting mode: Reply{% endtrans %} <a class="unimportant" href="{{ return }}">[{% trans %}Return{% endtrans %}]</a> <a class="unimportant" href="javascript:window.scrollTo(0,document.body.scrollHeight);
-">[{% trans %}Go to bottom {% endtrans %}]</a></div>
+	<div class="banner">{% trans("Posting mode: Reply") %} <a class="unimportant" href="{{ return }}">[{% trans("Return") %}]</a> <a class="unimportant" href="javascript:window.scrollTo(0,document.body.scrollHeight);
+">[{% trans("Go to bottom ") %}]</a></div>
 
 	{% include 'ad_top.html' %}
 
@@ -66,13 +61,13 @@
 		
 		<div id="thread-interactions">
 			<span id="thread-links">
-				<a id="thread-return" href="{{ return }}">[{% trans %}Return{% endtrans %}]</a>
-				<a id="thread-top" href="#top">[{% trans %}Go to top{% endtrans %}]</a>
-				<a id="thread-catalog" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans %}Catalog{% endtrans %}]</a>
+				<a id="thread-return" href="{{ return }}">[{% trans("Return") %}]</a>
+				<a id="thread-top" href="#top">[{% trans("Go to top") %}]</a>
+				<a id="thread-catalog" href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">[{% trans("Catalog") %}]</a>
 			</span>
 			
 			<span id="thread-quick-reply">
-				<a id="link-quick-reply" href="#">[{% trans %}Post a Reply{% endtrans %}]</a>
+				<a id="link-quick-reply" href="#">[{% trans("Post a Reply") %}]</a>
 			</span>
 			
 			{% include 'report_delete.html' %}
@@ -96,7 +91,6 @@
                 <a href="https://engine.vichan.net/">vichan</a> {{ config.version }} -
                 <br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
                 <br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2016 vichan-devel
-                <br><a href="https://8ch.net/8code/">infinity</a> Copyright &copy; 2013-2015 Fredrick Brennan &amp; Infinity Development Group</p>
 		{% for footer in config.footer %}<p class="unimportant" style="text-align:center;">{{ footer }}</p>{% endfor %}
 	</footer>
 

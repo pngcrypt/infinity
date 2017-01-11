@@ -228,7 +228,7 @@ function dopost(form) {
 	saved[document.location] = form.elements['body'].value;
 	sessionStorage.body = JSON.stringify(saved);
 	
-	return form.elements['body'].value != "" || form.elements['file'].value != "" || (form.elements.file_url && form.elements['file_url'].value != "");
+	return form.elements['body'].value != "" || (form.elements['file'] && form.elements['file'].value != "") || (form.elements.file_url && form.elements['file_url'].value != "");
 }
 
 function citeReply(id, with_link) {
@@ -339,22 +339,6 @@ function init() {
 	}
 
 	// just enable jquery, almost every script requires it by now. more and more main.js functions are going to start requiring it
-	$('.post-table-options').css('display', 'none');
-	window.optionsShowing = false;
-	$(document).on('click', '.show-post-table-options', function(e) {
-		if (!window.optionsShowing) { 
-			$('.show-post-table-options').html('[&#9660; '+_('Hide post options &amp; limits')+']'); 
-			$('.post-table-options').css('display', 'table');
-			window.optionsShowing = true;
-		} else { 
-			$('.show-post-table-options').html('[&#9654; '+_('Show post options &amp; limits')+']'); 
-			$('.post-table-options').css('display', 'none');
-			window.optionsShowing = false;
-		}; 
-	
-		return false;
-	});
-
 	{% endraw %}	
 	{% if config.allow_delete %}
 	if (document.forms.postcontrols && document.forms.postcontrols.password) {
@@ -388,6 +372,8 @@ var post_date = "{{ config.post_date }}";
 if (typeof active_page === "undefined") {
 	active_page = "page";
 }
+
+var captcha_timeout = "{{ config.captcha.expires_in }}";
 
 {% if config.google_analytics %}{% raw %}
 

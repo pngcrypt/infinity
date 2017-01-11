@@ -2,16 +2,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
-
-        <script type="text/javascript">
+	<script type="text/javascript">
 	{% if not no_post_form %}
 		var active_page = "index";
 	{% else %}
 		var active_page = "ukko";
 	{% endif %}
 		var board_name="{{ board.uri }}";
-        </script>
-
+	 </script>
 	{% include 'header.html' %}
 	<title>{{ board.url }} - {{ board.title|e }}</title>
 </head>
@@ -19,10 +17,9 @@
 	{{ boardlist.top }}
 	
 	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr />{% endif %}
-	{% if config.url_banner %}<img class="board_image" src="{{ config.url_banner }}?b={{ board.uri|url_encode }}" {% if config.banner_width or config.banner_height %}style="{% if config.banner_width %}width:{{ config.banner_width }}px{% endif %};{% if config.banner_width %}height:{{ config.banner_height }}px{% endif %}" {% endif %}alt="" />{% endif %}
-	
+	{% include 'banners.html' %}	
 	<header>
-		<h1>{{ board.url }} - {{ board.title|e }}</h1>
+		<h1><a class='no_underline' href="{{ return }}">{{ board.url }} - {{ board.title|e }}</a></h1>
 		<div class="subtitle">
 			{% if board.subtitle %}
 				{% if config.allow_subtitle_html %}
@@ -31,8 +28,8 @@
 					{{ board.subtitle|e }}
 				{% endif %}
 			{% endif %}
-			{% if mod %}<p><a href="?/">{% trans %}Return to dashboard{% endtrans %}</a></p>{% endif %}
-			<p><a href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">{% trans %}Catalog{% endtrans %}</a></p>
+			{% if mod %}<p><a href="?/">{% trans("Return to dashboard") %}</a></p>{% endif %}
+			<p><a href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">{% trans("Catalog") %}</a></p>
 		</div>
 	</header>
 
@@ -73,7 +70,7 @@
 		 [<a {% if page.selected %}class="selected"{% endif %}{% if not page.selected %}href="{{ page.link }}"{% endif %}>{{ page.num }}</a>]{% if loop.last %} {% endif %}
 		{% endfor %} {{ btn.next }}
 		{% if config.catalog_link %}
-			 | <a href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">{% trans %}Catalog{% endtrans %}</a>
+			 | <a href="{{ config.root }}{{ board.dir }}{{ config.catalog_link }}">{% trans("Catalog") %}</a>
 		{% endif %}
 	</div>
 	
@@ -92,7 +89,6 @@
                 <a href="https://engine.vichan.net/">vichan</a> {{ config.version }} -
                 <br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
                 <br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2016 vichan-devel
-                <br><a href="https://8ch.net/8code/">infinity</a> Copyright &copy; 2013-2015 Fredrick Brennan &amp; Infinity Development Group</p>
 		{% for footer in config.footer %}<p class="unimportant" style="text-align:center;">{{ footer }}</p>{% endfor %}
 	</footer>
 

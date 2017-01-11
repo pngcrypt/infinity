@@ -14,10 +14,10 @@
 
 	{% if pm %}<div class="top_notice">You have <a href="?/PM/{{ pm.id }}">an unread PM</a>{% if pm.waiting > 0 %}, plus {{ pm.waiting }} more waiting{% endif %}.</div><hr>{% endif %}
 	<header>
-		{% if config.site_logo %}
+		{% if not no_logo and config.site_logo %}
 		<figure id="logo">
 			<a id="logo-link" href="/" title="Return to the front page">
-				<img id="logo-img" src="{{config.site_logo}}" alt="{{config.site_nane}}" />
+				<img id="logo-img" src="{{config.site_logo}}" alt="{{config.site_name}}" />
 			</a>
 		</figure>
 		{% endif %}
@@ -27,7 +27,7 @@
 			{% if subtitle %}
 				{{ subtitle }}
 			{% endif %}
-			{% if mod and not hide_dashboard_link %}<p><a href="?/">{% trans %}Return to dashboard{% endtrans %}</a></p>{% endif %}
+			{% if mod and not hide_dashboard_link %}<p><a href="?/">{% trans("Return to dashboard") %}</a></p>{% endif %}
 		</div>
 	</header>
 		{{ body }}
@@ -37,7 +37,6 @@
                 <a href="https://engine.vichan.net/">vichan</a> {{ config.version }} -
                 <br>Tinyboard Copyright &copy; 2010-2014 Tinyboard Development Group
                 <br><a href="https://engine.vichan.net/">vichan</a> Copyright &copy; 2012-2016 vichan-devel
-                <br><a href="https://8ch.net/8code/">infinity</a> Copyright &copy; 2013-2015 Fredrick Brennan &amp; Infinity Development Group</p>
 		{% for footer in config.footer %}<p class="unimportant" style="text-align:center;">{{ footer }}</p>{% endfor %}
 	</footer>
 </body>

@@ -1,0 +1,4 @@
+<input class="captcha_text" type="text" name="captcha_text" size="25" maxlength="6" autocomplete="off" style="width:{{ config.captcha.width}}px; box-sizing: border-box;" />
+<div id="captcha">
+<iframe src="{{ config.captcha.provider_get }}?board={{ board.uri }}{% if id %}&amp;thread={{ id }}{% endif %}" width="{{ config.captcha.width }}px" height="{{ config.captcha.height }}px" frameborder="0" hspace="0" vspace="0" marginheight="2px" marginwidth="0" scrolling="no" seamless></iframe>
+</div>

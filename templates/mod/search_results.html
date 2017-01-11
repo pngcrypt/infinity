@@ -1,5 +1,5 @@
 <fieldset style="margin-bottom:20px">
-	<legend>{% trans 'Search' %}</legend>
+	<legend>{% trans("Search") %}</legend>
 
 	<ul>
 		<li>
@@ -13,10 +13,10 @@
 {% if search_type == 'IP_notes' %}
 	<table class="modlog">
 		<tr>
-			<th>{% trans 'IP address' %}</th>
-			<th>{% trans 'Staff' %}</th>
-			<th>{% trans 'Note' %}</th>
-			<th>{% trans 'Date' %}</th>
+			<th>{% trans("IP address") %}</th>
+			<th>{% trans("Staff") %}</th>
+			<th>{% trans("Note") %}</th>
+			<th>{% trans("Date") %}</th>
 		</tr>
 		{% for note in results %}
 			<tr>
@@ -27,7 +27,7 @@
 					{% if note.username %}
 						<a href="?/new_PM/{{ note.username|e }}">{{ note.username|e }}</a>
 					{% else %}
-						<em>{% trans 'deleted?' %}</em>
+						<em>{% trans("deleted?") %}</em>
 					{% endif %}
 				</td>
 				<td>
@@ -44,14 +44,14 @@
 {% if search_type == 'bans' %}
 	<table class="modlog" style="width:100%">
 		<tr>
-			<th>{% trans 'IP address/mask' %}</th>
-			<th>{% trans 'Reason' %}</th>
-			<th>{% trans 'Board' %}</th>
-			<th>{% trans 'Set' %}</th>
-			<th>{% trans 'Duration' %}</th>
-			<th>{% trans 'Expires' %}</th>
-			<th>{% trans 'Seen' %}</th>
-			<th>{% trans 'Staff' %}</th>
+			<th>{% trans("IP address/mask") %}</th>
+			<th>{% trans("Reason") %}</th>
+			<th>{% trans("Board") %}</th>
+			<th>{% trans("Set") %}</th>
+			<th>{% trans("Duration") %}</th>
+			<th>{% trans("Expires") %}</th>
+			<th>{% trans("Seen") %}</th>
+			<th>{% trans("Staff") %}</th>
 		</tr>
 		{% for ban in results %}
 			<tr{% if ban.expires != 0 and ban.expires < time() %} style="text-decoration:line-through"{% endif %}>
@@ -73,7 +73,7 @@
 					{% if ban.board %}
 						{{ config.board_abbreviation|sprintf(ban.board) }}
 					{% else %}
-						<em>{% trans 'all boards' %}</em>
+						<em>{% trans("all boards") %}</em>
 					{% endif %}					
 				</td>
 				<td style="white-space: nowrap">
@@ -90,7 +90,7 @@
 				</td>
 				<td style="white-space: nowrap">
 					{% if ban.expires == 0 %}
-						<em>{% trans 'never' %}</em>
+						<em>{% trans("never") %}</em>
 					{% else %}
 						{{ ban.expires|date(config.post_date) }}
 						{% if ban.expires > time() %}
@@ -100,9 +100,9 @@
 				</td>
 				<td>
 					{%  if ban.seen %}
-						{% trans 'Yes' %}
+						{% trans("Yes") %}
 					{%  else %}
-						{% trans 'No' %}
+						{% trans("No") %}
 					{%  endif %}
 				</td>
 				<td>
@@ -119,7 +119,7 @@
 					{% elseif ban.creator == -1 %}
 						<em>system</em>
 					{% else %}
-						<em>{% trans 'deleted?' %}</em>
+						<em>{% trans("deleted?") %}</em>
 					{% endif %}
 				</td>
 			</tr>
@@ -130,11 +130,11 @@
 {% if search_type == 'log' %}
 	<table class="modlog">
 		<tr>
-			<th>{% trans 'Staff' %}</th>
-			<th>{% trans 'IP address' %}</th>
-			<th>{% trans 'Time' %}</th>
-			<th>{% trans 'Board' %}</th>
-			<th>{% trans 'Action' %}</th>
+			<th>{% trans("Staff") %}</th>
+			<th>{% trans("IP address") %}</th>
+			<th>{% trans("Time") %}</th>
+			<th>{% trans("Board") %}</th>
+			<th>{% trans("Action") %}</th>
 		</tr>
 		{% for log in results %}
 			<tr>
@@ -144,7 +144,7 @@
 					{% elseif log.mod == -1 %}
 						<em>system</em>
 					{% else %}
-						<em>{% trans 'deleted?' %}</em>
+						<em>{% trans("deleted?") %}</em>
 					{% endif %}
 				</td>
 				<td class="minimal">
