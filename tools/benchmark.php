@@ -16,13 +16,13 @@ if(count($argv) != 2)
 
 $file = $argv[1];
 $extension = strtolower(substr($file, strrpos($file, '.') + 1));
-$out = tempnam($config['tmp'], 'thumb');
+$out = tempnam(Vi::$config['tmp'], 'thumb');
 $count = 300;
 
 function benchmark($method) {
-	global $config, $file, $extension, $out, $count;
+	global $file, $extension, $out, $count;
 	
-	$config['thumb_method'] = $method;
+	Vi::$config['thumb_method'] = $method;
 	
 	printf("Method: %s\nThumbnailing %d times... ", $method, $count);
 	
@@ -30,9 +30,9 @@ function benchmark($method) {
 	for($i = 0; $i < $count; $i++) {
 		$image = new Image($file, $extension);
 		$thumb = $image->resize(
-			$config['thumb_ext'] ? $config['thumb_ext'] : $extension,
-			$config['thumb_width'],
-			$config['thumb_height']
+			Vi::$config['thumb_ext'] ? Vi::$config['thumb_ext'] : $extension,
+			Vi::$config['thumb_width'],
+			Vi::$config['thumb_height']
 		);
 		
 		$thumb->to($out);

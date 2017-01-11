@@ -40,7 +40,7 @@ putenv('TINYBOARD_PATH=' . getcwd());
 
 require 'inc/functions.php';
 
-$mod = Array(
+Vi::$mod = Array(
 	'id' => -1,
 	'type' => ADMIN,
 	'username' => '?',

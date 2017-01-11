@@ -26,7 +26,7 @@ $start = microtime(true);
 // parse command line
 $opts = getopt('qfb:', Array('board:', 'quick', 'full', 'quiet'));
 $options = Array();
-$global_locale = $config['locale'];
+$global_locale = Vi::$default_locale;
 
 $options['board'] = isset($opts['board']) ? $opts['board'] : (isset($opts['b']) ? $opts['b'] : false);
 $options['quiet'] = isset($opts['q']) || isset($opts['quiet']);
@@ -34,13 +34,13 @@ $options['quick'] = isset($opts['quick']);
 $options['full'] = isset($opts['full']) || isset($opts['f']);
 
 if(!$options['quiet'])
-	echo "== Tinyboard + vichan {$config['version']} ==\n";	
+	echo "== Tinyboard + vichan " . Vi::$config['version'] . " ==\n";	
 
 if(!$options['quiet'])
 	echo "Clearing template cache...\n";
 
 load_twig();
-$twig->clearCacheFiles();
+Vi::$twig->clearCacheFiles();
 
 if(!$options['quiet'])
 	echo "Regenerating theme files...\n";
@@ -50,7 +50,7 @@ if(!$options['quiet'])
 	echo "Generating Javascript file...\n";
 buildJavascript();
 
-$main_js = $config['file_script'];
+$main_js = Vi::$config['file_script'];
 
 $boards = listBoards();
 
@@ -61,15 +61,15 @@ foreach($boards as &$board) {
 	if(!$options['quiet'])
 		echo "Opening board /{$board['uri']}/...\n";
 	// Reset locale to global locale
-	$config['locale'] = $global_locale;
+	// Vi::$config['locale'] = $global_locale;
 	openBoard($board['uri']);
-	$config['try_smarter'] = false;
+	Vi::$config['try_smarter'] = false;
 	
-	if($config['file_script'] != $main_js) {
+	if(Vi::$config['file_script'] != $main_js) {
 		// different javascript file
 		if(!$options['quiet'])
 			echo "Generating Javascript file...\n";
-		#buildJavascript();
+		buildJavascript();
 	}
 	
 	

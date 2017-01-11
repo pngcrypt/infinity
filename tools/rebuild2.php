@@ -16,9 +16,9 @@ require dirname(__FILE__) . '/inc/cli.php';
 $start = microtime(true);
 
 // parse command line
-$opts = getopt('', Array('board:', 'themes', 'js', 'indexes', 'threads', 'processes:', 'cache', 'postmarkup', 'api'));
-$options = Array();
-$global_locale = $config['locale'];
+$opts          = getopt('', Array('board:', 'themes', 'js', 'indexes', 'threads', 'processes:', 'cache', 'postmarkup', 'api'));
+$options       = Array();
+$global_locale = Vi::$default_locale;
 
 // Do only one board?
 $options['board'] = isset($opts['board']) ? $opts['board'] : (isset($opts['b']) ? $opts['b'] : false);
@@ -39,65 +39,66 @@ $options['api'] = isset($opts['api']);
 // How many processes?
 $options['processes'] = isset($opts['processes']) ? $opts['processes'] : 1;
 
-echo "== Tinyboard + vichan {$config['version']} ==\n";	
+echo "== Tinyboard + vichan " . Vi::$config['version'] . " ==\n";
 
 if ($options['cache']) {
 	echo "Clearing template cache...\n";
 	load_twig();
-	$twig->clearCacheFiles();
+	Vi::$twig->clearCacheFiles();
 }
 
-if($options['themes']) {
+if ($options['themes']) {
 	echo "Regenerating theme files...\n";
 	rebuildThemes('all');
 }
 
-if($options['js']) {
+if ($options['js']) {
 	echo "Generating Javascript file...\n";
 	buildJavascript();
 }
 
-$main_js = $config['file_script'];
+$main_js = Vi::$config['file_script'];
 
 $boards = listBoards();
 //$boards = array(array('uri'=>'test'), array('uri'=>'tester'), array('uri'=>'testing'));
-$boards_m = array_chunk($boards, floor(sizeof($boards)/$options['processes']));
+$boards_m = array_chunk($boards, floor(sizeof($boards) / $options['processes']));
 
 function doboard($board) {
-	global $global_locale, $config, $main_js, $options;
-	$config['mask_db_error'] = false;
-	if (!$options['api']) $config['api']['enabled'] = false;
+	global $global_locale, $main_js, $options;
+	Vi::$config['mask_db_error'] = false;
+	if (!$options['api']) {
+		Vi::$config['api']['enabled'] = false;
+	}
 
 	echo "Opening board /{$board['uri']}/...\n";
 	// Reset locale to global locale
-	$config['locale'] = $global_locale;
-	init_locale($config['locale'], 'error');
+	Vi::$config['locale'] = $global_locale;
+	init_locale(Vi::$config['locale'], 'error');
 	openBoard($board['uri']);
-	$config['try_smarter'] = false;
-	
-	if($config['file_script'] != $main_js && $options['js']) {
+	Vi::$config['try_smarter'] = false;
+
+	if (Vi::$config['file_script'] != $main_js && $options['js']) {
 		// different javascript file
 		echo "(/{$board['uri']}/) Generating Javascript file...\n";
 		buildJavascript();
 	}
-	
-	
+
 	if ($options['indexes']) {
 		echo "(/{$board['uri']}/) Creating index pages...\n";
 		buildIndex();
 	}
-	
-	if($options['postmarkup']) {
+
+	if ($options['postmarkup']) {
 		$query = query(sprintf("SELECT `id` FROM ``posts_%s``", $board['uri'])) or error(db_error());
-		while($post = $query->fetch()) {
+		while ($post = $query->fetch()) {
 			echo "(/{$board['uri']}/) Rebuilding #{$post['id']}...\n";
 			rebuildPost($post['id']);
 		}
 	}
-	
+
 	if ($options['threads']) {
 		$query = query(sprintf("SELECT `id` FROM ``posts_%s`` WHERE `thread` IS NULL", $board['uri'])) or error(db_error());
-		while($post = $query->fetch()) {
+		while ($post = $query->fetch()) {
 			echo "(/{$board['uri']}/) Rebuilding #{$post['id']}...\n";
 			@buildThread($post['id']);
 		}
@@ -115,18 +116,17 @@ foreach ($boards_m as $i => $bb) {
 		$children[] = $pid;
 	} else {
 		unset($pdo);
-		$i = 0;
+		$i     = 0;
 		$total = sizeof($bb);
 		sql_open();
 		foreach ($bb as $i => $b) {
 			$i++;
 			doboard($b);
 			echo "I'm on board $i/$total\n";
-		}	
+		}
 		break;
 	}
 }
-
 
 printf("Complete! Took %g seconds\n", microtime(true) - $start);
 

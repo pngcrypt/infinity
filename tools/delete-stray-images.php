@@ -16,23 +16,30 @@ $boards = listBoards();
 foreach ($boards as $board) {
 	echo "/{$board['uri']}/... ";
 	
-	openBoard($board['uri']);
+	if(!openBoard($board['uri'])) {
+		echo 'error openin board ', $board['uri'], PHP_EOL;
+		continue;
+	}
+
+	$files_src = array_map('basename', glob(Vi::$board['dir'] . Vi::$config['dir']['img'] . '*'));
+	$files_thumb = array_map('basename', glob(Vi::$board['dir'] . Vi::$config['dir']['thumb'] . '*'));
 	
-	$query = query(sprintf("SELECT `file`, `thumb` FROM ``posts_%s`` WHERE `file` IS NOT NULL", $board['uri']));
+	$query = query(sprintf("SELECT `files` FROM ``posts_%s`` WHERE `files` IS NOT NULL", Vi::$board['uri']));
 	$valid_src = array();
 	$valid_thumb = array();
 	
-	while ($post = $query->fetch(PDO::FETCH_ASSOC)) {
-		$valid_src[] = $post['file'];
-		$valid_thumb[] = $post['thumb'];
+	while ($post = $query->fetch(PDO::FETCH_OBJ)) {
+		$files = json_decode($post->files);
+		foreach($files as &$file) {
+			$valid_src[] = $file->file;
+			if(isset($file->thumb) && strpos($file->thumb, '.') !== false)
+				$valid_thumb[] = $file->thumb;
+		}
 	}
-	
-	$files_src = array_map('basename', glob($board['dir'] . $config['dir']['img'] . '*'));
-	$files_thumb = array_map('basename', glob($board['dir'] . $config['dir']['thumb'] . '*'));
-	
+
 	$stray_src = array_diff($files_src, $valid_src);
 	$stray_thumb = array_diff($files_thumb, $valid_thumb);
-	
+
 	$stats = array(
 		'deleted' => 0,
 		'size' => 0
@@ -40,8 +47,8 @@ foreach ($boards as $board) {
 	
 	foreach ($stray_src as $src) {
 		$stats['deleted']++;
-		$stats['size'] = filesize($board['dir'] . $config['dir']['img'] . $src);
-		if (!file_unlink($board['dir'] . $config['dir']['img'] . $src)) {
+		$stats['size'] += filesize(Vi::$board['dir'] . Vi::$config['dir']['img'] . $src);
+		if (!file_unlink(Vi::$board['dir'] . Vi::$config['dir']['img'] . $src)) {
 			$er = error_get_last();
 			die("error: " . $er['message'] . "\n");
 		}
@@ -49,8 +56,8 @@ foreach ($boards as $board) {
 		
 	foreach ($stray_thumb as $thumb) {
 		$stats['deleted']++;
-		$stats['size'] = filesize($board['dir'] . $config['dir']['thumb'] . $thumb);
-		if (!file_unlink($board['dir'] . $config['dir']['thumb'] . $thumb)) {
+		$stats['size'] += filesize(Vi::$board['dir'] . Vi::$config['dir']['thumb'] . $thumb);
+		if (!file_unlink(Vi::$board['dir'] . Vi::$config['dir']['thumb'] . $thumb)) {
 			$er = error_get_last();
 			die("error: " . $er['message'] . "\n");
 		}

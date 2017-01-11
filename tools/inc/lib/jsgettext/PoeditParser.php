@@ -25,6 +25,9 @@ class PoeditParser {
 
 		foreach ($parts as $part) {
 
+			if(preg_match("/^#~/", $part)) // skip msgmerge comments
+				continue;
+
 			// parse comments
 			$comments = array();
 			preg_match_all('#^\\#: (.*?)$#m', $part, $matches, PREG_SET_ORDER);
@@ -62,7 +65,7 @@ class PoeditParser {
 		foreach ($this->strings as $s) {
 			if ($s->value) $str[$s->key] = $s->value;
 		}
-		return json_encode($str);
+		return json_encode($str, JSON_UNESCAPED_UNICODE);
 	}
 
 	public function toJSON($outputFilename, $varName = 'l10n') {

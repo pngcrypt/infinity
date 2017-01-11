@@ -9,9 +9,9 @@ query( "ALTER TABLE `boards` ADD COLUMN `posts_total` INT(11) UNSIGNED NOT NULL 
 
 // Set the value for posts_total for each board.
 echo "Updating `boards` to include `posts_total` values...\n";
-$tablePrefix = "{$config['db']['prefix']}posts_";
+$tablePrefix = Vi::$config['db']['prefix'] . "posts_";
 
-$aiQuery = prepare("SELECT `TABLE_NAME`, `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = \"{$config['db']['database']}\"");
+$aiQuery = prepare("SELECT `TABLE_NAME`, `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = \"" . Vi::$config['db']['database'] . "\"");
 $aiQuery->execute() or error(db_error($aiQuery));
 $aiResult = $aiQuery->fetchAll(PDO::FETCH_ASSOC);
 
