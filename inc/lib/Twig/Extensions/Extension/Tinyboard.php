@@ -18,6 +18,7 @@ class Twig_Extensions_Extension_Tinyboard extends Twig_Extension
 			new Twig_SimpleFilter('sprintf', 'sprintf'),
 			new Twig_SimpleFilter('capcode', 'capcode'),
 			new Twig_SimpleFilter('remove_modifiers', 'remove_modifiers'),
+			new Twig_SimpleFilter('remove_markups', 'twig_remove_markups'),
 			new Twig_SimpleFilter('hasPermission', 'twig_hasPermission_filter'),
 			new Twig_SimpleFilter('date', 'twig_date_filter'),
 			new Twig_SimpleFilter('remove_whitespace', 'twig_remove_whitespace_filter'),
@@ -126,8 +127,6 @@ function twig_ratio_function($w, $h) {
 	return fraction($w, $h, ':');
 }
 function twig_secure_link_confirm($text, $title, $confirm_message, $href) {
-	global $config;
-
 	return '<a onclick="if (event.which==2) return true;if (confirm(\'' . htmlentities(addslashes($confirm_message)) . '\')) document.location=\'?/' . htmlspecialchars(addslashes($href . '/' . make_secure_link_token($href))) . '\';return false;" title="' . htmlentities($title) . '" href="?/' . $href . '">' . $text . '</a>';
 }
 function twig_secure_link($href) {
@@ -135,4 +134,13 @@ function twig_secure_link($href) {
 }
 function twig_less_ip($ip, $board = '') {
 	return less_ip($ip, $board);
+}
+
+function twig_remove_markups($body) {
+	foreach (Vi::$config['markup'] as $markup) {
+		if (is_string($markup[1])) {
+			$body = preg_replace($markup[0], '$1', $body);
+		}
+	}
+	return $body;
 }
