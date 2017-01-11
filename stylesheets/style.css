@@ -49,6 +49,10 @@ table tbody tr:nth-of-type( even ) {
 	background-color: #D6DAF0;
 }
 
+div.logo{width:100%;text-align:center;color:#054500;font-size:08pt;z-index:-9999;margin-bottom:-38px;}
+div.logo span:nth-child(1){font-size:20pt;font-weight:bold;letter-spacing:-2px;font-family:tahoma;display:block}
+div.logo span:nth-child(3){display:block;background:url('/static/Kuruminha_v2.png') no-repeat;background-size:auto 210px;width:142px;height:210px;margin:0 auto}
+
 td.minimal,th.minimal {
   width: 1%;
   white-space: nowrap;
@@ -82,8 +86,16 @@ table.mod.config-editor input[type="text"] {
   display: inline-block;
 }
 
-.post-table, .post-table-options, textarea {
+.post-table, .post-table-options {
   width: 100%;
+}
+
+.post-table textarea {
+  width: 100%;
+  min-width: 100%;
+  max-width: 500px;
+  min-height: 5em;
+  box-sizing: border-box;
 }
 
 #post-form-inner .post-table tr {
@@ -92,10 +104,6 @@ table.mod.config-editor input[type="text"] {
 
 .post-table th, .post-table-options th {
   width: 85px;
-}
-
-.post-table-options {
-  display: none;
 }
 
 .required-field-cell {
@@ -131,6 +139,19 @@ a.post_no {
 
 .intro a.post_no,p.intro a.email,p.intro a.post_anchor {
   margin: 0;
+}
+
+body.replypage {
+  counter-reset:postcount;
+  counter-increment:postcount;
+}
+
+body.replypage .reply .reflink:after {
+    counter-increment: postcount;
+    content: "#" counter(postcount);
+    color: #789922 !important;
+    margin-left: 0.5em;
+    margin-right: 1em;
 }
 
 .intro a.email span.name {
@@ -266,6 +287,10 @@ div.post p.fileinfo {
   padding-left: 5px;
 }
 
+span.post_replies {
+  display: inline-block;
+}
+
 div.banner {
   background-color: #E04000;
   font-size: 12pt;
@@ -283,8 +308,10 @@ div.banner a:hover {
   text-decoration: none;
 }
 
+.board_banners {
+	text-align: center;
+}
 img.banner,img.board_image {
-  display: block;
   border: 1px solid #a9a9a9;
   margin: 12px auto 0 auto;
 }
@@ -308,6 +335,12 @@ div.post .post-image {
   margin: 0 20px 0 0;
 }
 
+a.file > img.post-image {
+  border:1px dashed #818181;
+  padding:0px;
+  margin:5px 20px 5px 5px;
+}
+
 div.post img.icon {
   display: inline;
   margin: 0 5px;
@@ -322,10 +355,23 @@ div.post i.fa, div.thread i.fa {
 div.post.op {
   margin-right: 20px;
   margin-bottom: 5px;
+  overflow: auto;
+}
+
+div.post.op div.multifiles {
+  overflow: auto;
 }
 
 div.post.op hr {
   border-color: #D9BFB7;
+}
+
+span.postfilename {
+  font-size: 10px;
+}
+
+p.fileinfo span.unimportant {
+  display: block;
 }
 
 .intro {
@@ -378,8 +424,10 @@ div.post p {
 
 div.post div.body {
   margin-top: 0.8em;
-  padding-right: 3em;
+  padding-right: 1.8em;
   padding-bottom: 0.3em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 div.post.reply div.body {
@@ -392,11 +440,6 @@ div.post.reply.highlighted {
 
 div.post.reply div.body a {
   color: #D00;
-}
-
-div.post div.body {
-  word-wrap: break-word;
-  white-space: pre-wrap;
 }
 
 div.post.reply {
@@ -455,9 +498,9 @@ br.clear {
 
 span.controls {
   float: right;
-  margin: 0;
   padding: 0;
   font-size: 80%;
+  margin-left: 10px;
 }
 
 span.controls.op {
@@ -935,6 +978,9 @@ pre {
   overflow: auto;
 }
 
+#options_div textarea {
+	box-sizing: border-box;
+}
 
 
 #alert_div {
@@ -1273,17 +1319,9 @@ div.mix {
 }
 
 /* Dice */
-.dice-option table {
-	border: 1px dotted black;
-	margin: 0;
-	border-collapse: collapse;
-}
-.dice-option table td {
-	text-align: center;
-	border-left: 1px dotted black;
-	padding-left: 2px;
-	padding-right: 2px;
-	padding-bottom: 2px;
+span.dice {
+  color: green;
+  font-style: italic;
 }
 
 /* Quick reply (why was most of this ever in the script?) */
@@ -1370,7 +1408,9 @@ div.mix {
 		display: none !important;
 	}
 }
-
+input[type="checkbox"] {
+  vertical-align: middle;
+}
 #youtube-size input {
 	width: 50px;
 }
@@ -1740,4 +1780,37 @@ table.fileboard .intro a {
 
 input[type="text"][name="board"], textarea[name="message"]:not([rows]) {
   display: none;
+}
+
+a.no_underline, a.no_underline:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Show / hide post options w/o javascript */
+input.show-post-table-options {
+	display: none;
+}
+label.show-post-options, label.hide-post-options {
+	line-height: 1em;
+	padding-right: 2px;
+}
+.show-post-table-options ~ label.show-post-options {
+  display: inline-block;
+  cursor: pointer;
+}
+.show-post-table-options ~ label.hide-post-options, .show-post-table-options ~ .post-table-options {
+	display: none;
+}
+.show-post-table-options:checked ~ label.show-post-options {display: none;}
+.show-post-table-options:checked ~ label.hide-post-options {
+	display: inline-block !important;
+	cursor: pointer;
+}
+.show-post-table-options:checked ~ .post-table-options {
+	display: table;
+}
+.wrap-post-options {
+	box-sizing:border-box;
+	text-align: right;
 }
