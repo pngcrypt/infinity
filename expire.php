@@ -73,7 +73,7 @@ foreach($delete as $i => $d){
 	$query->bindValue(':uri', $board['uri']);
 	$query->execute() or error(db_error($query));
 	
-	if ($config['cache']['enabled']) {
+	if (Vi::$config['cache']['enabled']) {
 		cache::delete('board_' . $board['uri']);
 		cache::delete('all_boards');
 	}
@@ -132,10 +132,10 @@ foreach($delete as $i => $d){
 	rrmdir('static/banners/' . $board['uri']);
 	file_unlink("stylesheets/board/{$board['uri']}.css");
 	// HAAAAAX
-	if($config['dir']['img_root'] != '')
-		rrmdir($config['dir']['img_root'] . $board['uri']);
+	if(Vi::$config['dir']['img_root'] != '')
+		rrmdir(Vi::$config['dir']['img_root'] . $board['uri']);
 	
-	if ($config['cache']['enabled']) cache::delete('board_' . $board['uri']);
+	if (Vi::$config['cache']['enabled']) cache::delete('board_' . $board['uri']);
 	
 	_syslog(LOG_NOTICE, "Board deleted: {$board['uri']}");
 	if ($d['mod']) {

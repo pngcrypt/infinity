@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `antispam` (
 
 CREATE TABLE IF NOT EXISTS `bans` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `ipstart` varbinary(16) NOT NULL,
+  `ipstart` varbinary(37) NOT NULL,
   `ipend` varbinary(16) DEFAULT NULL,
   `created` int(10) unsigned NOT NULL,
   `expires` int(10) unsigned DEFAULT NULL,
@@ -68,7 +68,6 @@ CREATE TABLE IF NOT EXISTS `boards` (
   `indexed` boolean default true,
   `public_bans` boolean default true,
   `public_logs` tinyint(1) default 0,
-  `8archive` boolean default false,
   `sfw` boolean default false,
   `posts_total` INT(11) UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`uri`)
@@ -356,6 +355,7 @@ CREATE TABLE IF NOT EXISTS `tor_cookies` (
 CREATE TABLE IF NOT EXISTS `dnsbl_bypass` (
   `ip` varchar(255) NOT NULL,
   `created` datetime DEFAULT NULL,
+  `uses` tinyint(3) unsigned DEFAULT '0',
   PRIMARY KEY (`ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -367,6 +367,7 @@ CREATE TABLE IF NOT EXISTS `dnsbl_bypass` (
 
 CREATE TABLE IF NOT EXISTS `filters` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `board` varchar(58) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `reason` text,
   `value` varchar(255) DEFAULT NULL,
@@ -426,6 +427,23 @@ CREATE TABLE `nntp_references` (
   UNIQUE KEY `message_id` (`message_id`),
   UNIQUE KEY `u_board_id` (`board`, `id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `captchas`
+--
+
+CREATE TABLE `captchas` (
+  `cookie` VARCHAR(50),
+  `extra` VARCHAR(200),
+  `text` VARCHAR(255),
+  `created_at` INT(11),
+  PRIMARY KEY (cookie, extra)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4;
+
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

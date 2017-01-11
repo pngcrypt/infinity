@@ -188,4 +188,4 @@ Assuming the /b/ board, they are as follows:</p>
 
 EOT;
 
-echo Element("page.html", array("config" => $config, "body" => $body, "title" => "FAQ"));
+echo Element("page.html", array("config" => Vi::$config, "body" => $body, "title" => "FAQ"));

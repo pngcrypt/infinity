@@ -1,23 +1,22 @@
 <?php
 
 require_once "inc/functions.php";
-header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
-
-global $config;
+header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
 
 $dir = "static/404/";
 
-if (!is_dir($dir))
+if (!is_dir($dir)) {
 	mkdir($dir);
+}
 
-if ($config['cache']['enabled']) {
+if (Vi::$config['cache']['enabled']) {
 	$files = cache::get('notfound_files');
 }
 
 if (!isset($files) or !$files) {
 	$files = array_diff(scandir($dir), array('..', '.'));
 
-	if ($config['cache']['enabled']) {
+	if (Vi::$config['cache']['enabled']) {
 		cache::set('notfound_files', $files);
 	}
 }
@@ -28,8 +27,8 @@ if (count($files) == 0) {
 	$errorimage = $files[array_rand($files)];
 }
 
-if (preg_match('!'.$config['board_regex'].'/'.$config['dir']['res'].'\d+\.html!u', $_SERVER['REQUEST_URI'])) {
-	$return_link = '<a href="../index.html">[ Return ]</a>';
+if (preg_match('!' . Vi::$config['board_regex'] . '/' . Vi::$config['dir']['res'] . '\d+\.html!u', $_SERVER['REQUEST_URI'])) {
+	$return_link = ' <a href="../index.html">[ Return ]</a>';
 } else {
 	$return_link = '';
 }
@@ -59,4 +58,4 @@ $page = <<<EOT
 		</script>
 EOT;
 
-echo Element("page.html", array("config" => $config, "body" => $errorimage ? $page : "", "title" => "404 Not Found"));
+echo Element("page.html", array("config" => Vi::$config, 'boardlist' => createBoardlist(), "body" => $errorimage ? $page : "", "title" => "404 Not Found"));

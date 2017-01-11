@@ -118,6 +118,6 @@ error('Board active or does not exist, cannot be reclaimed.');
 }
 }
 
-$config['default_stylesheet'] = array('Yotsuba B', $config['stylesheets']['Yotsuba B']);
-echo Element("page.html", array("config" => $config, "body" => $body, "title" => $title));
+Vi::$config['default_stylesheet'] = array('Yotsuba B', Vi::$config['stylesheets']['Yotsuba B']);
+echo Element("page.html", array("config" => Vi::$config, "body" => $body, "title" => $title));
 */

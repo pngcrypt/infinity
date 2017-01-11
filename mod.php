@@ -7,140 +7,143 @@
 require 'inc/functions.php';
 require 'inc/mod/pages.php';
 
-if ($config['debug'])
+if (Vi::$config['debug']) {
 	$parse_start_time = microtime(true);
+}
 
 check_login(true);
 
 $query = isset($_SERVER['QUERY_STRING']) ? rawurldecode($_SERVER['QUERY_STRING']) : '';
 
 $pages = array(
-	''					=> ':?/',			// redirect to dashboard
-	'/'					=> 'dashboard',			// dashboard
-	'/confirm/(.+)'				=> 'confirm',			// confirm action (if javascript didn't work)
-	'/logout'				=> 'secure logout',		// logout
-	
-	'/users'				=> 'users',			// manage users
-	'/users/(\d+)/(promote|demote)'		=> 'secure user_promote',	// prmote/demote user
-	'/users/(\d+)'				=> 'secure_POST user',		// edit user
-	'/users/new'				=> 'secure_POST user_new',	// create a new user
-	
-	'/new_PM/([^/]+)'			=> 'secure_POST new_pm',	// create a new pm
-	'/PM/(\d+)(/reply)?'			=> 'pm',			// read a pm
-	'/inbox'				=> 'inbox',			// pm inbox
-	
-	'/log'					=> 'log',			// modlog
-	'/log/(\d+)'				=> 'log',			// modlog
-	'/log:([^/:]+)'				=> 'user_log',			// modlog
-	'/log:([^/:]+)/(\d+)'			=> 'user_log',			// modlog
-	'/log:b:([^/]+)'			=> 'board_log',			// modlog
-	'/log:b:([^/]+)/(\d+)'			=> 'board_log',			// modlog
-	'/edit_news'				=> 'secure_POST news',		// view news
-	'/edit_news/(\d+)'			=> 'secure_POST news',		// view news
-	'/edit_news/delete/(\d+)'		=> 'secure news_delete',	// delete from news
+	''                                                                                => ':?/', // redirect to dashboard
+	'/'                                                                               => 'dashboard', // dashboard
+	'/confirm/(.+)'                                                                   => 'confirm', // confirm action (if javascript didn't work)
+	'/logout'                                                                         => 'secure logout', // logout
 
-	'/edit_pages(?:/?(\%b)?)'		=> 'secure_POST pages',
-	'/edit_page/(\d+)'			=> 'secure_POST edit_page',
-	'/edit_pages/delete/([a-z0-9]+)'	=> 'secure delete_page',
-	'/edit_pages/delete/([a-z0-9]+)/(\%b)'	=> 'secure delete_page_board',
-	
-	'/noticeboard'				=> 'secure_POST noticeboard',	// view noticeboard
-	'/noticeboard/(\d+)'			=> 'secure_POST noticeboard',	// view noticeboard
-	'/noticeboard/delete/(\d+)'		=> 'secure noticeboard_delete',	// delete from noticeboard
-	
-	'/edit/(\%b)'				=> 'secure_POST edit_board',	// edit board details
-	'/new-board'				=> 'secure_POST new_board',	// create a new board
-	
-	'/rebuild'                     => 'secure_POST rebuild',   // rebuild static files
-	
+	'/users'                                                                          => 'users', // manage users
+	'/users/(\d+)/(promote|demote)'                                                   => 'secure user_promote', // prmote/demote user
+	'/users/(\d+)'                                                                    => 'secure_POST user', // edit user
+	'/users/new'                                                                      => 'secure_POST user_new', // create a new user
+
+	'/new_PM/([^/]+)'                                                                 => 'secure_POST new_pm', // create a new pm
+	'/PM/(\d+)(/reply)?'                                                              => 'pm', // read a pm
+	'/inbox'                                                                          => 'inbox', // pm inbox
+
+	'/log'                                                                            => 'log', // modlog
+	'/log/(\d+)'                                                                      => 'log', // modlog
+	'/log:([^/:]+)'                                                                   => 'user_log', // modlog
+	'/log:([^/:]+)/(\d+)'                                                             => 'user_log', // modlog
+	'/log:b:([^/]+)'                                                                  => 'board_log', // modlog
+	'/log:b:([^/]+)/(\d+)'                                                            => 'board_log', // modlog
+	'/edit_news'                                                                      => 'secure_POST news', // view news
+	'/edit_news/(\d+)'                                                                => 'secure_POST news', // view news
+	'/edit_news/delete/(\d+)'                                                         => 'secure news_delete', // delete from news
+
+	'/edit_pages(?:/?(\%b)?)'                                                         => 'secure_POST pages',
+	'/edit_page/(\d+)'                                                                => 'secure_POST edit_page',
+	'/edit_pages/delete/([a-z0-9]+)'                                                  => 'secure delete_page',
+	'/edit_pages/delete/([a-z0-9]+)/(\%b)'                                            => 'secure delete_page_board',
+
+	'/noticeboard'                                                                    => 'secure_POST noticeboard', // view noticeboard
+	'/noticeboard/(\d+)'                                                              => 'secure_POST noticeboard', // view noticeboard
+	'/noticeboard/delete/(\d+)'                                                       => 'secure noticeboard_delete', // delete from noticeboard
+
+	'/edit/(\%b)'                                                                     => 'secure_POST edit_board', // edit board details
+	'/new-board'                                                                      => 'secure_POST new_board', // create a new board
+
+	'/rebuild'                                                                        => 'secure_POST rebuild', // rebuild static files
+
 	// Report management
 	// (global) denotes if the action is being carried out from the global dashboard,
 	// and if the return address should also be the global dashboard.
 	// Important to note that (?:global) will make no argument.
 	// (global)? will make argument 0 either "global" or "".
-	'/reports(?:/)?'                                                          => 'reports',               // report queue
-	'/reports/(global)?(?:/)?(json)?'                                         => 'reports',               // global report queue
-	'/reports/(global)?(?:/)?(content)/(\%b)/(\d+)(?:/)?'                     => 'reports',               // specific reported content (also historic)
-	'/reports/(global)?(?:/)?(content)/(\%b)/(\d+)/dismiss(?:/)?'             => 'secure report_dismiss', // dismiss all reports on content
-	'/reports/(global)?(?:/)?(content)/(\%b)/(\d+)/demote(?:/)?'              => 'secure report_demote',  // demote all reports on content
-	'/reports/(global)?(?:/)?(content)/(\%b)/(\d+)/promote(?:/)?'             => 'secure report_promote', // demote all reports on content
-	'/reports/(global)?(?:/)?(\d+)/dismiss(all)?(?:/)?'                       => 'secure report_dismiss', // dismiss a report
-	'/reports/(global)?(?:/)?(\d+)/demote(?:/)?'                              => 'secure report_demote',  // demote a global report to a local report
-	'/reports/(global)?(?:/)?(\d+)/promote(?:/)?'                             => 'secure report_promote', // promote a local report to a global report
-	'/reports/(global)?(?:/)?(\%b)/(un)?clean/(\d+)/(global)?(?:\+)?(local)?' => 'secure report_clean',   // protect/unprotect from reports
-	
-	'/IP/([\w.:]+)'				=> 'secure_POST ip',		// view ip address
-	'/IP/([\w.:]+)/remove_note/(\d+)'	=> 'secure ip_remove_note',	// remove note from ip address
-	'/IP_less/(\%b)/(\d+)'				=> 'secure_POST ip_less',		// view ip address (limited for user privacy)
-	'/IP_less/([\w.:]+)/remove_note/(\d+)'	=> 'secure ip_remove_note',	// remove note from ip address
-	
-	'/ban'					=> 'secure_POST ban',		// new ban
-	'/bans'					=> 'secure_POST bans',		// ban list
-	'/bans.json'				=> 'secure bans_json',		// ban list JSON
-	'/ban-appeals'				=> 'secure_POST ban_appeals',	// view ban appeals
-	
-	'/recent/(\d+)'				=> 'recent_posts',		// view recent posts
+	'/reports(?:/)?'                                                                  => 'reports', // report queue
+	'/reports/(global)?(?:/)?(json)?'                                                 => 'reports', // global report queue
+	'/reports/(global)?(?:/)?(content)/(\%b)/(\d+)(?:/)?'                             => 'reports', // specific reported content (also historic)
+	'/reports/(global)?(?:/)?(content)/(\%b)/(\d+)/dismiss(?:/)?'                     => 'secure report_dismiss', // dismiss all reports on content
+	'/reports/(global)?(?:/)?(content)/(\%b)/(\d+)/demote(?:/)?'                      => 'secure report_demote', // demote all reports on content
+	'/reports/(global)?(?:/)?(content)/(\%b)/(\d+)/promote(?:/)?'                     => 'secure report_promote', // demote all reports on content
+	'/reports/(global)?(?:/)?(\d+)/dismiss(all)?(?:/)?'                               => 'secure report_dismiss', // dismiss a report
+	'/reports/(global)?(?:/)?(\d+)/demote(?:/)?'                                      => 'secure report_demote', // demote a global report to a local report
+	'/reports/(global)?(?:/)?(\d+)/promote(?:/)?'                                     => 'secure report_promote', // promote a local report to a global report
+	'/reports/(global)?(?:/)?(\%b)/(un)?clean/(\d+)/(global)?(?:\+)?(local)?'         => 'secure report_clean', // protect/unprotect from reports
 
-	'/search'				=> 'search_redirect',		// search
-	'/search/(posts|IP_notes|bans|log)/(.+)/(\d+)'	=> 'search',		// search
-	'/search/(posts|IP_notes|bans|log)/(.+)'	=> 'search',		// search
-	
+	'/IP/([\w.:\!a-f]+)'                                                                   => 'secure_POST ip', // view ip address
+	'/IP/([\w.:]+)/remove_note/(\d+)'                                                 => 'secure ip_remove_note', // remove note from ip address
+	'/IP_less/(\%b)/(\d+)'                                                            => 'secure_POST ip_less', // view ip address (limited for user privacy)
+	'/IP_less/([\w.:]+)/remove_note/(\d+)'                                            => 'secure ip_remove_note', // remove note from ip address
+
+	'/ban'                                                                            => 'secure_POST ban', // new ban
+	'/bans'                                                                           => 'secure_POST bans', // ban list
+	'/bans.json'                                                                      => 'secure bans_json', // ban list JSON
+	'/ban-appeals'                                                                    => 'secure_POST ban_appeals', // view ban appeals
+
+	'/recent/(\d+)'                                                                   => 'recent_posts', // view recent posts
+
+	'/search'                                                                         => 'search_redirect', // search
+	'/search/(posts|IP_notes|bans|log)/(.+)/(\d+)'                                    => 'search', // search
+	'/search/(posts|IP_notes|bans|log)/(.+)'                                          => 'search', // search
+
 	// Content management
-	'/(\%b)/ban(&delete)?/(\d+)'                      => 'secure_POST ban_post',   // ban poster
-	'/(\%b)/move/(\d+)'                               => 'secure_POST move',       // move thread
-	'/(\%b)/move_reply/(\d+)'                         => 'secure_POST move_reply', // move reply
-	'/(\%b)/edit(_raw)?/(\d+)'                        => 'secure_POST edit_post',  // edit post
-	'/(\%b)/delete/(\d+)'                             => 'secure delete',          // delete post
-	'/(\%b)/deletefile/(\d+)/(\d+)'                   => 'secure deletefile',      // delete file from post
-	'/(\%b+)/spoiler/(\d+)/(\d+)'                     => 'secure spoiler_image',   // spoiler file
-	'/(\%b+)/spoiler_all/(\d+)'                       => 'secure spoiler_images',   // spoiler file
-	'/(\%b)/deletebyip/(\d+)(/global)?'               => 'secure deletebyip',      // delete all posts by IP address
-	'/(\%b)/(un)?lock/(\d+)'                          => 'secure lock',            // lock thread
-	'/(\%b)/(un)?sticky/(\d+)'                        => 'secure sticky',          // sticky thread
-	'/(\%b)/(un)?cycle/(\d+)'                         => 'secure cycle',          // cycle thread
-	'/(\%b)/bump(un)?lock/(\d+)'                      => 'secure bumplock',        // "bumplock" thread
-	
-	'/themes'				=> 'themes_list',		// manage themes
-	'/themes/(\w+)'				=> 'secure_POST theme_configure',		// configure/reconfigure theme
-	'/themes/(\w+)/rebuild'			=> 'secure theme_rebuild',		// rebuild theme
-	'/themes/(\w+)/uninstall'		=> 'secure theme_uninstall',		// uninstall theme
-	
-	'/config'				=> 'secure_POST config',	// config editor
-	'/config/(\%b)'				=> 'secure_POST config',	// config editor
-	
-	// these pages aren't listed in the dashboard without $config['debug']
-	'/debug/antispam'			=> 'debug_antispam',
-	'/debug/recent'				=> 'debug_recent_posts',
-	'/debug/apc'				=> 'debug_apc',
-	'/debug/sql'				=> 'secure_POST debug_sql',
-	
+	'/(\%b)/ban(&delete)?/(\d+)'                                                      => 'secure_POST ban_post', // ban poster
+	'/(\%b)/move/(\d+)'                                                               => 'secure_POST move', // move thread
+	'/(\%b)/move_reply/(\d+)'                                                         => 'secure_POST move_reply', // move reply
+	'/(\%b)/edit(_raw)?/(\d+)'                                                        => 'secure_POST edit_post', // edit post
+	'/(\%b)/delete/(\d+)'                                                             => 'secure delete', // delete post
+	'/(\%b)/deletefile/(\d+)/(\d+)'                                                   => 'secure deletefile', // delete file from post
+	'/(\%b)/banhashfile/(\d+)/(\d+)'                                                  => 'secure banhashfile', // delete file from post
+	'/(\%b+)/spoiler/(\d+)/(\d+)'                                                     => 'secure spoiler_image', // spoiler file
+	'/(\%b+)/spoiler_all/(\d+)'                                                       => 'secure spoiler_images', // spoiler file
+	'/(\%b)/deletebyip/(\d+)(/global)?'                                               => 'secure deletebyip', // delete all posts by IP address
+	'/(\%b)/(un)?lock/(\d+)'                                                          => 'secure lock', // lock thread
+	'/(\%b)/(un)?sticky/(\d+)'                                                        => 'secure sticky', // sticky thread
+	'/(\%b)/(un)?cycle/(\d+)'                                                         => 'secure cycle', // cycle thread
+	'/(\%b)/bump(un)?lock/(\d+)'                                                      => 'secure bumplock', // "bumplock" thread
+
+	'/themes'                                                                         => 'themes_list', // manage themes
+	'/themes/(\w+)'                                                                   => 'secure_POST theme_configure', // configure/reconfigure theme
+	'/themes/(\w+)/rebuild'                                                           => 'secure theme_rebuild', // rebuild theme
+	'/themes/(\w+)/uninstall'                                                         => 'secure theme_uninstall', // uninstall theme
+
+	'/config'                                                                         => 'secure_POST config', // config editor
+	'/config/(\%b)'                                                                   => 'secure_POST config', // config editor
+
+	// these pages aren't listed in the dashboard without Vi::$config['debug']
+	'/debug/antispam'                                                                 => 'debug_antispam',
+	'/debug/recent'                                                                   => 'debug_recent_posts',
+	'/debug/apc'                                                                      => 'debug_apc',
+	'/debug/sql'                                                                      => 'secure_POST debug_sql',
+
 	// This should always be at the end:
-	'/(\%b)/?'										=> 'view_board',
-	'/(\%b)/' . preg_quote($config['file_index'], '!')					=> 'view_board',
-	'/(\%b)/' . str_replace('%d', '(\d+)', preg_quote($config['file_page'], '!'))		=> 'view_board',
-	'/(\%b)/' . preg_quote($config['dir']['res'], '!') .
-			str_replace('%d', '(\d+)', preg_quote($config['file_page50'], '!'))	=> 'view_thread50',
-	'/(\%b)/' . preg_quote($config['dir']['res'], '!') .
-			str_replace('%d', '(\d+)', preg_quote($config['file_page'], '!'))	=> 'view_thread',
+	'/(\%b)/?'                                                                        => 'view_board',
+	'/(\%b)/' . preg_quote(Vi::$config['file_index'], '!')                            => 'view_board',
+	'/(\%b)/' . str_replace('%d', '(\d+)', preg_quote(Vi::$config['file_page'], '!')) => 'view_board',
+	'/(\%b)/' . preg_quote(Vi::$config['dir']['res'], '!') .
+	str_replace('%d', '(\d+)', preg_quote(Vi::$config['file_page50'], '!'))           => 'view_thread50',
+	'/(\%b)/' . preg_quote(Vi::$config['dir']['res'], '!') .
+	str_replace('%d', '(\d+)', preg_quote(Vi::$config['file_page'], '!'))             => 'view_thread',
 );
 
-
-if (!$mod) {
+if (!Vi::$mod) {
 	$pages = array('!^(.+)?$!' => 'login');
 } elseif (isset($_GET['status'], $_GET['r'])) {
-	header('Location: ' . $_GET['r'], true, (int)$_GET['status']);
+	header('Location: ' . $_GET['r'], true, (int) $_GET['status']);
 	exit;
 }
 
-if (isset($config['mod']['custom_pages'])) {
-	$pages = array_merge($pages, $config['mod']['custom_pages']);
+if (isset(Vi::$config['mod']['custom_pages'])) {
+	$pages = array_merge($pages, Vi::$config['mod']['custom_pages']);
 }
 
 $new_pages = array();
 foreach ($pages as $key => $callback) {
-	if (is_string($callback) && preg_match('/^secure /', $callback))
+	if (is_string($callback) && preg_match('/^secure /', $callback)) {
 		$key .= '(/(?P<token>[a-f0-9]{8}))?';
-	$key = str_replace('\%b', '?P<board>' . sprintf(substr($config['board_path'], 0, -1), $config['board_regex']), $key);
+	}
+
+	$key                                                                       = str_replace('\%b', '?P<board>' . sprintf(substr(Vi::$config['board_path'], 0, -1), Vi::$config['board_regex']), $key);
 	$new_pages[@$key[0] == '!' ? $key : '!^' . $key . '(?:&[^&=]+=[^&]*)*$!u'] = $callback;
 }
 $pages = $new_pages;
@@ -150,51 +153,51 @@ $parse_start_time = microtime(true);
 foreach ($pages as $uri => $handler) {
 	if (preg_match($uri, $query, $matches)) {
 		$matches = array_slice($matches, 1);
-		
+
 		if (isset($matches['board'])) {
 			$board_match = $matches['board'];
 			unset($matches['board']);
 			$key = array_search($board_match, $matches);
-			if (preg_match('/^' . sprintf(substr($config['board_path'], 0, -1), '(' . $config['board_regex'] . ')') . '$/u', $matches[$key], $board_match)) {
+			if (preg_match('/^' . sprintf(substr(Vi::$config['board_path'], 0, -1), '(' . Vi::$config['board_regex'] . ')') . '$/u', $matches[$key], $board_match)) {
 				$matches[$key] = $board_match[1];
 			}
 		}
-		
+
 		if (is_string($handler) && preg_match('/^secure(_POST)? /', $handler, $m)) {
 			$secure_post_only = isset($m[1]);
 			if (!$secure_post_only || $_SERVER['REQUEST_METHOD'] == 'POST') {
 				$token = isset($matches['token']) ? $matches['token'] : (isset($_POST['token']) ? $_POST['token'] : false);
-				
+
 				if ($token === false) {
-					if ($secure_post_only)
-						error($config['error']['csrf']);
-					else {
+					if ($secure_post_only) {
+						error(Vi::$config['error']['csrf']);
+					} else {
 						mod_confirm(substr($query, 1));
 						exit;
 					}
 				}
-			
+
 				// CSRF-protected page; validate security token
 				$actual_query = preg_replace('!/([a-f0-9]{8})$!', '', $query);
 				if ($token != make_secure_link_token(substr($actual_query, 1))) {
-					error($config['error']['csrf']);
+					error(Vi::$config['error']['csrf']);
 				}
 			}
 			$handler = preg_replace('/^secure(_POST)? /', '', $handler);
 		}
-		
-		if ($config['debug']) {
-			$debug['mod_page'] = array(
-				'req' => $query,
-				'match' => $uri,
+
+		if (Vi::$config['debug']) {
+			Vi::$debug['mod_page'] = array(
+				'req'     => $query,
+				'match'   => $uri,
 				'handler' => $handler,
 			);
-			$debug['time']['parse_mod_req'] = '~' . round((microtime(true) - $parse_start_time) * 1000, 2) . 'ms';
+			Vi::$debug['time']['parse_mod_req'] = '~' . round((microtime(true) - $parse_start_time) * 1000, 2) . 'ms';
 		}
-		
+
 		if (is_string($handler)) {
 			if ($handler[0] == ':') {
-				header('Location: ' . substr($handler, 1),  true, $config['redirect_http']);
+				header('Location: ' . substr($handler, 1), true, Vi::$config['redirect_http']);
 			} elseif (is_callable("mod_page_$handler")) {
 				call_user_func_array("mod_page_$handler", $matches);
 			} elseif (is_callable("mod_$handler")) {
@@ -207,10 +210,9 @@ foreach ($pages as $uri => $handler) {
 		} else {
 			error("Mod page '$handler' not a string, and not callable!");
 		}
-		
+
 		exit;
 	}
 }
 
-error($config['error']['404']);
-
+error(Vi::$config['error']['404']);

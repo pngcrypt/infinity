@@ -2,23 +2,18 @@
 include 'inc/functions.php';
 include 'inc/mod/pages.php';
 
-if (!isset($_GET['board']) || !preg_match("/{$config['board_regex']}/u", $_GET['board'])) {
+if (!isset($_GET['board']) || !preg_match("/". Vi::$config['board_regex'] . "/u", $_GET['board'])) {
 	http_response_code(400);
-	error('Bad board.');
+	error(_('Bad board.'));
 }
 if (!openBoard($_GET['board'])) {
 	http_response_code(404);
-	error('No board.');
+	error(_('No board.'));
 }
 
-if ($board['public_logs'] == 0) error('This board has public logs disabled. Ask the board owner to enable it.');
-if ($board['public_logs'] == 1) $hide_names = false;
-if ($board['public_logs'] == 2) $hide_names = true;
+if (Vi::$board['public_logs'] == 0)
+	error(_('This board has public logs disabled. Ask the board owner to enable it.'));
 
-if (!isset($_GET['page'])) {
-	$page = 1;
-} else {
-	$page = (int)$_GET['page'];
-};
+$page = !isset($_GET['page']) ? 1 : (int)$_GET['page'];
 
-mod_board_log($board['uri'], $page, $hide_names, true);
+mod_board_log(Vi::$board['uri'], $page, Vi::$board['public_logs'] == 1 ? false : true , true);

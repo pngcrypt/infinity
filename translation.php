@@ -34,4 +34,4 @@ $body = <<<EOT
 </div>
 EOT;
 
-echo Element("page.html", array("config" => $config, "body" => $body, "title" => "Translation tutorial"));
+echo Element("page.html", array("config" => Vi::$config, "body" => $body, "title" => "Translation tutorial"));

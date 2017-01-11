@@ -20,6 +20,7 @@ A computer running a Unix or Unix-like OS(infinity has been specifically tested 
 * Make sure Apache has read/write access to the directory infinity resides in.
 * `install.php` is not maintained. Don't use it.
 * As of February 22, 2015, you need the [DirectIO module (dio.so)](http://php.net/manual/en/ref.dio.php). This is for compatibility with NFS. 
+* For php7 you need the https://github.com/mhei/pecl_dio/tree/php7. 
 
 Step 1. Create infinity's database from the included install.sql file. Enter mysql and create an empty database named 'infinity'. Then cd into the infinity base directory and run:
 ```
@@ -32,16 +33,16 @@ Step 2. /inc/secrets.php does not exist by default, but infinity needs it in ord
 sudo cp secrets.example.php secrets.php
 ```
 
-Now open secrets.php and edit the $config['db'] settings to point to the 'infinity' MySQL database you created in Step 1. 'user' and 'password' refer to your MySQL login credentials.  It should look something like this when you're finished:
+Now open secrets.php and edit the Vi::$config['db'] settings to point to the 'infinity' MySQL database you created in Step 1. 'user' and 'password' refer to your MySQL login credentials.  It should look something like this when you're finished:
 
 ```
-	$config['db']['server'] = 'localhost';
-	$config['db']['database'] = 'infinity';
-	$config['db']['prefix'] = '';
-	$config['db']['user'] = 'root';
-	$config['db']['password'] = 'password';
-	$config['timezone'] = 'UTC';
-	$config['cache']['enabled'] = 'apc';
+	Vi::$config['db']['server'] = 'localhost';
+	Vi::$config['db']['database'] = 'infinity';
+	Vi::$config['db']['prefix'] = '';
+	Vi::$config['db']['user'] = 'root';
+	Vi::$config['db']['password'] = 'password';
+	Vi::$config['timezone'] = 'UTC';
+	Vi::$config['cache']['enabled'] = 'apc';
 ```
 
 Step 3.(Optional) By default, infinity will ignore any changes you make to the template files until you log into mod.php, go to Rebuild, and select Flush Cache. You may find this inconvenient. To make infinity automatically accept your changes to the template files, set $config['twig_cache'].
@@ -49,7 +50,10 @@ Step 3.(Optional) By default, infinity will ignore any changes you make to the t
 Step 4. Infinity can function in a *very* barebones fashion after the first two steps, but you should probably install these additional packages if you want to seriously run it and/or contribute to it. ffmpeg may fail to install under certain versions of Ubuntu. If it does, remove it from this script and install it via an alternate method. Make sure to run the below as root:
 
 ```
-apt-get install graphicsmagick gifsicle php5-fpm mysql-client php5-mysql php5-cli php-pear php5-apcu php5-dev; add-apt-repository ppa:jon-severinsson/ffmpeg; add-apt-repository ppa:nginx/stable; apt-get update; apt-get install nginx ffmpeg; pear install Net_DNS2; pecl install "channel://pecl.php.net/dio-0.0.7"
+apt-get install graphicsmagick gifsicle ffmpeg nginx mariadb-client mariadb-server php5-fpm php5-mysql php5-cli php5-mbstring php5-bcmath php5-pear php5-apcu; pear install Net_DNS2
+```
+```
+git clone -b php7 https://github.com/mhei/pecl_dio.git; cd pecl_dio; apt-get install php5-dev; phpize; ./configure; make; make install
 ```
 
 Page Generation
