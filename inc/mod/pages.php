@@ -2276,6 +2276,15 @@ function mod_user_new() {
 			error(sprintf(Vi::$config['error']['invalidfield'], 'type'));
 		}
 
+		$query = prepare('SELECT ``username``,``id`` FROM ``mods`` WHERE ``username`` = :username');
+		$query->bindValue(':username', $_POST['username']);
+		$query->execute() or error(db_error($query));
+		$users = $query->fetch(PDO::FETCH_ASSOC);
+
+		if (sizeof($users) > 0) {
+			error(sprintf(_(Vi::$config['error']['modexists']), Vi::$config['file_mod'] . '?/users/' . $users['id']));
+		}
+
 		list($version, $password) = crypt_password($_POST['password']);
 
 		$query = prepare('INSERT INTO ``mods`` VALUES (NULL, :username, :password, :version, :type, :boards, :email)');
@@ -2776,10 +2785,10 @@ function mod_reports() {
 
 				// Build the ">>>/b/ thread reported 3 times" title.
 				$report_title = sprintf('<a href="%s" title="%s" target="_new">&gt;&gt;&gt;/%s/</a> %s',
-					"?/{$report_item['board_id']}/res/" . ($content['thread'] ?: $content['id']) . ".html#{$content['thread']}",
+					"?/{$report_item['board_id']}/res/" . ($content['thread'] ?: $content['id']) . ".html#{$content['id']}",
 					_("View content"),
 					$report_item['board_id'],
-					($content['thread'] ? _("thread reported") : _("post reported")) . " " . sprintf(ngettext("%d time", "%d times", $content_reports), $content_reports)
+					($content['thread'] ? _("post reported") : _("thread reported")) . " " . sprintf(ngettext("%d time", "%d times", $content_reports), $content_reports)
 				);
 
 				// Figure out some stuff we need for the page.
