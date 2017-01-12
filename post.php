@@ -789,7 +789,10 @@ if (isset($_POST['delete'])) {
 		if (!Vi::$mod && mb_strlen($post['body']) > Vi::$config['max_body'])
 			error(Vi::$config['error']['toolong_body']);
 		if (mb_strlen($post['body']) < Vi::$config['min_body'] && $post['op'])
-			error(sprintf(_('OP must be at least %d chars on this board.'), Vi::$config['min_body']));
+			error(sprintf(
+				_('OP must be at least %s on this board.'), 
+				sprintf(ngettext('%d char', '%d chars', Vi::$config['min_body']), Vi::$config['min_body'])
+			));
 		if (mb_strlen($post['password']) > 20)
 			error(sprintf(Vi::$config['error']['toolong'], 'password'));
 	}

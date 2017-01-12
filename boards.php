@@ -6,7 +6,7 @@ $admin         = isset(Vi::$mod["type"]) && Vi::$mod["type"] <= 30;
 $founding_date = "October 23, 2013";
 
 if (php_sapi_name() !== 'cli' && !$admin && count($_GET) == 0) {
-	error('Cannot be run directly.');
+	error(Vi::$config['error']['directly_run']);
 }
 
 /* Build parameters for page */

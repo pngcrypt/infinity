@@ -1944,7 +1944,7 @@ function mod_spoiler_images($board, $post) {
 	$result = $query->fetch(PDO::FETCH_ASSOC);
 	$files  = json_decode($result['files']);
 
-	if(!count($file)) {
+	if(!count($files)) {
 		error(_('That post has no files.'));
 	}
 
