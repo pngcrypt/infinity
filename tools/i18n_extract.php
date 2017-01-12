@@ -33,7 +33,7 @@ class i18n_extract {
 	// js find patterns
 	public static $fp_js = [
 		["js/*.js", RECURSIVE, "#^js/(code_tags|katex|longtable|mathjax|twemoji|jquery|wPaint/lib/jquery)#"],
-		["templates/main.js"]
+		["templates/main.js"],
 	];
 
 	private static $exclude=false;
@@ -45,19 +45,20 @@ class i18n_extract {
 		if($err !== "")
 			echo "$err\n\n";
 		echo "Usage:\n";
-		echo "    i18n_extract [-l <locale>] [-t <type>]\n";
+		echo "    i18n_extract -l <locale> [-t <type>]\n";
 		echo "    i18n_extract -c\n";
 		if($err !== "")
 			die;
 		echo "\nWhere:\n";
-		echo "    <locale> - list of locales or all (default)\n";
+		echo "    <locale> - list of locales or all\n";
 		echo "    <type> - list of file types (js,php,twig) or all (default)\n\n";
 		echo "    -c - twig templates checking only\n\n";
 		echo "Examples:\n";
-		echo "    i18n_extract -t js,php -l ru_RU\n";
-		echo "    i18n_extract -t twig -l ru_RU,en_US\n";
-		echo "    i18n_extract -t php\n";
 		echo "    i18n_extract -l all\n";
+		echo "    i18n_extract -l ru_RU\n";
+		echo "    i18n_extract -l ru_RU,en_US -t js\n";
+		echo "    i18n_extract -l pt_BR -t php,twig\n";
+		echo "    i18n_extract -t twig\n";
 		die;
 	}
 
