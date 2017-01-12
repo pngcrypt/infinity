@@ -2276,6 +2276,15 @@ function mod_user_new() {
 			error(sprintf(Vi::$config['error']['invalidfield'], 'type'));
 		}
 
+		$query = prepare('SELECT ``username``,``id`` FROM ``mods`` WHERE ``username`` = :username');
+		$query->bindValue(':username', $_POST['username']);
+		$query->execute() or error(db_error($query));
+		$users = $query->fetch(PDO::FETCH_ASSOC);
+
+		if (sizeof($users) > 0) {
+			error(sprintf(_(Vi::$config['error']['modexists']), Vi::$config['file_mod'] . '?/users/' . $users['id']));
+		}
+
 		list($version, $password) = crypt_password($_POST['password']);
 
 		$query = prepare('INSERT INTO ``mods`` VALUES (NULL, :username, :password, :version, :type, :boards, :email)');
