@@ -16,7 +16,7 @@ class i18n_extract {
 	public static $po_js = "javascript.po"; // js .po name
 	public static $dir_locales = "inc/locale"; // locales root dir
 	public static $dir_messages = "LC_MESSAGES"; // subdir of messages in locale
-	public static $dir_temp = "__locale__"; // temp work dir
+	public static $dir_temp = "_tmp_"; // temp work dir
 
 	// php find patterns
 	public static $fp_php = [
@@ -39,19 +39,21 @@ class i18n_extract {
 	private static $exclude=false;
 	private static $twig=null;
 	private static $twig_check=false;
+	private static $debug=false;
 
 	//-----------------------------------------
 	static function usage($err="") {
 		if($err !== "")
 			echo "$err\n\n";
 		echo "Usage:\n";
-		echo "    i18n_extract -l <locale> [-t <type>]\n";
+		echo "    i18n_extract [-l <locale>] [-t <type>] [-d]\n";
 		echo "    i18n_extract -c\n";
 		if($err !== "")
 			die;
 		echo "\nWhere:\n";
 		echo "    <locale> - list of locales or all\n";
 		echo "    <type> - list of file types (js,php,twig) or all (default)\n\n";
+		echo "    -d - debug mode (leave temp files)\n";
 		echo "    -c - twig templates checking only\n\n";
 		echo "Examples:\n";
 		echo "    i18n_extract -l all\n";
@@ -158,7 +160,7 @@ class i18n_extract {
 	static function locale_merge($default, $new) {
 		if(file_exists($default)) {
 			echo "Merging $default...\n";
-			passthru("msgmerge --update --backup=numbered --no-wrap --sort-output --no-fuzzy-matching --no-location $default $new");
+			passthru("msgmerge --update --backup=simple --no-wrap --sort-output --no-fuzzy-matching --no-location $default $new");
 			echo "\n";
 		}
 		else {
@@ -187,12 +189,12 @@ class i18n_extract {
 		$process_php = $process_twig = $process_js = true;
 
 		// parse command line -->
-		$opts = getopt('l:t:c');
+		$opts = getopt('l:t:cd');
 		if(!count($opts))
 			self::usage();
 
-		// -c
-		self::$twig_check = isset($opts['c']);
+		self::$twig_check = isset($opts['c']); // -c
+		self::$debug = isset($opts['d']); // -d
 
 		if(!self::$twig_check) {
 			// -t
@@ -242,10 +244,13 @@ class i18n_extract {
 			$files = self::fl_make(self::$fp_twig);
 			echo "(" . count($files) . " files)\n";
 
+			if(self::$debug && !self::$twig_check)
+				file_put_contents(self::$dir_temp."__list_twig__", implode("\n", $files)."\n");
+
 			echo (self::$twig_check ? "Checking" : "Compiling") ." twig templates...\n";
 			$error = 0;
 			foreach($files as $k => $f) {
-				$out = self::$dir_temp . "$f.php";
+				$out = self::$dir_temp . $f; //"$f.php";
 				if(!self::$twig_check) {
 					// create subdirs in temp if needed
 					$i = dirname($out);
@@ -262,11 +267,10 @@ class i18n_extract {
 				$files[$k] = $out;
 			}
 
-			if($error)
-				echo "\n";
+			echo $error ? "\n$error error(s) found\n\n" : "No errors\n\n";
 
 			if(self::$twig_check)
-				die($error ? "$error error(s) found\n" : "No errors\n"); // check only, die
+				die();
 			else {
 				if($error)
 					$files = array_filter($files, "strlen"); // remove empty names (errors)
@@ -328,33 +332,36 @@ class i18n_extract {
 			}
 		}
 
-		// clean temp dir
-		echo "\nDeleting temp files...";
-		$i = [[self::$dir_temp.'*', RECURSIVE]]; // find pattern
-		if(!count($locales)) {
-			// leave .po files in temp dir if no locale defined
-			$i[0][2] = "/(".preg_quote(self::$po_php)."|".preg_quote(self::$po_js).")$/"; // exclude regexp
+		if(!self::$debug && !self::$twig_check)
+		{
+			// clean temp dir
+			echo "\nDeleting temp files...";
+			$i = [[self::$dir_temp.'*', RECURSIVE]]; // find pattern
+			if(!count($locales)) {
+				// leave .po files in temp dir if no locale defined
+				$i[0][2] = "/(".preg_quote(self::$po_php)."|".preg_quote(self::$po_js).")$/"; // exclude regexp
+			}
+			$files = self::fl_make($i, false); // get all temp files and dirs
+
+			// delete files
+			$files = array_filter($files, function($f) {
+				if(is_file($f))
+					return !@unlink($f);
+				return true;
+			});		
+
+			// delete dirs
+			rsort($files);
+			$files = array_filter($files, function($f) {
+				if(is_dir($f))
+					return !@rmdir($f);
+				return true;
+			});
+			@rmdir(self::$dir_temp);
+
+			$i = count($files);
+			echo ($i ? "($i failed)" : "OK")."\n";
 		}
-		$files = self::fl_make($i, false); // get all temp files and dirs
-
-		// delete files
-		$files = array_filter($files, function($f) {
-			if(is_file($f))
-				return !@unlink($f);
-			return true;
-		});		
-
-		// delete dirs
-		rsort($files);
-		$files = array_filter($files, function($f) {
-			if(is_dir($f))
-				return !@rmdir($f);
-			return true;
-		});
-		@rmdir(self::$dir_temp);
-
-		$i = count($files);
-		echo ($i ? "($i failed)" : "OK")."\n";
 
 		echo "\nDone.\n";
 
