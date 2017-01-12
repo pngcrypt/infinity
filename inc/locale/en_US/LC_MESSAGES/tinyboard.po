@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-11 18:33+0300\n"
+"POT-Creation-Date: 2017-01-13 01:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=1;\n"
 
+msgid "\"html\" allows the following tags:"
+msgstr ""
+
+msgid "\"infinity\" is the same as what is used in posts."
+msgstr ""
+
+#, php-format
+msgid "\"markdown\" is provided by %s. Note: images disabled."
+msgstr ""
+
+#, php-format
+msgid "%d char"
+msgid_plural "%d chars"
+msgstr[0] ""
+msgstr[1] ""
+
 #, php-format
 msgid "%d result in"
 msgid_plural "%d results in"
 msgstr[0] ""
 msgstr[1] ""
+
+#, php-format
+msgid "%d time"
+msgid_plural "%d times"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "%s omitted. Click reply to view."
+msgstr ""
 
 #, php-format
 msgid "%s without interruption"
@@ -76,9 +102,6 @@ msgstr ""
 msgid "+1 captcha."
 msgstr ""
 
-msgid ". <a href=\"https://8ch.net/dnsbls_bypass.php\">Try again.</a> If it's not working, email admin@8chan.co for support."
-msgstr ""
-
 msgid ".onion"
 msgstr ""
 
@@ -86,11 +109,11 @@ msgid ".onion users must submit captcha every"
 msgstr ""
 
 #, php-format
-msgid ".onion users need to pass security check <a target=\"new\" href=\"/tor_bypass.php?board=%s\">on this page</a>"
+msgid ".onion users need to pass security check %s on this page %s"
 msgstr ""
 
-msgid "1 image reply"
-msgid_plural "%count% image replies"
+msgid "1 image"
+msgid_plural "%count% images"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -98,17 +121,6 @@ msgid "1 post"
 msgid_plural "%count% posts"
 msgstr[0] ""
 msgstr[1] ""
-
-#, php-format
-msgid "<a href=\"%s\" title=\"View content\" target=\"_new\">&gt;&gt;&gt;/%s/</a> %s reported %d time(s)."
-msgstr ""
-
-msgid ""
-"<p class=\"unimportant\">\"markdown\" is provided by <a href=\"http://parsedown.org/\">parsedown</a>. Note: images disabled.</p>\n"
-"\t\t\t<p class=\"unimportant\">\"html\" allows the following tags:<br/>%allowed_html%</p>\n"
-"\t\t\t<p class=\"unimportant\">\"infinity\" is the same as what is used in posts.</p>\n"
-"\t\t\t<p class=\"unimportant\">This page will not convert between formats,<br/>choose it once or do the conversion yourself!</p>"
-msgstr ""
 
 msgid "= required field"
 msgstr ""
@@ -224,6 +236,9 @@ msgstr ""
 msgid "Are you sure you want to do that?"
 msgstr ""
 
+msgid "Are you sure you want to permanently delete this board?"
+msgstr ""
+
 msgid "Are you sure you want to spoiler all images on this post?"
 msgstr ""
 
@@ -258,6 +273,9 @@ msgid "Ban hash file"
 msgstr ""
 
 msgid "Ban list"
+msgstr ""
+
+msgid "Banhash: File not exists"
 msgstr ""
 
 msgid "Banned!"
@@ -322,6 +340,9 @@ msgid "CAPTCHA"
 msgstr ""
 
 msgid "Can't build the RecentPosts theme, because there are no boards to be fetched."
+msgstr ""
+
+msgid "Cannot be run directly."
 msgstr ""
 
 msgid "Cannot open themes directory; check permissions."
@@ -508,7 +529,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-msgid "Details: "
+msgid "Details:"
 msgstr ""
 
 msgid "Disable \"email\" field"
@@ -641,6 +662,9 @@ msgstr ""
 msgid "Enable dice rolling"
 msgstr ""
 
+msgid "Enabling this uses your custom spoiler/deleted/no file images.<br>Make sure to actually upload some first on the assets page or they will 404!"
+msgstr ""
+
 msgid "Enter reason below..."
 msgstr ""
 
@@ -761,7 +785,7 @@ msgstr ""
 msgid "Go back to themes"
 msgstr ""
 
-msgid "Go to bottom "
+msgid "Go to bottom"
 msgstr ""
 
 msgid "Go to top"
@@ -821,7 +845,7 @@ msgstr ""
 msgid "Image wrong size!"
 msgstr ""
 
-msgid "Important: Flags must be accompanied by a description of the flag that will be shown to the users to your board. The description must not exceed 255 characters. To use flags, you also must have \"Enable user flags\" enabled on your board settings page as well as having flags uploaded on this page."
+msgid "Important: Flags must be accompanied by a description of the flag that will be shown to the users to your board.<br>The description must not exceed 255 characters.<br>To use flags, you also must have \"Enable user flags\" enabled on your board settings page as well as having flags uploaded on this page."
 msgstr ""
 
 msgid "Impossible to move thread; there is only one board."
@@ -894,7 +918,7 @@ msgstr ""
 msgid "Large"
 msgstr ""
 
-msgid "Last 1 Post"
+msgid "Last %count% Post"
 msgid_plural "Last %count% Posts"
 msgstr[0] ""
 msgstr[1] ""
@@ -1065,6 +1089,9 @@ msgstr ""
 msgid "No mods?"
 msgstr ""
 
+msgid "No pages yet!"
+msgstr ""
+
 msgid "No private messages for you."
 msgstr ""
 
@@ -1093,7 +1120,7 @@ msgid "Noticeboard"
 msgstr ""
 
 #, php-format
-msgid "OP must be at least %d chars on this board."
+msgid "OP must be at least %s on this board."
 msgstr ""
 
 #, php-format
@@ -1105,6 +1132,9 @@ msgstr ""
 
 #, php-format
 msgid "Off-site link \"%s\" is not allowed in the board stylesheet"
+msgstr ""
+
+msgid "Only allow X threads to be made per hour, regardless of poster<br>If a thread is deleted, it's not counted"
 msgstr ""
 
 msgid "Options"
@@ -1153,7 +1183,7 @@ msgid "Phrase:"
 msgstr ""
 
 #, php-format
-msgid "Please edit a <a href=\"%s\">user flags</a>"
+msgid "Please edit a %s user flags %s"
 msgstr ""
 
 msgid "Please fill out the CAPTCHA below to make your post. This is required once every 24 hours for normal users."
@@ -1184,7 +1214,7 @@ msgid "Post to noticeboard"
 msgstr ""
 
 #, php-format
-msgid "Post too long. Click <a href=\"%s\">here</a> to view the full text."
+msgid "Post too long. Click %s here %s to view the full text."
 msgstr ""
 
 msgid "Poster ID's"
@@ -1516,10 +1546,10 @@ msgid "That file <a href=\"%s\">already exists</a>!"
 msgstr ""
 
 #, php-format
-msgid "That mod <a href=\"?/users/%d\">already exists</a>!"
+msgid "That mod <a href=\"%s\">already exists</a>!"
 msgstr ""
 
-msgid "That post doesn't exist..."
+msgid "That post doesn't exist…"
 msgstr ""
 
 msgid "That post has no files."
@@ -1605,6 +1635,9 @@ msgid "This page allows you to create static pages for your imageboard."
 msgstr ""
 
 msgid "This page last updated"
+msgstr ""
+
+msgid "This page will not convert between formats,<br/>choose it once or do the conversion yourself!"
 msgstr ""
 
 msgid "This was a triumph"
@@ -1765,6 +1798,12 @@ msgstr ""
 msgid "Users are not allowed to delete their own posts on this board."
 msgstr ""
 
+msgid "Users must solve a CAPTCHA in order to create new threads,<br>but do not have to solve a CAPTCHA in order to post replies."
+msgstr ""
+
+msgid "Users must solve a CAPTCHA in order to post.<br> This is not ReCAPTCHA, it is custom to brchan."
+msgstr ""
+
 msgid "Value"
 msgstr ""
 
@@ -1781,6 +1820,9 @@ msgid "View All"
 msgstr ""
 
 msgid "View all noticeboard entries"
+msgstr ""
+
+msgid "View content"
 msgstr ""
 
 msgid "View more logs for this user."
@@ -1802,13 +1844,16 @@ msgstr ""
 msgid "With"
 msgstr ""
 
+msgid "With this enabled, threads with less than 10 replies will 404 at page 5 instead of at page 15.<br>In effect, this makes it so that raiders have to put 10 replies in all their threads to slide an entire board."
+msgstr ""
+
 msgid "Wordfilters"
 msgstr ""
 
 msgid "Wordfilters may not wordfilter previous wordfilters. For example, if a filters to bb and b filters to cc, that is not allowed."
 msgstr ""
 
-msgid "Wrong password..."
+msgid "Wrong password…"
 msgstr ""
 
 msgid "Yes"
@@ -1827,7 +1872,7 @@ msgstr ""
 msgid "You are not a .onion user"
 msgstr ""
 
-msgid "You are not a mod..."
+msgid "You are not a mod…"
 msgstr ""
 
 #, php-format
@@ -1840,7 +1885,8 @@ msgstr ""
 msgid "You are sending too many PMs per hour. Try again later."
 msgstr ""
 
-msgid "You can manage your board <a href=\"/mod.php?/\">HERE</a>"
+#, php-format
+msgid "You can manage your board <a href=\"%s\">HERE</a>"
 msgstr ""
 
 #, php-format
@@ -1868,7 +1914,8 @@ msgstr ""
 msgid "You don't have permission to do that."
 msgstr ""
 
-msgid "You failed the CAPTCHA"
+#, php-format
+msgid "You failed the CAPTCHA. %s Try again %s If it's not working, ask admin for support."
 msgstr ""
 
 msgid "You have attempted to upload too many images!"
@@ -2080,13 +2127,13 @@ msgstr ""
 msgid "note: does not validate CSS"
 msgstr ""
 
-msgid "omitted. Click reply to view."
-msgstr ""
-
 msgid "or"
 msgstr ""
 
 msgid "out of"
+msgstr ""
+
+msgid "post reported"
 msgstr ""
 
 msgid "posts, cookies must be enabled."
@@ -2096,9 +2143,6 @@ msgid "public; attached to post"
 msgstr ""
 
 msgid "remove"
-msgstr ""
-
-msgid "reply"
 msgstr ""
 
 msgid "required"
@@ -2113,6 +2157,9 @@ msgid "settings"
 msgstr ""
 
 msgid "this cannot be changed"
+msgstr ""
+
+msgid "thread reported"
 msgstr ""
 
 msgid "through"

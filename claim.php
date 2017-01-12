@@ -2,7 +2,7 @@
 include 'inc/functions.php';
 
 if (php_sapi_name() !== 'cli') {
-	error('Cannot be run directly.');
+	error(Vi::$config['error']['directly_run']);
 }
 
 function last_activity($board) {

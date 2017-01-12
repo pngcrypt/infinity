@@ -5,10 +5,10 @@
 		<tr>
 		<th>{% trans("Markup method") %}
 			{% set allowed_html = config.allowed_html %}
-			{% trans %}<p class="unimportant">"markdown" is provided by <a href="http://parsedown.org/">parsedown</a>. Note: images disabled.</p>
-			<p class="unimportant">"html" allows the following tags:<br/>{{ allowed_html }}</p>
-			<p class="unimportant">"infinity" is the same as what is used in posts.</p>
-			<p class="unimportant">This page will not convert between formats,<br/>choose it once or do the conversion yourself!</p>{% endtrans %}
+			<p class="unimportant">{{ '"markdown" is provided by %s. Note: images disabled.'|trans|format('<a href="http://parsedown.org/">parsedown</a>') }}</p>
+			<p class="unimportant">{% trans('"html" allows the following tags:') %}<br/>{{ allowed_html }}</p>
+			<p class="unimportant">{% trans('"infinity" is the same as what is used in posts.') %}</p>
+			<p class="unimportant">{% trans("This page will not convert between formats,<br/>choose it once or do the conversion yourself!") %}</p>
 		</th>
 		<td>
 			<select name="method">

@@ -16,7 +16,7 @@
 <tr><td>{{ page.name }}</td><td>{{ page.title }}</td><td><a href="?/edit_page/{{ page.id }}">{% trans("Edit") %}</a></td><td><a href="?/edit_pages/delete/{{ page.name }}{% if board %}/{{ board }}{% endif %}/{{ page.delete_token }}">{% trans("Delete") %}</a></td>
 {% endfor %}
 {% else %}
-<em>No pages yet!</em>
+<em>{% trans("No pages yet!") %}</em>
 {% endif %}
 </table>
 </form>

@@ -1225,6 +1225,7 @@ Vi::$config['error']['mime_exploit']       = _('MIME type detection XSS exploit 
 Vi::$config['error']['invalid_embed']      = _('Couldn\'t make sense of the URL of the video you tried to embed.');
 Vi::$config['error']['captcha']            = _('You seem to have mistyped the verification.');
 Vi::$config['error']['images_disabled']    = _('Uploading files is disabled on this board.');
+Vi::$config['error']['directly_run']       = _('Cannot be run directly.');
 
 // mod.php errors
 Vi::$config['error']['toomanyunban'] = _('You are only allowed to unban %s users at a time. You tried to unban %u users.');
