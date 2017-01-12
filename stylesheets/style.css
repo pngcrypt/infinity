@@ -1814,3 +1814,10 @@ label.show-post-options, label.hide-post-options {
 	box-sizing:border-box;
 	text-align: right;
 }
+
+.error-report textarea{
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 5.8em;
+	box-sizing: border-box;
+}
