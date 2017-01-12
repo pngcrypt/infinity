@@ -1239,7 +1239,7 @@ Vi::$config['error']['boardexists']  = _('There is already a %s board.');
 Vi::$config['error']['noaccess']     = _('You don\'t have permission to do that.');
 Vi::$config['error']['invalidpost']  = _('That post doesn\'t exist…');
 Vi::$config['error']['404']          = _('Page not found.');
-Vi::$config['error']['modexists']    = _('That mod <a href="?/users/%d">already exists</a>!');
+Vi::$config['error']['modexists']    = _('That mod <a href="%s">already exists</a>!');
 Vi::$config['error']['invalidtheme'] = _('That theme doesn\'t exist!');
 Vi::$config['error']['csrf']         = _('Invalid security token! Please go back and try again.');
 Vi::$config['error']['badsyntax']    = _('Your code contained PHP syntax errors. Please go back and correct them. PHP says: ');

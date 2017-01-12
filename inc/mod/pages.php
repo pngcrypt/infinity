@@ -2775,12 +2775,11 @@ function mod_reports() {
 				}
 
 				// Build the ">>>/b/ thread reported 3 times" title.
-				$report_title = sprintf(
-					_('<a href="%s" title="View content" target="_new">&gt;&gt;&gt;/%s/</a> %s reported %d time(s).'),
+				$report_title = sprintf('<a href="%s" title="%s" target="_new">&gt;&gt;&gt;/%s/</a> %s',
 					"?/{$report_item['board_id']}/res/" . ($content['thread'] ?: $content['id']) . ".html#{$content['thread']}",
+					_("View content"),
 					$report_item['board_id'],
-					_($content['thread'] ? "reply" : "thread"),
-					$content_reports
+					($content['thread'] ? _("thread reported") : _("post reported")) . " " . sprintf(ngettext("%d time", "%d times", $content_reports), $content_reports)
 				);
 
 				// Figure out some stuff we need for the page.

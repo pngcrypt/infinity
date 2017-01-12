@@ -25,7 +25,7 @@
 	{% endif %}
 	{% if hasnoko50 and not isnoko50 %}
 		{% set lastcount = config.noko50_count %}
-		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page50|sprintf(post.id) }}">[{% trans %}Last 1 Post{% plural lastcount %}Last {{count}} Posts{% endtrans %}]</a>
+		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page50|sprintf(post.id) }}">[{% trans %}Last {{count}} Post{% plural lastcount %}Last {{count}} Posts{% endtrans %}]</a>
 	{% endif %}
 	{% include 'post/post_controls.html' %}
 	</p>
@@ -37,25 +37,20 @@
 		{% endif %}
 	</div>
 	{% if post.omitted or post.omitted_images %}
-		<span class="omitted">
+	<span class="omitted">
+		{% set omitted %}
 			{% if post.omitted %}
-				{% trans %}
-					1 post
-				{% plural post.omitted %}
-					{{ count }} posts
-				{% endtrans %}
+				{% trans %}{{ count }} post{% plural post.omitted %}{{ count }} posts{% endtrans %}
 				{% if post.omitted_images %}
 					 {% trans("and") %} 
 				{% endif %}
 			{% endif %}
 			{% if post.omitted_images %}
-				{% trans %}
-					1 image reply
-				{% plural post.omitted_images %}
-					{{ count }} image replies
-				{% endtrans %}
-			{% endif %} {% trans("omitted. Click reply to view.") %}
-		</span>
+				{% trans %}{{ count }} image{% plural post.omitted_images %}{{ count }} images{% endtrans %}
+			{% endif %}
+		{% endset%}
+		{{ "%s omitted. Click reply to view."|trans|format(omitted) }}
+	</span>
 	{% endif %}
 	{% include 'post/edited_at.html' %}
 {% if not index %}

@@ -1,5 +1,5 @@
 <center>
 <p>{% trans("Your new board is created and is live at") %} <a href="/{{ uri }}">/{{ uri }}/</a></p>
 <p>{% trans("Make sure you don't forget your password:") %} <tt>{{ password }}</tt></p>
-<p>{% trans('You can manage your board <a href="/mod.php?/">HERE</a>') %}</p>
+<p>{{ 'You can manage your board <a href="%s">HERE</a>'|trans|format('/mod.php?/') }}</p>
 </center>

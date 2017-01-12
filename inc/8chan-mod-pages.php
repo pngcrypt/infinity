@@ -745,7 +745,7 @@ function mod_8_settings($b) {
 
 			case 'user_flag':
 				if(!file_exists($b . '/flags.php')) {
-					error(sprintf(_('Please edit a <a href="%s">user flags</a>'), (Vi::$config['file_mod'] . '?/flags/' . $b)));
+					error(sprintf(_('Please edit a %s user flags %s'), ('<a href="' . Vi::$config['file_mod'] . '?/flags/' . $b . '">'), '</a>'));
 				}
 				$config.= "if (file_exists('$b/flags.php')) include '$b/flags.php';\n";
 				break;

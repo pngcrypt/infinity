@@ -262,7 +262,7 @@ function truncate($body, $url, $max_lines = false, $max_chars = false) {
 			$body = preg_replace('/&[^;]*$/', '', $body);
 		}
 
-		$body .= '<span class="toolong">' . sprintf(_('Post too long. Click <a href="%s">here</a> to view the full text.'), $url) . '</span>';
+		$body .= '<span class="toolong">' . sprintf(_('Post too long. Click %s here %s to view the full text.'), "<a href=\"$url\">", '</a>') . '</span>';
 	}
 
 	return $body;

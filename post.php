@@ -426,7 +426,9 @@ if (isset($_POST['delete'])) {
 		}
 
 		if (Tor_Session::check() && !Tor_Session::$user['allow_post'] && (Vi::$config['tor']['allow_posting'] || Vi::$config['tor']['force_disable'])) {
-			error(sprintf(_('.onion users need to pass security check <a target="new" href="/tor_bypass.php?board=%s">on this page</a>'), Vi::$board['uri']));
+			error(sprintf(_('.onion users need to pass security check %s on this page %s'),
+				'<a target="new" href="/tor_bypass.php?board='.Vi::$board['uri'].'">', '</a>')
+			);
 		}
 
 		//if (!(($post['op'] && $_POST['post'] == Vi::$config['button_newtopic']) ||
@@ -506,24 +508,14 @@ if (isset($_POST['delete'])) {
 			if ($p = getPostByEmbed($post['embed'])) {
 				error(sprintf(Vi::$config['error']['fileexists'],
 					($post['mod'] ? Vi::$config['root'] . Vi::$config['file_mod'] . '?/' : Vi::$config['root']) .
-					(Vi::$board['dir'] . Vi::$config['dir']['res'] .
-						($p['thread'] ?
-							$p['thread'] . '.html#' . $p['id']
-						:
-							$p['id'] . '.html'
-						))
+					(Vi::$board['dir'] . Vi::$config['dir']['res'] . ($p['thread'] ? $p['thread'] . '.html#' . $p['id'] : $p['id'] . '.html'))
 				));
 			}
 		} else if (!$post['op'] && Vi::$config['image_reject_repost_in_thread']) {
 			if ($p = getPostByEmbedInThread($post['embed'], $post['thread'])) {
 				error(sprintf(Vi::$config['error']['fileexistsinthread'],
 					($post['mod'] ? Vi::$config['root'] . Vi::$config['file_mod'] . '?/' : Vi::$config['root']) .
-					(Vi::$board['dir'] . Vi::$config['dir']['res'] .
-						($p['thread'] ?
-							$p['thread'] . '.html#' . $p['id']
-						:
-							$p['id'] . '.html'
-						))
+					(Vi::$board['dir'] . Vi::$config['dir']['res'] . ($p['thread'] ? $p['thread'] . '.html#' . $p['id'] : $p['id'] . '.html'))
 				));
 			}
 		}
@@ -1135,12 +1127,7 @@ if (isset($_POST['delete'])) {
 				undoImage($post);
 				error(sprintf(Vi::$config['error']['fileexists'],
 					($post['mod'] ? Vi::$config['root'] . Vi::$config['file_mod'] . '?/' : Vi::$config['root']) .
-					(Vi::$board['dir'] . Vi::$config['dir']['res'] .
-						($p['thread'] ?
-							$p['thread'] . '.html#' . $p['id']
-						:
-							$p['id'] . '.html'
-						))
+					(Vi::$board['dir'] . Vi::$config['dir']['res'] . ($p['thread'] ? $p['thread'] . '.html#' . $p['id'] : $p['id'] . '.html'))
 				));
 			}
 		} else if (!$post['op'] && Vi::$config['image_reject_repost_in_thread']) {
@@ -1148,12 +1135,7 @@ if (isset($_POST['delete'])) {
 				undoImage($post);
 				error(sprintf(Vi::$config['error']['fileexistsinthread'],
 					($post['mod'] ? Vi::$config['root'] . Vi::$config['file_mod'] . '?/' : Vi::$config['root']) .
-					(Vi::$board['dir'] . Vi::$config['dir']['res'] .
-						($p['thread'] ?
-							$p['thread'] . '.html#' . $p['id']
-						:
-							$p['id'] . '.html'
-						))
+					(Vi::$board['dir'] . Vi::$config['dir']['res'] . ($p['thread'] ? $p['thread'] . '.html#' . $p['id'] : $p['id'] . '.html'))
 				));
 			}
 		}

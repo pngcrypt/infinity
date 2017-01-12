@@ -23,5 +23,5 @@ else if (chanCaptcha::check()) {
 	echo Element("page.html", array("config" => Vi::$config, "body" => '', "title" => _("Success"), "subtitle" => _("You may now go back and make your post.")));
 }
 else {
-	error(_('You failed the CAPTCHA') . _('. <a href="https://8ch.net/dnsbls_bypass.php">Try again.</a> If it\'s not working, email admin@8chan.co for support.'));
+	error( sprintf(_("You failed the CAPTCHA. %s Try again %s If it's not working, ask admin for support."), '<a href="?">', "</a>") );
 }

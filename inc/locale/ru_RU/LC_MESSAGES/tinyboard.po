@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-11 18:33+0300\n"
-"PO-Revision-Date: 2015-04-01 23:22+0000\n"
+"POT-Creation-Date: 2017-01-12 03:46+0300\n"
+"PO-Revision-Date: 2017-01-12 03:46+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/projects/p/infinity/language/ru_RU/)\n"
 "Language: ru_RU\n"
@@ -20,6 +20,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgid "%count% image"
+msgid_plural "%count% images"
+msgstr[0] "%count% изображение"
+msgstr[1] "%count% изображения"
+msgstr[2] "%count% изображений"
+
+msgid "%count% post"
+msgid_plural "%count% posts"
+msgstr[0] "%count% пост"
+msgstr[1] "%count% поста"
+msgstr[2] "%count% постов"
 
 #, php-format
 msgid "%d result in"
@@ -29,8 +42,19 @@ msgstr[1] "%d результата в"
 msgstr[2] "%d результатов в"
 
 #, php-format
+msgid "%d time"
+msgid_plural "%d times"
+msgstr[0] "%d раз"
+msgstr[1] "%d раза"
+msgstr[2] "%d раз"
+
+#, php-format
+msgid "%s omitted. Click reply to view."
+msgstr "Пропущено %s.  Нажмите ответить, чтобы посмотреть."
+
+#, php-format
 msgid "%s without interruption"
-msgstr ""
+msgstr "%s без перерыва"
 
 msgid "(For file and post deletion.)"
 msgstr "(для удаления файлов и сообщений)"
@@ -66,7 +90,7 @@ msgid "(replaces files and can be used instead)"
 msgstr "(заменяет файл)"
 
 msgid "(this board displays your country when you post if this is unchecked)"
-msgstr ""
+msgstr "(скроет флаг страны у вашего поста)"
 
 msgid "(this replaces the thumbnails of your images with question marks)"
 msgstr "(скроет превью вашего изображения)"
@@ -80,9 +104,6 @@ msgstr "(также вы можете написать sage в поле email)"
 msgid "+1 captcha."
 msgstr "+1 капча."
 
-msgid ". <a href=\"https://8ch.net/dnsbls_bypass.php\">Try again.</a> If it's not working, email admin@8chan.co for support."
-msgstr ""
-
 msgid ".onion"
 msgstr ""
 
@@ -90,24 +111,8 @@ msgid ".onion users must submit captcha every"
 msgstr "Пользователям .onion необходимо вводить капчу каждые"
 
 #, php-format
-msgid ".onion users need to pass security check <a target=\"new\" href=\"/tor_bypass.php?board=%s\">on this page</a>"
-msgstr "Пользователям .onion необходимо пройти проверку <a target=\"new\" href=\"/tor_bypass.php?board=%s\">на этой странице</a>"
-
-msgid "1 image reply"
-msgid_plural "%count% image replies"
-msgstr[0] "%count% с картинкой."
-msgstr[1] "%count% с картинками."
-msgstr[2] "%count% с картинками."
-
-msgid "1 post"
-msgid_plural "%count% posts"
-msgstr[0] "Пропущен %count% пост."
-msgstr[1] "Пропущено %count% поста."
-msgstr[2] "Пропущено %count% постов."
-
-#, php-format
-msgid "<a href=\"%s\" title=\"View content\" target=\"_new\">&gt;&gt;&gt;/%s/</a> %s reported %d time(s)."
-msgstr ""
+msgid ".onion users need to pass security check %s on this page %s"
+msgstr "Пользователям .onion необходимо пройти проверку %s на этой странице %s"
 
 msgid ""
 "<p class=\"unimportant\">\"markdown\" is provided by <a href=\"http://parsedown.org/\">parsedown</a>. Note: images disabled.</p>\n"
@@ -265,6 +270,9 @@ msgstr ""
 
 msgid "Ban list"
 msgstr "Банлист"
+
+msgid "Banhash: File not exists"
+msgstr ""
 
 msgid "Banned!"
 msgstr "Вы забанены!"
@@ -767,8 +775,8 @@ msgstr "Вернуться назад"
 msgid "Go back to themes"
 msgstr ""
 
-msgid "Go to bottom "
-msgstr ""
+msgid "Go to bottom"
+msgstr "Вниз страницы"
 
 msgid "Go to top"
 msgstr "Наверх"
@@ -900,10 +908,10 @@ msgstr "Язык"
 msgid "Large"
 msgstr "Большие"
 
-msgid "Last 1 Post"
+msgid "Last %count% Post"
 msgid_plural "Last %count% Posts"
-msgstr[0] "Последний пост"
-msgstr[1] "Последний пост"
+msgstr[0] "Последний %count% пост"
+msgstr[1] "Последние %count% поста"
 msgstr[2] "Последние %count% постов"
 
 msgid "Last action"
@@ -1160,7 +1168,7 @@ msgid "Phrase:"
 msgstr "Фраза:"
 
 #, php-format
-msgid "Please edit a <a href=\"%s\">user flags</a>"
+msgid "Please edit a %s user flags %s"
 msgstr ""
 
 msgid "Please fill out the CAPTCHA below to make your post. This is required once every 24 hours for normal users."
@@ -1191,8 +1199,8 @@ msgid "Post to noticeboard"
 msgstr "Создать новую заметку"
 
 #, php-format
-msgid "Post too long. Click <a href=\"%s\">here</a> to view the full text."
-msgstr "<a href=\"%s\">Показать текст полностью</a>"
+msgid "Post too long. Click %s here %s to view the full text."
+msgstr ""
 
 msgid "Poster ID's"
 msgstr "Показывать ID пользователей"
@@ -1523,11 +1531,11 @@ msgid "That file <a href=\"%s\">already exists</a>!"
 msgstr "Такой файл <a href=\"%s\">уже существует</a>!"
 
 #, php-format
-msgid "That mod <a href=\"?/users/%d\">already exists</a>!"
-msgstr "Такой модератор <a href=\"?/users/%d\">уже есть</a>!"
-
-msgid "That post doesn't exist..."
+msgid "That mod <a href=\"%s\">already exists</a>!"
 msgstr ""
+
+msgid "That post doesn't exist…"
+msgstr "Такого поста не существует."
 
 msgid "That post has no files."
 msgstr "Этот пост не имеет файлов."
@@ -1790,6 +1798,9 @@ msgstr "Показать все"
 msgid "View all noticeboard entries"
 msgstr "Просмотреть все заметки"
 
+msgid "View content"
+msgstr ""
+
 msgid "View more logs for this user."
 msgstr "Показать все логи этого пользователя."
 
@@ -1815,8 +1826,8 @@ msgstr "Фильтры"
 msgid "Wordfilters may not wordfilter previous wordfilters. For example, if a filters to bb and b filters to cc, that is not allowed."
 msgstr ""
 
-msgid "Wrong password..."
-msgstr ""
+msgid "Wrong password…"
+msgstr "Неверный пароль…"
 
 msgid "Yes"
 msgstr "Да"
@@ -1834,8 +1845,8 @@ msgstr "Вы получили мут! Он будет снят через %d с�
 msgid "You are not a .onion user"
 msgstr "Вы не пользователь .onion домена"
 
-msgid "You are not a mod..."
-msgstr ""
+msgid "You are not a mod…"
+msgstr "Вы не модератор…"
 
 #, php-format
 msgid "You are only allowed to unban %s users at a time. You tried to unban %u users."
@@ -1847,7 +1858,8 @@ msgstr "Вы видите это сообщение, потому что Javascr
 msgid "You are sending too many PMs per hour. Try again later."
 msgstr "Вы отправляете слишком много ПС в час. Попробуйте позже."
 
-msgid "You can manage your board <a href=\"/mod.php?/\">HERE</a>"
+#, php-format
+msgid "You can manage your board <a href=\"%s\">HERE</a>"
 msgstr ""
 
 #, php-format
@@ -1875,7 +1887,8 @@ msgstr "Вы ничего не выбрали для жалобы."
 msgid "You don't have permission to do that."
 msgstr "У Вас нет прав для этого."
 
-msgid "You failed the CAPTCHA"
+#, php-format
+msgid "You failed the CAPTCHA. %s Try again %s If it's not working, ask admin for support."
 msgstr ""
 
 msgid "You have attempted to upload too many images!"
@@ -1910,7 +1923,7 @@ msgstr "Вы можете отправлять сообщения только �
 
 #, php-format
 msgid "You may upload %s per post."
-msgstr ""
+msgstr "Вы можете отправить %s файла в сообщении."
 
 msgid "You must choose a flag to post on this board!"
 msgstr "Необходимо выбрать флаг для отправки сообщения!"
@@ -1983,7 +1996,7 @@ msgid "all boards"
 msgstr "все доски"
 
 msgid "and"
-msgstr " "
+msgstr "и"
 
 msgid "and it was denied."
 msgstr "и отклонен."
@@ -2090,14 +2103,14 @@ msgstr "Это не WebM файл"
 msgid "note: does not validate CSS"
 msgstr "Здесь вы можете задать CSS стили для вашей доски"
 
-msgid "omitted. Click reply to view."
-msgstr "Нажмите ответить, чтобы посмотреть."
-
 msgid "or"
 msgstr "или"
 
 msgid "out of"
 msgstr "из"
+
+msgid "post reported"
+msgstr "пост зарепорчен"
 
 msgid "posts, cookies must be enabled."
 msgstr "сообщений, куки должны быть включены."
@@ -2107,9 +2120,6 @@ msgstr "публичный; прикрепить к посту"
 
 msgid "remove"
 msgstr "удалить"
-
-msgid "reply"
-msgstr "ответить"
 
 msgid "required"
 msgstr ""
@@ -2125,6 +2135,9 @@ msgstr "настройки"
 
 msgid "this cannot be changed"
 msgstr "нельзя изменить"
+
+msgid "thread reported"
+msgstr "тред зарепорчен"
 
 msgid "through"
 msgstr ""
@@ -2159,20 +2172,11 @@ msgstr[2] "лет"
 #~ msgid "(or file)"
 #~ msgstr "(или файл)"
 
-#~ msgid "1 reply"
-#~ msgid_plural "%count% replies"
-#~ msgstr[0] "%count% ответ"
-#~ msgstr[1] "%count% ответа"
-#~ msgstr[2] "%count% ответов"
-
 #~ msgid "All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties."
 #~ msgstr "Все права, копирайты на этой странице принадлежат правообладателям.<br/>За любую размещенную информацию несет личную ответственность лицо, загрузившее эту информацию.<br/>Все комментарии принадлежат лицам, отправившим их."
 
 #~ msgid "Allowed tags:"
 #~ msgstr "Разрешённые теги"
-
-#~ msgid "Banned?"
-#~ msgstr "Забанен?"
 
 #~ msgid "Banners must be &lt; 500KB and have image dimensions 300px x 100px.<br>A maximum of 50 custom banners per board is enforced."
 #~ msgstr "Баннер должен весить не больше 500кб и иметь размеры 300х100 пикселей. <br/> Максимум 50 баннеров."
@@ -2183,20 +2187,11 @@ msgstr[2] "лет"
 #~ msgid "Could not find current version! (Check .installed)"
 #~ msgstr "Не могу узнать текущую версию. (Проверьте .installed)"
 
-#~ msgid "Edit user"
-#~ msgstr "Изменить пользователя"
-
 #~ msgid "Flags"
 #~ msgstr "Флаги"
 
 #~ msgid "Global report queue"
 #~ msgstr "Глобальные жалобы"
-
-#~ msgid "Go to bottom"
-#~ msgstr "Вниз страницы"
-
-#~ msgid "Last reply"
-#~ msgstr "Последний ответ"
 
 #~ msgid "Make sure you don't forget your password, <tt>%password%</tt>"
 #~ msgstr "бедитесь в том, чтобы не забыть пароль к доске <tt>%password%</tt>"
@@ -2216,26 +2211,14 @@ msgstr[2] "лет"
 #~ msgid "Spoiler File"
 #~ msgstr "Заспойлерить файл"
 
-#~ msgid "That post doesn't exist…"
-#~ msgstr "Такого поста не существует."
-
 #~ msgid "The uploaded webm is longer than "
 #~ msgstr "Загруженный WebM длиннее "
 
 #~ msgid "There are no active bans."
 #~ msgstr "Нет активных банов."
 
-#~ msgid "Wrong password…"
-#~ msgstr "Неверный пароль…"
-
-#~ msgid "You are not a mod…"
-#~ msgstr "Вы не модератор…"
-
 #~ msgid "You are not banned."
 #~ msgstr "Вы не забанены."
-
-#~ msgid "You can manage your board <a href=\"/mod.php?/\">HERE</a>."
-#~ msgstr "Вы можете управлять вашей доской на <a href=\"/mod.php?/\">этой странице</a>."
 
 #~ msgid "You may upload %max_images% per post."
 #~ msgstr "Вы можете отправить %max_images% файла в сообщении."
@@ -2251,3 +2234,9 @@ msgstr[2] "лет"
 
 #~ msgid "modifier"
 #~ msgstr "модификаторы"
+
+#~ msgid "omitted. Click reply to view."
+#~ msgstr "Нажмите ответить, чтобы посмотреть."
+
+#~ msgid "reply"
+#~ msgstr "ответить"
