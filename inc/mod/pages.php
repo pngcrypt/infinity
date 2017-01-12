@@ -1944,7 +1944,7 @@ function mod_spoiler_images($board, $post) {
 	$result = $query->fetch(PDO::FETCH_ASSOC);
 	$files  = json_decode($result['files']);
 
-	if(!count($file)) {
+	if(!count($files)) {
 		error(_('That post has no files.'));
 	}
 
@@ -2172,12 +2172,12 @@ function mod_user($uid) {
 				error(_('Invalid username'));
 			}
 
-			$query = prepare('SELECT `username` FROM ``mods``');
+			$query = prepare('SELECT `username`,`id` FROM ``mods``');
 			$query->execute() or error(db_error($query));
 			$users = $query->fetchAll(PDO::FETCH_ASSOC);
 
 			foreach ($users as $i => $v) {
-				if (strtolower($_POST['username']) == strtolower($v['username'])) {
+				if (strtolower($_POST['username']) == strtolower($v['username']) && $v['id'] !== $uid) {
 					error(_('Refusing to change your username because another user is already using it.'));
 				}
 			}
