@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 16:34+0300\n"
-"PO-Revision-Date: 2017-01-12 16:45+0300\n"
+"POT-Creation-Date: 2017-01-13 01:42+0300\n"
+"PO-Revision-Date: 2017-01-13 01:39+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/projects/p/infinity/language/ru_RU/)\n"
 "Language: ru_RU\n"
@@ -21,6 +21,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.11\n"
+
+msgid "\"html\" allows the following tags:"
+msgstr "\"html\" разрешены следующие теги:"
+
+msgid "\"infinity\" is the same as what is used in posts."
+msgstr "\"infinity\" тоже, что и в обычных постах"
+
+#, php-format
+msgid "\"markdown\" is provided by %s. Note: images disabled."
+msgstr "\"markdown\" поддерживает %s. Примечание: изображения отключены."
+
+#, php-format
+msgid "%d char"
+msgid_plural "%d chars"
+msgstr[0] "%d символ"
+msgstr[1] "%d символа"
+msgstr[2] "%d символов"
 
 #, php-format
 msgid "%d result in"
@@ -114,18 +131,11 @@ msgstr[0] "%count% пост"
 msgstr[1] "%count% поста"
 msgstr[2] "%count% постов"
 
-msgid ""
-"<p class=\"unimportant\">\"markdown\" is provided by <a href=\"http://parsedown.org/\">parsedown</a>. Note: images disabled.</p>\n"
-"\t\t\t<p class=\"unimportant\">\"html\" allows the following tags:<br/>%allowed_html%</p>\n"
-"\t\t\t<p class=\"unimportant\">\"infinity\" is the same as what is used in posts.</p>\n"
-"\t\t\t<p class=\"unimportant\">This page will not convert between formats,<br/>choose it once or do the conversion yourself!</p>"
-msgstr ""
-
 msgid "= required field"
 msgstr "= обязательные поля"
 
 msgid "A maximum of 512 custom flags per board is enforced."
-msgstr ""
+msgstr "Максимум 512 пользовательских флагов на доску."
 
 msgid "ACCESS GRANTED!"
 msgstr "Постинг разрешён!"
@@ -143,7 +153,7 @@ msgid "Active"
 msgstr "Активная"
 
 msgid "Active users"
-msgstr ""
+msgstr "Юзеров"
 
 msgid "Add another tag"
 msgstr "Добавить ещё один тег"
@@ -155,13 +165,13 @@ msgid "Administration"
 msgstr "Администрирование"
 
 msgid "All"
-msgstr ""
+msgstr "Все"
 
 msgid "All boards"
 msgstr "Все доски"
 
 msgid "All languages"
-msgstr ""
+msgstr "Все языки"
 
 msgid "Allow Oekaki"
 msgstr "Разрешить рисовать, oekaki апплет"
@@ -185,7 +195,7 @@ msgid "Allow posters to post via the Tor onion router"
 msgstr "Разрешить Tor пользователям постить"
 
 msgid "Allow posters to see when a thread is bumplocked"
-msgstr ""
+msgstr "Показывать пользователям значок тонущего треда"
 
 msgid "Allow thread to be bumped"
 msgstr "Разрешить бамп треда"
@@ -197,7 +207,7 @@ msgid "Allowed file types"
 msgstr "Разрешенные форматы"
 
 msgid "Alphabetize flags"
-msgstr ""
+msgstr "Сортировать по алфавиту"
 
 msgid "An error has occured."
 msgstr "Произошла ошибка."
@@ -215,7 +225,7 @@ msgid "Appeal time"
 msgstr "Время обжалования"
 
 msgid "Are you sure you want to banhash this file?"
-msgstr ""
+msgstr "Вы действительно хотите забанить файл по хэшу?"
 
 msgid "Are you sure you want to delete all posts by this IP address, across all boards?"
 msgstr "Вы точно хотите удалить все посты с этого IP адреса на всех досках?"
@@ -235,6 +245,9 @@ msgstr "Вы точно хотите понизить себя в должнос
 msgid "Are you sure you want to do that?"
 msgstr "Вы уверены?"
 
+msgid "Are you sure you want to permanently delete this board?"
+msgstr "Вы уверены, что хотите совсем удалить эту доску?"
+
 msgid "Are you sure you want to spoiler all images on this post?"
 msgstr "Вы уверены, что хотите скрыть все вложения под спойлер этому посту?"
 
@@ -248,7 +261,7 @@ msgid "B"
 msgstr "Б"
 
 msgid "Bad board."
-msgstr ""
+msgstr "Неверная доска."
 
 msgid "Bad request."
 msgstr "Неверный запрос."
@@ -266,19 +279,19 @@ msgid "Ban appeals"
 msgstr "Жалобы на несправедливые баны"
 
 msgid "Ban hash file"
-msgstr ""
+msgstr "Забанить файл по хэшу"
 
 msgid "Ban list"
 msgstr "Банлист"
 
 msgid "Banhash: File not exists"
-msgstr ""
+msgstr "Бан по хэшу: Файл не найден"
 
 msgid "Banned!"
 msgstr "Вы забанены!"
 
 msgid "Banners must be &lt; 500KB and have image dimensions 300px x 100px.<br/>A maximum of 50 custom banners per board is enforced."
-msgstr ""
+msgstr "Баннеры должны быть &lt; 500Кб и иметь разрешение 300 x 100 пикселей.<br/>Максимум 50 баннеров на доску."
 
 msgid "Bans"
 msgstr "Баны"
@@ -291,7 +304,7 @@ msgstr "Доска"
 
 #, php-format
 msgid "Board %s doesn't exist"
-msgstr ""
+msgstr "Доска %s не существует"
 
 msgid "Board URI"
 msgstr ""
@@ -312,7 +325,7 @@ msgid "Board log"
 msgstr "Логи"
 
 msgid "Board rules permit this content"
-msgstr ""
+msgstr "Правила доски разрешают этот контент"
 
 msgid "Board type"
 msgstr "Тип доски"
@@ -330,7 +343,7 @@ msgid "Bump order"
 msgstr "Активности"
 
 msgid "Bypass DNSBL"
-msgstr ""
+msgstr "Обход DNSBL"
 
 msgid "CAPTCHA"
 msgstr "Капча"
@@ -338,23 +351,26 @@ msgstr "Капча"
 msgid "Can't build the RecentPosts theme, because there are no boards to be fetched."
 msgstr "Не могу создать тему Недавних Сообщений, потому что нет досок для использования"
 
+msgid "Cannot be run directly."
+msgstr "Нельзя запускать напрямую."
+
 msgid "Cannot open themes directory; check permissions."
 msgstr "Не получается открыть директорию с шаблонами; проверьте права доступа."
 
 msgid "Captcha for TOR users is temporarily disabled."
-msgstr ""
+msgstr "Капча для ТОР-юзеров временно отключена."
 
 msgid "Catalog"
 msgstr "Каталог"
 
 msgid "Claim"
-msgstr ""
+msgstr "Притязание"
 
 msgid "Claim board"
-msgstr ""
+msgstr "Притязание на доску"
 
 msgid "Click to load more."
-msgstr ""
+msgstr "Нажмите, чтобы загрузить еще."
 
 msgid "Click to proceed to"
 msgstr "Кликните, чтобы перейти к"
@@ -385,10 +401,10 @@ msgid "Confirm action"
 msgstr "Подтвердите действие."
 
 msgid "Content is permitted by board rules"
-msgstr ""
+msgstr "Контент разрешен правилами доски"
 
 msgid "Content is permitted by global rules"
-msgstr ""
+msgstr "Контент разрешен глобальными правилами"
 
 msgid "Continue"
 msgstr "Продолжить"
@@ -406,13 +422,13 @@ msgid "Could not find that post."
 msgstr "Не удалось найти этот пост."
 
 msgid "Could not find the page you are trying to edit."
-msgstr ""
+msgstr "Страница, которую вы пытаетесь изменить, не найдена."
 
 msgid "Could not strip EXIF metadata!"
 msgstr "Немогу найти EXIF информацию!"
 
 msgid "Couldn't make sense of the URL of the video you tried to embed."
-msgstr ""
+msgstr "Не удалось разобрать URL видео, которое вы пытаетесь вставить."
 
 msgid "Couldn't open board after creation."
 msgstr "Невозможно открыть доску после создания."
@@ -439,7 +455,7 @@ msgid "Create user"
 msgstr "Новый пользователь"
 
 msgid "Create user boards is not allowed for you."
-msgstr ""
+msgstr "Вам запрещено создавать пользовательские доски."
 
 msgid "Create user boards is not allowed."
 msgstr "Создание пользовательских досок выключено."
@@ -496,7 +512,7 @@ msgid "Delete all posts by IP across all boards"
 msgstr "Удалить все посты с этого IP адреса со всех борд"
 
 msgid "Delete board"
-msgstr ""
+msgstr "Удалить доску"
 
 msgid "Delete file"
 msgstr "Удалить файл"
@@ -514,22 +530,22 @@ msgid "Demote"
 msgstr "Понизить"
 
 msgid "Demote global abuse report to a local report"
-msgstr ""
+msgstr "Понизить глобальную жалобу до локальной"
 
 msgid "Demote global abuse reports to local reports"
-msgstr ""
+msgstr "Понизить глобальные жалобы до локальных"
 
 msgid "Description"
 msgstr "Описание"
 
-msgid "Details: "
-msgstr ""
+msgid "Details:"
+msgstr "Детали:"
 
 msgid "Disable \"email\" field"
 msgstr "Отключить поле \"email\""
 
 msgid "Disable \"name\" field"
-msgstr "Отключить поле \"Имя\""
+msgstr "Отключить поле \"имя\""
 
 msgid "Disable \"subject\" field"
 msgstr "Отключить поле \"тема\""
@@ -553,13 +569,13 @@ msgid "Discard all abuse reports by this IP address"
 msgstr "Отклонить все жалобы с этого IP адреса"
 
 msgid "Discard all abuse reports on this content"
-msgstr ""
+msgstr "Отменить все жалобы на этот контент"
 
 msgid "Display SAGE! after saged posts"
 msgstr "Показать SAGE! у постов с сажей"
 
 msgid "Displaying results"
-msgstr ""
+msgstr "Показано результатов"
 
 msgid "Displays all actions to the public"
 msgstr "Показать действия модераторов"
@@ -580,7 +596,7 @@ msgid "Duration"
 msgstr "Продолжительность"
 
 msgid "Early 404"
-msgstr ""
+msgstr "Ранняя ошибка 404"
 
 msgid "Edit"
 msgstr "Редактировать"
@@ -634,11 +650,11 @@ msgid "Edit user profile"
 msgstr "Редактировать профиль"
 
 msgid "Edit volunteers"
-msgstr ""
+msgstr "Редактирование модераторов"
 
 #, php-format
 msgid "Editing static page: %s"
-msgstr ""
+msgstr "Редактирование страницы: %s"
 
 msgid "Email"
 msgstr ""
@@ -655,8 +671,11 @@ msgstr "Включить CAPTCHA, только для создания тред�
 msgid "Enable dice rolling"
 msgstr "Разрешить бросать кости (##XdY##)"
 
+msgid "Enabling this uses your custom spoiler/deleted/no file images.<br>Make sure to actually upload some first on the assets page or they will 404!"
+msgstr "Позволяет использовать свои изображения спойлера/файл удален/нет файла.<br>Убедитесь, что файлы загружены, иначе возникнет ошибка 404"
+
 msgid "Enter reason below..."
-msgstr ""
+msgstr "Введите причину ниже..."
 
 msgid "Error"
 msgstr "Ошибка"
@@ -665,7 +684,7 @@ msgid "Error information"
 msgstr "Информация ошибки:"
 
 msgid "Existing pages"
-msgstr ""
+msgstr "Существующие страницы"
 
 msgid "Existing post"
 msgstr "Текущий пост"
@@ -680,7 +699,7 @@ msgid "Fail! Don't rush!."
 msgstr "Неудача! Не торопись."
 
 msgid "Failed to mark up your input for some reason..."
-msgstr ""
+msgstr "Неизвестная ошибка в разметке вашего текста..."
 
 msgid "Failed to redraw image!"
 msgstr "Не удалось перерисовать изображение!"
@@ -695,7 +714,7 @@ msgid "File board"
 msgstr "Файловая"
 
 msgid "File must be PNG or GIF format."
-msgstr ""
+msgstr "Файл должен быть в формате PNG или GIF."
 
 msgid "File too large!"
 msgstr "Файл слишком большой!"
@@ -704,31 +723,31 @@ msgid "File:"
 msgstr "Файл:"
 
 msgid "Fixed boards"
-msgstr ""
+msgstr "Постоянные доски"
 
 msgid "Flag"
 msgstr "Флаг"
 
 msgid "Flag description"
-msgstr ""
+msgstr "Описание флага"
 
 msgid "Flag description too long!"
 msgstr "Описание флага слишком большое!"
 
 msgid "Flag image"
-msgstr ""
+msgstr "Изображение флага"
 
 msgid "Flags already in use"
-msgstr ""
+msgstr "Флаг уже существует"
 
 msgid "Flags are likely heavily cached by your browser and the website. Please give them time to update if you change one!"
-msgstr ""
+msgstr "Флаги, вероятно, кэшируются браузером и веб-сайтом. Пожалуйста, дайте им время для обновления, если вы их измените!"
 
 msgid "Flags must be a maximum of 48KB and 11-20 x 11-16 pixels."
-msgstr ""
+msgstr "Флаги должны быть максимум  48Кб и разрешением 11-20 x 11-16 пикселей."
 
 msgid "Flags must be in PNG format."
-msgstr ""
+msgstr "Флаги должны быть в формате PNG."
 
 msgid "Flood detected; Post discarded."
 msgstr "Обнаружен флуд. Пост отклонен."
@@ -758,13 +777,13 @@ msgid "Global"
 msgstr "Глобальная"
 
 msgid "Global Statistics"
-msgstr ""
+msgstr "Глобальная статистика"
 
 msgid "Global reports"
 msgstr "Глобальные жалобы"
 
 msgid "Global rules permit this content"
-msgstr ""
+msgstr "Глобальные правила разрешают этот контент"
 
 msgid "Go back"
 msgstr "Назад"
@@ -773,7 +792,7 @@ msgid "Go back and rebuild again"
 msgstr "Вернуться назад"
 
 msgid "Go back to themes"
-msgstr ""
+msgstr "Назад в темы"
 
 msgid "Go to bottom"
 msgstr "Вниз страницы"
@@ -785,7 +804,7 @@ msgid "Group"
 msgstr "Группа"
 
 msgid "Hide NSFW boards"
-msgstr ""
+msgstr "Скрыть 18+ доски"
 
 msgid "Hide country"
 msgstr "Не показывать мою страну"
@@ -803,7 +822,7 @@ msgid "ID"
 msgstr ""
 
 msgid "IP"
-msgstr "IP"
+msgstr ""
 
 msgid "IP address"
 msgstr "IP адрес"
@@ -815,16 +834,16 @@ msgid "IP address/mask"
 msgstr "IP адрес/маска"
 
 msgid "If the global restrictions on Tor users are not enough and you would really like to stop Tor users, there is a setting in your board options. Please think carefully before enabling it."
-msgstr ""
+msgstr "Если глобальных ограничений TOR-пользователей не достаточно, и вы бы хотели остановить TOR-пользователей, для этого есть опция в настройках вашей доски. Пожалуйста, подумайте, прежде чем включить ее."
 
 msgid "Ignore and demote global abuse reports on this post"
-msgstr ""
+msgstr "Игнорировать и понизить глобальные жалобы к этому посту"
 
 msgid "Ignore and dismiss local AND global abuse reports on this post"
-msgstr ""
+msgstr "Игнорировать и отклонить все жалобы на этот пост"
 
 msgid "Ignore and dismiss local abuse reports on this post for this board"
-msgstr ""
+msgstr "Игнорировать и отменить локальные жалобы к этому посту на этой доске"
 
 msgid "Image board"
 msgstr "Имиджборда"
@@ -835,8 +854,8 @@ msgstr "Размер картинки"
 msgid "Image wrong size!"
 msgstr "Неверный размер изображения!"
 
-msgid "Important: Flags must be accompanied by a description of the flag that will be shown to the users to your board. The description must not exceed 255 characters. To use flags, you also must have \"Enable user flags\" enabled on your board settings page as well as having flags uploaded on this page."
-msgstr ""
+msgid "Important: Flags must be accompanied by a description of the flag that will be shown to the users to your board.<br>The description must not exceed 255 characters.<br>To use flags, you also must have \"Enable user flags\" enabled on your board settings page as well as having flags uploaded on this page."
+msgstr "Важно: Флаги должны сопровождаться описанием, которое будет показано пользователям вашей доски.<br>Описание не должно превышать 255 символов.<br>Чтобы использовать флаги, вы должны включить опцию в настройках доски, а также загрузить сами флаги на этой странице."
 
 msgid "Impossible to move thread; there is only one board."
 msgstr "Невозможно переместить тред; здесь только одна доска."
@@ -848,7 +867,7 @@ msgid "Install"
 msgstr "Установить"
 
 msgid "Install theme"
-msgstr ""
+msgstr "Установить тему"
 
 #, php-format
 msgid "Installed theme: %s"
@@ -918,7 +937,7 @@ msgid "Last action"
 msgstr "Последнее действие"
 
 msgid "Last active"
-msgstr ""
+msgstr "Последняя активность"
 
 msgid "Leave shadow thread"
 msgstr "Оставить \"след\" от треда"
@@ -927,7 +946,7 @@ msgid "Length"
 msgstr "Время"
 
 msgid "Let me post!"
-msgstr ""
+msgstr "Хочу постить!"
 
 msgid "Lock"
 msgstr "Закрыть тред"
@@ -948,7 +967,7 @@ msgid "MIME type detection XSS exploit (IE) detected; post discarded."
 msgstr "Обнаружен XSS (IE). Пост отклонен."
 
 msgid "Make sure you don't forget your password:"
-msgstr ""
+msgstr "Убедитесь, что запомнили свой пароль:"
 
 msgid "Make thread cycle"
 msgstr "Сделать цикличным"
@@ -972,7 +991,7 @@ msgid "Manage users"
 msgstr "Пользователи"
 
 msgid "Markup method"
-msgstr ""
+msgstr "Тип разметки"
 
 msgid "Max filesize is"
 msgstr "Максимальный размер файла:"
@@ -984,7 +1003,7 @@ msgid "Max images per post"
 msgstr "Максимальное количество прикреплённых файлов к посту"
 
 msgid "Max number of newlines per post"
-msgstr ""
+msgstr "Максимальное число строк в посте"
 
 msgid "Max threads per hour board-wide"
 msgstr "Максимальное количество тредов в час"
@@ -999,7 +1018,7 @@ msgid "Message"
 msgstr "Сообщение"
 
 msgid "Message snippet"
-msgstr ""
+msgstr "Превью сообщения"
 
 msgid "Messages"
 msgstr "Сообщения"
@@ -1066,25 +1085,28 @@ msgid "Next"
 msgstr "Следующая"
 
 msgid "Nice try."
-msgstr ""
+msgstr "Хорошая попытка."
 
 msgid "No"
 msgstr "Нет"
 
 msgid "No board."
-msgstr ""
+msgstr "Доски нет."
 
 msgid "No index"
 msgstr "Скрыть доску"
 
 msgid "No mods?"
-msgstr ""
+msgstr "Нет модераторов?"
+
+msgid "No pages yet!"
+msgstr "Пока нет страниц!"
 
 msgid "No private messages for you."
 msgstr "Нет личных сообщений."
 
 msgid "No reason given."
-msgstr ""
+msgstr "Причина не указана."
 
 msgid "No results."
 msgstr "Нет результатов"
@@ -1099,7 +1121,7 @@ msgid "Nope."
 msgstr "Неа."
 
 msgid "Not an image extension."
-msgstr ""
+msgstr "Неверное расширение изображения."
 
 msgid "Note"
 msgstr "Заметка"
@@ -1108,8 +1130,8 @@ msgid "Noticeboard"
 msgstr "Панель уведомлений"
 
 #, php-format
-msgid "OP must be at least %d chars on this board."
-msgstr ""
+msgid "OP must be at least %s on this board."
+msgstr "ОП-пост должен содержать минимум %s на этой доске."
 
 #, php-format
 msgid "OPs are required to have at least %d links on this board."
@@ -1120,6 +1142,9 @@ msgstr ""
 
 #, php-format
 msgid "Off-site link \"%s\" is not allowed in the board stylesheet"
+msgstr ""
+
+msgid "Only allow X threads to be made per hour, regardless of poster<br>If a thread is deleted, it's not counted"
 msgstr ""
 
 msgid "Options"
@@ -1450,7 +1475,7 @@ msgid "Spoiler All"
 msgstr "Заспойлерить все вложения"
 
 msgid "Spoiler Image"
-msgstr ""
+msgstr "Спойлер"
 
 msgid "Spoiler Images"
 msgstr ""
@@ -1459,7 +1484,7 @@ msgid "Spoiler file"
 msgstr "Заспойлерить файл"
 
 msgid "Spoiler images"
-msgstr "Картинка-спойлер"
+msgstr "Заспойлерить изображения"
 
 msgid "Staff"
 msgstr "Сотрудник"
@@ -1505,7 +1530,7 @@ msgid "Tags"
 msgstr ""
 
 msgid "Take deserted boards back from their owners"
-msgstr ""
+msgstr "Возьмите заброшенные доски у их владельцев"
 
 msgid "Target and source board are the same."
 msgstr "Целевая и текущая доска одинаковы."
@@ -1614,12 +1639,15 @@ msgstr ""
 
 #, php-format
 msgid "This page allows you to create static pages for your board. The limit is %s pages per board.<br>You will still have to link to your pages somewhere in your board, for example in a sticky or in the board's announcement.<br>To make links in the board's announcement, use &lt;a&gt; HTML tags."
-msgstr ""
+msgstr "Здесь вы можете создать статические страницы для вашей доски. Максимум страниц: %s.<br>Вам нужно опубликовать ссылки на ваши странице  где-то на доске, например, в объявлении.<br>Чтобы добавить ссылку в объявлении, используйте HTML-тег &lt;a&gt;."
 
 msgid "This page allows you to create static pages for your imageboard."
 msgstr ""
 
 msgid "This page last updated"
+msgstr ""
+
+msgid "This page will not convert between formats,<br/>choose it once or do the conversion yourself!"
 msgstr ""
 
 msgid "This was a triumph"
@@ -1780,6 +1808,12 @@ msgstr "Имя"
 msgid "Users are not allowed to delete their own posts on this board."
 msgstr "Пользователям не разрешается удалять свои сообщения на этой доске."
 
+msgid "Users must solve a CAPTCHA in order to create new threads,<br>but do not have to solve a CAPTCHA in order to post replies."
+msgstr ""
+
+msgid "Users must solve a CAPTCHA in order to post.<br> This is not ReCAPTCHA, it is custom to brchan."
+msgstr ""
+
 msgid "Value"
 msgstr ""
 
@@ -1819,6 +1853,9 @@ msgstr ""
 
 msgid "With"
 msgstr "На:"
+
+msgid "With this enabled, threads with less than 10 replies will 404 at page 5 instead of at page 15.<br>In effect, this makes it so that raiders have to put 10 replies in all their threads to slide an entire board."
+msgstr ""
 
 msgid "Wordfilters"
 msgstr "Фильтры"
@@ -1929,10 +1966,10 @@ msgid "You must choose a flag to post on this board!"
 msgstr "Необходимо выбрать флаг для отправки сообщения!"
 
 msgid "You must enter a flag description!"
-msgstr "Ввыдите описание флага!"
+msgstr "Введите описание флага!"
 
 msgid "You must upload an image."
-msgstr "Вы должены загрузить изображение."
+msgstr "Вы должны загрузить изображение."
 
 msgid "You need to submit:"
 msgstr "Вам осталось ввести:"
@@ -2122,7 +2159,7 @@ msgid "remove"
 msgstr "удалить"
 
 msgid "required"
-msgstr ""
+msgstr "обязательно"
 
 msgid "second"
 msgid_plural "seconds"
@@ -2187,11 +2224,17 @@ msgstr[2] "лет"
 #~ msgid "Could not find current version! (Check .installed)"
 #~ msgstr "Не могу узнать текущую версию. (Проверьте .installed)"
 
+#~ msgid "Details: "
+#~ msgstr "Детали:"
+
 #~ msgid "Flags"
 #~ msgstr "Флаги"
 
 #~ msgid "Global report queue"
 #~ msgstr "Глобальные жалобы"
+
+#~ msgid "Important: Flags must be accompanied by a description of the flag that will be shown to the users to your board. The description must not exceed 255 characters. To use flags, you also must have \"Enable user flags\" enabled on your board settings page as well as having flags uploaded on this page."
+#~ msgstr "Важно: Флаги должны сопровождаться описанием, которое будет показано пользователям вашей доски. Описание не должно превышать 255 символов. Чтобы использовать флаги, вы также должны иметь \"Включить флаги пользователей\" включены на странице настроек доски, а также имеющие флаги, загруженные на этой странице."
 
 #~ msgid "Make sure you don't forget your password, <tt>%password%</tt>"
 #~ msgstr "бедитесь в том, чтобы не забыть пароль к доске <tt>%password%</tt>"
