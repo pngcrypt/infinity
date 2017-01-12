@@ -41,14 +41,12 @@
 		{% set omitted %}
 			{% if post.omitted %}
 				{% trans %}{{ count }} post{% plural post.omitted %}{{ count }} posts{% endtrans %}
-				{% if post.omitted_images %}
-					 {% trans("and") %} 
-				{% endif %}
+				{% if post.omitted_images %}{% trans("and") %}{% endif %}
 			{% endif %}
 			{% if post.omitted_images %}
 				{% trans %}{{ count }} image{% plural post.omitted_images %}{{ count }} images{% endtrans %}
 			{% endif %}
-		{% endset%}
+		{% endset %}
 		{{ "%s omitted. Click reply to view."|trans|format(omitted) }}
 	</span>
 	{% endif %}
