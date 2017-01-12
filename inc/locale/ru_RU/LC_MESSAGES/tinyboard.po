@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 03:46+0300\n"
+"POT-Creation-Date: 2017-01-12 16:34+0300\n"
 "PO-Revision-Date: 2017-01-12 03:46+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/projects/p/infinity/language/ru_RU/)\n"
@@ -21,18 +21,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.11\n"
-
-msgid "%count% image"
-msgid_plural "%count% images"
-msgstr[0] "%count% изображение"
-msgstr[1] "%count% изображения"
-msgstr[2] "%count% изображений"
-
-msgid "%count% post"
-msgid_plural "%count% posts"
-msgstr[0] "%count% пост"
-msgstr[1] "%count% поста"
-msgstr[2] "%count% постов"
 
 #, php-format
 msgid "%d result in"
@@ -113,6 +101,18 @@ msgstr "Пользователям .onion необходимо вводить к
 #, php-format
 msgid ".onion users need to pass security check %s on this page %s"
 msgstr "Пользователям .onion необходимо пройти проверку %s на этой странице %s"
+
+msgid "1 image"
+msgid_plural "%count% images"
+msgstr[0] "%count% изображение"
+msgstr[1] "%count% изображения"
+msgstr[2] "%count% изображений"
+
+msgid "1 post"
+msgid_plural "%count% posts"
+msgstr[0] "%count% пост"
+msgstr[1] "%count% поста"
+msgstr[2] "%count% постов"
 
 msgid ""
 "<p class=\"unimportant\">\"markdown\" is provided by <a href=\"http://parsedown.org/\">parsedown</a>. Note: images disabled.</p>\n"
