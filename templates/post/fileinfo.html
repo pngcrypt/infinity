@@ -3,7 +3,11 @@
     {% else %}
     <div class="files{% if post.num_files > 1 %} multifiles{% endif %}">
     {% for file in post.files %}
-        <div class="file{% if post.num_files > 1 %} multifile" style="width:{{ file.thumbwidth + 40 }}px"{% else %}"{% endif %}>
+    	{% set addthumbwidth = 40 %}
+    	{% if file.thumbwidth < 100 %}
+    		{% set addthumbwidth = 150 %}
+    	{% endif %}
+        <div class="file{% if post.num_files > 1 %} multifile" style="width:{{ file.thumbwidth + addthumbwidth }}px"{% else %}"{% endif %}>
 	{% if file.file == 'deleted' %}
 		<img class="post-image deleted" src="{{ config.root }}{{ config.image_deleted }}" alt="" />
 	{% else %}
