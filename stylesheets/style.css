@@ -1815,7 +1815,8 @@ label.show-post-options, label.hide-post-options {
 	text-align: right;
 }
 
-.error-report textarea{
+#alert_div textarea {
+	margin-top: 8px;
 	min-width: 100%;
 	max-width: 100%;
 	min-height: 5.8em;
