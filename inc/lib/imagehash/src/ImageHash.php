@@ -46,9 +46,27 @@ class ImageHash
     {
         $destroy = false;
 
-        if (! is_resource($resource)) {
-            $resource = $this->loadImageResource($resource);
-            $destroy = true;
+        if (!is_resource($resource)) {
+        	$_resource = $resource;
+        	$imagetype = getimagesize($resource);
+			if($imagetype) {
+				switch($imagetype[2]) {
+					case IMAGETYPE_PNG:
+						$resource = imagecreatefrompng($resource);
+						break;
+					case IMAGETYPE_GIF:
+						$resource = imagecreatefromgif($resource);
+						break;
+					case IMAGETYPE_JPEG:
+					case IMAGETYPE_JPEG2000:
+						$resource = imagecreatefromjpeg($resource);
+						break;
+				}
+			}
+            if(!is_resource($resource)) {
+            	$resource = $this->loadImageResource($_resource);
+            	$destroy = true;
+            }
         }
 
         $hash = $this->implementation->hash($resource);
