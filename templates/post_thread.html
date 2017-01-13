@@ -25,7 +25,7 @@
 	{% endif %}
 	{% if hasnoko50 and not isnoko50 %}
 		{% set lastcount = config.noko50_count %}
-		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page50|sprintf(post.id) }}">[{% trans %}Last {{count}} Post{% plural lastcount %}Last {{count}} Posts{% endtrans %}]</a>
+		<a href="{{ post.root }}{{ board.dir }}{{ config.dir.res }}{{ config.file_page50|sprintf(post.id) }}">[{% trans %}Last 1 Post{% plural lastcount %}Last {{count}} Posts{% endtrans %}]</a>
 	{% endif %}
 	{% include 'post/post_controls.html' %}
 	</p>
