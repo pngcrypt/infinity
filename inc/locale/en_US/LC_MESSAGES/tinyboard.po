@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-13 01:42+0300\n"
+"POT-Creation-Date: 2017-01-13 19:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,20 +29,8 @@ msgid "\"markdown\" is provided by %s. Note: images disabled."
 msgstr ""
 
 #, php-format
-msgid "%d char"
-msgid_plural "%d chars"
-msgstr[0] ""
-msgstr[1] ""
-
-#, php-format
 msgid "%d result in"
 msgid_plural "%d results in"
-msgstr[0] ""
-msgstr[1] ""
-
-#, php-format
-msgid "%d time"
-msgid_plural "%d times"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -112,13 +100,31 @@ msgstr ""
 msgid ".onion users need to pass security check %s on this page %s"
 msgstr ""
 
+#, php-format
+msgid "1 char"
+msgid_plural "%d chars"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "1 image"
 msgid_plural "%count% images"
 msgstr[0] ""
 msgstr[1] ""
 
+#, php-format
+msgid "1 link"
+msgid_plural "%d links"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "1 post"
 msgid_plural "%count% posts"
+msgstr[0] ""
+msgstr[1] ""
+
+#, php-format
+msgid "1 time"
+msgid_plural "%d times"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -918,7 +924,7 @@ msgstr ""
 msgid "Large"
 msgstr ""
 
-msgid "Last %count% Post"
+msgid "Last 1 Post"
 msgid_plural "Last %count% Posts"
 msgstr[0] ""
 msgstr[1] ""
@@ -1120,11 +1126,7 @@ msgid "Noticeboard"
 msgstr ""
 
 #, php-format
-msgid "OP must be at least %s on this board."
-msgstr ""
-
-#, php-format
-msgid "OPs are required to have at least %d links on this board."
+msgid "OP are required to have at least %s on this board."
 msgstr ""
 
 msgid "Oekaki"
@@ -1214,7 +1216,7 @@ msgid "Post to noticeboard"
 msgstr ""
 
 #, php-format
-msgid "Post too long. Click %s here %s to view the full text."
+msgid "Post too long. %sClick here%s to view the full text."
 msgstr ""
 
 msgid "Poster ID's"

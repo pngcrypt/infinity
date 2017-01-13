@@ -2269,8 +2269,11 @@ function markup(&$body, $track_cites = false, $op = false) {
 			error(sprintf(Vi::$config['error']['toomanylinks'], $num_links, Vi::$config['max_links']));
 		}
 
-		if ($num_links < Vi::$config['min_links'] && $op) {
-			error(sprintf(Vi::$config['error']['notenoughlinks'], Vi::$config['min_links']));
+		if ($num_links < Vi::$config['min_links_op'] && $op) {
+			error(sprintf(
+				Vi::$config['error']['op_requiredatleast'],
+				sprintf(ngettext('1 link', '%d links', Vi::$config['min_links_op']), Vi::$config['min_links_op'])
+			));
 		}
 	}
 

@@ -2788,7 +2788,7 @@ function mod_reports() {
 					"?/{$report_item['board_id']}/res/" . ($content['thread'] ?: $content['id']) . ".html#{$content['id']}",
 					_("View content"),
 					$report_item['board_id'],
-					($content['thread'] ? _("post reported") : _("thread reported")) . " " . sprintf(ngettext("%d time", "%d times", $content_reports), $content_reports)
+					($content['thread'] ? _("post reported") : _("thread reported")) . " " . sprintf(ngettext("1 time", "%d times", $content_reports), $content_reports)
 				);
 
 				// Figure out some stuff we need for the page.
