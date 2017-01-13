@@ -1201,7 +1201,7 @@ Vi::$config['error']['muted']              = _('Unoriginal content! You have bee
 Vi::$config['error']['youaremuted']        = _('You are muted! Expires in %d seconds.');
 Vi::$config['error']['dnsbl']              = _('Your IP address is listed in %s.');
 Vi::$config['error']['toomanylinks']       = _('Too many links(%d of %d).');
-Vi::$config['error']['notenoughlinks']     = _('OPs are required to have at least %d links on this board.');
+Vi::$config['error']['op_requiredatleast'] = _('OP are required to have at least %s on this board.');
 Vi::$config['error']['toomanycites']       = _('Too many cites; post discarded.');
 Vi::$config['error']['toomanycross']       = _('Too many cross-board links; post discarded.');
 Vi::$config['error']['nodelete']           = _('You didn\'t select anything to delete.');
@@ -1220,7 +1220,7 @@ Vi::$config['error']['webmtoolong']        = _('The uploaded webm is longer than
 Vi::$config['error']['fileexists']         = _('That file <a href="%s">already exists</a>!');
 Vi::$config['error']['fileexistsinthread'] = _('That file <a href="%s">already exists</a> in this thread!');
 Vi::$config['error']['delete_too_soon']    = _('You\'ll have to wait another %s before deleting that.');
-Vi::$config['error']['delete_too_soon_thread']    = _('You can not deleting OP-post after %s.');
+Vi::$config['error']['delete_too_soon_thread'] = _('You can not deleting OP-post after %s.');
 Vi::$config['error']['mime_exploit']       = _('MIME type detection XSS exploit (IE) detected; post discarded.');
 Vi::$config['error']['invalid_embed']      = _('Couldn\'t make sense of the URL of the video you tried to embed.');
 Vi::$config['error']['captcha']            = _('You seem to have mistyped the verification.');
@@ -1279,7 +1279,7 @@ Vi::$config['root_file'] = false;
 // Location of files.
 Vi::$config['file_index']  = 'index.html';
 Vi::$config['file_page']   = '%d.html';
-Vi::$config['file_page50'] = '%d+50.html';
+Vi::$config['file_page50'] = '%d+last.html';
 Vi::$config['file_mod']    = 'mod.php';
 Vi::$config['file_post']   = 'post.php';
 Vi::$config['file_script'] = 'main.js';
