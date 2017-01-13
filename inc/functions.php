@@ -3209,7 +3209,7 @@ function purify_html($s) {
 function markdown($s) {
 	$pd = new Parsedown();
 	$pd->setMarkupEscaped(true);
-	$pd->setimagesEnabled(false);
+	$pd->setImagesEnabled(false);
 
 	return $pd->text($s);
 }
