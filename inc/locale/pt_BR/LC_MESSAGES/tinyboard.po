@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-13 01:42+0300\n"
-"PO-Revision-Date: 2015-04-01 23:22+0000\n"
+"POT-Creation-Date: 2017-01-13 19:59+0300\n"
+"PO-Revision-Date: 2017-01-13 20:15+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/infinity/language/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.11\n"
 
 msgid "\"html\" allows the following tags:"
 msgstr ""
@@ -31,26 +32,14 @@ msgid "\"markdown\" is provided by %s. Note: images disabled."
 msgstr ""
 
 #, php-format
-msgid "%d char"
-msgid_plural "%d chars"
-msgstr[0] ""
-msgstr[1] ""
-
-#, php-format
 msgid "%d result in"
 msgid_plural "%d results in"
 msgstr[0] "%d resultado em"
 msgstr[1] "%d resultados em"
 
 #, php-format
-msgid "%d time"
-msgid_plural "%d times"
-msgstr[0] ""
-msgstr[1] ""
-
-#, php-format
 msgid "%s omitted. Click reply to view."
-msgstr ""
+msgstr "%s omitidas. Clique em responder para visualizar."
 
 #, php-format
 msgid "%s without interruption"
@@ -114,8 +103,20 @@ msgstr ""
 msgid ".onion users need to pass security check %s on this page %s"
 msgstr ""
 
+#, php-format
+msgid "1 char"
+msgid_plural "%d chars"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "1 image"
 msgid_plural "%count% images"
+msgstr[0] "1 imagem"
+msgstr[1] "%count% imagens"
+
+#, php-format
+msgid "1 link"
+msgid_plural "%d links"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -123,6 +124,12 @@ msgid "1 post"
 msgid_plural "%count% posts"
 msgstr[0] "1 mensagem"
 msgstr[1] "%count% mensagens"
+
+#, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "= required field"
 msgstr ""
@@ -920,10 +927,10 @@ msgstr ""
 msgid "Large"
 msgstr "Médio"
 
-msgid "Last %count% Post"
+msgid "Last 1 Post"
 msgid_plural "Last %count% Posts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ultima mensagem"
+msgstr[1] "Últimas %count% Mensagens"
 
 msgid "Last action"
 msgstr "Ultima ação"
@@ -1122,11 +1129,7 @@ msgid "Noticeboard"
 msgstr "Quadro de noticias"
 
 #, php-format
-msgid "OP must be at least %s on this board."
-msgstr ""
-
-#, php-format
-msgid "OPs are required to have at least %d links on this board."
+msgid "OP are required to have at least %s on this board."
 msgstr ""
 
 msgid "Oekaki"
@@ -1216,7 +1219,7 @@ msgid "Post to noticeboard"
 msgstr "Postar no quadro de notícias"
 
 #, php-format
-msgid "Post too long. Click %s here %s to view the full text."
+msgid "Post too long. %sClick here%s to view the full text."
 msgstr ""
 
 msgid "Poster ID's"
@@ -2189,21 +2192,8 @@ msgstr[1] "anos"
 #~ msgid "(For file deletion.)"
 #~ msgstr "(Para excluir arquivos)"
 
-#~ msgid "1 image reply"
-#~ msgid_plural "%count% image replies"
-#~ msgstr[0] "1 resposta com imagem"
-#~ msgstr[1] "%count% respostas com imagem"
-
-#~ msgid "1 reply"
-#~ msgid_plural "%count% replies"
-#~ msgstr[0] "1 resposta"
-#~ msgstr[1] "%count% respostas"
-
 #~ msgid "All trademarks, copyrights, comments, and images on this page are owned by and are the responsibility of their respective parties."
 #~ msgstr "Todas as marcas, registros de copyright, comentários e imagens nesta pagina pertencem e são responsabilidade de seus respectivos donos."
-
-#~ msgid "Banned?"
-#~ msgstr "Banido?"
 
 #~ msgid "Change password"
 #~ msgstr "Mudar senha"
@@ -2219,11 +2209,6 @@ msgstr[1] "anos"
 
 #~ msgid "Flags"
 #~ msgstr "Sinalizações"
-
-#~ msgid "Last 1 Post"
-#~ msgid_plural "Last %count% Posts"
-#~ msgstr[0] "Ultima mensagem"
-#~ msgstr[1] "Últimas %count% Mensagens"
 
 #~ msgid "Last reply"
 #~ msgstr "Última resposta"
@@ -2266,6 +2251,3 @@ msgstr[1] "anos"
 
 #~ msgid "hidden"
 #~ msgstr "oculto"
-
-#~ msgid "omitted. Click reply to view."
-#~ msgstr "omitidas. Clique em responder para visualizar."

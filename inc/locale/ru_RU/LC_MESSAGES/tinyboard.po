@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-13 01:42+0300\n"
-"PO-Revision-Date: 2017-01-13 01:39+0300\n"
+"POT-Creation-Date: 2017-01-13 19:59+0300\n"
+"PO-Revision-Date: 2017-01-13 20:02+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/projects/p/infinity/language/ru_RU/)\n"
 "Language: ru_RU\n"
@@ -33,25 +33,11 @@ msgid "\"markdown\" is provided by %s. Note: images disabled."
 msgstr "\"markdown\" поддерживает %s. Примечание: изображения отключены."
 
 #, php-format
-msgid "%d char"
-msgid_plural "%d chars"
-msgstr[0] "%d символ"
-msgstr[1] "%d символа"
-msgstr[2] "%d символов"
-
-#, php-format
 msgid "%d result in"
 msgid_plural "%d results in"
 msgstr[0] "%d результат в"
 msgstr[1] "%d результата в"
 msgstr[2] "%d результатов в"
-
-#, php-format
-msgid "%d time"
-msgid_plural "%d times"
-msgstr[0] "%d раз"
-msgstr[1] "%d раза"
-msgstr[2] "%d раз"
 
 #, php-format
 msgid "%s omitted. Click reply to view."
@@ -119,17 +105,38 @@ msgstr "Пользователям .onion необходимо вводить к
 msgid ".onion users need to pass security check %s on this page %s"
 msgstr "Пользователям .onion необходимо пройти проверку %s на этой странице %s"
 
+#, php-format
+msgid "1 char"
+msgid_plural "%d chars"
+msgstr[0] "%d символ"
+msgstr[1] "%d символа"
+msgstr[2] "%d символов"
+
 msgid "1 image"
 msgid_plural "%count% images"
 msgstr[0] "%count% изображение"
 msgstr[1] "%count% изображения"
 msgstr[2] "%count% изображений"
 
+#, php-format
+msgid "1 link"
+msgid_plural "%d links"
+msgstr[0] "%d ссылка"
+msgstr[1] "%d ссылки"
+msgstr[2] "%d ссылок"
+
 msgid "1 post"
 msgid_plural "%count% posts"
 msgstr[0] "%count% пост"
 msgstr[1] "%count% поста"
 msgstr[2] "%count% постов"
+
+#, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] "%d раз"
+msgstr[1] "%d раза"
+msgstr[2] "%d раз"
 
 msgid "= required field"
 msgstr "= обязательные поля"
@@ -927,7 +934,7 @@ msgstr "Язык"
 msgid "Large"
 msgstr "Большие"
 
-msgid "Last %count% Post"
+msgid "Last 1 Post"
 msgid_plural "Last %count% Posts"
 msgstr[0] "Последний %count% пост"
 msgstr[1] "Последние %count% поста"
@@ -1130,12 +1137,8 @@ msgid "Noticeboard"
 msgstr "Панель уведомлений"
 
 #, php-format
-msgid "OP must be at least %s on this board."
+msgid "OP are required to have at least %s on this board."
 msgstr "ОП-пост должен содержать минимум %s на этой доске."
-
-#, php-format
-msgid "OPs are required to have at least %d links on this board."
-msgstr ""
 
 msgid "Oekaki"
 msgstr ""
@@ -1224,8 +1227,8 @@ msgid "Post to noticeboard"
 msgstr "Создать новую заметку"
 
 #, php-format
-msgid "Post too long. Click %s here %s to view the full text."
-msgstr ""
+msgid "Post too long. %sClick here%s to view the full text."
+msgstr "%sНажмите тут%s, чтобы посмотреть текст полностью."
 
 msgid "Poster ID's"
 msgstr "Показывать ID пользователей"
@@ -1502,7 +1505,7 @@ msgid "Subject"
 msgstr "Тема"
 
 msgid "Submit"
-msgstr "Предъявить документъ"
+msgstr "Отправить"
 
 msgid "Subtitle"
 msgstr "Описание"
@@ -1684,7 +1687,7 @@ msgid "To"
 msgstr "Для"
 
 msgid "To submit your report, please fill out the CAPTCHA below."
-msgstr ""
+msgstr "Чтобы отправить жалобу, введите капчу."
 
 msgid "Toggle all"
 msgstr "Выделить все"
@@ -2242,8 +2245,14 @@ msgstr[2] "лет"
 #~ msgid "No country flag"
 #~ msgstr "Нет флага страны"
 
+#~ msgid "OP must be at least %s on this board."
+#~ msgstr "ОП-пост должен содержать минимум %s на этой доске."
+
 #~ msgid "Post deletion is not allowed!"
 #~ msgstr "Удаление поста запрещено!"
+
+#~ msgid "Post too long. Click %s here %s to view the full text."
+#~ msgstr "%sНажмите тут%s, чтобы посмотреть текст полностью."
 
 #~ msgid "Query too broad."
 #~ msgstr "Запрос слишком большой."
@@ -2277,9 +2286,3 @@ msgstr[2] "лет"
 
 #~ msgid "modifier"
 #~ msgstr "модификаторы"
-
-#~ msgid "omitted. Click reply to view."
-#~ msgstr "Нажмите ответить, чтобы посмотреть."
-
-#~ msgid "reply"
-#~ msgstr "ответить"
