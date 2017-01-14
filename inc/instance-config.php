@@ -35,7 +35,6 @@ Vi::$config['threads_per_page']        = 20;
 Vi::$config['max_pages']               = 15;
 Vi::$config['threads_preview']         = 3;
 Vi::$config['root']                    = '/';
-Vi::$config['secure_trip_salt']        = '';
 Vi::$config['always_noko']             = true;
 Vi::$config['allow_no_country']        = true;
 Vi::$config['thread_subject_in_title'] = true;
@@ -311,7 +310,7 @@ Vi::$config['mask_db_error']     = true;
 Vi::$config['ban_appeals']       = true;
 Vi::$config['show_sages']        = false;
 Vi::$config['katex']             = false;
-Vi::$config['twig_cache']        = false;
+Vi::$config['twig_cache']        = true;
 Vi::$config['report_captcha']    = true;
 Vi::$config['no_top_bar_boards'] = false;
 
