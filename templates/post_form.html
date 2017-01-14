@@ -10,17 +10,13 @@
 {% if mod %}<input type="hidden" name="mod" value="1">{% endif %}
 	<table class="post-table"><tbody>
 		{% if not config.field_disable_name or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}<tr>
-			<th>
-				{% trans("Name") %}
-			</th>
+			<th>{% trans("Name") %}</th>
 			<td>
 				<input type="text" name="name" size="25" maxlength="35" autocomplete="off">
 			</td>
 		</tr>{% endif %}
 		{% if not config.field_disable_email or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}<tr>
-			<th>
-				{% trans("Email") %}
-			</th>
+			<th>{% trans("Email") %}</th>
 			<td>
 				{% if config.field_email_selectbox and not (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}
 				<select name="email" id="email_selectbox" autocomplete="off">
@@ -38,7 +34,7 @@
 		</tr>{% endif %}
 		{% if not (config.field_disable_subject or (id and config.field_disable_reply_subject)) or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}<tr>
 			<th>
-				{% trans("Subject") %} {% if config.force_subject_op and not id %}<span class="required-star">*</span>{% endif %}
+				{%- trans("Subject") %}{% if config.force_subject_op and not id %} <span class="required-star">*</span>{% endif -%}
 			</th>
 			<td>
 				<input style="float:left;" type="text" name="subject" size="25" maxlength="100" autocomplete="off">
@@ -47,9 +43,7 @@
 		</tr>
 		{% endif %}
 		<tr>
-			<th>
-				{% trans("Comment") %} <span class="required-star">*</span>
-			</th>
+			<th>{% trans("Comment") %} <span class="required-star">*</span></th>
 			<td>
 				<textarea name="body" id="body" rows="5" cols="35"></textarea>
 				{% if not (not (config.field_disable_subject or (id and config.field_disable_reply_subject)) or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri))) %}
@@ -61,9 +55,7 @@
 		</tr>
 		{% if config.recaptcha %}
 		<tr>
-			<th>
-				{% trans("Verification") %} <span class="required-star">*</span>
-			</th>
+			<th>{% trans("Verification") %} <span class="required-star">*</span></th>
 			<td>
 				<script type="text/javascript">
 				var RecaptchaOptions = {
@@ -78,9 +70,7 @@
 
 		{% if config.captcha.enabled or (config.new_thread_capt and not id) %}
 		<tr class='captcha'>
-			<th>
-				{% trans("Verification") %} <span class="required-star">*</span>
-			</th>
+			<th>{% trans("Verification") %} <span class="required-star">*</span></th>
 			<td>{% include 'captcha.html' %}</td>
 		</tr>
 		{% endif %}
@@ -99,7 +89,7 @@
 		{% if not config.disable_images %}
 		<tr id="upload">
 			<th>
-				{% trans("File") %} {% if config.force_image_op and not id %}<span class="required-star">*</span>{% endif %}
+				{%- trans("File") %}{% if config.force_image_op and not id %} <span class="required-star">*</span>{% endif -%}
 			</th>
 			<td>
 				<input type="file" name="file" id="upload_file">
@@ -116,7 +106,9 @@
 		{% set flag_tr %}
 		{% if config.user_flag %}
 			<tr>
-				<th>{% trans("Flag") %} {% if config.force_flag %}<span class="required-star">*</span>{% endif %}</th>
+				<th>
+					{%- trans("Flag") %} {% if config.force_flag %}<span class="required-star">*</span>{% endif -%}
+				</th>
 				<td>
 					<select name="user_flag" id="user_flag">
 						{% if not config.force_flag %}<option value="">{% trans("None") %}</option>{% endif %}
@@ -153,9 +145,7 @@
 
 		{% if config.enable_embedding %}
 		<tr id="upload_embed">
-			<th>
-				{% trans("Embed") %}
-			</th>
+			<th>{% trans("Embed") %}</th>
 			<td>
 				<input type="text" name="embed" value="" size="30" maxlength="120" autocomplete="off" style="width:100%;"><br> <span class="unimportant hint">{% trans("(replaces files and can be used instead)") %}</span>
 			</td>
@@ -173,9 +163,7 @@
 		</tr>
 		{% endif %}
 		<tr id="options-row">
-			<th>
-				{% trans("Options") %}
-			</th>
+			<th>{% trans("Options") %}</th>
 			<td>
 				<div class="no-bump-option">
 					<label title="{% trans("(you can also write sage in the email field)") %}"><input id="no-bump" name="no-bump" type="checkbox">
@@ -211,9 +199,7 @@
 			</td>
 		</tr>
 		{% if not config.field_disable_password or (mod and post.mod|hasPermission(config.mod.bypass_field_disable, board.uri)) %}<tr>
-			<th>
-				{% trans("Password") %}
-			</th>
+			<th>{% trans("Password") %}</th>
 			<td>
 				<input type="text" name="password" value="" size="12" maxlength="18" autocomplete="off">
 				<span class="unimportant hint"> {% trans("(For file and post deletion.)") %}</span>
@@ -245,21 +231,29 @@
 <script type="text/javascript">{% raw %}
 	rememberStuff();
 {% endraw %}</script>
-{% if config.code_tags and 'js/code_tags/run_prettify.js' not in config.additional_javascript %}
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/code_tags/run_prettify.js"></script>
+
+{% set ext_scripts = [] %}
+{% if config.code_tags %}
+	{% set ext_scripts = ext_scripts|merge(['js/code_tags/run_prettify.js']) %}
 {% endif %}
-{% if config.katex and 'js/katex-enable.js' not in config.additional_javascript %}
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/katex/katex.min.js"></script>
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/katex-enable.js"></script>
+{% if config.katex %}
+	{% set ext_scripts = ext_scripts|merge([
+		'js/katex/katex.min.js',
+		'js/katex-enable.js'
+	]) %}
 {% endif %}
-{% if config.oekaki and 'js/wpaint.js' not in config.additional_javascript %}
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/wPaint/wPaint.min.js"></script>
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/wPaint/plugins/main/main.js"></script>
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/wPaint/plugins/text/text.js"></script>
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/wPaint/plugins/shapes/shapes.js"></script>
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/wPaint/plugins/file/file.js"></script>
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/wpaint.js"></script>
+{% if config.oekaki %}
+	{% set ext_scripts = ext_scripts|merge([
+		'js/wPaint/wPaint.min.js',
+		'js/wPaint/plugins/main/main.js',
+		'js/wPaint/plugins/text/text.js', 
+		'js/wPaint/plugins/shapes/shapes.js', 
+		'js/wPaint/plugins/file/file.js', 
+		'js/wpaint.js'
+	]) %}
 {% endif %}
 {% if config.user_flag %}
-<script type="text/javascript" src="{{ config.additional_javascript_url }}js/flag-previews.js"></script>
+	{% set ext_scripts = ext_scripts|merge(['js/flag-previews.js']) %}
 {% endif %}
+
+{% include "ext_scripts.html" %}

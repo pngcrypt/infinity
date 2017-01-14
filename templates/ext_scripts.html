@@ -1,0 +1,13 @@
+{# 
+	include additional scrips from ext_scripts[] array only if it is not in config.additional_javascript already
+
+#}
+{% spaceless %}
+{% if ext_scripts %}
+	{% for script in ext_scripts %}
+		{% if script not in config.additional_javascript %}
+			<script type="text/javascript" src="{{ config.additional_javascript_url }}{{ script }}"></script>
+		{% endif %}
+	{% endfor %}
+{% endif %}
+{% endspaceless %}
