@@ -84,7 +84,7 @@ foreach($boards as &$board) {
 		$query = query(sprintf("SELECT `id` FROM ``posts_%s``", $board['uri'])) or error(db_error());
 		while($post = $query->fetch()) {
 			if(!$options['quiet'])
-				echo "Rebuilding #{$post['id']}...\n";
+				echo "Rebuilding post #{$post['id']}...\n";
 			rebuildPost($post['id']);
 		}
 	}
@@ -92,7 +92,7 @@ foreach($boards as &$board) {
 	$query = query(sprintf("SELECT `id` FROM ``posts_%s`` WHERE `thread` IS NULL ORDER BY `time` DESC", $board['uri'])) or error(db_error());
 	while($post = $query->fetch()) {
 		if(!$options['quiet'])
-			echo "Rebuilding #{$post['id']}...\n";
+			echo "Rebuilding thread #{$post['id']}...\n";
 		buildThread($post['id']);
 	}
 }

@@ -66,15 +66,26 @@ function Element($templateFile, array $options) {
 	}
 
 	// Read the template file
-	if (@file_get_contents(Vi::$config['dir']['template'] . "/${templateFile}")) {
-		$body = Vi::$twig->render($templateFile, $options);
+	try {
+		$body = Vi::$twig->render($templateFile, $options); // render template
 
 		if (Vi::$config['minify_html'] && preg_match('/\.html$/', $templateFile)) {
-			$body = trim(preg_replace("/[\t\r\n]/", '', $body));
+			// minify html
+			require_once 'inc/lib/minify/Minify/HTML.php';
+			$minify_opt = [];
+			if (Vi::$config['minify_js']) {
+				// use js-minifier plugin if enabled
+				// require_once 'inc/lib/minify/JSMin.php';
+				// $minify_opt['jsMinifier'] = 'JSMin::minify';
+			}
+			$body = Minify_HTML::minify($body, $minify_opt);
+			
+			// $body = trim(preg_replace("/[\t\r\n]/", '', $body)); // simple minifier -- not good for some reasons (like js-comments)
 		}
-
 		return $body;
-	} else {
-		throw new Exception("Template file '${templateFile}' does not exist or is empty in '" . Vi::$config['dir']['template'] . "'!");
+	}
+	catch (Exception $e) {
+		// catch errors (load fail or compile errors)
+		throw new Exception($e->getMessage());
 	}
 }
