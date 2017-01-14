@@ -89,7 +89,7 @@ function mod_dashboard() {
 		}
 	}
 
-	if (!Vi::$config['cache']['enabled'] || ($args['unread_pms'] = (int)cache::get('pm_unreadcount_' . Vi::$mod['id'])) === false) {
+	if (!Vi::$config['cache']['enabled'] || ($args['unread_pms'] = cache::get('pm_unreadcount_' . Vi::$mod['id'])) == false) {
 		$query = prepare('SELECT COUNT(*) FROM ``pms`` WHERE `to` = :id AND `unread` = 1');
 		$query->bindValue(':id', Vi::$mod['id']);
 		$query->execute() or error(db_error($query));
