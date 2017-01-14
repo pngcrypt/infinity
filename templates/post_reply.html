@@ -3,7 +3,7 @@
 <div class="post reply{% if post.files %} has-file{% endif %}{% if post.body_nomarkup %} body-not-empty{% endif %}" id="reply_{{ post.id }}">
 <p class="intro">
 	{% if not index %}<a id="{{ post.id }}" class="post_anchor"></a>{% endif %}
-	<input type="checkbox" class="delete" name="delete_{{ post.id }}" id="delete_{{ post.id }}" />
+	<input type="checkbox" class="delete" name="delete_{{ post.id }}" id="delete_{{ post.id }}"/>
 	{% include 'post/post_controls.html' %}
 	<label for="delete_{{ post.id }}">
 		{% include 'post/subject.html' %}
@@ -17,7 +17,7 @@
 	<a class="post_no" onclick="citeReply({{ post.id }})" href="{% if isnoko50 %}{{ post.link('q', config.file_page50) }}{% else %}{{ post.link('q') }}{% endif %}">{{ post.id }}</a></span>
 	</p>
     {% include 'post/fileinfo.html' %} 
-	<div class="body" {% if post.files|length > 1 %}style="clear:both"{% endif %}>
+	<div class="body"{% if post.files|length > 1 %} style="clear:both"{% endif %}>
 		{% endfilter %}{% if index %}{{ post.body|truncate_body(post.link) }}{% else %}{{ post.body }}{% endif %}{% filter remove_whitespace %}
 		{% if post.modifiers['ban message'] %}
 			{{ config.mod.ban_message|sprintf(post.modifiers['ban message']) }}
