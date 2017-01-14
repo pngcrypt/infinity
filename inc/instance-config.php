@@ -152,6 +152,7 @@ Vi::$config['additional_javascript'][] = 'js/file-selector.js';
 Vi::$config['additional_javascript'][] = 'js/board-directory.js';
 //	Vi::$config['additional_javascript'][] = 'js/live-index.js';
 //	Vi::$config['additional_javascript'][] = 'js/altchans.js';
+Vi::$config['additional_javascript'][] = 'js/ajax-post-controls.js';
 
 //Vi::$config['font_awesome_css'] = '/netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css';
 
