@@ -255,7 +255,7 @@ class i18n_extract {
 					// create subdirs in temp if needed
 					$i = dirname($out);
 					if(!is_dir($i))
-						mkdir($i, 777, true);
+						mkdir($i, 0777, true);
 				}
 				$i = self::twig_to_php($f, $out); // compile template
 				if($i !== true) {
