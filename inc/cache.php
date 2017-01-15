@@ -12,24 +12,19 @@ interface CacheEngine {
 class Cache_Php implements CacheEngine {
 	private $cache = [];
 	private $instances = [];
-	private $_prefix = 'default:';
 
-	public function __construct($db_id = NULL) {
-		if($db_id) {
-			$this->_prefix = $db_id . ':';
-		}
-	}
+	public function __construct($db_id = NULL) {}
 
 	public function get($key) {
-		return isset($this->cache[$this->_prefix . $key]) ? $this->cache[$this->_prefix . $key] : FALSE;
+		return isset($this->cache[$key]) ? $this->cache[$key] : FALSE;
 	}
 
 	public function set($key, $value, $expires = FALSE) {
-		$this->cache[$this->_prefix . $key] = $value;
+		$this->cache[$key] = $value;
 	}
 
 	public function delete($key) {
-		unset($this->cache[$this->_prefix . $key]);
+		unset($this->cache[$key]);
 	}
 
 	public function db($id) {
@@ -90,23 +85,18 @@ class Cache_Fs implements CacheEngine {
 
 	public function flush() {
 		$files = glob($this->_path . $this->_prefix . '*');
-		foreach ($files as $file) {
-			unlink($file);
-		}
+		array_map('unlink', $files);
 	}
 }
 
 class Cache_Redis implements CacheEngine {
 	private $instances = [];
 	private $redis = NULL;
-	private $current_db = NULL;
 
 	public function __construct($db_id = 'default') {
 		if(!isset(Vi::$config['cache']['redis']['databases'][$db_id])) {
 			die($db_id . ' not exists in config');
 		}
-
-		$this->current_db = $db_id;
 
 		$this->redis = new Redis();
 		$this->redis->pconnect(Vi::$config['cache']['redis']['address'], Vi::$config['cache']['redis']['port'], Vi::$config['cache']['redis']['timeout'], 'redis_' . $db_id) or die('cache connect failure');
@@ -123,11 +113,11 @@ class Cache_Redis implements CacheEngine {
 	}
 
 	public function set($key, $value, $expires = FALSE) {
-		return $this->redis->setex($key, $expires ?: Vi::$config['cache']['timeout'], json_encode($value));
+		$this->redis->setex($key, $expires ?: Vi::$config['cache']['timeout'], json_encode($value));
 	}
 
 	public function delete($key) {
-		return $this->redis->delete($key);
+		$this->redis->delete($key);
 	}
 
 	public function db($id) {
@@ -139,7 +129,7 @@ class Cache_Redis implements CacheEngine {
 	}
 
 	public function flush() {
-		return $this->redis->flushDB();
+		$this->redis->flushDB();
 	}
 }
 
@@ -162,11 +152,11 @@ class Cache_Memcached implements CacheEngine {
 	}
 
 	public function set($key, $value, $expires = FALSE) {
-		return $this->memcached->set($this->_prefix . $key, $value, $expires ?: Vi::$config['cache']['timeout']);
+		$this->memcached->set($this->_prefix . $key, $value, $expires ?: Vi::$config['cache']['timeout']);
 	}
 
 	public function delete($key) {
-		return $this->memcached->delete($this->_prefix . $key);
+		$this->memcached->delete($this->_prefix . $key);
 	}
 
 	public function db($id) {
@@ -178,7 +168,7 @@ class Cache_Memcached implements CacheEngine {
 	}
 
 	public function flush() {
-		return $this->memcached->flush();
+		$this->memcached->flush();
 	}
 }
 
