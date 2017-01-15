@@ -172,6 +172,15 @@ class Cache_Memcached implements CacheEngine {
 	}
 }
 
+class Cache_Blackhole implements CacheEngine {
+	public function __construct($db_id = NULL) {}
+	public function get($key) {return ;}
+	public function set($key, $val, $expires = FALSE) {}
+	public function delete($key) {}
+	public function db($id) {return $this;}
+	public function flush() {}
+}
+
 class Cache {
 	private static $provider = NULL;
 
@@ -184,7 +193,8 @@ class Cache {
 			case 'redis':		self::$provider = new Cache_Redis(); break;
 			case 'memcached':	self::$provider = new Cache_Memcached(); break;
 			case 'fs':			self::$provider = new Cache_Fs(); break;
-			default:			self::$provider = new Cache_Php(); break;
+			case 'php':			self::$provider = new Cache_Php(); break;
+			default:			self::$provider = new Cache_Blackhole(); break;
 		}
 
 		return self::$provider;
