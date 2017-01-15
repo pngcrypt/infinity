@@ -22,7 +22,7 @@ Vi::$config['cache']['redis'] = [
 	'databases'	=> [
 		'default'	=> 0,
 		'captchas'	=> 1,
-		'tor'		=> 3,
+		'tor'		=> 2,
 	]
 ];
 
