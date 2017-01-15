@@ -1,185 +1,222 @@
 <?php
 
-/*
- *  Copyright (c) 2010-2013 Tinyboard Development Group
- */
+interface CacheEngine {
+	public function __construct($db_id = NULL);
+	public function get($key);
+	public function set($key, $val, $expires = FALSE);
+	public function delete($key);
+	public function db($id);
+	public function flush();
+}
 
-defined('TINYBOARD') or exit;
+class Cache_Php implements CacheEngine {
+	private $cache = [];
+	private $instances = [];
+	private $_prefix = 'default:';
 
-class Cache {
-	private static $cache;
-	public static function init() {
-		switch (Vi::$config['cache']['enabled']) {
-		case 'memcached':
-			self::$cache = new Memcached();
-			self::$cache->addServers(Vi::$config['cache']['memcached']);
-			break;
-		case 'redis':
-			self::$cache = new Redis();
-			self::$cache->pconnect(Vi::$config['cache']['redis'][0], Vi::$config['cache']['redis'][1]) or die('cache connect failure');
-			if (Vi::$config['cache']['redis'][2]) {
-				self::$cache->auth(Vi::$config['cache']['redis'][2]);
-			}
-			self::$cache->select(Vi::$config['cache']['redis'][3]) or die('cache select failure');
-			break;
-		case 'php':
-			self::$cache = array();
-			break;
+	public function __construct($db_id = NULL) {
+		if($db_id) {
+			$this->_prefix = $db_id . ':';
 		}
 	}
 
-	public static function get($key) {
-		$key = Vi::$config['cache']['prefix'] . $key;
+	public function get($key) {
+		return isset($this->cache[$this->_prefix . $key]) ? $this->cache[$this->_prefix . $key] : FALSE;
+	}
 
-		$data = false;
-		switch (Vi::$config['cache']['enabled']) {
-		case 'memcached':
-			if (!self::$cache) {
-				self::init();
-			}
+	public function set($key, $value, $expires = FALSE) {
+		$this->cache[$this->_prefix . $key] = $value;
+	}
 
-			$data = self::$cache->get($key);
-			break;
-		case 'apc':
-			$data = apc_fetch($key);
-			break;
-		case 'xcache':
-			$data = xcache_get($key);
-			break;
-		case 'php':
-			$data = isset(self::$cache[$key]) ? self::$cache[$key] : false;
-			break;
-		case 'fs':
-			$key = str_replace('/', '::', $key);
-			$key = str_replace("\0", '', $key);
-			if (!file_exists('tmp/cache/' . $key)) {
-				$data = false;
-			} else {
-				$data = file_get_contents('tmp/cache/' . $key);
-				$data = json_decode($data, true);
-			}
-			break;
-		case 'redis':
-			if (!self::$cache) {
-				self::init();
-			}
+	public function delete($key) {
+		unset($this->cache[$this->_prefix . $key]);
+	}
 
-			$data = json_decode(self::$cache->get($key), true);
-			break;
+	public function db($id) {
+		if(!isset($this->instances[$id])) {
+			$this->instances[$id] = new Cache_Php($id);
 		}
 
-		if (Vi::$config['debug']) {
-			Vi::$debug['cached'][] = $key . ($data === false ? ' (miss)' : ' (hit)');
+		return $this->instances[$id];
+	}
+
+	public function flush() {
+		$this->cache = [];
+	}
+}
+
+class Cache_Fs implements CacheEngine {
+	private $cache = [];
+	private $instances = [];
+	private $_prefix = 'default:';
+	private $_path = 'tmp/cache/';
+
+	public function __construct($db_id = NULL) {
+		if($db_id) {
+			$this->_prefix = $db_id . ':';
+		}
+	}
+
+	public function get($key) {
+		$key = $this->_path . $this->escape($this->_prefix . $key);
+		$data = FALSE;
+		if (file_exists($key)) {
+			$data = file_get_contents($key);
+			$data = json_decode($data, TRUE);
 		}
 
 		return $data;
 	}
 
-	public static function set($key, $value, $expires = false) {
-		$key = Vi::$config['cache']['prefix'] . $key;
+	public function set($key, $value, $expires = FALSE) {
+		file_put_contents($this->_path . $this->escape($this->_prefix . $key), json_encode($value));
+	}
 
-		if (!$expires) {
-			$expires = Vi::$config['cache']['timeout'];
+	public function delete($key) {
+		@unlink($this->_path . $this->escape($this->_prefix . $key));
+	}
+
+	public function db($id) {
+		if(!isset($this->instances[$id])) {
+			$this->instances[$id] = new Cache_Fs($id);
+		}
+
+		return $this->instances[$id];
+	}
+
+	private function escape($key) {
+		return trim(str_replace(['/', "\0"], ['::', NULL], $key));
+	}
+
+	public function flush() {
+		$files = glob($this->_path . $this->_prefix . '*');
+		foreach ($files as $file) {
+			unlink($file);
+		}
+	}
+}
+
+class Cache_Redis implements CacheEngine {
+	private $instances = [];
+	private $redis = NULL;
+	private $current_db = NULL;
+
+	public function __construct($db_id = 'default') {
+		if(!isset(Vi::$config['cache']['redis']['databases'][$db_id])) {
+			die($db_id . ' not exists in config');
+		}
+
+		$this->current_db = $db_id;
+
+		$this->redis = new Redis();
+		$this->redis->pconnect(Vi::$config['cache']['redis']['address'], Vi::$config['cache']['redis']['port'], Vi::$config['cache']['redis']['timeout'], 'redis_' . $db_id) or die('cache connect failure');
+		
+		if (Vi::$config['cache']['redis']['password']) {
+			$this->redis->auth(Vi::$config['cache']['redis']['password']);
+		}
+		
+		$this->redis->select(Vi::$config['cache']['redis']['databases'][$db_id]) or die('cache select failure');
+	}
+
+	public function get($key) {
+		return json_decode($this->redis->get($key), TRUE);
+	}
+
+	public function set($key, $value, $expires = FALSE) {
+		return $this->redis->setex($key, $expires ?: Vi::$config['cache']['timeout'], json_encode($value));
+	}
+
+	public function delete($key) {
+		return $this->redis->delete($key);
+	}
+
+	public function db($id) {
+		if(!isset($this->instances[$id])) {
+			$this->instances[$id] = new Cache_Redis($id);
+		}
+
+		return $this->instances[$id];
+	}
+
+	public function flush() {
+		return $this->redis->flushDB();
+	}
+}
+
+class Cache_Memcached implements CacheEngine {
+	private $instances = [];
+	private $memcached = NULL;
+	private $_prefix = 'default:';
+
+	public function __construct($db_id = 'default') {
+		if($db_id) {
+			$this->_prefix = $db_id . ':';
+		}
+
+		$this->memcached = new Memcached();
+		$this->memcached->addServers(Vi::$config['cache']['memcached']);
+	}
+
+	public function get($key) {
+		return $this->memcached->get($this->_prefix . $key);
+	}
+
+	public function set($key, $value, $expires = FALSE) {
+		return $this->memcached->set($this->_prefix . $key, $value, $expires ?: Vi::$config['cache']['timeout']);
+	}
+
+	public function delete($key) {
+		return $this->memcached->delete($this->_prefix . $key);
+	}
+
+	public function db($id) {
+		if(!isset($this->instances[$id])) {
+			$this->instances[$id] = new Cache_Memcached($id);
+		}
+
+		return $this->instances[$id];
+	}
+
+	public function flush() {
+		return $this->memcached->flush();
+	}
+}
+
+class Cache {
+	private static $provider = NULL;
+
+	public static function provider() {
+		if(self::$provider) {
+			return self::$provider;
 		}
 
 		switch (Vi::$config['cache']['enabled']) {
-		case 'memcached':
-			if (!self::$cache) {
-				self::init();
-			}
-
-			self::$cache->set($key, $value, $expires);
-			break;
-		case 'redis':
-			if (!self::$cache) {
-				self::init();
-			}
-
-			self::$cache->setex($key, $expires, json_encode($value));
-			break;
-		case 'apc':
-			apc_store($key, $value, $expires);
-			break;
-		case 'xcache':
-			xcache_set($key, $value, $expires);
-			break;
-		case 'fs':
-			$key = str_replace('/', '::', $key);
-			$key = str_replace("\0", '', $key);
-			file_put_contents('tmp/cache/' . $key, json_encode($value));
-			break;
-		case 'php':
-			self::$cache[$key] = $value;
-			break;
+			case 'redis':		self::$provider = new Cache_Redis(); break;
+			case 'memcached':	self::$provider = new Cache_Memcached(); break;
+			case 'fs':			self::$provider = new Cache_Fs(); break;
+			default:			self::$provider = new Cache_Php(); break;
 		}
 
-		if (Vi::$config['debug']) {
-			Vi::$debug['cached'][] = $key . ' (set)';
-		}
+		return self::$provider;
+	}
 
+	public static function get($key) {
+		return self::provider()->get($key);
+	}
+
+	public static function set($key, $value, $expires = FALSE) {
+		self::provider()->set($key, $value, $expires);
 	}
 
 	public static function delete($key) {
-		$key = Vi::$config['cache']['prefix'] . $key;
+		self::provider()->delete($key);
+	}
 
-		switch (Vi::$config['cache']['enabled']) {
-		case 'memcached':
-		case 'redis':
-			if (!self::$cache) {
-				self::init();
-			}
-
-			self::$cache->delete($key);
-			break;
-		case 'apc':
-			apc_delete($key);
-			break;
-		case 'xcache':
-			xcache_unset($key);
-			break;
-		case 'fs':
-			$key = str_replace('/', '::', $key);
-			$key = str_replace("\0", '', $key);
-			@unlink('tmp/cache/' . $key);
-			break;
-		case 'php':
-			unset(self::$cache[$key]);
-			break;
-		}
-
-		if (Vi::$config['debug']) {
-			Vi::$debug['cached'][] = $key . ' (deleted)';
-		}
-
+	public static function db($id) {
+		return self::provider()->db($id);
 	}
 
 	public static function flush() {
-		switch (Vi::$config['cache']['enabled']) {
-		case 'memcached':
-			if (!self::$cache) {
-				self::init();
-			}
-
-			return self::$cache->flush();
-		case 'apc':
-			return apc_clear_cache('user');
-		case 'php':
-			self::$cache = array();
-			break;
-		case 'fs':
-			$files = glob('tmp/cache/*');
-			foreach ($files as $file) {
-				unlink($file);
-			}
-			break;
-		case 'redis':
-			if (!self::$cache) {
-				self::init();
-			}
-
-			//return self::$cache->flushDB();
-		}
-
-		return false;
+		self::provider()->flush();
 	}
 }

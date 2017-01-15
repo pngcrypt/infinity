@@ -81,7 +81,7 @@ class chanCaptcha {
 
 	private static function store_get($cookie) {
 		if(Vi::$config['cache']['enabled'] && Vi::$config['cache']['enabled'] == 'redis') {
-			return cache::get('captchas:' . $cookie);
+			return Cache::db('captchas')->get('captchas:' . $cookie);
 		}
 
 		$query = prepare("SELECT * FROM `captchas` WHERE `cookie` = ? AND `extra` = ?");
@@ -100,7 +100,7 @@ class chanCaptcha {
 
 	private static function store_set($cookie, $value) {
 		if(Vi::$config['cache']['enabled'] && Vi::$config['cache']['enabled'] == 'redis') {
-			return cache::set('captchas:' . $cookie, $value, Vi::$config['captcha']['expires_in']);
+			return Cache::db('captchas')->set('captchas:' . $cookie, $value, Vi::$config['captcha']['expires_in']);
 		}
 
 		$query = prepare("INSERT INTO `captchas` (`cookie`, `extra`, `text`, `created_at`) VALUES (?, ?, ?, ?)");

@@ -35,7 +35,7 @@ class Tor_Session {
 	}
 
 	public static function storage_save() {
-		cache::set('tor_cookies:' . self::$user['cookie_id'], self::$user, Vi::$config['tor']['cookie_time']);
+		Cache::db('tor')->set('tor_cookies:' . self::$user['cookie_id'], self::$user, Vi::$config['tor']['cookie_time']);
 	}
 
 	public static function storage_reset() {
@@ -82,7 +82,7 @@ class Tor_Session {
 			return ;
 		}
 
-		$data = cache::get('tor_cookies:' . $cookie);
+		$data = Cache::db('tor')->get('tor_cookies:' . $cookie);
 		if($data) {
 			self::$user = $data;
 		}

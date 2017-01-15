@@ -14,7 +14,17 @@ Vi::$config['debug'] = false;
 Vi::$config['cookies']['mod']  = 'mod';
 
 Vi::$config['cache']['enabled'] = 'redis';
-Vi::$config['cache']['redis'] = array('/var/run/redis/redis.sock', 0, '', 1);
+Vi::$config['cache']['redis'] = [
+	'address'	=> '/var/run/redis/redis.sock',
+	'port'		=> 0,
+	'password'	=> '',
+	'timeout'	=> 3,
+	'databases'	=> [
+		'default'	=> 0,
+		'captchas'	=> 1,
+		'tor'		=> 3,
+	]
+];
 
 Vi::$config['post_date'] = '%d/%m/%y (%a) %H:%M:%S';
 

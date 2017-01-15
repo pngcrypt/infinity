@@ -118,11 +118,10 @@ Vi::$config['db']['timeout'] = 30;
  */
 
 Vi::$config['cache']['enabled'] = false;
-// Vi::$config['cache']['enabled'] = 'xcache';
-// Vi::$config['cache']['enabled'] = 'apc';
 // Vi::$config['cache']['enabled'] = 'memcached';
 // Vi::$config['cache']['enabled'] = 'redis';
 // Vi::$config['cache']['enabled'] = 'fs';
+// Vi::$config['cache']['enabled'] = 'php';
 
 // Timeout for cached objects such as posts and HTML.
 Vi::$config['cache']['timeout'] = 60 * 60 * 48; // 48 hours
@@ -131,14 +130,23 @@ Vi::$config['cache']['timeout'] = 60 * 60 * 48; // 48 hours
 Vi::$config['cache']['prefix'] = '';
 
 // Memcached servers to use. Read more: http://www.php.net/manual/en/memcached.addservers.php
-Vi::$config['cache']['memcached'] = array(
-	array('localhost', 11211),
-);
+Vi::$config['cache']['memcached'] = [
+	['localhost', 11211],
+];
 
 // Redis server to use. Location, port, password, database id.
 // Note that Tinyboard may clear the database at times, so you may want to pick a database id just for
 // Tinyboard to use.
-Vi::$config['cache']['redis'] = array('localhost', 6379, '', 1);
+Vi::$config['cache']['redis'] = [
+	'address'	=> 'localhost',
+	'port'		=> 6379,
+	'password'	=> '',
+	'timeout'	=> 3,
+	'databases'	=> [
+		'default'		=> 0,
+		'another_db'	=> 1,
+	]
+];
 
 // EXPERIMENTAL: Should we cache configs? Warning: this changes board behaviour, i'd say, a lot.
 // If you have any lambdas/includes present in your config, you should move them to instance-functions.php
