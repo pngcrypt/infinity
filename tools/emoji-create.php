@@ -208,7 +208,8 @@ class emoji_create {
 								$i .= '-'.$skin['code'];
 							if(isset(self::$symbols[$i])) {
 								// subst item
-								$sym['subst'] = $i;
+								// $sym['subst'] = $i;
+								$sym['subst'] = &self::$symbols[$i];
 								$y++; // count substitutions
 								continue;
 							}
@@ -227,7 +228,7 @@ class emoji_create {
 		// print_r(self::$symbols);
 		// die
 
-		$defs = $sprites->defs->asXML();
+		$svg_defs = $sprites->defs->asXML();
 		$html_per_line = round(sqrt($cnt_chars));
 		$icons_per_line = round(sqrt($cnt_img));
 		$width_image = $width * $icons_per_line;
@@ -245,11 +246,11 @@ class emoji_create {
 			echo "Creating PNG: $width_image x $height_image px ($icons_per_line icons per line)...\n";
 
 		$transparent = new ImagickPixel('transparent');
-		$im_svg = new Imagick();
+		$im_svg = new Imagick(); // icon image
 		$im_svg->setBackgroundColor($transparent);	
 
 		if(!$extract) {
-			$im_png = new Imagick();
+			$im_png = new Imagick(); // sprite container
 			$im_png->newImage($width_image, $height_image, $transparent);
 			$im_png->setImageFormat('png32'); 
 		}
@@ -277,35 +278,31 @@ class emoji_create {
 
 		$html = "<html>\n<head><meta charset='utf-8'><link rel='stylesheet' href='". self::$fn_css ."'></head>\n<body>\n";
 
-		// make array of links
-		$sym_keys = [];
-		foreach(self::$symbols as &$sym) {
-			$sym_keys[] = &$sym;
-		}
-
 		$y = $x = $i = $cnt_chars = $cnt = 0;
 		$time = time();
 
-		while($i < $count) {
-			$sym = &$sym_keys[$i];
-			$id = $sym['id']; // id of current symbol
+		foreach(self::$symbols as $id => &$sym) {
+			if($i >= $count || time() - $time >= 3) {
+				echo "$cnt of $cnt_img...\n";
+				$time = time();
+			}
 
 			$subst = false;
 			if(isset($sym['subst'])) {
 				// skin substitution
-				if($sym['subst'] < 0) {
+				if($sym['subst'] === -1) {
 					// skip removed
 					$i++;
 					continue;
 				}
 				$subst = &$sym; // remember current element
-				$sym = &self::$symbols[$sym['subst']]; // link to substitution
+				$sym = &$subst['subst']; // link to substitution
 			}
 
 			if(!isset($sym['css'])) {
 				// make icon (if it's not created yet)
 				$svg = preg_replace('#(</?s)ymbol#is', '$1vg', $sym["svg"]->asXML()); // <symbol> --> <svg>
-				$svg = preg_replace('#([^>]+>)(.+)#is', '$1'.$defs.'$2', $svg); // insert pre-defs
+				$svg = preg_replace('#([^>]+>)(.+)#is', '$1'. $svg_defs .'$2', $svg); // insert pre-defs
 				$svg = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' . $svg;
 
 				$im_svg->readImageBlob($svg);  
@@ -326,7 +323,7 @@ class emoji_create {
 					$y++;
 				 	$x = 0;
 				}
-				$cnt++;
+				$cnt++; // count created icons
 			}
 
 			$css .= '.emoji-'. $id .'{'. $sym['css'] ."}". ($subst !== false ? " /* subst {$sym['id']} */" : "") ."\n";
@@ -340,12 +337,8 @@ class emoji_create {
 			if($subst !== false) {
 				$subst['css'] = $sym['css'];
 			}
-			$i++;
 
-			if($i >= $count || time() - $time >= 3) {
-				echo "$cnt of $cnt_img...\n";
-				$time = time();
-			}
+			$i++;
 		} // while
 
 		echo "\n";
