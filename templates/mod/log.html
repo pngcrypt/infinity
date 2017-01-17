@@ -16,7 +16,7 @@
 						{% if not mod|hasPermission(config.mod.modlog) %}
 							<a href="{{ config.root }}mod.php?/new_PM/{{ log.username|e }}">{{ log.username|e }}</a>
 						{% else %}
-							<a href="?/log:{{ log.username|e }}">{{ log.username|e }}</a>
+							<a href="?/log:{{ log.username|e }}">{{ log.username|e }}</a>{% if mod.username != log.username %}&nbsp;<a href="{{ config.root }}mod.php?/new_PM/{{ log.username|e }}">[PM]</a>{% endif %}
 						{% endif %}
 					{% endif %}
 				{% elseif log.mod == -1 %}

@@ -46,7 +46,7 @@ require_once 'inc/queue.php';
 
 require_once 'inc/lib/parsedown/Parsedown.php'; // todo: option for parsedown instead of Tinyboard/STI markup
 require_once 'inc/lib/captcha/captcha.php';
-require_once 'inc/cache.php';
+require_once 'inc/lib/cache/cache.php';
 require_once 'inc/tor.class.php';
 
 register_shutdown_function('fatal_error_handler');
@@ -3209,7 +3209,7 @@ function purify_html($s) {
 function markdown($s) {
 	$pd = new Parsedown();
 	$pd->setMarkupEscaped(true);
-	$pd->setimagesEnabled(false);
+	$pd->setImagesEnabled(false);
 
 	return $pd->text($s);
 }

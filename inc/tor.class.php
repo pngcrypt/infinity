@@ -34,8 +34,32 @@ class Tor_Session {
 		return '!tor!' . self::$user['cookie_id'];
 	}
 
+	public static function cookie_id() {
+		$cookie_id = Vi::$config['tor']['cookie_name'];
+		$cookie_id = isset($_COOKIE[$cookie_id]) ? $_COOKIE[$cookie_id] : NULL;
+
+		if(!$cookie_id || strlen($cookie_id) !== 32 || !ctype_xdigit($cookie_id)) {
+			return NULL;
+		}
+
+		return $cookie_id;
+	}
+
 	public static function storage_save() {
-		cache::set('tor_cookies:' . self::$user['cookie_id'], self::$user, Vi::$config['tor']['cookie_time']);
+		Cache::db('tor')->set('tor_cookies:' . self::$user['cookie_id'], self::$user, Vi::$config['tor']['cookie_time']);
+	}
+
+	public static function storage_load() {
+		$cookie_id = self::cookie_id();
+
+		if(!$cookie_id) {
+			return ;
+		}
+
+		$data = Cache::db('tor')->get('tor_cookies:' . $cookie_id);
+		if($data) {
+			self::$user = $data;
+		}
 	}
 
 	public static function storage_reset() {
@@ -47,13 +71,12 @@ class Tor_Session {
 			return FALSE;
 		}
 
-		$cookie = Vi::$config['tor']['cookie_name'];
-		$cookie = isset($_COOKIE[$cookie]) ? $_COOKIE[$cookie] : NULL;
+		$cookie_id = self::cookie_id();
 
-		if($new || !$cookie || strlen($cookie) !== 32 || !ctype_xdigit($cookie)) {
-			$cookie_id = md5(bin2hex(random_bytes(16).time()));
+		if($new || !$cookie_id) {
+			$cookie_id = self::$user['cookie_id'] ?: md5(bin2hex(random_bytes(16)).time());
 			
-			setcookie(Vi::$config['tor']['cookie_name'], isset(self::$user['cookie_id']) ? self::$user['cookie_id'] : $cookie_id, time() + Vi::$config['tor']['cookie_time']);
+			setcookie(Vi::$config['tor']['cookie_name'], $cookie_id, time() + Vi::$config['tor']['cookie_time']);
 			
 			self::$user = [
 				'capchas_left'	=> Vi::$config['tor']['need_capchas'],
@@ -63,7 +86,7 @@ class Tor_Session {
 				'fails_left'	=> Vi::$config['tor']['max_fails'],
 				'expire'		=> time() + Vi::$config['tor']['cookie_time'],
 				'allow_post'	=> FALSE,
-				'cookie_id'		=> isset(self::$user['cookie_id']) ? self::$user['cookie_id'] : $cookie_id,
+				'cookie_id'		=> $cookie_id,
 			];
 
 			self::storage_save();
@@ -75,16 +98,6 @@ class Tor_Session {
 			return FALSE;
 		}
 
-		$cookie = Vi::$config['tor']['cookie_name'];
-		$cookie = isset($_COOKIE[$cookie]) ? $_COOKIE[$cookie] : NULL;
-
-		if(!$cookie || strlen($cookie) !== 32 || !ctype_xdigit($cookie)) {
-			return ;
-		}
-
-		$data = cache::get('tor_cookies:' . $cookie);
-		if($data) {
-			self::$user = $data;
-		}
+		self::storage_load();
 	}
 }

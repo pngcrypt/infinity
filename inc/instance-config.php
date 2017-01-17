@@ -14,7 +14,17 @@ Vi::$config['debug'] = false;
 Vi::$config['cookies']['mod']  = 'mod';
 
 Vi::$config['cache']['enabled'] = 'redis';
-Vi::$config['cache']['redis'] = array('/var/run/redis/redis.sock', 0, '', 1);
+Vi::$config['cache']['redis'] = [
+	'address'	=> '/var/run/redis/redis.sock',
+	'port'		=> 0,
+	'password'	=> '',
+	'timeout'	=> 3,
+	'databases'	=> [
+		'default'	=> 0,
+		'captchas'	=> 1,
+		'tor'		=> 2,
+	]
+];
 
 Vi::$config['post_date'] = '%d/%m/%y (%a) %H:%M:%S';
 
@@ -35,7 +45,6 @@ Vi::$config['threads_per_page']        = 20;
 Vi::$config['max_pages']               = 15;
 Vi::$config['threads_preview']         = 3;
 Vi::$config['root']                    = '/';
-Vi::$config['secure_trip_salt']        = '';
 Vi::$config['always_noko']             = true;
 Vi::$config['allow_no_country']        = true;
 Vi::$config['thread_subject_in_title'] = true;
@@ -152,6 +161,7 @@ Vi::$config['additional_javascript'][] = 'js/file-selector.js';
 Vi::$config['additional_javascript'][] = 'js/board-directory.js';
 //	Vi::$config['additional_javascript'][] = 'js/live-index.js';
 //	Vi::$config['additional_javascript'][] = 'js/altchans.js';
+Vi::$config['additional_javascript'][] = 'js/ajax-post-controls.js';
 
 //Vi::$config['font_awesome_css'] = '/netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css';
 
@@ -190,6 +200,7 @@ Vi::$config['boards'] = array(array(
 Vi::$config['search']['enable'] = true;
 
 Vi::$config['syslog'] = true;
+Vi::$config['debug_log'] = 'tmp/error.log';
 
 Vi::$config['hour_max_threads'] = 100;
 Vi::$config['filters'][]        = array(
@@ -310,7 +321,7 @@ Vi::$config['mask_db_error']     = true;
 Vi::$config['ban_appeals']       = true;
 Vi::$config['show_sages']        = false;
 Vi::$config['katex']             = false;
-Vi::$config['twig_cache']        = false;
+Vi::$config['twig_cache']        = true;
 Vi::$config['report_captcha']    = true;
 Vi::$config['no_top_bar_boards'] = false;
 
