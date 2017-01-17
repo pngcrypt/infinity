@@ -1,164 +1,373 @@
 #!/usr/bin/php
 <?php
-function Usage($err) {
-	if($err !== "")
-		echo "$err\n\n";
-	echo "Usage: emoji-create.php [-s N] [-l N] [-e]\n\n";
-	echo "Where:\n";
-	echo "    -s N - size of icon (default: 16; minimum: 4)\n";
-	echo "    -l N - limit of unicode-words (default: 0 == unlimited)\n";
-	echo "    -e - extract each icon to png file\n";
-	die;
-}
 
-$opts = getopt('hs:l:e', ['help']);
-if(isset($opts['h']) || isset($opts['help']))
-	Usage();
+class emoji_create {
+	public static $svg_sprites = 'tools/emoji/svg/emojione.sprites.svg';	
+	public static $dir_out = 'tools/emoji';
+	public static $subdir_png = "png-%dx%d";    // subdir for extracting icons (-e)  (%d - for substiotuion width & height )
+	public static $fn_png = "emoji.%dx%d.png";  // output png sprite file
+	public static $fn_css = "emoji.%dx%d.css";  // output css file 
+	public static $fn_test = "test.%dx%d.html";  // output html test file
 
-if(!extension_loaded('imagick'))
-	die('IMagick needed.');
+	private static $skins = [
+		0 => ["code" => ""],		// default (yellow)
+		1 => ["code" => "1f3fb"],	// light pink
+		2 => ["code" => "1f3fc"],	// pink
+		3 => ["code" => "1f3fd"],	// light brown
+		4 => ["code" => "1f3fe"],	// brown
+		5 => ["code" => "1f3ff"],	// dark brown
+	];
 
-$width = $height = 16;
-if(isset($opts['s']))
-	$height = $width = $opts['s']|0;
-if($width < 4)
-	Usage("Bad width or height\n");
+	private static $symbols = [];
 
-$limit = isset($opts['l']) ? abs($opts['l']|0) : 0;
-$extract = isset($opts['e']);
+	//-----------------------------------------
+	static function Usage($err = "") {
+		if($err !== "")
+			echo "$err\n\n";
+		echo "Usage: emoji-create.php [-w N] [-l N] [-s SKINS] [-e]\n\n";
+		echo "Where:\n";
+		echo "  -w N - width of icon (default: 16; minimum: 4); height == width\n";
+		echo "  -l N - limit of unicode-words (default: 0 == unlimited)\n";
+		echo "  -e - extract each icon to .png file (otherwise sprite-file will be used)\n";
+		echo "  -s SKINS - list of skins substitutions (single number == for all)\n";
+		echo "    Examples:\n";
+		echo "      -s 0 -- replace all skins (1..5) by 0-skin (yellow)\n";
+		echo "      -s -1 -- remove all skinned icons\n";
+		echo "      -s 0:2,3:2,5:4 -- replace 0 to 2, 3 to 2, 5 to 4\n";
+		echo "      (skin number should be within 0..5)\n";
+		die;
+	}
 
-$svg_sprites = 'tools/emoji/svg/emojione.sprites.svg';
-$dir_out = 'tools/emoji';
-$fn_png = "emoji.{$width}x{$height}.png";
-$fn_css = "emoji.{$width}x{$height}.css";
-$dir_out_png = "png-{$width}x{$height}";
-
-try {
-	$sprites = simplexml_load_file($svg_sprites);
-}
-catch (Exception $e) {
-	$sprites = false;
-}
-if($sprites === false)
-	die("SVG load error: $svg_sprites");
-
-$count = count($sprites->symbol);
-if(!$count)
-	die("SVG has not sprites: $svg_sprites");
-
-if($limit) {
-	// remove items wich code have more than $limit unicode-words
-	for($i=0; $i<$count; $i++) {
-		$sym = $sprites->symbol[$i];
-		if(isset($sym['id']) && substr_count($sym['id'], '-') > $limit) {
-			unset($sprites->symbol[$i]);
+	//-----------------------------------------
+	static function getSymSkin($sym) {
+		$uc = $sym["unicode"];
+		if(count($uc) == 1) {
+			// 1-word unicode: checking other skinned-items which starts with same unicode
+			foreach(self::$skins as $id => $skin) {
+				$idx = $uc[0] .'-'. $skin['code'];
+				if(isset(self::$symbols[$idx]))
+					return 0; // other items found, it's default skin
+			}
+			return -1; // no other items, not skinned icon
 		}
-	}
-}
-$count = $sprites->symbol->count();
 
-$defs = $sprites->defs->asXML();
-$icons_pre_line = round(sqrt($count));
-$width_image = ($width) * $icons_pre_line;
-$height_image = ceil($count / $icons_pre_line) * ($height);
-
-if($extract)
-	@mkdir("$dir_out/$dir_out_png", 0777, true);
-
-echo "Icon size: $width x $height px\n";
-if($limit)
-	echo "Limit: $limit-word unicodes\n";
-echo "Sprite-file: $svg_sprites\n";
-echo "Found: $count items\n\n";
-if($extract)
-	echo "Exctrating to $dir_out/$dir_out_png...\n";
-else
-	echo "Creating PNG: $width_image x $height_image px ($icons_pre_line icons per line)...\n";
-
-$transparent = new ImagickPixel('transparent');
-$im_svg = new Imagick();
-$im_svg->setBackgroundColor($transparent);	
-
-if(!$extract) {
-	$im_png = new Imagick();
-	$im_png->newImage($width_image, $height_image, $transparent);
-	$im_png->setImageFormat('png32'); 
-}
-
-$css = ".emoji {
-	display:inline-block;
-	width: {$width}px;
-	height: {$height}px;
-	font-size:inherit;
-	font-style: normal;
-	text-indent: -9999em;	
-	line-height:normal;
-	vertical-align:middle;
-	border: 0;
-	margin: 2px;
-	padding: 0;
-	background-repeat: no-repeat;"
-	. (!$extract ? "background-image: url(\"$fn_png\");" : "")
-. "\n}\n";
-
-$html = "<html>\n<head><meta charset='utf-8'><link rel='stylesheet' href='$fn_css'></head>\n<body>\n";
-
-$y = $x = 0;
-$time = time();
-for($i=1; $i <= $count; $i++) {
-	$sym = $sprites->symbol[$i-1];
-	$id = $sym["id"];
-	$sym["width"] = $width;
-	$sym["height"] = $height;
-	$svg = $sym->asXML();
-	$svg = preg_replace('#(</?s)ymbol#is', '$1vg', $sym->asXML()); // <symbol> --> <svg>
-	$svg = preg_replace('#([^>]+>)(.+)#is', '$1'.$defs.'$2', $svg); // insert pre-defs
-	$svg = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' . $svg;
-
-	$im_svg->readImageBlob($svg);  
-	$im_svg->setImageFormat("png32");
-
-	$h = $y * $height;
-	$w = $x * $width;
-	if($extract) {
-		$css .= ".$id{background-image: url(\"$dir_out_png/$id.png\")}\n";
-		$im_svg->writeImage("$dir_out/$dir_out_png/$id.png");
-	}
-	else {
-		$css .= ".$id{background-position: " . ($x > 0 ? "-{$w}px" : '0') . ' ' . ($y > 0 ? "-{$h}px" : '0') . "}\n";
-		$im_png->compositeImage($im_svg, Imagick::COMPOSITE_OVER, $w, $h);
+		// more than 1-word unicode
+		foreach (self::$skins as $id => $skin) {
+			if($skin['code'] == $uc[1]) // is it skin?
+				return $id;
+		}
+		return -2;
 	}
 
-	// test html -->
-	$uc = "";
-	foreach(explode('-', substr($id, strpos($id, '-')+1)) as $v) {
-		$uc .= '&#x'.$v.';'; // make unicode
-	}
-	$html .= "<i class=\"emoji $id\">$uc</i>";
-	// <--
+	//-----------------------------------------
+	static function main() {
 
-	$x++;
-	if($x >= $icons_pre_line) {
-		$y++;
-	 	$x = 0;
-	 	$html .= "<br>\n";
-	}
-	if($i == $count || time() - $time >= 3) {
-		echo "$i of $count...\n";
+		// command line pares -->
+		$opts = getopt('hw:l:s:e', ['help']);
+		if(isset($opts['h']) || isset($opts['help']))
+			self::Usage();
+
+		if(!extension_loaded('imagick'))
+			die('IMagick needed.');
+
+		$width = $height = 16;
+		if(isset($opts['w']))
+			$height = $width = $opts['w']|0;
+		if($width < 4)
+			self::Usage("ERROR: Bad width of icon: ". $opts['w']);
+
+		$limit = isset($opts['l']) ? abs($opts['l']|0) : 0;
+		$extract = isset($opts['e']);
+
+		$reskin = false;
+		if(isset($opts['s'])) {
+			// -s 
+			$reskin = $opts['s'];
+			if(is_numeric($reskin)) {
+				// single skin
+				$reskin = (int)$reskin;
+				if($reskin < -1 || $reskin > 5)
+					self::Usage("ERROR: Bad skin number: $reskin");
+			}
+			else {
+				// parse skins substitioins
+				$i = explode(',', $reskin);
+				$reskin = [];
+				foreach($i as $s) {
+					$s = explode(':', $s);
+					$x = $y = -2;
+					if(count($s) == 2) {
+						if(is_numeric($s[0]))
+							$x = $s[0]|0;
+						if(is_numeric($s[1]))
+							$y = $s[1]|0;
+					}
+					if($x < 0 || $x > 5 || $y < -1 || $y > 5) 
+						self::Usage("ERROR: Bad syntax of skin: $s[0]:$s[1]");
+					if($x != $y)
+						$reskin[$x] = $y;
+				}
+				// check for loop errors
+				foreach($reskin as $id => $s) {
+					if(isset($reskin[$s]) && $id != $s && $reskin[$s] != $s)
+						self::Usage("ERROR: Loop in skins: $id:$s --> $s:". $reskin[$s]);
+				}
+			}
+			// create skins substitutions links
+			foreach(self::$skins as $id => &$s) {
+				if(is_array($reskin)) {
+					// rules-based substitution
+					if(isset($reskin[$id]))
+						$s['subst'] = $reskin[$id];
+				}
+				else {
+					// replace all skins with defined
+					if($reskin == $id)
+						continue;
+					if($reskin > -1 || ($reskin < 0 && $id)) // if -1 (removing) leave default skin
+						$s['subst'] = $reskin;
+				}
+			}
+			/*echo "Subst rules:\n";
+			print_r($reskin);
+			echo "\nSkins:\n";
+			print_r(self::$skins);*/
+			$reskin = true;
+		}
+		// <-- parse command line
+
+		// %d substitution in file names
+		self::$subdir_png = sprintf(self::$subdir_png, $width, $height);
+		self::$fn_png = sprintf(self::$fn_png, $width, $height);
+		self::$fn_css = sprintf(self::$fn_css, $width, $height);
+		self::$fn_test = sprintf(self::$fn_test, $width, $height);
+
+		echo "Sprite-file: ", self::$svg_sprites, "\n";
+		try {
+			$sprites = simplexml_load_file(self::$svg_sprites);
+		}
+		catch (Exception $e) {
+			$sprites = false;
+		}
+		if($sprites === false)
+			die("ERROR: Couldn't load");
+
+		$count = $sprites->symbol->count();
+		if(!$count)
+			die("ERROR: No sprites");
+
+		echo "Total items: $count\n";
+
+		// make symbols (icons) array
+		$i = 0;
+		foreach($sprites->symbol as $sym) {
+			$id = strtolower($sym['id']);
+			$uc = explode('-', $id);
+			array_shift($uc); // delete 'emoji' prefix
+			if(!count($uc) || ($limit && count($uc) > $limit))
+				continue;
+			$id = implode('-', $uc);
+			$sym["width"] = $width;
+			$sym["height"] = $height;
+			self::$symbols[$id] = [
+				"id" => $id,
+				"svg" => $sym,
+				"unicode" => $uc,
+				"entity" => "&#x".implode(";&#x", $uc).";", // html entity
+			];
+			$i++;
+		}
+		ksort(self::$symbols);
+
+
+		if($limit)
+			echo "Skipped: ". ($count - count(self::$symbols)) ." items > $limit-word(s) unicodes\n\n";
+
+		$cnt_img = $count = $cnt_chars = count(self::$symbols);
+
+		// skin substitution
+		if($reskin) {
+			$x = $y = $cnt_img = 0;
+			foreach(self::$symbols as $id => &$sym) {
+				$skin = self::getSymSkin($sym);
+				if($skin >= 0) {
+					$sym['skin'] = $skin;
+					$skin = self::$skins[$skin];
+					if(isset($skin['subst'])) {
+						if($skin['subst'] < 0) {
+							// remove item
+							$sym['subst'] = -1;
+							$x++; // count skipped
+							continue;
+						}
+						else {
+							$skin = self::$skins[$skin['subst']];
+							$i = $skin['code'];
+							$i = $sym['unicode'][0];
+							if($skin['code'] != "")
+								$i .= '-'.$skin['code'];
+							if(isset(self::$symbols[$i])) {
+								// subst item
+								$sym['subst'] = $i;
+								$y++; // count substitutions
+								continue;
+							}
+							else
+								echo "WARNING: No item '$i' for substition: $id --> $i\n";
+						}
+					}
+				}
+				$cnt_img++;
+			}
+			echo "Used icons: $cnt_img of $count ($x removed, $y substituted)\n\n";
+			$cnt_chars = $cnt_img + $y;
+		}
+		else
+			echo "Used icons: $cnt_img\n\n";
+		// print_r(self::$symbols);
+		// die
+
+		$defs = $sprites->defs->asXML();
+		$html_per_line = round(sqrt($cnt_chars));
+		$icons_per_line = round(sqrt($cnt_img));
+		$width_image = $width * $icons_per_line;
+		$height_image = $height * ceil($cnt_img / $icons_per_line);
+
+		if($extract) {
+			$dir_out_png = self::$dir_out .'/'. self::$subdir_png;
+			@mkdir($dir_out_png, 0777, true);
+		}
+
+		echo "Icon size: $width x $height px\n";
+		if($extract)
+			echo "Exctrating to $dir_out_png...\n";
+		else
+			echo "Creating PNG: $width_image x $height_image px ($icons_per_line icons per line)...\n";
+
+		$transparent = new ImagickPixel('transparent');
+		$im_svg = new Imagick();
+		$im_svg->setBackgroundColor($transparent);	
+
+		if(!$extract) {
+			$im_png = new Imagick();
+			$im_png->newImage($width_image, $height_image, $transparent);
+			$im_png->setImageFormat('png32'); 
+		}
+
+		$css = "/*\n"
+			." * Emoji icons $width x $height px\n"
+			.(!$extract	? " * Sprite file: $width_image x $height_image px ($icons_per_line icons per line)\n" : "")
+			." *\n"
+			." */\n\n"
+			.".emoji {\n"
+			."  display:inline-block;\n"
+			."  width: {$width}px;\n"
+			."  height: {$height}px;\n"
+			."  font-size: inherit;\n"
+			."  font-style: normal;\n"
+			."  text-indent: -9999em;\n"
+			."  line-height: normal;\n"
+			."  vertical-align: middle;\n"
+			."  border: 0;\n"
+			."  margin: 0;\n"
+			."  padding: 0;\n"
+			."  background-repeat: no-repeat;\n"
+			.(!$extract ? "  background-image: url(\"". self::$fn_png ."\");\n" : '')
+		."}\n\n";
+
+		$html = "<html>\n<head><meta charset='utf-8'><link rel='stylesheet' href='". self::$fn_css ."'></head>\n<body>\n";
+
+		// make array of links
+		$sym_keys = [];
+		foreach(self::$symbols as &$sym) {
+			$sym_keys[] = &$sym;
+		}
+
+		$y = $x = $i = $cnt_chars = $cnt = 0;
 		$time = time();
+
+		while($i < $count) {
+			$sym = &$sym_keys[$i];
+			$id = $sym['id']; // id of current symbol
+
+			$subst = false;
+			if(isset($sym['subst'])) {
+				// skin substitution
+				if($sym['subst'] < 0) {
+					// skip removed
+					$i++;
+					continue;
+				}
+				$subst = &$sym; // remember current element
+				$sym = &self::$symbols[$sym['subst']]; // link to substitution
+			}
+
+			if(!isset($sym['css'])) {
+				// make icon (if it's not created yet)
+				$svg = preg_replace('#(</?s)ymbol#is', '$1vg', $sym["svg"]->asXML()); // <symbol> --> <svg>
+				$svg = preg_replace('#([^>]+>)(.+)#is', '$1'.$defs.'$2', $svg); // insert pre-defs
+				$svg = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>' . $svg;
+
+				$im_svg->readImageBlob($svg);  
+				$im_svg->setImageFormat("png32");
+
+				$h = $y * $height;
+				$w = $x * $width;
+				if($extract) {
+					$sym['css'] = 'background-image: url("'. self::$subdir_png .'/'. $id .'.png")';
+					$im_svg->writeImage("$dir_out_png/$id.png");
+				}
+				else {
+					$sym['css'] = 'background-position: ' . ($x > 0 ? "-{$w}px" : '0') . ' ' . ($y > 0 ? "-{$h}px" : '0');
+					$im_png->compositeImage($im_svg, Imagick::COMPOSITE_OVER, $w, $h);
+				}
+				$x++;
+				if($x >= $icons_per_line) {
+					$y++;
+				 	$x = 0;
+				}
+				$cnt++;
+			}
+
+			$css .= '.emoji-'. $id .'{'. $sym['css'] ."}". ($subst !== false ? " /* subst {$sym['id']} */" : "") ."\n";
+			$html .= '<i class="emoji emoji-'. $id .'">'. self::$symbols[$id]['entity'] .'</i> ';
+			$cnt_chars++;
+			if($cnt_chars >= $html_per_line) {
+				$cnt_chars = 0;
+			 	$html .= "<br>\n";
+			}
+
+			if($subst !== false) {
+				$subst['css'] = $sym['css'];
+			}
+			$i++;
+
+			if($i >= $count || time() - $time >= 3) {
+				echo "$cnt of $cnt_img...\n";
+				$time = time();
+			}
+		} // while
+
+		echo "\n";
+		$html .= "</body>\n</html>\n";
+
+		echo "Saving css ", self::$dir_out, '/', self::$fn_css, "...\n";
+		file_put_contents(self::$dir_out .'/'. self::$fn_css, $css);
+
+		echo "Saving test ", self::$dir_out, '/', self::$fn_test, "...\n";
+		file_put_contents(self::$dir_out .'/'. self::$fn_test, $html);
+
+		if(!$extract) {
+			echo "Saving sprite-file ", self::$dir_out, '/', self::$fn_png, "...\n";
+			$im_png->writeImage(self::$dir_out .'/'. self::$fn_png);
+			$im_png->clear();
+			$im_png->destroy();
+		}
+		$im_svg->clear();
+		$im_svg->destroy();
+
+		echo "\nDone.\n";
 	}
-}
-$html .= "</body>\n</html>\n";
-file_put_contents("$dir_out/$fn_css", $css);
-file_put_contents("$dir_out/test.{$width}x{$height}.html", $html);
+} // class emoji
 
-if(!$extract) {
-	echo "Saving to $dir_out/$fn_png...\n";
-	$im_png->writeImage("$dir_out/$fn_png");
-	$im_png->clear();
-	$im_png->destroy();
-}
-$im_svg->clear();
-$im_svg->destroy();
-
-echo "Done.\n";
+emoji_create::main();
