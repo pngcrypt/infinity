@@ -48,7 +48,7 @@ class chanCaptcha {
 			$id .= '_' . intval($method['thread']);
 		}
 
-		return $id;
+		return preg_replace('/\W/', '', $id); // remove any "non-word" character
 	}
 
 	public static function generate_captcha() {
