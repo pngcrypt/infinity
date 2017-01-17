@@ -200,6 +200,7 @@ Vi::$config['boards'] = array(array(
 Vi::$config['search']['enable'] = true;
 
 Vi::$config['syslog'] = true;
+Vi::$config['debug_log'] = 'tmp/error.log';
 
 Vi::$config['hour_max_threads'] = 100;
 Vi::$config['filters'][]        = array(

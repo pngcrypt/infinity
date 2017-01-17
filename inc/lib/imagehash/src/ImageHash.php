@@ -46,7 +46,7 @@ class ImageHash
 	{
 		if (!is_resource($resource)) {
 			$_resource = $resource;
-			$imagetype = getimagesize($resource);
+			$imagetype = @getimagesize($resource);
 			if($imagetype) {
 				switch($imagetype[2]) {
 					case IMAGETYPE_PNG:
