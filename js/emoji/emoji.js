@@ -172,7 +172,7 @@ var emoji = function() {
 	}
 
 	function returnTrue() {
-		return null;
+		return true;
 	}
 
 	function fromCodePoint(codepoint) {
