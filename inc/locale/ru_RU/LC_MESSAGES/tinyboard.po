@@ -1539,10 +1539,10 @@ msgid "Target and source board are the same."
 msgstr "Целевая и текущая доска одинаковы."
 
 msgid "Target board"
-msgstr "Текущая доска"
+msgstr "На доску"
 
 msgid "Target thread"
-msgstr "Целевая ветка"
+msgstr "В тред"
 
 msgid "Text board"
 msgstr "Текстовая"
