@@ -916,7 +916,7 @@ function BoardLocale($uri, $default = NULL) {
 		$uri .= "/";
 	}
 
-	if (file_exists($fn = "./{$uri}locale")) {
+	if (@file_exists($fn = "./{$uri}locale")) {
 		$locale = trim(@file_get_contents($fn));
 	}
 
@@ -1297,7 +1297,7 @@ function post(array $post) {
 		$query->bindValue(':trip', null, PDO::PARAM_NULL);
 	}
 
-	$salt     = $post['time'] . Vi::$board['uri'];
+	$salt     = time() . Vi::$board['uri'];
 	$password = hash_pbkdf2("sha256", $post['password'], $salt, 10000, 20);
 
 	$query->bindValue(':name', $post['name']);
