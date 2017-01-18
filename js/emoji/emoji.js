@@ -110,7 +110,7 @@ var emoji = function() {
 			nodeType = subnode.nodeType;
 			if (nodeType === 3) {
 				allText.push(subnode);
-			} else if (nodeType === 1 && !shouldntBeParsed.test(subnode.nodeName)) {
+			} else if (nodeType === 1 && !shouldntBeParsed.test(subnode.nodeName) && !subnode.classList.contains(twemoji.className)) {
 				grabAllTextNodes(subnode, allText);
 			}
 		}
