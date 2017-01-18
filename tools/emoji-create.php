@@ -27,7 +27,7 @@ class emoji_create {
 		echo "Usage: emoji-create.php [-w N] [-l N] [-s SKINS] [-e]\n\n";
 		echo "Where:\n";
 		echo "  -w N - width of icon (default: 16; minimum: 4); height == width\n";
-		echo "  -l N - limit of unicode-words (default: 0 == unlimited)\n";
+		echo "  -l N - limit max bytes of one char in UTF-8 (default: 0 == unlimited)\n";
 		echo "  -e - extract each icon to .png file (otherwise sprite-file will be used)\n";
 		echo "  -s SKINS - list of skins substitutions (single number == for all)\n";
 		echo "    Examples:\n";
@@ -57,6 +57,25 @@ class emoji_create {
 				return $id;
 		}
 		return -2;
+	}
+
+	//-----------------------------------------
+	static function getMaxBytes($uc) {
+		$max = 0;
+		if(!is_array($uc))
+			return $max;
+		foreach($uc as $c) {
+			$c = hexdec($c);
+			if($c < 0x80) $b = 1;
+			else if($c < 0x800) $b = 2;
+			else if($c < 0x10000) $b = 3;
+			else if($c < 0x200000) $b = 4;
+			else if($c < 0x4000000) $b = 5;
+			else $b = 6;
+			if($b > $max)
+				$max = $b;
+		}
+		return $max;
 	}
 
 	//-----------------------------------------
@@ -128,10 +147,6 @@ class emoji_create {
 						$s['subst'] = $reskin;
 				}
 			}
-			/*echo "Subst rules:\n";
-			print_r($reskin);
-			echo "\nSkins:\n";
-			print_r(self::$skins);*/
 			$reskin = true;
 		}
 		// <-- parse command line
@@ -159,13 +174,23 @@ class emoji_create {
 		echo "Total items: $count\n";
 
 		// make symbols (icons) array
+		$regexp = [];
+		$html = "";
 		$i = 0;
 		foreach($sprites->symbol as $sym) {
 			$id = strtolower($sym['id']);
 			$uc = explode('-', $id);
 			array_shift($uc); // delete 'emoji' prefix
-			if(!count($uc) || ($limit && count($uc) > $limit))
+			if(!count($uc))
 				continue;
+			$x = self::getMaxBytes($uc);
+			if($x < 2 || ($limit && $x > $x)) {
+				// echo implode('-', $uc), ': ', $x, '; ';
+				continue;
+			}
+			$uc = array_map(function($v) {
+				return preg_replace("/^0+/", '', $v);
+			}, $uc);
 			$id = implode('-', $uc);
 			$sym["width"] = $width;
 			$sym["height"] = $height;
@@ -176,14 +201,35 @@ class emoji_create {
 				"entity" => "&#x".implode(";&#x", $uc).";", // html entity
 			];
 			$i++;
+
+			// debug -->
+			/*$y = html_entity_decode(self::$symbols[$id]['entity'], ENT_COMPAT, "UTF-8");
+			$x = substr(json_encode($y), 1, -1);
+			$html .= $y.' ';
+			$regexp[$x] = $id;*/
+			// <-- debug
 		}
 		ksort(self::$symbols);
+		ksort($regexp);
 
+		// debug -->
+		/*ob_start();
+		print_r($regexp);
+		$x = ob_get_clean();
+		$x = preg_replace('/=>[\s\n]+/', ' => ', $x); // remove \n after =>
+		$x = preg_replace('/{[\s\n]+}/', '{}', $x); // don't open empty arrays
+		file_put_contents(self::$dir_out .'/regexp.txt', $x);
+		file_put_contents(self::$dir_out .'/chars.txt', $html);*/
+		// die;
+		// <-- debug
 
-		if($limit)
-			echo "Skipped: ". ($count - count(self::$symbols)) ." items > $limit-word(s) unicodes\n\n";
+		$cnt_img = $cnt_chars = count(self::$symbols);
 
-		$cnt_img = $count = $cnt_chars = count(self::$symbols);
+		if($count != $cnt_img)
+			echo "Skipped: ", ($count - $cnt_img), " items: (1 < UTF-bytes", ($limit ? " <= $limit" : ""), ")\n\n";
+
+		$count = $cnt_img;
+		// die;
 
 		// skin substitution
 		if($reskin) {
@@ -225,8 +271,6 @@ class emoji_create {
 		}
 		else
 			echo "Used icons: $cnt_img\n\n";
-		// print_r(self::$symbols);
-		// die
 
 		$svg_defs = $sprites->defs->asXML();
 		$html_per_line = round(sqrt($cnt_chars));
@@ -282,11 +326,6 @@ class emoji_create {
 		$time = time();
 
 		foreach(self::$symbols as $id => &$sym) {
-			if($i >= $count || time() - $time >= 3) {
-				echo "$cnt of $cnt_img...\n";
-				$time = time();
-			}
-
 			$subst = false;
 			if(isset($sym['subst'])) {
 				// skin substitution
@@ -339,6 +378,10 @@ class emoji_create {
 			}
 
 			$i++;
+			if($i >= $count || time() - $time >= 3) {
+				echo "$cnt of $cnt_img...\n";
+				$time = time();
+			}
 		} // while
 
 		echo "\n";
