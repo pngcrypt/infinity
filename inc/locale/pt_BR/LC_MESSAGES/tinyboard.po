@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-13 19:59+0300\n"
+"POT-Creation-Date: 2017-01-19 17:13+0300\n"
 "PO-Revision-Date: 2017-01-13 20:15+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/infinity/language/pt_BR/)\n"
@@ -807,6 +807,9 @@ msgid "Hide NSFW boards"
 msgstr ""
 
 msgid "Hide country"
+msgstr ""
+
+msgid "Hide form"
 msgstr ""
 
 msgid "Hide from boards index<br/>and do not index in search engines"

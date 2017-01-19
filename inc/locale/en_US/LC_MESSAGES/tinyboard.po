@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-13 19:59+0300\n"
+"POT-Creation-Date: 2017-01-19 17:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -804,6 +804,9 @@ msgid "Hide NSFW boards"
 msgstr ""
 
 msgid "Hide country"
+msgstr ""
+
+msgid "Hide form"
 msgstr ""
 
 msgid "Hide from boards index<br/>and do not index in search engines"
