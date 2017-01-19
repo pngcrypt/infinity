@@ -43,11 +43,12 @@
 		{{ config.announcement }}
 	{% endif %}
 
-	<div class="banner">{% trans("Posting mode: Reply") %} <a class="unimportant" href="{{ return }}">[{% trans("Return") %}]</a> <a class="unimportant" href="javascript:window.scrollTo(0,document.body.scrollHeight);
-">[{% trans("Go to bottom") %}]</a></div>
+	<div class="banner">
+		{% trans("Posting mode: Reply") %} <a class="unimportant" href="{{ return }}">[{% trans("Return") %}]</a>
+		 <a class="unimportant" href="javascript:window.scrollTo(0,document.body.scrollHeight);">[{% trans("Go to bottom") %}]</a>
+	</div>
 
 	{% include 'ad_top.html' %}
-
 	{% include 'post_form.html' %}
 
 	{% if config.global_message %}<hr /><div class="blotter">{{ config.global_message }}</div>{% endif %}

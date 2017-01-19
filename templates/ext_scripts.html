@@ -1,7 +1,4 @@
-{# 
-	include additional scrips from ext_scripts[] array only if it is not in config.additional_javascript already
-
-#}
+{# include additional scrips from ext_scripts[] array only if it is not in config.additional_javascript already #}
 {% spaceless %}
 {% if ext_scripts %}
 	{% for script in ext_scripts %}

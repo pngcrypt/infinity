@@ -41,7 +41,8 @@ watchlist.render = function(reset) {
 	} else {
 		//If the watchlist has not yet been rendered, create it.
 		var menuStyle = getComputedStyle($('.boardlist')[0]);
-		$((active_page == 'ukko') ? 'hr:first' : (active_page == 'catalog') ? 'body>span:first' : 'form[name="post"]').before(
+		// $((active_page == 'ukko') ? 'hr:first' : (active_page == 'catalog') ? 'body>span:first' : 'form[name="post"]').before(
+		$('body').append(
 			$('<div id="watchlist">'+
 					'<div class="watchlist-controls">'+
 						'<span><a id="clearList">['+_('Clear List')+']</a></span>&nbsp'+
@@ -198,4 +199,3 @@ $(document).ready(function(){
 	});
 
 });
-

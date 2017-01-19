@@ -118,12 +118,16 @@ table.mod.config-editor input[type="text"] {
   display:none;
 }
 
-a,a:visited {
+a,a:visited, .link-label {
   text-decoration: underline;
   color: #34345C;
 }
+.link-label {
+  text-decoration: none;
+  cursor: pointer;
+}
 
-a:hover,.intro a.post_no:hover {
+a:hover,.intro a.post_no:hover, .link-label:hover {
   color: #ff0000;
 }
 
@@ -1787,7 +1791,15 @@ a.no_underline, a.no_underline:visited {
 	text-decoration: none;
 }
 
-/* Show / hide post options w/o javascript */
+#alert_div textarea {
+	margin-top: 8px;
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 5.8em;
+	box-sizing: border-box;
+}
+
+/* Show / hide post options w/o js */
 input.show-post-table-options {
 	display: none;
 }
@@ -1797,15 +1809,15 @@ label.show-post-options, label.hide-post-options {
 }
 .show-post-table-options ~ label.show-post-options {
   display: inline-block;
-  cursor: pointer;
 }
 .show-post-table-options ~ label.hide-post-options, .show-post-table-options ~ .post-table-options {
 	display: none;
 }
-.show-post-table-options:checked ~ label.show-post-options {display: none;}
+.show-post-table-options:checked ~ label.show-post-options {
+	display: none;
+}
 .show-post-table-options:checked ~ label.hide-post-options {
-	display: inline-block !important;
-	cursor: pointer;
+	display: inline-block;
 }
 .show-post-table-options:checked ~ .post-table-options {
 	display: table;
@@ -1815,10 +1827,17 @@ label.show-post-options, label.hide-post-options {
 	text-align: right;
 }
 
-#alert_div textarea {
-	margin-top: 8px;
-	min-width: 100%;
-	max-width: 100%;
-	min-height: 5.8em;
-	box-sizing: border-box;
+/* Show / hide post form w/o js */
+input#show-post-form {
+	display: none;
+}
+.show-post-form, .hide-post-form {
+	line-height: 1em;
+	display: inline-block;
+}
+#show-post-form ~ .hide-post-form, #show-post-form ~ #post-form-inner, #show-post-form:checked ~ .show-post-form {
+	display: none;
+}
+#show-post-form:checked ~ .hide-post-form, #show-post-form:checked ~ #post-form-inner {
+	display: inline-block;
 }

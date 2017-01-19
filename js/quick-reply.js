@@ -32,12 +32,14 @@
 		'#quick-reply table {'+
 			'border-collapse: collapse;'+
 			'background: ' + reply_background + ';'+
-			'border-style: ' + reply_border_style + ';'+
-			'border-width: ' + reply_border_width + ';'+
-			'border-color: ' + reply_border_color + ';'+
+			'border: '+ reply_border_width +' '+ reply_border_style +' '+ reply_border_color +';'+
 			'margin: 0; width: 100%; box-sizing: border-box;'+
 		'}'+
-		'#quick-reply .wrap-post-options {background:' + reply_background + ';}'+
+		'#quick-reply .wrap-post-options {'+
+			'background:' + reply_background + ';'+
+			'border: '+ reply_border_width +' '+ reply_border_style +' '+ reply_border_color +';'+			
+		'}'+
+		'#quick-reply .wrap-post-options table { border: 0; }'+
 		'</style>').appendTo($('head'));
 	};
 	
@@ -66,9 +68,8 @@
 		
 		do_css();
 		
-		$postForm = $('#post-form-outer').clone();
-		
-		$postForm.clone();
+		$postForm = $('#post-form-outer').clone();		
+		$postForm.find('#show-post-form, label[for="show-post-form"]').remove(); // hide/show link remove
 		
 		var $dummyStuff = $('<div class="nonsense"></div>').appendTo($postForm.find('form'));
 		
@@ -219,6 +220,12 @@
 	
 		$postForm.appendTo($('body')).hide();
 		var $origPostForm = $('form[name="post"]:first');
+
+		$('#show-post-form').off().on("change", function() {
+			// scroll imitation on hide/show main form
+			$origPostForm.hidden = !this.checked;
+			$(window).scroll(); 
+		});
 		
 		// Synchronise body text with original post form
 		$origPostForm.find('textarea[name="body"]').on('change input propertychange', function() {
@@ -296,10 +303,12 @@
 	
 		$(window).ready(function() {
 			if (settings.get('hide_at_top', true)) {
-				$(window).scroll(function() {
+				var $anchor = $origPostForm.find('textarea[name="body"]');
+				$(window).on("scroll", function() {
 					if ($(this).width() <= 600)
 						return;
-					if ($(this).scrollTop() < $origPostForm.offset().top + $origPostForm.height() - 100) {
+					var ofsTop = $origPostForm.hidden ? 0 : $anchor.offset().top + ($anchor.height()/2)|0;
+					if ($(this).scrollTop() < ofsTop) {
 						if(!$postForm.closed)
 							$postForm.fadeOut(100);
 						$postForm.hidden = true;
@@ -359,8 +368,8 @@
 		});
 	};
 	
-	if (settings.get('floating_link', false)) {
-		$(window).ready(function() {
+/*	if (settings.get('floating_link', false)) {
+		$(function() {
 			if(!$('div.banner').length)
 				return;
 			$('<style type="text/css">'+
@@ -375,19 +384,19 @@
 			'</style>').appendTo($('head'));
 			
 			floating_link();
-			
 			if (settings.get('hide_at_top', true)) {
-				$('.quick-reply-btn').hide();
-				
-				$(window).scroll(function() {
+				$('.quick-reply-btn').hide();				
+				var $anchor = $('#post-form-outer textarea[name="body"]');
+				$(window).on("scroll", function() {
 					if ($(this).width() <= 600)
 						return;
-					if ($(this).scrollTop() < $('form[name="post"]:first').offset().top + $('form[name="post"]:first').height() - 100)
+					var ofsTop = $origPostForm.hidden ? 0 : $anchor.offset().top + ($anchor.height()/2)|0;
+					if ($(this).scrollTop() < ofsTop)
 						$('.quick-reply-btn').fadeOut(100);
 					else
 						$('.quick-reply-btn').fadeIn(100);
 				}).scroll();
 			}
 		});
-	}
+	}*/
 })();
