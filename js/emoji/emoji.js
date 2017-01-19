@@ -229,15 +229,14 @@ var emoji = function() {
 
 	function init() {
 		var s = document.querySelector('link#'+ twemoji.className+ "-css");
-		if(s)
-			s.parentNode.removeChild(s);
-		if(!document.head)
+		if(s || !document.head)
 			return;
+		// s.parentNode.removeChild(s);
 		s = document.createElement('link');
 		s.rel = 'stylesheet';
 		s.href = twemoji.base + twemoji.css;
 		s.id = twemoji.className + '-css';
-		document.head.append(s);
+		document.head.appendChild(s);
 	}
 }();
 
