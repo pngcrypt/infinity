@@ -210,10 +210,10 @@ class emoji_create {
 			// <-- debug
 		}
 		ksort(self::$symbols);
-		ksort($regexp);
 
-		// debug -->
-		/*ob_start();
+		// debug -->		
+		/*ksort($regexp);
+		ob_start();
 		print_r($regexp);
 		$x = ob_get_clean();
 		$x = preg_replace('/=>[\s\n]+/', ' => ', $x); // remove \n after =>
@@ -310,10 +310,10 @@ class emoji_create {
 			."  height: {$height}px;\n"
 			."  overflow: hidden;\n"
 			."  color: rgba(0,0,0,0);\n"
-			."  font-size: inherit;\n"
+			."  line-height: {$height}px;\n"
+			."  font-size: ". ($width*(11/16)) ."pt;\n" // font size in 'pt' (11pt in 16px)
 			."  font-style: normal;\n"
-			// ."  text-indent: -9999em;\n"
-			."  line-height: normal;\n"
+			."  text-align: center;\n"
 			."  vertical-align: middle;\n"
 			."  border: 0;\n"
 			."  margin: 0;\n"
