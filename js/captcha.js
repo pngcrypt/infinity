@@ -10,6 +10,7 @@ Vi.captcha = function() {
 	var $cf, $cwrap, tid, $cinp, $cinf, $bg, tout, 
 		// sel_inp = 'input:not(:submit), textarea',
 		sel_inp = 'input[name="captcha_text"]', // selector of fields that can update the captcha
+		ev_inp = 'click keydown focus', // events for captcha update
 		loaded = false,
 		updating = false,
 		timeout = false,
@@ -47,8 +48,8 @@ Vi.captcha = function() {
 
 		$cwrap.addClass('captcha-wrap');
 		$cinp = $cf.parents('form')
-			.off('click keydown', sel_inp, form_click)
-			.on('click keydown', sel_inp, form_click)	// update by activity in form
+			.off(ev_inp, sel_inp, form_click)
+			.on(ev_inp, sel_inp, form_click)	// update by activity in form
 			.find('input[name="captcha_text"]') 		// $cinp
 				.off('keydown', captcha_input_eng)
 				.on('keydown', captcha_input_eng);		// eng locale in captcha_text
@@ -159,8 +160,8 @@ Vi.captcha = function() {
     	// on quick-reply show
     	captcha_clone();
     	$('#quick-reply form')
-    		.off('click keydown', sel_inp, form_click) 	// remove previous handler
-    		.on('click keydown', sel_inp, form_click) 	// update by activity in quick-form
+    		.off(ev_inp, sel_inp, form_click) 	// remove previous handler
+    		.on(ev_inp, sel_inp, form_click) 	// update by activity in quick-form
 			.find('input[name="captcha_text"]')
 				.off('keydown', captcha_input_eng)
 				.on('keydown', captcha_input_eng);		// eng locale in captcha_text
