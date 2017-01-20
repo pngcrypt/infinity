@@ -533,7 +533,7 @@ if (active_page === 'thread' || active_page === 'index' || active_page === 'cata
 				$('.thread').each(function () {
 					var $thread = $(this);
 					// disregard the hidden threads constructed by post-hover.js
-					if ($thread.css('display') == 'none')
+					if ($thread.css('display') == 'none' || !$thread.attr('id'))
 						return;
 
 					var threadId = $thread.attr('id').replace('thread_', '');

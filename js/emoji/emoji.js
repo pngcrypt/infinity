@@ -95,6 +95,7 @@ var emoji = function() {
 		U200D = String.fromCharCode(8205),
 		shouldntBeParsed = /IFRAME|NOFRAMES|NOSCRIPT|SCRIPT|SELECT|STYLE|TEXTAREA|[a-z]/,
 		fromCharCode = String.fromCharCode;
+		init();
 	return twemoji;
 
 	function createText(text) {
@@ -228,10 +229,9 @@ var emoji = function() {
 	}
 
 	function init() {
+		if(!document.head) return;
 		var s = document.querySelector('link#'+ twemoji.className+ "-css");
-		if(s || !document.head)
-			return;
-		// s.parentNode.removeChild(s);
+		if(s) return;
 		s = document.createElement('link');
 		s.rel = 'stylesheet';
 		s.href = twemoji.base + twemoji.css;
@@ -256,7 +256,6 @@ $(function () {
 			return true;
 		}
 	}
-	emoji.init();
 	emoji.parse(document.body, emoji_opts);
 
 	$(document).on('new_post', function(e, post) {
