@@ -21,7 +21,7 @@ $(function(){
 			processData: false,
 			dataType: 'json'
 		})
-		.success(function (data) {
+		.done(function (data) {
 			if(typeof data != 'object' || !data.board || !data.image)
 				return;
 			if(!$img) {
