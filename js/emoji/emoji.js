@@ -46,12 +46,8 @@ var emoji = function() {
 			/|\ud83c\udff3(?:\ufe0f\u200d)?\ud83c\udf08/,
 			/|\ud83c\udff4\u200d\u2620\ufe0f/,
 			/|\ud83d\udc41\u200d?\ud83d\udde8/,
-			/|\ud83d\udc68\u200d\ud83d[\udc66\udc67]/,
-			/|\ud83d\udc69\u200d\ud83d[\udc66\udc67]/,
-			/|\ud83d\udc6f\u200d\u2640\ufe0f/,
-			/|\ud83d\udc6f\u200d\u2642\ufe0f/,
-			/|\ud83e\udd3c\u200d\u2640\ufe0f/,
-			/|\ud83e\udd3c\u200d\u2642\ufe0f/,
+			/|\ud83d[\udc68\udc69]\u200d\ud83d[\udc66\udc67]/,
+			/|\ud83d[\udc6f\udd3c]\u200d[\u2640\u2642]\ufe0f/,
 			/|(?:[\u0023\u002a\u0030-\u0039])\ufe0f?\u20e3/,
 
 			// skinned
@@ -231,7 +227,11 @@ var emoji = function() {
 	function init() {
 		if(!document.head) return;
 		var s = document.querySelector('link#'+ twemoji.className+ "-css");
-		if(s) return;
+		if(s) {
+			if(s.href == twemoji.base + twemoji.css)
+				return;
+			s.parentNode.removeChild(s);
+		}
 		s = document.createElement('link');
 		s.rel = 'stylesheet';
 		s.href = twemoji.base + twemoji.css;
@@ -244,7 +244,7 @@ var emoji = function() {
 $(function () {
 	"use strict";
 	var emoji_opts = {
-		callback: function(icon, options) {
+		callback: function(icon) {
 			// return true;
 			switch ( icon ) {
 				case 'a9':      // copyright
@@ -255,9 +255,8 @@ $(function () {
 			}
 			return true;
 		}
-	}
+	};
 	emoji.parse(document.body, emoji_opts);
-
 	$(document).on('new_post', function(e, post) {
 		emoji.parse(post, emoji_opts);
 	});
