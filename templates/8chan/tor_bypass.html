@@ -4,6 +4,7 @@
 {% if not user.allow_post %}
 <p>{% trans(".onion users must submit captcha every") %} {{ (config.tor.cookie_time + time())|until }} {% trans("or") %} {{ user.posts_max }} {% trans("posts, cookies must be enabled.") %}</p>
 {% if message %}{{message}}<br/><br/>{% endif %}
+{% set captcha_onstart = true %}
 {% include 'captcha.html' %}
 {% trans("You need to submit:") %} {{ user.capchas_left }} {% trans("captchas out of") %} {{ user.capchas_need }}, {% trans("fails left:") %} {{ user.fails_left }}<br/>
 {% else %}
