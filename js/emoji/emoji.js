@@ -9,11 +9,12 @@
  *		https://github.com/Ranks/emojione
  *
  */
+
 var emoji = function() {
 	"use strict";
 	var twemoji = {
 			base: "/js/emoji/",
-			css: "assets/emoji.16x16.css",
+			css: "assets/emoji.16x16.noskin.css",
 			className: "emoji",
 			convert: {
 				fromCodePoint: fromCodePoint,
@@ -25,34 +26,43 @@ var emoji = function() {
 				}
 			},
 			init: init,
+			setCSS: setCSS,
 			parse: parse,
 			replace: replace,
 			test: test
 		},
 		re = new RegExp([
-			/\ud83d[\udc68-\udc69](?:\ud83c[\udffb-\udfff])?\u200d(?:\u2695\ufe0f|\u2696\ufe0f|\u2708\ufe0f|\ud83c[\udf3e\udf73\udf93\udfa4\udfa8\udfeb\udfed]|\ud83d[\udcbb\udcbc\udd27\udd2c\ude80\ude92])/,
-			/|(?:\ud83c[\udfcb\udfcc]|\ud83d\udd75|\u26f9)(?:\ufe0f|\ud83c[\udffb-\udfff])\u200d[\u2640\u2642]\ufe0f/,
-			/|(?:\ud83c[\udfc3\udfc4\udfca]|\ud83d[\udc6e\udc71\udc73\udc77\udc81\udc82\udc86\udc87\ude45-\ude47\ude4b\ude4d\ude4e\udea3\udeb4-\udeb6]|\ud83e[\udd26\udd37-\udd39\udd3d\udd3e])(?:\ud83c[\udffb-\udfff])?\u200d[\u2640\u2642]\ufe0f/,
-
-			// family
-			/|\ud83d\udc68\ud83d\udc69\ud83d(?:[\udc66\udc67]\ud83d\udc66|(?:\udc67\ud83d)?\udc67)/,
+        	/\ud83d[\udc68-\udc69](?:\ud83c[\udffb-\udfff])?\u200d(?:[\u2695\u2696\u2708]\ufe0f?|\ud83c[\udf3e\udf73\udf93\udfa4\udfa8\udfeb\udfed]|\ud83d[\udcbb\udcbc\udd27\udd2c\ude80\ude92])/,
+			/|(?:\ud83c[\udfcb\udfcc]|\ud83d\udd75|\u26f9)(?:\ufe0f?|\ud83c[\udffb-\udfff])\u200d[\u2640\u2642]\ufe0f?/,
+			/|(?:\ud83c[\udfc3\udfc4\udfca]|\ud83d[\udc6e\udc71\udc73\udc77\udc81\udc82\udc86\udc87\ude45-\ude47\ude4b\ude4d\ude4e\udea3\udeb4-\udeb6]|\ud83e[\udd26\udd37-\udd39\udd3d\udd3e])(?:\ud83c[\udffb-\udfff])?\u200d[\u2640\u2642]\ufe0f?/,
 
 			// family (gay)
-			/|\ud83d\udc68(?:\u2764\ud83d(?:\udc8b\ud83d)?\udc68|\ud83d\udc68\ud83d(?:\udc66\ud83d\udc66|(?:\udc67\ud83d)?[\udc66\udc67]))/,
+			/|\ud83d\udc68\u200d(?:\u2764\ufe0f?\u200d\ud83d(?:\udc8b\u200d\ud83d)?\udc68|\ud83d\udc68\u200d\ud83d(?:\udc66\u200d\ud83d\udc66|(?:\udc67\u200d\ud83d)?[\udc66\udc67]))/,
 
 			// family (lesb)
-			/|\ud83d\udc69(?:\u2764\ud83d(?:\udc8b\ud83d)?\udc69|\ud83d\udc69\ud83d(?:\udc66\ud83d\udc66|(?:\udc67\ud83d)?[\udc66\udc67]))/,
+			/|\ud83d\udc69\u200d(?:\u2764\ufe0f?\u200d\ud83d(?:\udc8b\u200d\ud83d)?\udc69|\ud83d\udc69\u200d\ud83d(?:\udc66\u200d\ud83d\udc66|(?:\udc67\u200d\ud83d)?[\udc66\udc67]))/,
 
-			/|\ud83c\udff3(?:\ufe0f\u200d)?\ud83c\udf08/,
-			/|\ud83c\udff4\u200d\u2620\ufe0f/,
-			/|\ud83d\udc41\u200d?\ud83d\udde8/,
-			/|\ud83d[\udc68\udc69]\u200d\ud83d[\udc66\udc67]/,
-			/|\ud83d[\udc6f\udd3c]\u200d[\u2640\u2642]\ufe0f/,
+			// family
+			/|\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d(?:[\udc66\udc67]\u200d\ud83d\udc66|(?:\udc67\u200d\ud83d)?\udc67)/,
+
+			// flag + rainbow
+			/|\ud83c\udff3(?:\ufe0f?\u200d)?\ud83c\udf08/,
+
+			// black flag + skull
+			/|\ud83c\udff4\u200d\u2620\ufe0f?/,
+
+			// eye_in_speech_bubble
+			/|\ud83d\udc41\u200d\ud83d\udde8/,
+			
+			/|\ud83d[\udc6f\udd3c]\u200d[\u2640\u2642]\ufe0f?/,
+
+			// dial-buttons
 			/|(?:[\u0023\u002a\u0030-\u0039])\ufe0f?\u20e3/,
 
 			// skinned
-			/|(?:(?:\ud83c[\udfcb\udfcc]|\ud83d[\udd74\udd75\udd90]|[\u261d\u26f7\u26f9\u270c\u270d])(?:\ufe0f|(?!\ufe0e))|\ud83c[\udf85\udfc2-\udfc4\udfc7\udfca]|\ud83d[\udc42\udc43\udc46-\udc50\udc66-\udc69\udc6e\udc70-\udc78\udc7c\udc81-\udc83\udc85-\udc87\udcaa\udd7a\udd95\udd96\ude45-\ude47\ude4b-\ude4f\udea3\udeb4-\udeb6\udec0\udecc]|\ud83e[\udd18-\udd1e\udd26\udd30\udd33-\udd39\udd3c-\udd3e]|[\u270a\u270b])(?:\ud83c[\udffb-\udfff]|)/,
+			/|(?:(?:\ud83c[\udfcb\udfcc]|\ud83d[\udd74\udd75\udd90]|[\u261d\u26f7\u26f9\u270a-\u270d])(?:\ufe0f|(?!\ufe0e))|\ud83c[\udf85\udfc2-\udfc4\udfc7\udfca]|\ud83d[\udc42\udc43\udc46-\udc50\udc66-\udc69\udc6e\udc70-\udc78\udc7c\udc81-\udc83\udc85-\udc87\udcaa\udd7a\udd95\udd96\ude45-\ude47\ude4b-\ude4f\udea3\udeb4-\udeb6\udec0\udecc]|\ud83e[\udd18-\udd1e\udd26\udd30\udd33-\udd39\udd3c-\udd3e])(?:\ud83c[\udffb-\udfff]|)/,
 
+			// country flags
 			/|\ud83c\udde6\ud83c[\udde8-\uddec\uddee\uddf1\uddf2\uddf4\uddf6-\uddfa\uddfc\uddfd\uddff]/,
 			/|\ud83c\udde7\ud83c[\udde6\udde7\udde9-\uddef\uddf1-\uddf4\uddf6-\uddf9\uddfb\uddfc\uddfe\uddff]/,
 			/|\ud83c\udde8\ud83c[\udde6\udde8\udde9\uddeb-\uddee\uddf0-\uddf5\uddf7\uddfa-\uddff]/,
@@ -84,6 +94,7 @@ var emoji = function() {
 			/|\ud83d[\udc00-\udc3e\udc40\udc44\udc45\udc51-\udc65\udc6a-\udc6d\udc6f\udc79-\udc7b\udc7d-\udc80\udc84\udc88-\udca9\udcab-\udcfc\udcff-\udd3d\udd4b-\udd4e\udd50-\udd67\udda4\uddfb-\ude44\ude48-\ude4a\ude80-\udea2\udea4-\udeb3\udeb7-\udebf\udec1-\udec5\uded0-\uded2\udeeb\udeec\udef4-\udef6]/,
 			/|\ud83e[\udd10-\udd17\udd1d\udd20-\udd25\udd27\udd3a\udd3c\udd40-\udd45\udd47-\udd4b\udd50-\udd5e\udd80-\udd91\uddc0]/,
 			/|[\u23e9-\u23ec\u23f0\u23f3\u2640\u2642\u2695\u26ce\u2705\u2728\u274c\u274e\u2753-\u2755\u2795-\u2797\u27b0\u27bf\ue50a]/,
+
 			/|(?:\ud83c[\udc04\udd70\udd71\udd7e\udd7f\ude02\ude1a\ude2f\ude37\udf21\udf24-\udf2c\udf36\udf7d\udf96\udf97\udf99-\udf9b\udf9e\udf9f\udfcd\udfce\udfd4-\udfdf\udff3\udff5\udff7]|\ud83d[\udc3f\udc41\udcfd\udd49\udd4a\udd6f\udd70\udd73\udd76-\udd79\udd87\udd8a-\udd8d\udda5\udda8\uddb1\uddb2\uddbc\uddc2-\uddc4\uddd1-\uddd3\udddc-\uddde\udde1\udde3\udde8\uddef\uddf3\uddfa\udecb\udecd-\udecf\udee0-\udee5\udee9\udef0\udef3]|[\u00a9\u00ae\u203c\u2049\u2122\u2139\u2194-\u2199\u21a9\u21aa\u231a\u231b\u2328\u23cf\u23ed-\u23ef\u23f1\u23f2\u23f8-\u23fa\u24c2\u25aa\u25ab\u25b6\u25c0\u25fb-\u25fe\u2600-\u2604\u260e\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262a\u262e\u262f\u2638-\u263a\u2648-\u2653\u2660\u2663\u2665\u2666\u2668\u267b\u267f\u2692-\u2694\u2696\u2697\u2699\u269b\u269c\u26a0\u26a1\u26aa\u26ab\u26b0\u26b1\u26bd\u26be\u26c4\u26c5\u26c8\u26cf\u26d1\u26d3\u26d4\u26e9\u26ea\u26f0-\u26f5\u26f8\u26fa\u26fd\u2702\u2708\u2709\u270f\u2712\u2714\u2716\u271d\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u2764\u27a1\u2934\u2935\u2b05-\u2b07\u2b1b\u2b1c\u2b50\u2b55\u3030\u303d\u3297\u3299])(?:\ufe0f|(?!\ufe0e))/
 			].map(function(r) {return r.source;}).join(''), 'g'),
 
@@ -91,7 +102,8 @@ var emoji = function() {
 		U200D = String.fromCharCode(8205),
 		shouldntBeParsed = /IFRAME|NOFRAMES|NOSCRIPT|SCRIPT|SELECT|STYLE|TEXTAREA|[a-z]/,
 		fromCharCode = String.fromCharCode;
-		init();
+		
+	init();
 	return twemoji;
 
 	function createText(text) {
@@ -218,46 +230,53 @@ var emoji = function() {
 			} else if (55296 <= c && c <= 56319) {
 				p = c;
 			} else {
-				r.push(c.toString(16));
+				if(c != 0x200d && c != 0xfe0f) { // skip variant & combine symbols
+					c = c.toString(16);
+					r.push(c);
+				}
 			}
 		}
 		return r.join(sep || "-");
 	}
 
-	function init() {
+	function setCSS(css) {
 		if(!document.head) return;
+		if(typeof css == 'undefined')
+			css = twemoji.base + twemoji.css;
 		var s = document.querySelector('link#'+ twemoji.className+ "-css");
 		if(s) {
-			if(s.href == twemoji.base + twemoji.css)
+			if(s.href == css)
 				return;
 			s.parentNode.removeChild(s);
 		}
 		s = document.createElement('link');
 		s.rel = 'stylesheet';
-		s.href = twemoji.base + twemoji.css;
+		s.href = css;
 		s.id = twemoji.className + '-css';
 		document.head.appendChild(s);
 	}
+
+	function init() {
+		setCSS();
+		if(window.emoji_nostart)
+			return;
+		$(function() {
+			var emoji_opts = {
+				callback: function(icon) {
+					switch ( icon ) {
+						case 'a9':      // copyright
+						case 'ae':      // (R)
+						case '2122':    // TM
+						case '25b6':    // arrow forward (post filter)
+							return false;
+					}
+					return true;
+				}
+			};
+			parse(document.body, emoji_opts);
+			$(document).on('new_post', function(e, post) {
+				parse(post, emoji_opts);
+			});
+		});
+	}
 }();
-
-
-$(function () {
-	"use strict";
-	var emoji_opts = {
-		callback: function(icon) {
-			// return true;
-			switch ( icon ) {
-				case 'a9':      // copyright
-				case 'ae':      // (R)
-				case '2122':    // TM
-				case '25b6':    // post filter 
-					return false;
-			}
-			return true;
-		}
-	};
-	emoji.parse(document.body, emoji_opts);
-	$(document).on('new_post', function(e, post) {
-		emoji.parse(post, emoji_opts);
-	});
-});
