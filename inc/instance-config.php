@@ -354,7 +354,7 @@ Vi::$config['tor']['need_capchas'] = 5;
 // Allow for users create a own boards
 Vi::$config['allow_create_userboards'] = true;
 
-Vi::$config['country_flags_condensed'] = false;
+Vi::$config['country_flags_condensed'] = true;
 
 // 8chan specific mod pages
 require '8chan-mod-config.php';

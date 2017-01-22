@@ -1591,6 +1591,7 @@ Vi::$config['mod']['unban'] = MOD;
 Vi::$config['mod']['spoilerimage'] = JANITOR;
 // Delete file (and keep post)
 Vi::$config['mod']['deletefile'] = JANITOR;
+Vi::$config['mod']['banhashfile'] = ADMIN;
 // Delete all posts by IP
 Vi::$config['mod']['deletebyip'] = MOD;
 // Delete all posts by IP across all boards

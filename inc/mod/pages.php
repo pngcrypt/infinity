@@ -2279,9 +2279,8 @@ function mod_user_new() {
 		$query = prepare('SELECT ``username``,``id`` FROM ``mods`` WHERE ``username`` = :username');
 		$query->bindValue(':username', $_POST['username']);
 		$query->execute() or error(db_error($query));
-		$users = $query->fetch(PDO::FETCH_ASSOC);
 
-		if (sizeof($users) > 0) {
+		if (($users = $query->fetch(PDO::FETCH_ASSOC))) {
 			error(sprintf(_(Vi::$config['error']['modexists']), Vi::$config['file_mod'] . '?/users/' . $users['id']));
 		}
 
