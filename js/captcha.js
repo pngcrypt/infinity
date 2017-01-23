@@ -11,7 +11,6 @@ Vi.captcha = function() {
 		// sel_inp = 'input:not(:submit), textarea',
 		sel_inp = 'input[name="captcha_text"]', // selector of fields that can update the captcha
 		ev_inp = 'click keydown focus', // events for captcha update
-		loaded = false,
 		updating = false,
 		timeout = false,
 		cloudflare = false,
@@ -42,17 +41,17 @@ Vi.captcha = function() {
 				'.captcha-info {display:inline-block; height:100%; width:100%; text-align:center;}'+
 			'</style>');
 			tout = $cwrap.data('timeout')|0;
-			if(tout < 1) 
+			if(tout < 30) 
 				tout = 120;
 		}
 
 		$cwrap.addClass('captcha-wrap');
 		$cinp = $cf.parents('form')
 			.off(ev_inp, sel_inp, form_click)
-			.on(ev_inp, sel_inp, form_click)	// update by activity in form
-			.find('input[name="captcha_text"]') 		// $cinp
+			.on(ev_inp, sel_inp, form_click)		// update by activity in form
+			.find('input[name="captcha_text"]')		// $cinp
 				.off('keydown', captcha_input_eng)
-				.on('keydown', captcha_input_eng);		// eng locale in captcha_text
+				.on('keydown', captcha_input_eng);	// eng locale in captcha_text
 
 		$cinf = $cwrap.find('.captcha-info');
 		if(!$cinf.length) {
@@ -67,7 +66,6 @@ Vi.captcha = function() {
 		clearTimeout(tid);
 		timeout = false;
 		updating = false;
-		loaded = false;
 		captcha_init(el);
 		if(!$cf)
 			return;
@@ -83,36 +81,27 @@ Vi.captcha = function() {
 
 		if($cf.contents().find('title').text().match('CloudFlare')) {
 			cloudflare = true;
-			$cinf.html("<input type='checkbox'> "+_("I'm not a robot")).show();
-			captcha_clone();
-			$cf.contents().find('head').append('<style>'+
-				'#cf-wrapper h1, #cf-wrapper h2 {font-size: 100% !important;}'+
-				'.cf-wrapper {padding: 2px !important;}'+
-				'.cf-column {padding: 0 !important;}'+
-			'</style>');
-			$cf.addClass('captcha-cf');
-			$cwrap.off().on('click', captcha_update);
 			cloudflare_show();
 			return;
 		}
 		else if(cloudflare) {
 			cloudflare = false;
-			$cf.removeClass('captcha-cf');
-			if($bg)
-				$bg.remove();
+			cloudflare_hide();
 		}
-		$cf.show();
-		captcha_clone();
-		if(!loaded)
+		if(!$cf.contents().find('#captcha_img img').length)
 			captcha_timeout();
-		else
+		else {
+			$cf.show();
+			captcha_clone();
 			tid = setTimeout(captcha_timeout, tout * 1000);
+		}
 	}
 
 	function form_click(ev) {
-		if(!$cf || !timeout || updating || [16,17,18,19,20,144,145].indexOf(ev.which) >= 0)
+		console.log(ev.which);
+		if(!$cf || !timeout || updating || [9,16,17,18,19,20,33,34,35,36,144,145].indexOf(ev.which) >= 0)
 			return;
-		if(ev.target && $(ev.target).data('nocaptcha'))
+		if(ev.target && $(ev.target).data('nocaptcha')) // skip elements that have attr data-nocaptcha
 			return;
 		captcha_update();
 	}
@@ -122,17 +111,14 @@ Vi.captcha = function() {
 			return;
 		updating = true;		
 		clearTimeout(tid);
-		$cf.attr('src', $cf.data('src')); // update frame
+		$cf.attr('src', $cf.data('src') || $cf.attr('src')); // update frame
 	}
 
 	function captcha_clone() {
 		// clone captcha to quick-reply
 		if(!$cf)
 			return;
-		var $ci = $cf.contents().find('#captcha_img img'),
-			$qr = $('#quick-reply #captcha_qr');
-
-		loaded = !!$ci.length;
+		var	$qr = $('#quick-reply #captcha_qr');
 		if(!$qr.length)
 			return;
 
@@ -140,7 +126,7 @@ Vi.captcha = function() {
 		if($cinf.is(':visible'))
 			$qr.html($cinf.clone()); // clone info
 		else
-			$qr.html($ci.clone()); // clone image
+			$qr.html($cf.contents().find('#captcha_img img').clone()); // clone image
 		$qr.off().on('click', captcha_update);
 	}
 
@@ -169,10 +155,10 @@ Vi.captcha = function() {
 
     function captcha_input_eng(ev) {
     	// english locale in captcha's input field
-		if(ev.altKey || ev.ctrlKey) // skip when ctrl/alt pressed
+		if(ev.altKey || ev.ctrlKey || !ev.target) // skip when ctrl/alt pressed
 			return;
 
-		var el = this,
+		var el = ev.target,
 			keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
 			chKC = String.fromCharCode(ev.keyCode);
 
@@ -215,13 +201,27 @@ Vi.captcha = function() {
 	}
 
 	function cloudflare_show() {
+		$cinf.html("<input type='checkbox'> "+_("I'm not a robot")).show();
+		captcha_clone();
+		$cf.contents().find('head').append('<style>'+
+			'#cf-wrapper h1, #cf-wrapper h2 {font-size: 100% !important;}'+
+			'.cf-wrapper {padding: 2px !important;}'+
+			'.cf-column {padding: 0 !important;}'+
+		'</style>');
+		$cf.addClass('captcha-cf');
+		$cwrap.off().on('click', captcha_update);
 		$bg = $("<div style='background:black; opacity:0.5; position:fixed; top:0; left:0; right:0; bottom:0; width:100%; height:100%; z-index: 9999;'></div>")
 			.appendTo('body');
-		$bg.on('click', function() {
-			$cf.removeClass('captcha-cf');
-			$bg.remove();
-			$cf.hide();
-		});
+		$bg.on('click', cloudflare_hide);
 		$cf.show();
+	}
+
+	function cloudflare_hide() {
+		$cf.removeClass('captcha-cf');
+		if($bg) {
+			$bg.remove();
+			$bg = null;
+		}
+		$cf.hide();
 	}
 }();

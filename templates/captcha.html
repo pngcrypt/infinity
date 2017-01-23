@@ -7,6 +7,6 @@
 	<iframe {{ captcha_src }} {{ captcha_iframe }}></iframe>
 </noscript>
 <script type="text/javascript">
-	document.write('<iframe data-{{ captcha_src }}{% if captcha_onstart %} {{ captcha_src }}{% endif %} {{ captcha_iframe }} onload="Vi.captcha.load(this)"></iframe>');
+	document.write('<iframe {% if not captcha_onstart %}data-{% endif %}{{ captcha_src }} {{ captcha_iframe }} onload="Vi.captcha.load(this)"></iframe>');
 </script>
 </div>
