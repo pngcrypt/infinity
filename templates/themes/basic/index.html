@@ -7,8 +7,14 @@
 	<script type="text/javascript">
 		active_page = "page";
 	</script>
-	<script src="/js/tabcontent.js" type="text/javascript"></script>
+	
 	{% include 'header.html' %}
+
+	{% set ext_scripts = [
+		"js/tabcontent.js"
+	] %}
+	{% include "ext_scripts.html" %}
+
 	{% if mod %}{% include 'mod/header.html' %}{% endif %}
 </head>
 <body class="8chan {% if mod %}is-moderator{% else %}is-not-moderator{% endif %}" data-stylesheet="{% if config.default_stylesheet.1 != '' and not mod %}{{ config.default_stylesheet.1 }}{% else %}default{% endif %}">

@@ -98,7 +98,6 @@ Vi.captcha = function() {
 	}
 
 	function form_click(ev) {
-		console.log(ev.which);
 		if(!$cf || !timeout || updating || [9,16,17,18,19,20,33,34,35,36,144,145].indexOf(ev.which) >= 0)
 			return;
 		if(ev.target && $(ev.target).data('nocaptcha')) // skip elements that have attr data-nocaptcha
