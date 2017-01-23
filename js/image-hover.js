@@ -6,7 +6,7 @@
  */
 
 if (active_page === "catalog" || active_page === "thread" || active_page === "index") {
-$(document).on('ready', function(){
+$(function(){
 
 if (window.Options && Options.get_tab('general')) {
 	Options.extend_tab("general", 

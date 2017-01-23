@@ -5,7 +5,7 @@
  *
 */
 
-$(document).on('ready', function() {
+$(function() {
 	var flag_previews = function() {
 		if (!$('.flag_preview').length) $('[name=user_flag]').after('<img class="flag_preview">');
 		if (!$(this).val()) {

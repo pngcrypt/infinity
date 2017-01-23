@@ -391,7 +391,7 @@
 	window.vichan.boardlist = boardlist;
 	
 	// Initialize the boardlist when the document is ready.
-	$( document ).on( 'ready', window.vichan.boardlist.init );
+	$(window.vichan.boardlist.init);
 	// Run it now if we're already ready.
 	if  (document.readyState === 'complete') {
 		window.vichan.boardlist.init();
