@@ -1078,7 +1078,7 @@ function mod_bans() {
 
 	mod_page(_('Ban list'), 'mod/ban_list.html', array(
 		'mod'        => Vi::$mod,
-		'boards'     => json_encode(Vi::$mod['boards']),
+		'boards'     => Vi::$mod['boards'],
 		'token'      => make_secure_link_token('bans'),
 		'token_json' => make_secure_link_token('bans.json'),
 	));

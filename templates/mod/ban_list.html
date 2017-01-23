@@ -1,11 +1,8 @@
-<script src='js/mobile-style.js'></script>
-<script src='js/strftime.min.js'></script>
-<script src='js/longtable/longtable.js'></script>
-<script src='js/mod/ban-list.js'></script>
+{% spaceless %}
 <link rel='stylesheet' href='stylesheets/longtable/longtable.css'>
 <link rel='stylesheet' href='stylesheets/mod/ban-list.css'>
 
-	<form action="?/bans" method="post" class="banform">
+	<form action="?/bans" method="post" class="banform"	data-boards="{{ boards|join(',') }}" {% if token_json %}data-token="{{ token_json }}" data-mod="1"{% else %}data-token="{{ uri_json }}" data-mod="0"{% endif %}>
 		{% if token %}
 			<input type="hidden" name="token" value="{{ token }}">
 		{% endif %}
@@ -25,12 +22,13 @@
 
 		<table class="mod" style="width:100%" id="banlist">
 		</table>
-
-
-		
 	</form>
-{% if token_json %}
-	<script>$(function(){ banlist_init("{{ token_json }}", {{ boards }}); });</script>
-{% else %}
-	<script>$(function(){ banlist_init("{{ uri_json }}", {{ boards }}, true); });</script>
-{% endif %}
+{% endspaceless %}	
+{% set ext_scripts = [
+	config.jquery_js,
+ 	"js/mobile-style.js",
+	"js/strftime.min.js",
+	"js/longtable/longtable.js",
+	"js/mod/ban-list.js"
+] %}
+{% include "ext_scripts.html" %}

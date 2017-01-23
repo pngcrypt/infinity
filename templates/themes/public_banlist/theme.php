@@ -43,7 +43,7 @@ class PBanlist {
 			'nojavascript'        => true,
 			'body'                => Element('mod/ban_list.html', array(
 				'mod'        => false,
-				'boards'     => "[]",
+				'boards'     => [],
 				'token'      => false,
 				'token_json' => false,
 				'uri_json'   => Vi::$config['dir']['home'] . $settings['file_json'],
