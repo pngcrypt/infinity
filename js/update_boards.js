@@ -11,7 +11,7 @@ if (window.Options && Options.get_tab('general')) {
 	}
 
 	var show_top = JSON.parse(localStorage.show_top_boards);
-	if (show_top) $('#show_top_boards>input').attr('checked', 'checked');
+	if (show_top) $('#show_top_boards>input').prop('checked', true);
 
 
 	$('#show_top_boards>input').on('change', function() {

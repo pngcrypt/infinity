@@ -24,7 +24,7 @@ $(function() {
 			}
 		});
 		if (localStorage.treeview === 'true') {
-			$(selector).attr('checked', 'checked');
+			$(selector).prop('checked', true);
 		}
 	}
 });
@@ -70,6 +70,6 @@ $(function() {
 
 	if (localStorage.treeview === 'true') {
 		treeview(true);
-		$('input#treeview').attr('checked', true);
+		$('input#treeview').prop('checked', true);
 	}
 });

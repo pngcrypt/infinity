@@ -52,7 +52,7 @@ $(window).ready(function() {
 					} else {
 						alert(_('An unknown error occured!'));
 					}
-					$($(form).data('submit-btn')).val($($(form).data('submit-btn')).data('orig-val')).removeAttr('disabled');
+					$($(form).data('submit-btn')).val($($(form).data('submit-btn')).data('orig-val')).prop('disabled', false);
 				},
 				error: function(xhr, status, er) {
 					// An error occured
@@ -65,7 +65,7 @@ $(window).ready(function() {
 				processData: false
 			}, 'json');
 			
-			$($(form).data('submit-btn')).attr('disabled', true).data('orig-val', $($(form).data('submit-btn')).val()).val(_('Working...'));
+			$($(form).data('submit-btn')).prop('disabled', true).data('orig-val', $($(form).data('submit-btn')).val()).val(_('Working...'));
 			
 			return false;
 		});

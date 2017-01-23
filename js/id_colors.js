@@ -23,7 +23,7 @@ if (active_page == 'thread' || active_page == 'index') {
 		if (!localStorage.color_ids || localStorage.color_ids === 'false') {
 			return;
 		} else {
-			$('#color-ids>input').attr('checked','checked');
+			$('#color-ids>input').prop('checked', true);
 		}
 
 		function IDToRGB(id_str){
