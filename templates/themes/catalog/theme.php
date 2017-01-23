@@ -101,13 +101,12 @@ class Catalog {
 			$recent_posts[]  = $post;
 		}
 
-		$required_scripts = array('js/jquery.min.js', 'js/jquery.mixitup.min.js', 'js/catalog.js');
+		$required_scripts = array('js/jquery.mixitup.min.js', 'js/catalog.js');
 
 		foreach ($required_scripts as $i => $s) {
 			if (!in_array($s, Vi::$config['additional_javascript'])) {
 				Vi::$config['additional_javascript'][] = $s;
 			}
-
 		}
 
 		file_write(Vi::$config['dir']['home'] . $board_name . '/catalog.html', Element('themes/catalog/catalog.html', Array(
