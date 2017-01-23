@@ -42,42 +42,10 @@
 		{% if ban.expires and time() >= ban.expires %}
 			{% trans %} has since expired. Refresh the page to continue.{%  endtrans %}
 		{% elseif ban.expires %}
-			{% trans("expires") %} <span id="countdown">{{ ban.expires|until }}</span> {% trans("from now, which is on") %} 
+			{% trans("expires") %} <span id="countdown" data-left="{{ ban.expires - time() }}">{{ ban.expires|until }}</span> {% trans("from now, which is on") %} 
 			<strong>
 				{{ ban.expires|date(config.ban_date) }}
 			</strong>
-			<script>
-				var secondsLeft = {{ ban.expires - time() }};
-				var end = new Date().getTime() + secondsLeft*1000;
-				function updateExpiresTime() {
-					countdown.firstChild.nodeValue = until(end);
-				}
-				function until(end) {
-					var now = new Date().getTime();
-					var diff = Math.round((end - now) / 1000);
-					if (diff < 0) {
-						document.getElementById("expires").innerHTML = "{% trans("has since expired. Refresh the page to continue.") %}";
-						clearInterval(int);
-						return "";
-					} else if (diff < 60) {
-						return diff + " second" + (diff == 1 ? "" : "s");
-					} else if (diff < 60*60) {
-						return (num = Math.round(diff/(60))) + " minute" + (num == 1 ? "" : "s");
-					} else if (diff < 60*60*24) {
-						return (num = Math.round(diff/(60*60))) + " hour" + (num == 1 ? "" : "s");
-					} else if (diff < 60*60*24*7) {
-						return (num = Math.round(diff/(60*60*24))) + " day" + (num == 1 ? "" : "s");
-					} else if (diff < 60*60*24*365) {
-						return (num = Math.round(diff/(60*60*24*7))) + " week" + (num == 1 ? "" : "s");
-					} else {
-						return (num = Math.round(diff/(60*60*24*365))) + " year" + (num == 1 ? "" : "s");
-					}
-				}
-				var countdown = document.getElementById("countdown");
-				
-				updateExpiresTime();
-				var int = setInterval(updateExpiresTime, 1000);
-			</script>
 		{% else %}
 			<em>{% trans("will not expire") %}</em>.
 		{% endif %}
@@ -141,4 +109,11 @@
 		{% endif %}
 	{% endif %}
 </div>
+
+{% set ext_scripts = [
+	"js/mod/banned.js"
+] %}
+{% include "ext_scripts.html" %}
+
 {% endfilter %}
+
