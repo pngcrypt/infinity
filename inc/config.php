@@ -1120,6 +1120,9 @@ Vi::$config['flag_style'] = '';
  * ====================
  */
 
+// jquery name
+Vi::$config['jquery_js'] = 'js/jquery-2.2.3.min.js';
+
 // Additional Javascript files to include on board index and thread pages. See js/ for available scripts.
 // Vi::$config['additional_javascript'][] = 'js/inline-expanding.js';
 // Vi::$config['additional_javascript'][] = 'js/local-time.js';
