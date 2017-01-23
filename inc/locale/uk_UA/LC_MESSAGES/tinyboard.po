@@ -1,0 +1,2286 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-24 02:00+0300\n"
+"PO-Revision-Date: 2016-06-19 17:31+0300\n"
+"Last-Translator: kotobenko <aniguysubs@gmail.com>\n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.8\n"
+
+msgid "\"html\" allows the following tags:"
+msgstr ""
+
+msgid "\"infinity\" is the same as what is used in posts."
+msgstr ""
+
+#, php-format
+msgid "\"markdown\" is provided by %s. Note: images disabled."
+msgstr ""
+
+#, php-format
+msgid "%d result in"
+msgid_plural "%d results in"
+msgstr[0] "%d результат у"
+msgstr[1] "%d результати у"
+msgstr[2] "%d результатів у"
+
+#, php-format
+msgid "%s omitted. Click reply to view."
+msgstr ""
+
+#, php-format
+msgid "%s without interruption"
+msgstr ""
+
+msgid "(For file and post deletion.)"
+msgstr ""
+
+msgid "(No news to show.)"
+msgstr "(немає новин)"
+
+msgid "(Search is case-insensitive and based on keywords. To match exact phrases, use \"quotes\". Use an asterisk (*) for wildcard.)"
+msgstr "(Пошук ведеться за ключовими словами і є нечутливим до регістру. Щоб знайти конкретні фрази, використовуйте \"лапки\". Для масок використовуйте зірочку (*)."
+
+msgid "(must be < 200 chars)"
+msgstr ""
+
+msgid "(must be < 40 chars)"
+msgstr ""
+
+msgid "(must be all lowercase or numbers and < 30 chars)"
+msgstr ""
+
+msgid "(must contain only alphanumeric, periods and underscores)"
+msgstr ""
+
+msgid "(no comment)"
+msgstr "(коментар відсутній)"
+
+msgid "(optional, for board recovery)"
+msgstr ""
+
+msgid "(or subnet)"
+msgstr "(або підмережа)"
+
+msgid "(replaces files and can be used instead)"
+msgstr ""
+
+msgid "(this board displays your country when you post if this is unchecked)"
+msgstr ""
+
+msgid "(this replaces the thumbnails of your images with question marks)"
+msgstr ""
+
+msgid "(write this down)"
+msgstr ""
+
+msgid "(you can also write sage in the email field)"
+msgstr ""
+
+msgid "+1 captcha."
+msgstr ""
+
+msgid ".onion"
+msgstr ""
+
+msgid ".onion users must submit captcha every"
+msgstr ""
+
+#, php-format
+msgid ".onion users need to pass security check %s on this page %s"
+msgstr ""
+
+#, php-format
+msgid "1 char"
+msgid_plural "%d chars"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "1 image"
+msgid_plural "%count% images"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, php-format
+msgid "1 link"
+msgid_plural "%d links"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "1 post"
+msgid_plural "%count% posts"
+msgstr[0] "%count% допис"
+msgstr[1] "%count% дописи"
+msgstr[2] "%count% дописів"
+
+#, php-format
+msgid "1 time"
+msgid_plural "%d times"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "= required field"
+msgstr ""
+
+msgid "A maximum of 512 custom flags per board is enforced."
+msgstr ""
+
+msgid "ACCESS GRANTED!"
+msgstr ""
+
+msgid "About"
+msgstr ""
+
+msgid "Action"
+msgstr "Дія"
+
+msgid "Actions"
+msgstr "Дії"
+
+msgid "Active"
+msgstr "Активний"
+
+msgid "Active users"
+msgstr ""
+
+msgid "Add another tag"
+msgstr ""
+
+msgid "Add another wordfilter"
+msgstr ""
+
+msgid "Administration"
+msgstr "Адміністрування"
+
+msgid "All"
+msgstr ""
+
+msgid "All boards"
+msgstr "Всі дошки"
+
+msgid "All languages"
+msgstr ""
+
+msgid "Allow Oekaki"
+msgstr ""
+
+msgid "Allow [code][/code] tags"
+msgstr ""
+
+msgid "Allow a poster to delete his own posts"
+msgstr ""
+
+msgid "Allow post upload files via .onion service"
+msgstr ""
+
+msgid "Allow post via the .onion service"
+msgstr ""
+
+msgid "Allow posters to post upload files via Tor"
+msgstr ""
+
+msgid "Allow posters to post via the Tor onion router"
+msgstr ""
+
+msgid "Allow posters to see when a thread is bumplocked"
+msgstr ""
+
+msgid "Allow thread to be bumped"
+msgstr "Увімкнути цій нитці підіймання"
+
+msgid "Allowed URLs:"
+msgstr ""
+
+msgid "Allowed file types"
+msgstr ""
+
+msgid "Alphabetize flags"
+msgstr ""
+
+msgid "An error has occured."
+msgstr "Сталася помилка."
+
+msgid "Anonymous discussions"
+msgstr ""
+
+msgid "Anti-spam"
+msgstr "Антиспам"
+
+msgid "Appeal reason"
+msgstr "Причина оскарження"
+
+msgid "Appeal time"
+msgstr "Час для оскарження"
+
+msgid "Are you sure you want to banhash this file?"
+msgstr ""
+
+msgid "Are you sure you want to delete all posts by this IP address, across all boards?"
+msgstr "Ви впенені, що хочете видалити всі дописи цього IP на всіх дошках?"
+
+msgid "Are you sure you want to delete all posts by this IP address?"
+msgstr "Ви впевнені, що хочете видалити всі дописи цього IP?"
+
+msgid "Are you sure you want to delete this file?"
+msgstr "Ви впевнені, що хочете видалити цей файл?"
+
+msgid "Are you sure you want to delete this?"
+msgstr "Ви впевнені, що хочете видалити?"
+
+msgid "Are you sure you want to demote yourself?"
+msgstr "Ви впевнені, що хочете себе понизити"
+
+msgid "Are you sure you want to do that?"
+msgstr "Ви впевнені, що хочете це зробити?"
+
+msgid "Are you sure you want to permanently delete this board?"
+msgstr ""
+
+msgid "Are you sure you want to spoiler all images on this post?"
+msgstr ""
+
+msgid "Are you sure you want to spoiler this file?"
+msgstr "Ви впевнені, що хочете заховати цей файл у спойлер?"
+
+msgid "Automatically convert ... to …"
+msgstr ""
+
+msgid "B"
+msgstr ""
+
+msgid "Bad board."
+msgstr ""
+
+msgid "Bad request."
+msgstr ""
+
+msgid "Ban"
+msgstr "Заблокувати"
+
+msgid "Ban & Delete"
+msgstr "Заблокувати й видалити"
+
+msgid "Ban appeal not found!"
+msgstr "Оскарження блокування не знайдено!"
+
+msgid "Ban appeals"
+msgstr "Оскарження блокувань"
+
+msgid "Ban hash file"
+msgstr ""
+
+msgid "Ban list"
+msgstr "Список блокувань"
+
+msgid "Banhash: File not exists"
+msgstr ""
+
+msgid "Banned!"
+msgstr "Заблоковано!"
+
+msgid "Banners must be &lt; 500KB and have image dimensions 300px x 100px.<br/>A maximum of 50 custom banners per board is enforced."
+msgstr ""
+
+msgid "Bans"
+msgstr "Блокування"
+
+msgid "Be careful with range bans. The bigger the range, the more likely it will affect users you didn't intend."
+msgstr ""
+
+msgid "Board"
+msgstr "Дошка"
+
+#, php-format
+msgid "Board %s doesn't exist"
+msgstr ""
+
+msgid "Board URI"
+msgstr ""
+
+msgid "Board already exists!"
+msgstr ""
+
+msgid "Board announcement"
+msgstr ""
+
+msgid "Board configuration"
+msgstr ""
+
+msgid "Board list"
+msgstr ""
+
+msgid "Board log"
+msgstr ""
+
+msgid "Board rules permit this content"
+msgstr ""
+
+msgid "Board type"
+msgstr ""
+
+msgid "Boards"
+msgstr "Дошки"
+
+msgid "Body"
+msgstr "Вміст"
+
+msgid "Bump limit"
+msgstr ""
+
+msgid "Bump order"
+msgstr "порядком підіймання"
+
+msgid "Bypass DNSBL"
+msgstr ""
+
+msgid "CAPTCHA"
+msgstr ""
+
+msgid "Can't build the RecentPosts theme, because there are no boards to be fetched."
+msgstr "Неможливо зібрати тему RecentPosts, тому що немає з яких дошок їх зібрати."
+
+msgid "Cannot be run directly."
+msgstr ""
+
+msgid "Cannot open themes directory; check permissions."
+msgstr "Не вдалося відкрити каталог з темами, перевірте дозволи."
+
+msgid "Captcha for TOR users is temporarily disabled."
+msgstr ""
+
+msgid "Catalog"
+msgstr ""
+
+msgid "Claim"
+msgstr ""
+
+msgid "Claim board"
+msgstr ""
+
+msgid "Click to load more."
+msgstr ""
+
+msgid "Click to proceed to"
+msgstr "Клацніть, щоб перейти до"
+
+msgid "Click to update"
+msgstr ""
+
+msgid "Close oekaki applet"
+msgstr ""
+
+msgid "Close window"
+msgstr ""
+
+msgid "Comment"
+msgstr "Допис"
+
+msgid "Config editor"
+msgstr "Редактор конфігурації"
+
+msgid "Configuration"
+msgstr "Конфігурування"
+
+#, php-format
+msgid "Configuring theme: %s"
+msgstr "Конфігурується тема: %s"
+
+msgid "Confirm action"
+msgstr "Підтвердити дію"
+
+msgid "Content is permitted by board rules"
+msgstr ""
+
+msgid "Content is permitted by global rules"
+msgstr ""
+
+msgid "Continue"
+msgstr "Продовжити"
+
+msgid "Cookie time-to-live:"
+msgstr ""
+
+msgid "Could not auto-orient image!"
+msgstr "Не вдалося автоматично обернути зображення!"
+
+msgid "Could not connect to the database. Please try again later."
+msgstr ""
+
+msgid "Could not find that post."
+msgstr ""
+
+msgid "Could not find the page you are trying to edit."
+msgstr ""
+
+msgid "Could not strip EXIF metadata!"
+msgstr "Не вдалося очистити файл від даних EXIF!"
+
+msgid "Couldn't make sense of the URL of the video you tried to embed."
+msgstr "Не вдалося розпізнати адресу відео, яке ви намагалися вбудувати."
+
+msgid "Couldn't open board after creation."
+msgstr "Не вдалося відкрити дошку після створення."
+
+msgid "Country flags"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Create a new page"
+msgstr ""
+
+msgid "Create a new user"
+msgstr ""
+
+msgid "Create board"
+msgstr ""
+
+msgid "Create new board"
+msgstr "Створити нову дошку"
+
+msgid "Create user"
+msgstr "Створити користувача"
+
+msgid "Create user boards is not allowed for you."
+msgstr ""
+
+msgid "Create user boards is not allowed."
+msgstr ""
+
+msgid "Create your board"
+msgstr ""
+
+msgid "Creation date"
+msgstr "датою створення"
+
+msgid "Currently editing raw HTML."
+msgstr "Зараз редагується сирий HTML"
+
+msgid "Custom board assets"
+msgstr ""
+
+msgid "Dashboard"
+msgstr "Панель керування"
+
+msgid "Database error: "
+msgstr "Помилка бази даних:"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Debug"
+msgstr "Зневадження"
+
+msgid "Debug: APC"
+msgstr "Зневадження: APC"
+
+msgid "Debug: Anti-spam"
+msgstr "Зневадження: Антиспам"
+
+msgid "Debug: Recent posts"
+msgstr "Зневадження: Останні пости"
+
+msgid "Debug: SQL"
+msgstr "Зневадження: SQL"
+
+msgid "Default poster name"
+msgstr ""
+
+msgid "Delete"
+msgstr "Видалити"
+
+msgid "Delete Post"
+msgstr "Видалити допис"
+
+msgid "Delete all posts by IP"
+msgstr "Видалити всі дописи цього IP"
+
+msgid "Delete all posts by IP across all boards"
+msgstr "Видалити всі дописи цього IP на всіх дошках"
+
+msgid "Delete board"
+msgstr ""
+
+msgid "Delete file"
+msgstr "Видалити файл"
+
+msgid "Delete forever"
+msgstr "Видалити назавжди"
+
+msgid "Delete selected"
+msgstr ""
+
+msgid "Delete user"
+msgstr "Видалити користувача"
+
+msgid "Demote"
+msgstr "Понизити"
+
+msgid "Demote global abuse report to a local report"
+msgstr ""
+
+msgid "Demote global abuse reports to local reports"
+msgstr ""
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Details:"
+msgstr ""
+
+msgid "Disable \"email\" field"
+msgstr ""
+
+msgid "Disable \"name\" field"
+msgstr ""
+
+msgid "Disable \"subject\" field"
+msgstr ""
+
+msgid "Disable \"subject\" field on thread page"
+msgstr ""
+
+msgid "Disable OP image upload"
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Disallow combining characters (\"Zalgo\", Vietnamese text)"
+msgstr ""
+
+msgid "Discard abuse report"
+msgstr "Відхилити скарги на порушення правил"
+
+msgid "Discard all abuse reports by this IP address"
+msgstr "Відхилити всі скарги на порушення правил від цієї IP адреси"
+
+msgid "Discard all abuse reports on this content"
+msgstr ""
+
+msgid "Display SAGE! after saged posts"
+msgstr ""
+
+msgid "Displaying results"
+msgstr ""
+
+msgid "Displays all actions to the public"
+msgstr ""
+
+msgid "Displays your bans for the public"
+msgstr ""
+
+msgid "Do not bump"
+msgstr ""
+
+msgid "Don't allow users to repost images (same thread)"
+msgstr ""
+
+msgid "Don't allow users to repost images (whole board)"
+msgstr ""
+
+msgid "Duration"
+msgstr "Термін"
+
+msgid "Early 404"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Edit banners"
+msgstr ""
+
+msgid "Edit board"
+msgstr "Редагувати дошку"
+
+msgid "Edit board assets"
+msgstr ""
+
+msgid "Edit board banners"
+msgstr ""
+
+msgid "Edit board flags"
+msgstr ""
+
+msgid "Edit board pages"
+msgstr ""
+
+msgid "Edit board tags"
+msgstr ""
+
+msgid "Edit board volunteers"
+msgstr ""
+
+msgid "Edit flags"
+msgstr ""
+
+msgid "Edit markup instead?"
+msgstr "Редагувати натомість розмітку?"
+
+msgid "Edit post"
+msgstr "Редагувати допис"
+
+msgid "Edit profile"
+msgstr ""
+
+msgid "Edit raw HTML instead?"
+msgstr "Редагувати натомість сирий HTML?"
+
+msgid "Edit reassign"
+msgstr ""
+
+msgid "Edit tags"
+msgstr ""
+
+msgid "Edit user profile"
+msgstr ""
+
+msgid "Edit volunteers"
+msgstr ""
+
+#, php-format
+msgid "Editing static page: %s"
+msgstr ""
+
+msgid "Email"
+msgstr "Ел. пошта"
+
+msgid "Embed"
+msgstr "Вбудувати"
+
+msgid "Enable CAPTCHA"
+msgstr ""
+
+msgid "Enable CAPTCHA for thread creation only"
+msgstr ""
+
+msgid "Enable dice rolling"
+msgstr ""
+
+msgid "Enabling this uses your custom spoiler/deleted/no file images.<br>Make sure to actually upload some first on the assets page or they will 404!"
+msgstr ""
+
+msgid "Enter reason below..."
+msgstr ""
+
+msgid "Error"
+msgstr "Помилка"
+
+msgid "Error information"
+msgstr "Інформація про помилку"
+
+msgid "Existing pages"
+msgstr ""
+
+msgid "Existing post"
+msgstr ""
+
+msgid "Expired"
+msgstr "Спливає"
+
+msgid "Expires"
+msgstr "Спливає"
+
+msgid "Fail! Don't rush!."
+msgstr ""
+
+msgid "Failed to mark up your input for some reason..."
+msgstr ""
+
+msgid "Failed to redraw image!"
+msgstr "Не вдалося перемалювати зображення!"
+
+msgid "Failed to resize image!"
+msgstr "Не вдалося змінити розмір зображення!"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "File board"
+msgstr ""
+
+msgid "File must be PNG or GIF format."
+msgstr ""
+
+msgid "File too large!"
+msgstr ""
+
+msgid "File:"
+msgstr "Файл:"
+
+msgid "Fixed boards"
+msgstr ""
+
+msgid "Flag"
+msgstr "Позначити"
+
+msgid "Flag description"
+msgstr ""
+
+msgid "Flag description too long!"
+msgstr ""
+
+msgid "Flag image"
+msgstr ""
+
+msgid "Flags already in use"
+msgstr ""
+
+msgid "Flags are likely heavily cached by your browser and the website. Please give them time to update if you change one!"
+msgstr ""
+
+msgid "Flags must be a maximum of 48KB and 11-20 x 11-16 pixels."
+msgstr ""
+
+msgid "Flags must be in PNG format."
+msgstr ""
+
+msgid "Flood detected; Post discarded."
+msgstr "Виявлено флуд — опис відхилено."
+
+msgid "Flush cache"
+msgstr ""
+
+msgid "Format math between [tex][/tex]"
+msgstr ""
+
+msgid "From"
+msgstr "Від"
+
+msgid "Full log of all actions"
+msgstr ""
+
+msgid "Full log of all actions, no usernames"
+msgstr ""
+
+msgid "GB"
+msgstr ""
+
+msgid "GeoIP"
+msgstr ""
+
+msgid "Global"
+msgstr ""
+
+msgid "Global Statistics"
+msgstr ""
+
+msgid "Global reports"
+msgstr ""
+
+msgid "Global rules permit this content"
+msgstr ""
+
+msgid "Go back"
+msgstr "Повернутися"
+
+msgid "Go back and rebuild again"
+msgstr ""
+
+msgid "Go back to themes"
+msgstr ""
+
+msgid "Go to bottom"
+msgstr ""
+
+msgid "Go to top"
+msgstr "На початок сторінки"
+
+msgid "Group"
+msgstr "Група"
+
+msgid "Hide NSFW boards"
+msgstr ""
+
+msgid "Hide country"
+msgstr ""
+
+msgid "Hide form"
+msgstr ""
+
+msgid "Hide from boards index<br/>and do not index in search engines"
+msgstr ""
+
+msgid "Hide post options &amp; limits"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "ID"
+msgstr "ID"
+
+msgid "IP"
+msgstr "IP"
+
+msgid "IP address"
+msgstr "IP адреса"
+
+msgid "IP address notes"
+msgstr "Примітки до IP адреси"
+
+msgid "IP address/mask"
+msgstr "IP адреса/маска"
+
+msgid "If the global restrictions on Tor users are not enough and you would really like to stop Tor users, there is a setting in your board options. Please think carefully before enabling it."
+msgstr ""
+
+msgid "Ignore and demote global abuse reports on this post"
+msgstr ""
+
+msgid "Ignore and dismiss local AND global abuse reports on this post"
+msgstr ""
+
+msgid "Ignore and dismiss local abuse reports on this post for this board"
+msgstr ""
+
+msgid "Image board"
+msgstr ""
+
+msgid "Image size"
+msgstr "Розмір зображення"
+
+msgid "Image wrong size!"
+msgstr ""
+
+msgid "Important: Flags must be accompanied by a description of the flag that will be shown to the users to your board.<br>The description must not exceed 255 characters.<br>To use flags, you also must have \"Enable user flags\" enabled on your board settings page as well as having flags uploaded on this page."
+msgstr ""
+
+msgid "Impossible to move thread; there is only one board."
+msgstr "Неможливо перемістити нитку: дошка тільки одна."
+
+msgid "Impossible to promote/demote user."
+msgstr "Неможливо підвищити/понизити користувача."
+
+msgid "Install"
+msgstr "Встановити"
+
+msgid "Install theme"
+msgstr ""
+
+#, php-format
+msgid "Installed theme: %s"
+msgstr "Встановлена теми: %s"
+
+msgid "Invalid URI"
+msgstr ""
+
+msgid "Invalid board!"
+msgstr "Неправильна дошка!"
+
+msgid "Invalid flag selection!"
+msgstr "Неправильний вибір позначок!"
+
+msgid "Invalid image."
+msgstr "Неправильне зображення."
+
+# Може, ключ?
+msgid "Invalid security token! Please go back and try again."
+msgstr "Неправильний токен безпеки! Поверніться і спробуйте ще раз."
+
+msgid "Invalid subtitle"
+msgstr ""
+
+msgid "Invalid title"
+msgstr ""
+
+msgid "Invalid username"
+msgstr ""
+
+msgid "Invalid username and/or password."
+msgstr "Неправильне імʼя користувача і/або пароль."
+
+msgid "Invalid username and/or password. Your user may have been deleted or changed."
+msgstr "Неправильне імʼя користувача і/або пароль. Можливо, ваш обліковий запис видалено або змінено."
+
+msgid "Invalid webm uploaded."
+msgstr "Завантажено хибну webm."
+
+msgid "Invalid/malformed cookies."
+msgstr "Неправильні/неправильно сформовані куки."
+
+msgid "It is required to enter a subject when starting a new thread on this board."
+msgstr ""
+
+msgid "It is still pending"
+msgstr "Воно досі розглядається"
+
+msgid "KB"
+msgstr ""
+
+msgid "Keep original filename"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Large"
+msgstr "Велике"
+
+msgid "Last 1 Post"
+msgid_plural "Last %count% Posts"
+msgstr[0] "Останній %count% допис"
+msgstr[1] "Останні %count% дописи"
+msgstr[2] "Останні %count% дописів"
+
+msgid "Last action"
+msgstr "Остання дія"
+
+msgid "Last active"
+msgstr ""
+
+msgid "Leave shadow thread"
+msgstr ""
+
+msgid "Length"
+msgstr "Довжина"
+
+msgid "Let me post!"
+msgstr ""
+
+msgid "Lock"
+msgstr "Закритий"
+
+msgid "Lock thread"
+msgstr "Закрити нитку"
+
+msgid "Login"
+msgstr "Логін"
+
+msgid "Logout"
+msgstr "Вийти"
+
+msgid "MB"
+msgstr ""
+
+msgid "MIME type detection XSS exploit (IE) detected; post discarded."
+msgstr "Виявлено XSS-експлойт визначення MIME-типу — допис відхилено."
+
+msgid "Make sure you don't forget your password:"
+msgstr ""
+
+msgid "Make thread cycle"
+msgstr ""
+
+msgid "Make thread not cycle"
+msgstr ""
+
+msgid "Make thread not sticky"
+msgstr "Відкріпити нитку"
+
+msgid "Make thread sticky"
+msgstr "Закріпити нитку"
+
+msgid "Manage board"
+msgstr ""
+
+msgid "Manage themes"
+msgstr "Керування темами"
+
+msgid "Manage users"
+msgstr "Керування користувачами"
+
+msgid "Markup method"
+msgstr ""
+
+msgid "Max filesize is"
+msgstr ""
+
+msgid "Max image dimensions are"
+msgstr ""
+
+msgid "Max images per post"
+msgstr ""
+
+msgid "Max number of newlines per post"
+msgstr ""
+
+msgid "Max threads per hour board-wide"
+msgstr ""
+
+msgid "Maximum file size: %maxsz% bytes<br>Your file's size: %filesz% bytes"
+msgstr "Максимальний розмір файла: %maxsz% байтів<br>Розмір вашого файла: %filesz% байтів"
+
+msgid "Medium"
+msgstr ""
+
+msgid "Message"
+msgstr "Повідомлення"
+
+msgid "Message snippet"
+msgstr ""
+
+msgid "Messages"
+msgstr "Повідомлення"
+
+msgid "Minimum OP text length"
+msgstr ""
+
+msgid "Moderation log"
+msgstr "Журнал модерації"
+
+msgid "Move reply"
+msgstr "Перемістити відповідь"
+
+# ОП з усіма дописами чи тільки один допис?
+msgid "Move reply to another board"
+msgstr "Перемістити відповідь до іншої дошки"
+
+msgid "Move thread"
+msgstr "Перемістити нитку"
+
+msgid "Move thread to another board"
+msgstr "Перемістити нитку на іншу дошку"
+
+#, php-format
+msgid "Moved to %s."
+msgstr "Переміщено до %s."
+
+msgid "My board"
+msgstr ""
+
+msgid "Name"
+msgstr "Імʼя"
+
+msgid "New Ban"
+msgstr "Нове блокування"
+
+msgid "New PM for"
+msgstr "Нове приватне повідомлення до"
+
+msgid "New Reply"
+msgstr "Нова відповідь"
+
+msgid "New Topic"
+msgstr "Нова тема"
+
+msgid "New ban"
+msgstr "Нове блокування"
+
+msgid "New board"
+msgstr "Нова дошка"
+
+msgid "New note"
+msgstr "Нова примітка"
+
+msgid "New post"
+msgstr "Новий допис"
+
+msgid "New user"
+msgstr "Новий користувач"
+
+msgid "News"
+msgstr "Новини"
+
+msgid "Next"
+msgstr "Наступна"
+
+msgid "Nice try."
+msgstr ""
+
+msgid "No"
+msgstr "Ні"
+
+msgid "No board."
+msgstr ""
+
+msgid "No index"
+msgstr ""
+
+msgid "No mods?"
+msgstr ""
+
+msgid "No pages yet!"
+msgstr ""
+
+msgid "No private messages for you."
+msgstr ""
+
+msgid "No reason given."
+msgstr ""
+
+msgid "No results."
+msgstr "Нема результатів."
+
+msgid "No."
+msgstr ""
+
+msgid "None"
+msgstr "Немає"
+
+msgid "Nope."
+msgstr ""
+
+msgid "Not an image extension."
+msgstr ""
+
+msgid "Note"
+msgstr "Примітка"
+
+msgid "Noticeboard"
+msgstr "Дошка оголошень"
+
+#, php-format
+msgid "OP are required to have at least %s on this board."
+msgstr ""
+
+msgid "Oekaki"
+msgstr ""
+
+#, php-format
+msgid "Off-site link \"%s\" is not allowed in the board stylesheet"
+msgstr ""
+
+msgid "Only allow X threads to be made per hour, regardless of poster<br>If a thread is deleted, it's not counted"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Or URL"
+msgstr "Або URL"
+
+msgid "Other"
+msgstr "Інше"
+
+msgid "Owner last active"
+msgstr ""
+
+msgid "PM"
+msgstr "Приватне повідомлення"
+
+msgid "PM inbox"
+msgstr "Скринька вхідних приватних повідомлень"
+
+msgid "PPH"
+msgstr ""
+
+msgid "Page content"
+msgstr ""
+
+msgid "Page count"
+msgstr ""
+
+msgid "Page names must be < 255 chars and may only contain lowercase letters A-Z and digits 1-9."
+msgstr ""
+
+msgid "Page not found."
+msgstr "Сторінку не знайдено."
+
+msgid "Page will appear at:"
+msgstr ""
+
+msgid "Pages"
+msgstr ""
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Phrase:"
+msgstr "Фраза:"
+
+#, php-format
+msgid "Please edit a %s user flags %s"
+msgstr ""
+
+msgid "Please fill out the CAPTCHA below to make your post. This is required once every 24 hours for normal users."
+msgstr ""
+
+msgid "Popular"
+msgstr ""
+
+msgid "Post ID"
+msgstr "ID допису"
+
+msgid "Post a Reply"
+msgstr ""
+
+msgid "Post even if blocked"
+msgstr ""
+
+msgid "Post last edited at"
+msgstr ""
+
+msgid "Post news entry"
+msgstr "Розмістити новину"
+
+msgid "Post search is disabled"
+msgstr "Пошук дописів вимкнено"
+
+msgid "Post to noticeboard"
+msgstr "Дописати на дошці оголошень"
+
+#, php-format
+msgid "Post too long. %sClick here%s to view the full text."
+msgstr ""
+
+msgid "Poster ID's"
+msgstr ""
+
+msgid "Posting mode: Reply"
+msgstr "Режим дописування: відповідь"
+
+msgid "Posts"
+msgstr "Дописи"
+
+msgid "Posts per hour"
+msgstr ""
+
+msgid "Posts remained:"
+msgstr ""
+
+#, php-format
+msgid "Potentially unsafe import \"%s\" is not allowed in the board stylesheet"
+msgstr ""
+
+msgid "Prevent thread from being bumped"
+msgstr "Вимкнути цій нитці підіймання"
+
+msgid "Previous"
+msgstr "Попередня"
+
+msgid "Private message"
+msgstr "Приватне повідомлення"
+
+msgid "Promote"
+msgstr "Підвищити"
+
+msgid "Promote all local abuse reports to global reports"
+msgstr ""
+
+msgid "Promote local abuse report to a global report"
+msgstr ""
+
+msgid "Public action log"
+msgstr ""
+
+msgid "Public bans"
+msgstr ""
+
+msgid "Random"
+msgstr "довільно"
+
+msgid "Random board"
+msgstr ""
+
+msgid "Raw HTML"
+msgstr "Сирий HTML"
+
+msgid "Reason"
+msgstr "Причина"
+
+msgid "Rebuild"
+msgstr "Перебудувати"
+
+msgid "Rebuild Javascript"
+msgstr ""
+
+msgid "Rebuild index pages"
+msgstr ""
+
+msgid "Rebuild replies"
+msgstr ""
+
+msgid "Rebuild themes"
+msgstr ""
+
+msgid "Rebuild thread pages"
+msgstr ""
+
+msgid "Rebuilt"
+msgstr ""
+
+#, php-format
+msgid "Rebuilt theme: %s"
+msgstr "Перебудовано тему: %s"
+
+msgid "Recent posts"
+msgstr "Останні дописи"
+
+msgid "Reconfigure"
+msgstr "Переконфігурувати"
+
+msgid "Refusing to change your username because another user is already using it."
+msgstr ""
+
+msgid "Refusing to create a new page with the same name as an existing one."
+msgstr ""
+
+msgid "Refusing to create a volunteer with the same username as an existing one."
+msgstr ""
+
+msgid "Remove ban"
+msgstr "Прибрати блокування"
+
+msgid "Remove tripcode?"
+msgstr ""
+
+msgid "Replace"
+msgstr ""
+
+msgid "Replies"
+msgstr ""
+
+msgid "Reply"
+msgstr "Відповісти"
+
+msgid "Reply count"
+msgstr "кількістю відповідей"
+
+msgid "Reply with quote"
+msgstr "Відповісти цитатою"
+
+msgid "Report"
+msgstr "Поскаржитися"
+
+msgid "Report date"
+msgstr "Дата скарги"
+
+msgid "Report has already been dismissed locally"
+msgstr ""
+
+msgid "Report is already a global report"
+msgstr ""
+
+msgid "Report queue"
+msgstr "Черга скарг"
+
+msgid "Report rule violation (CP, etc) to global staff"
+msgstr ""
+
+msgid "Report submitted!"
+msgstr ""
+
+msgid "Reported by"
+msgstr "Хто поскаржився"
+
+msgid "Reports are already global reports"
+msgstr ""
+
+msgid "Reports have all been dismissed locally"
+msgstr ""
+
+msgid "Require image for OP"
+msgstr ""
+
+msgid "Require subject for OP"
+msgstr ""
+
+msgid "Return"
+msgstr "Повернутися"
+
+msgid "Return to dashboard"
+msgstr "Повернутися до панелі керування"
+
+msgid "Rules"
+msgstr ""
+
+msgid "SQL"
+msgstr "SQL"
+
+msgid "Save changes"
+msgstr "Зберегти зміни"
+
+msgid "Search"
+msgstr "Пошук"
+
+msgid "Search is case-insensitive and based on keywords. To match exact phrases, use \"quotes\". Use an asterisk (*) for wildcard.</p><p style=\"font-size:8pt;margin:5px\">You may apply the following filters to your searches: <strong>id</strong>, <strong>thread</strong>, <strong>subject</strong>, and <strong>name</strong>. To apply a filter, simply add to your query, for example, <em>name:Anonymous</em> or <em>subject:\"Some Thread\"</em>. Wildcards cannot be used in filters."
+msgstr "(Пошук ведеться за ключовими словами і є нечутливим до регістру. Щоб знайти конкретні фрази, використовуйте \"лапки\". Для масок використовуйте зірочку (*).</p><p style=\"font-size:8pt;margin:5px\">Ви можете застосувати до свого пошуку такі фільтри: <strong>id</strong>, <strong>нитка</strong>, <strong>тема</strong> та <strong>імʼя</strong>. Щоб застосувати фільтр, просто додайте його до запиту, наприклад, <em>імʼя:Хтось</em> або <em>тема:\"Якась нитка\"</em>. У фільтрах не можна використовувати маску."
+
+msgid "Search results"
+msgstr "Результати пошуку"
+
+msgid "Search tags"
+msgstr ""
+
+msgid "Search titles"
+msgstr ""
+
+msgid "See all boards"
+msgstr ""
+
+msgid "Seen"
+msgstr "Побачено"
+
+msgid "Select board"
+msgstr "Вибрати дошку"
+
+msgid "Send message"
+msgstr "Надіслати повідомлення"
+
+msgid "Set"
+msgstr "Встановити"
+
+msgid "Show oekaki applet"
+msgstr ""
+
+msgid "Show only active bans"
+msgstr "Показати тільки чинні блокування"
+
+msgid "Show post options &amp; limits"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Small"
+msgstr "Маленьке"
+
+#, php-format
+msgid "Sorry, %s is too long. Max replacement is 255 characters"
+msgstr ""
+
+msgid "Sorry, max 200 wordfilters allowed."
+msgstr ""
+
+#, php-format
+msgid "Sorry, this site only allows %d pages per board."
+msgstr ""
+
+msgid "Sorry. .onion users can't upload files on this board."
+msgstr ""
+
+msgid "Sorry. The owner of this board has decided not to allow .onion users for some reason..."
+msgstr ""
+
+msgid "Sorry. The owner of this board has decided not to allow Tor posters for some reason..."
+msgstr ""
+
+msgid "Sorry. Tor users can't upload files on this board."
+msgstr ""
+
+msgid "Sort by"
+msgstr "Сортувати за"
+
+msgid "Spam settings"
+msgstr ""
+
+msgid "Spin me right round..."
+msgstr ""
+
+msgid "Spoiler All"
+msgstr ""
+
+msgid "Spoiler Image"
+msgstr "Спойлерне зображення"
+
+msgid "Spoiler Images"
+msgstr ""
+
+msgid "Spoiler file"
+msgstr "Заховати файл під спойлер"
+
+msgid "Spoiler images"
+msgstr ""
+
+msgid "Staff"
+msgstr "Модератор"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Sticky"
+msgstr "Прикріплений"
+
+msgid "Stylesheet"
+msgstr ""
+
+msgid "Subject"
+msgstr "Тема"
+
+msgid "Submit"
+msgstr ""
+
+msgid "Subtitle"
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Successfully installed and built theme."
+msgstr ""
+
+#, php-format
+msgid "Successfully rebuilt the <strong>%s</strong> theme."
+msgstr ""
+
+msgid "TB"
+msgstr ""
+
+msgid "TOR entry point"
+msgstr ""
+
+msgid "Tag"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Take deserted boards back from their owners"
+msgstr ""
+
+msgid "Target and source board are the same."
+msgstr "Початкова дошка і дошка призначення збігаються."
+
+msgid "Target board"
+msgstr "Дошка призначення"
+
+msgid "Target thread"
+msgstr "Цільовий допис"
+
+msgid "Text board"
+msgstr ""
+
+msgid "That ban doesn't exist or is not for you."
+msgstr "Це блокування не існує або його застосовано не до вас."
+
+#, php-format
+msgid "That file <a href=\"%s\">already exists</a> in this thread!"
+msgstr "Файл <a href=\"%s\">уже існує</a> у цій нитці!"
+
+#, php-format
+msgid "That file <a href=\"%s\">already exists</a>!"
+msgstr "Файл <a href=\"%s\">уже існує</a>!"
+
+#, php-format
+msgid "That mod <a href=\"%s\">already exists</a>!"
+msgstr ""
+
+msgid "That post doesn't exist…"
+msgstr "Цей допис не існує…"
+
+msgid "That post has no files."
+msgstr ""
+
+msgid "That theme doesn't exist!"
+msgstr "Цієї теми не існує!"
+
+#, php-format
+msgid "The %s field is required."
+msgstr "Поле %s обовʼязкове."
+
+#, php-format
+msgid "The %s field was invalid."
+msgstr "Поле %s заповнено неправильно."
+
+#, php-format
+msgid "The %s field was too long."
+msgstr "Поле %s занадто довге."
+
+msgid "The body was too long."
+msgstr "Вміст допису занадто довге."
+
+msgid "The body was too short or empty."
+msgstr "Вміст допису занадто короткий або пустий."
+
+msgid "The database returned an error while processing your request. Please try again later."
+msgstr ""
+
+msgid "The file was too big."
+msgstr "Файл завеликий."
+
+msgid "The server failed to handle your upload."
+msgstr "Не вдалося завантажити файл на сервер."
+
+msgid "The uploaded webm contains an audio or another type of additional stream."
+msgstr "Завантажена webm містить аудіо або ще один потік даних іншого типу."
+
+#, php-format
+msgid "The uploaded webm is longer than %d seconds."
+msgstr ""
+
+msgid "The username you've tried to enter already exists!"
+msgstr ""
+
+msgid "Themes directory doesn't exist!"
+msgstr "Каталог з темами не існує!"
+
+#, php-format
+msgid "There are currently <strong>%s</strong> public boards, <strong>%s</strong> total. Site-wide, <strong>%s</strong> posts have been made in the last hour, with <strong>%s</strong> being made on all active boards since %s."
+msgstr ""
+
+msgid "There are no active posts."
+msgstr "Немає активних дописів."
+
+msgid "There are no boards to search!"
+msgstr "Немає дошок для пошуку!"
+
+msgid "There are no reports."
+msgstr "Немає скарг."
+
+msgid "There are no themes available."
+msgstr "Немає доступних тем."
+
+#, php-format
+msgid "There is already a %s board."
+msgstr "Дошка %s уже існує."
+
+msgid "There is already a pending appeal for this ban."
+msgstr "Оскарження цього блокування вже розглядається."
+
+msgid "There was a problem processing your webm."
+msgstr "Під час обробки вашої webm сталася помилка."
+
+msgid "This board has public logs disabled. Ask the board owner to enable it."
+msgstr ""
+
+#, php-format
+msgid "This page allows you to create static pages for your board. The limit is %s pages per board.<br>You will still have to link to your pages somewhere in your board, for example in a sticky or in the board's announcement.<br>To make links in the board's announcement, use &lt;a&gt; HTML tags."
+msgstr ""
+
+msgid "This page allows you to create static pages for your imageboard."
+msgstr ""
+
+msgid "This page last updated"
+msgstr ""
+
+msgid "This page will not convert between formats,<br/>choose it once or do the conversion yourself!"
+msgstr ""
+
+msgid "This was a triumph"
+msgstr ""
+
+msgid "Thread ID"
+msgstr "ID нитки"
+
+msgid "Thread has reached its maximum image limit."
+msgstr "Кількість зображень у нитці досягла максимально припустимої."
+
+msgid "Thread has reached its maximum reply limit."
+msgstr "Кількість дописів у нитці досягла максимально припустимої."
+
+msgid "Thread locked. You may not reply at this time."
+msgstr "Нитку закрито. Ви більше не можете сюди дописати."
+
+msgid "Thread specified does not exist."
+msgstr "Вказана нитка не існує."
+
+msgid "Thumbnail"
+msgstr "Мініатюра"
+
+msgid "Time"
+msgstr "Час"
+
+msgid "Tip: Some changes made on this page won't take effect until a new post is made on your board."
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "To submit your report, please fill out the CAPTCHA below."
+msgstr ""
+
+msgid "Toggle all"
+msgstr ""
+
+msgid "Too many banners."
+msgstr ""
+
+msgid "Too many board volunteers!"
+msgstr ""
+
+msgid "Too many cites; post discarded."
+msgstr "Забагато цитування — допис відхилено."
+
+msgid "Too many cross-board links; post discarded."
+msgstr "Забагато міждошкових посилань — допис відхилено."
+
+msgid "Too many flags."
+msgstr ""
+
+#, php-format
+msgid "Too many links(%d of %d)."
+msgstr ""
+
+msgid "Too many tags."
+msgstr ""
+
+msgid "Tor users may not delete posts."
+msgstr ""
+
+msgid "Tor users need to fill out the CAPTCHA every 3 hours or 5 posts, and must have cookies enabled so they can keep the \"tor\" cookie."
+msgstr ""
+
+msgid "Total posts"
+msgstr ""
+
+msgid "Tripcode"
+msgstr ""
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "URI"
+msgstr ""
+
+msgid "URL"
+msgstr ""
+
+msgid "USER WAS BANNED FOR THIS POST"
+msgstr "АВТОРА ЦЬОГО ДОПИСУ ЗАБЛОКОВАНО"
+
+msgid "Unban selected"
+msgstr "Розблокувати вибраних"
+
+msgid "Uninstall"
+msgstr "Видалити"
+
+msgid "Unique IPs to post in the last 72 hours"
+msgstr ""
+
+msgid "Unknown"
+msgstr "Невідомо"
+
+msgid "Unknown file extension."
+msgstr "Невідоме розширення файла."
+
+msgid "Unlock thread"
+msgstr "Відкрити нитку"
+
+msgid "Unoriginal content!"
+msgstr "Неоригінальний контент!"
+
+#, php-format
+msgid "Unoriginal content! You have been muted for %d seconds."
+msgstr "Неоригінальний контент! Вас позбавлено можливості дописувати на %d секунд."
+
+msgid "Unrecognized file size determination method."
+msgstr "Невідомий метод визначення розміру файла."
+
+msgid "Unrecognized page markup method."
+msgstr ""
+
+msgid "Unsupported file format: "
+msgstr "Непідтримуваний формат файла:"
+
+msgid "Unsupported image format."
+msgstr "Формат зображення не підтримується."
+
+msgid "Update"
+msgstr "Оновлення"
+
+msgid "Update flags"
+msgstr ""
+
+msgid "Upload"
+msgstr ""
+
+msgid "Upload banner"
+msgstr ""
+
+msgid "Upload flag"
+msgstr ""
+
+msgid "Uploading files is disabled on this board."
+msgstr ""
+
+msgid "Use theme"
+msgstr "Використовувати тему"
+
+msgid "User account"
+msgstr "Обліковий запис користувача"
+
+msgid "User actions log"
+msgstr ""
+
+msgid "User flags"
+msgstr ""
+
+msgid "Username"
+msgstr "Імʼя користувача"
+
+msgid "Users are not allowed to delete their own posts on this board."
+msgstr ""
+
+msgid "Users must solve a CAPTCHA in order to create new threads,<br>but do not have to solve a CAPTCHA in order to post replies."
+msgstr ""
+
+msgid "Users must solve a CAPTCHA in order to post.<br> This is not ReCAPTCHA, it is custom to brchan."
+msgstr ""
+
+msgid "Value"
+msgstr ""
+
+msgid "Verification"
+msgstr "Підтвердження"
+
+msgid "Version"
+msgstr "Версія"
+
+msgid "Very small"
+msgstr "Дуже маленький"
+
+msgid "View All"
+msgstr "Показати все"
+
+msgid "View all noticeboard entries"
+msgstr "Переглянути всі записи дошки оголошень"
+
+msgid "View content"
+msgstr ""
+
+msgid "View more logs for this user."
+msgstr "Переглянути більше записів журналу щодо цього користувача."
+
+msgid "Volunteer does not exist!"
+msgstr ""
+
+#, php-format
+msgid "Wait %s for create new thread."
+msgstr ""
+
+msgid "Wait a while before searching again, please."
+msgstr "Будь ласка, зачекайте трохи, перш ніж знову шукати."
+
+msgid "Warning! This IP is a Tor exit node. Tor is a global network that allows for truly anonymous posting by obfuscating the user's real IP address. Please do not ban it, all bans on Tor exit nodes are globally undone every week. On 8chan, Tor users are allowed to post five times per CAPTCHA they complete, and image uploads are not allowed."
+msgstr ""
+
+msgid "With"
+msgstr ""
+
+msgid "With this enabled, threads with less than 10 replies will 404 at page 5 instead of at page 15.<br>In effect, this makes it so that raiders have to put 10 replies in all their threads to slide an entire board."
+msgstr ""
+
+msgid "Wordfilters"
+msgstr ""
+
+msgid "Wordfilters may not wordfilter previous wordfilters. For example, if a filters to bb and b filters to cc, that is not allowed."
+msgstr ""
+
+msgid "Wrong password…"
+msgstr "Неправильний пароль…"
+
+msgid "Yes"
+msgstr "Так"
+
+msgid "You appealed this ban on"
+msgstr "Ви оскаржили це блокування"
+
+msgid "You are banned! ;_;"
+msgstr "Вас заблоковано! ;_;"
+
+#, php-format
+msgid "You are muted! Expires in %d seconds."
+msgstr "Вас позбавлено можливості дописувати! Буде повернено через %d секунд."
+
+msgid "You are not a .onion user"
+msgstr ""
+
+msgid "You are not a mod…"
+msgstr "Ви не модератор…"
+
+#, php-format
+msgid "You are only allowed to unban %s users at a time. You tried to unban %u users."
+msgstr "Дозволяється розблоковувати лише %s користувачів за раз. Ви намагались розблокувати %u користувачів."
+
+msgid "You are probably seeing this message because Javascript being disabled. This is a necessary security measure to prevent CSRF attacks."
+msgstr "Найімовірніше, ви бачите це повідомлення тому, що Javascript вимкнено. Його повинно бути ввімкнено для захисту від міжсайтової підробки запиту."
+
+msgid "You are sending too many PMs per hour. Try again later."
+msgstr ""
+
+#, php-format
+msgid "You can manage your board <a href=\"%s\">HERE</a>"
+msgstr ""
+
+#, php-format
+msgid "You can not deleting OP-post after %s."
+msgstr ""
+
+msgid "You can't report that many posts at once."
+msgstr "Ви не можете поскаржитися на таку кількість дописів відразу."
+
+msgid "You cannot appeal a ban of this length."
+msgstr "Ви не можете оскаржити блокування з таким терміном."
+
+msgid "You cannot appeal this ban again."
+msgstr "Ви не можете оскаржити це блокування знову."
+
+msgid "You didn't make a post."
+msgstr "Ви не розмістили допис."
+
+msgid "You didn't select anything to delete."
+msgstr "Ви не вибрали жодного допису, щоб видалити."
+
+msgid "You didn't select anything to report."
+msgstr "Ви не вибрали жодного допису, щоб поскаржитися."
+
+msgid "You don't have permission to do that."
+msgstr "У вас відсутній дозвіл на цю дію."
+
+#, php-format
+msgid "You failed the CAPTCHA. %s Try again %s If it's not working, ask admin for support."
+msgstr ""
+
+msgid "You have attempted to upload too many images!"
+msgstr "Ви спробували завантажити надто багато зображень!"
+
+msgid "You have been banned from"
+msgstr "Вас заблоковано на"
+
+msgid "You have submitted the maximum number of ban appeals allowed. You may not appeal this ban again."
+msgstr "Ви подали максимальну кількість оскаржень, і більше не можете оскаржувати це блокування."
+
+msgid "You last appealed this ban on"
+msgstr "Востаннє ви оскаржували це блокування"
+
+msgid "You look like a bot."
+msgstr "Ви поводитесь як бот."
+
+msgid "You may appeal this ban again. Please enter your reasoning below."
+msgstr "Ви можете оскаржити це блокування ще раз. Будь ласка, обґрунтуйте його несправедливість тут."
+
+msgid "You may appeal this ban. Please enter your reasoning below."
+msgstr "Ви можете оскаржити це блокування. Будь ласка, обґрунтуйте його несправедливість тут."
+
+msgid "You may not PM a member of global staff who did not PM you within the last month. Try posting on /operate/ or emailing us instead: admin@8chan.co"
+msgstr ""
+
+msgid "You may now go back and make your post."
+msgstr ""
+
+msgid "You may only PM users assigned to your board"
+msgstr ""
+
+#, php-format
+msgid "You may upload %s per post."
+msgstr ""
+
+msgid "You must choose a flag to post on this board!"
+msgstr ""
+
+msgid "You must enter a flag description!"
+msgstr ""
+
+msgid "You must upload an image."
+msgstr "Допис повинен містити зображення."
+
+msgid "You need to submit:"
+msgstr ""
+
+msgid "You seem to have mistyped the verification."
+msgstr "Здається, ви не пройшли підтвердження."
+
+msgid "You submitted an appeal for this ban on"
+msgstr "Ви подали оскарження цього блокування"
+
+msgid "You were banned for the following post on"
+msgstr "Вас було заблоковано за цей допис"
+
+msgid "You were banned from"
+msgstr "Вас було заблоковано на"
+
+msgid "You were banned! ;_;"
+msgstr "Вас було заблоковано! ;_;"
+
+#, php-format
+msgid "You'll have to wait another %s before deleting that."
+msgstr "Почекайте ще %s перед видаленням."
+
+msgid "YouTube/Voocaroo embedding"
+msgstr ""
+
+msgid "Your IP address is"
+msgstr "Ваша IP адреса"
+
+#, php-format
+msgid "Your IP address is listed in %s."
+msgstr "Вашу IP адресу знайдено в списку %s."
+
+msgid "Your ban was filed on"
+msgstr ""
+
+msgid "Your browser didn't submit an input when it should have."
+msgstr "Ваш браузер не підтвердив введення тоді, коли потрібно."
+
+msgid "Your browser sent an invalid or no HTTP referer."
+msgstr "Ваш браузер не надіслав HTTP реферера або надіслав хибний"
+
+msgid "Your code contained PHP syntax errors. Please go back and correct them. PHP says: "
+msgstr "Ваш код містить синтаксичні помилки PHP. Будь ласка, поверніться і виправте їх. Повідомлення PHP:"
+
+#, php-format
+msgid "Your message exceeds %d characters, please shorten it."
+msgstr ""
+
+msgid "Your new board is created and is live at"
+msgstr ""
+
+#, php-format
+msgid "Your post contains too many lines. This board only allows %d maximum."
+msgstr ""
+
+msgid "Your request looks automated; Post discarded. Try refreshing the page. If that doesn't work, please post the board, thread and browser this error occurred on on /operate/."
+msgstr ""
+
+msgid "all boards"
+msgstr "всі дошки"
+
+msgid "and"
+msgstr "і"
+
+msgid "and it was denied."
+msgstr ". Оскарження відхилено."
+
+msgid "and it was denied. You may not appeal this ban again."
+msgstr ". Оскарження відхилено. Ви не можете знову оскаржувати це блокування."
+
+msgid "at"
+msgstr "о"
+
+msgid "before someone else does"
+msgstr ""
+
+msgid "by"
+msgstr "модератором/адміністратором"
+
+msgid "captchas out of"
+msgstr ""
+
+msgid "day"
+msgid_plural "days"
+msgstr[0] "день"
+msgstr[1] "дні"
+msgstr[2] "днів"
+
+msgid "delete"
+msgstr "видалити"
+
+msgid "deleted?"
+msgstr "видалено?"
+
+msgid "edit"
+msgstr "редагування"
+
+msgid "eg. \"2d1h30m\" or \"2 days\""
+msgstr ""
+
+msgid "empty"
+msgstr ""
+
+msgid "exiftool failed!"
+msgstr "exiftool не спрацювала!"
+
+msgid "expires"
+msgstr "спливає"
+
+msgid "fails left:"
+msgstr ""
+
+msgid "for an unspecified reason."
+msgstr ", причину не вказано."
+
+msgid "for the following reason:"
+msgstr "з такої причини:"
+
+msgid "from now, which is on"
+msgstr ""
+
+msgid "has since expired. Refresh the page to continue."
+msgstr "сплив. Оновіть сторінку, аби продовжити."
+
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "година"
+msgstr[1] "години"
+msgstr[2] "годин"
+
+msgid "if you forget your board password<br/>email admin@8chan.co from this<br/>address to request a reset; optional"
+msgstr ""
+
+msgid "integer between 0 and 1024"
+msgstr ""
+
+msgid "locks thread; replies to it with a link."
+msgstr "закриває нитку, відповідає туди посиланням."
+
+msgid "log"
+msgstr "журнал"
+
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "хвилина"
+msgstr[1] "хвилини"
+msgstr[2] "хвилин"
+
+msgid "never"
+msgstr "ніколи"
+
+msgid "new; optional"
+msgstr "нова; необовʼязкова"
+
+msgid "no reason"
+msgstr "без причини"
+
+msgid "no subject"
+msgstr "без заголовка"
+
+msgid "none"
+msgstr "немає"
+
+msgid "not a WebM file"
+msgstr ""
+
+msgid "note: does not validate CSS"
+msgstr ""
+
+msgid "or"
+msgstr ""
+
+msgid "out of"
+msgstr ""
+
+msgid "post reported"
+msgstr ""
+
+msgid "posts, cookies must be enabled."
+msgstr ""
+
+msgid "public; attached to post"
+msgstr ""
+
+msgid "remove"
+msgstr "прибрати"
+
+msgid "required"
+msgstr ""
+
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "секунда"
+msgstr[1] "секунди"
+msgstr[2] "секунд"
+
+msgid "settings"
+msgstr ""
+
+msgid "this cannot be changed"
+msgstr ""
+
+msgid "thread reported"
+msgstr ""
+
+msgid "through"
+msgstr ""
+
+msgid "unread"
+msgstr ""
+
+msgid "warning: changing your username<br/>will log you out and change all occurrences<br/>of your old username to the new one in<br/>your board's logs"
+msgstr ""
+
+msgid "week"
+msgid_plural "weeks"
+msgstr[0] "тиждень"
+msgstr[1] "тижні"
+msgstr[2] "тижнів"
+
+msgid "will not expire"
+msgstr "не сплине"
+
+msgid "year"
+msgid_plural "years"
+msgstr[0] "рік"
+msgstr[1] "роки"
+msgstr[2] "років"
+
+#~ msgid "(For file deletion.)"
+#~ msgstr "(для видалення файла)"
+
+#~ msgid "1 image reply"
+#~ msgid_plural "%count% image replies"
+#~ msgstr[0] "%count% допис із зображеннями"
+#~ msgstr[1] "%count% дописи із зображеннями"
+#~ msgstr[2] "%count% дописів із зображеннями"
+
+#~ msgid "1 reply"
+#~ msgid_plural "%count% replies"
+#~ msgstr[0] "%count% відповідь"
+#~ msgstr[1] "%count% відповіді"
+#~ msgstr[2] "%count% відповідей"
+
+#~ msgid "Banned?"
+#~ msgstr "Заблоковано?"
+
+#~ msgid "Change password"
+#~ msgstr "Змінити пароль"
+
+#~ msgid "Could not find current version! (Check .installed)"
+#~ msgstr "Не вдалося знайти поточної версії! (перевірте .installed)"
+
+#~ msgid "Don't show my flag"
+#~ msgstr "Не показувати мої позначки"
+
+#~ msgid "Edit user"
+#~ msgstr "Редагувати користувача"
+
+#~ msgid "Flags"
+#~ msgstr "Позначки"
+
+#~ msgid "Last reply"
+#~ msgstr "Остання відповідь"
+
+#~ msgid "Lurk some more before posting."
+#~ msgstr "Вам не завадило б почитати Українську Драматику, перш ніж щось сюди писати."
+
+#~ msgid "Post deletion is not allowed!"
+#~ msgstr "Видалення допису не дозволено!"
+
+#~ msgid "Post too long. Click <a href=\"%s\">here</a> to view the full text."
+#~ msgstr "Допис задовгий. Натисніть <a href=\"%s\">тут</a>, щоб переглянути текст повністю."
+
+#~ msgid "Query too broad."
+#~ msgstr "Запит надто загальний."
+
+#~ msgid "Show only bans from boards I moderate"
+#~ msgstr "Показати блокування тільки з тих дошок, які я модерую"
+
+#~ msgid "Spoiler File"
+#~ msgstr "Заховати файл у спойлер"
+
+#~ msgid "That mod <a href=\"?/users/%d\">already exists</a>!"
+#~ msgstr "Модератор <a href=\"?/users/%d\">уже існує</a>!"
+
+#~ msgid "The uploaded webm is longer than "
+#~ msgstr "Завантажена webm довша, ніж"
+
+#~ msgid "There are no active bans."
+#~ msgstr "Немає чинних блокувань."
+
+#~ msgid "Too many links; flood detected."
+#~ msgstr "Забагато посилань — виявлено флуд."
+
+#~ msgid "You are not banned."
+#~ msgstr "Вас не заблоковано."
+
+#~ msgid "You have been muted for unoriginal content."
+#~ msgstr "Вас позбавлено права дописувати за неоригінальний контент."
+
+#~ msgid "Your request looks automated; Post discarded."
+#~ msgstr "Ваш запит схожий на автоматизований— допис відхилено."
+
+#~ msgid "hidden"
+#~ msgstr "прихований"
+
+#~ msgid "omitted. Click reply to view."
+#~ msgstr "пропущено. Натисніть «Відповісти», щоб побачити."

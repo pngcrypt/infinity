@@ -1,0 +1,969 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-24 02:00+0300\n"
+"PO-Revision-Date: 2016-06-19 17:30+0300\n"
+"Last-Translator: kotobenko <aniguysubs@gmail.com>\n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.8\n"
+
+msgid " ago"
+msgstr " тому"
+
+msgid " day ago"
+msgstr ""
+
+msgid " days ago"
+msgstr ""
+
+msgid " hour ago"
+msgstr ""
+
+msgid " hours ago"
+msgstr ""
+
+msgid " minute ago"
+msgstr ""
+
+msgid " minutes ago"
+msgstr ""
+
+msgid " month ago"
+msgstr ""
+
+msgid " months ago"
+msgstr ""
+
+msgid " year ago"
+msgstr ""
+
+msgid " years ago"
+msgstr ""
+
+msgid "(You)"
+msgstr ""
+
+msgid "AM"
+msgstr "AM"
+
+msgid "Add"
+msgstr ""
+
+msgid "Add Rule"
+msgstr ""
+
+msgid "Add filter"
+msgstr ""
+
+msgid "All"
+msgstr "Всі"
+
+msgid "An unknown error occured when posting!"
+msgstr "Під час розміщення сталася невідома помилка!"
+
+msgid "An unknown error occured!"
+msgstr "Сталася невідома помилка!"
+
+msgid "Animate GIFs"
+msgstr "Увімкнути анімацію GIF"
+
+msgid "Apr"
+msgstr "Кві"
+
+msgid "April"
+msgstr "Квітень"
+
+msgid "Are you sure you want to erase your storage? This involves your hidden threads, watched threads, post password and many more."
+msgstr "Ви впевнені, що хочете очистити своє сховище? Списки прихованих і переглянутих ниток, пароль дописування та багато іншого буде анульовано."
+
+msgid "Aug"
+msgstr "Сер"
+
+msgid "August"
+msgstr "Серпень"
+
+msgid "Auto"
+msgstr "Авто"
+
+msgid "Auto update"
+msgstr ""
+
+msgid "Auto update thread"
+msgstr ""
+
+msgid "B"
+msgstr ""
+
+msgid "Board"
+msgstr "Дошка"
+
+msgid "Board-specific CSS"
+msgstr ""
+
+msgid "Bold"
+msgstr ""
+
+msgid "Both"
+msgstr ""
+
+msgid "Bucket"
+msgstr ""
+
+msgid "Bytes"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Catalog"
+msgstr "Каталог"
+
+msgid "Check image size"
+msgstr ""
+
+msgid "Circle"
+msgstr ""
+
+msgid "Clear"
+msgstr "Очистити"
+
+msgid "Clear Ghosts"
+msgstr ""
+
+msgid "Clear List"
+msgstr ""
+
+msgid "Clear all filters"
+msgstr ""
+
+msgid "Click on any image on this site to load it into oekaki applet"
+msgstr "Клацніть по будь-якому зображенні на сторінці, щоб завантажити його до аплету оекакі"
+
+msgid "Click on any image on this site to load it into oekaki applet."
+msgstr ""
+
+msgid "Click reply to view."
+msgstr "Натисніть «Відповісти», щоб переглянути нитку повністю"
+
+msgid "Click to expand"
+msgstr "Показати повністю"
+
+msgid "Click to update"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Color IDs"
+msgstr ""
+
+msgid "Comment"
+msgstr "Коментувати"
+
+msgid "Customize Formatting"
+msgstr ""
+
+msgid "Dec"
+msgstr "Гру"
+
+msgid "December"
+msgstr "Грудень"
+
+msgid "Default volume"
+msgstr "Гучність за промовчанням"
+
+msgid "Delete file"
+msgstr ""
+
+msgid "Delete post"
+msgstr ""
+
+msgid "Diamond"
+msgstr ""
+
+msgid "Disable gallery mode"
+msgstr ""
+
+msgid "Do not paste code here unless you absolutely trust the source or have read it yourself!"
+msgstr ""
+
+msgid "Download All"
+msgstr ""
+
+msgid "Drag and drop file selection"
+msgstr ""
+
+msgid "Drag the boards to sort them."
+msgstr ""
+
+msgid "Ellipse"
+msgstr ""
+
+msgid "Embed"
+msgstr "Вбудувати"
+
+msgid "Enable formatting keybinds"
+msgstr ""
+
+msgid "Enable gallery mode"
+msgstr ""
+
+msgid "Enable inlining"
+msgstr ""
+
+msgid "Enter here your own CSS rules..."
+msgstr "Введіть власні правила CSS…"
+
+msgid "Enter your own Javascript code here..."
+msgstr ""
+
+msgid "Erase"
+msgstr "Очистити"
+
+msgid "Eraser"
+msgstr ""
+
+msgid "Error: "
+msgstr "Помилка:"
+
+msgid "Expand all images"
+msgstr "Розгорнути всі зображення"
+
+msgid "Expand videos inline"
+msgstr "Розгорнути відео на місці"
+
+msgid "Expires"
+msgstr ""
+"Сплива\n"
+"є"
+
+msgid "Export"
+msgstr "Експортувати"
+
+msgid "Favorites"
+msgstr ""
+
+msgid "Feb"
+msgstr "Лют"
+
+msgid "February"
+msgstr "Лютий"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "File:"
+msgstr ""
+
+msgid "Fill Color"
+msgstr ""
+
+msgid "Filters"
+msgstr ""
+
+msgid "Flip"
+msgstr ""
+
+msgid "Font Family"
+msgstr ""
+
+msgid "Font Size"
+msgstr ""
+
+msgid "Forced anonymity"
+msgstr "Примусова анонімність"
+
+msgid "Formatting Options"
+msgstr ""
+
+msgid "Fri"
+msgstr "ПТ"
+
+msgid "Friday"
+msgstr "Пʼятниця"
+
+msgid "G"
+msgstr ""
+
+msgid "General"
+msgstr "Основні"
+
+msgid "Global report"
+msgstr ""
+
+msgid "Heading"
+msgstr ""
+
+msgid "Hexagon"
+msgstr ""
+
+msgid "Hide ID and all replies"
+msgstr ""
+
+msgid "Hide IDs"
+msgstr ""
+
+msgid "Hide expanded replies"
+msgstr "Приховати розгорнуті дописи"
+
+msgid "Hide images"
+msgstr "Приховати зображення"
+
+msgid "Hide inlined backlinked posts"
+msgstr ""
+
+msgid "Hide locked threads"
+msgstr "Приховати закріплені нитки"
+
+msgid "Hide post"
+msgstr ""
+
+msgid "Hide post and all replies"
+msgstr ""
+
+msgid "I'm not a robot"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "ID +"
+msgstr ""
+
+msgid "IP address"
+msgstr "IP адреса"
+
+msgid "If you want to make a redistributable style, be sure to have a Yotsuba B theme selected."
+msgstr ""
+
+msgid "Image hover"
+msgstr ""
+
+msgid "Image hover cursor"
+msgstr ""
+
+msgid "Image hover on catalog"
+msgstr ""
+
+msgid "Image hover should follow cursor"
+msgstr ""
+
+msgid "Image must be 500x250 to be uploaded. Please resize it."
+msgstr ""
+
+msgid "Import"
+msgstr "Імпортувати"
+
+msgid "Italic"
+msgstr ""
+
+msgid "Italics"
+msgstr ""
+
+msgid "Jan"
+msgstr "Січ"
+
+msgid "January"
+msgstr "Січень"
+
+msgid "Jul"
+msgstr "Лип"
+
+msgid "July"
+msgstr "Липень"
+
+msgid "Jun"
+msgstr "Чер"
+
+msgid "June"
+msgstr "Червень"
+
+msgid "Just now"
+msgstr ""
+
+msgid "KB"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Load Image to Background"
+msgstr ""
+
+msgid "Load Image to Foreground"
+msgstr ""
+
+msgid "Loading..."
+msgstr "Завантаження…"
+
+msgid "Loop videos by default"
+msgstr ""
+
+msgid "MB"
+msgstr ""
+
+msgid "Mar"
+msgstr "Бер"
+
+msgid "March"
+msgstr "Березень"
+
+msgid "May"
+msgstr "Травень"
+
+msgid "Message for which user was banned is included"
+msgstr "Повідомлення, за яке користувача заблоковано, додається"
+
+msgid "Message:"
+msgstr "Повідомлення:"
+
+msgid "Mon"
+msgstr "ПН"
+
+msgid "Monday"
+msgstr "Понеділок"
+
+msgid "Name"
+msgstr ""
+
+msgid "No new posts found"
+msgstr "Нових дописів немає"
+
+msgid "No new posts."
+msgstr "Немає нових дописів."
+
+msgid "No new threads."
+msgstr "Немає нових ниток."
+
+msgid "Note: Most option changes will only take effect on future page loads."
+msgstr ""
+
+msgid "Nov"
+msgstr "Лис"
+
+msgid "November"
+msgstr "Листопад"
+
+msgid "Number of simultaneous image downloads (0 to disable): "
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Oct"
+msgstr "Жов"
+
+msgid "October"
+msgstr "Жовтень"
+
+msgid "Oekaki"
+msgstr "Оекакі"
+
+msgid "Options"
+msgstr "Налаштування"
+
+msgid "PM"
+msgstr "PM"
+
+msgid "Page"
+msgstr "Сторінка"
+
+msgid "Paste your storage data"
+msgstr "Вставити дані зі сховища"
+
+msgid "Pencil"
+msgstr ""
+
+msgid "Pentagon"
+msgstr ""
+
+msgid "Pin this board"
+msgstr "Прикріпити дошку"
+
+msgid "Play videos on hover"
+msgstr "Відтворити відео в пливучому віконці"
+
+msgid "Post +"
+msgstr ""
+
+msgid "Post my oekaki"
+msgstr ""
+
+msgid "Posted..."
+msgstr "Розміщено…"
+
+msgid "Posting..."
+msgstr "Розміщення…"
+
+msgid "Posting... (#%)"
+msgstr "Розміщення… (#%)"
+
+msgid "Quick Reply"
+msgstr "Швидка відповідь"
+
+msgid "Quote"
+msgstr ""
+
+msgid "R"
+msgstr ""
+
+msgid "Reason"
+msgstr "Причина"
+
+msgid "Rectangle"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+msgid "Remote"
+msgstr ""
+
+msgid "Remove filter"
+msgstr ""
+
+msgid "Replies:"
+msgstr ""
+
+msgid "Report"
+msgstr "Повідомити адміністрацію"
+
+msgid "Reported post(s)."
+msgstr "Допис(и), про які повідомлено."
+
+msgid "Reset to Default"
+msgstr ""
+
+msgid "Revert"
+msgstr ""
+
+msgid "Rounded Rectangle"
+msgstr ""
+
+msgid "Rounded Square"
+msgstr ""
+
+msgid "Sat"
+msgstr "СБ"
+
+msgid "Saturday"
+msgstr "Субота"
+
+msgid "Save Image"
+msgstr ""
+
+msgid "Save Rules"
+msgstr ""
+
+msgid "Save as original filename"
+msgstr "Зберегти з початковим іменем файла"
+
+msgid "Save custom CSS"
+msgstr ""
+
+msgid "Save custom Javascript"
+msgstr ""
+
+msgid "Scroll to new posts"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Seen"
+msgstr ""
+
+msgid "Select"
+msgstr "Вибрати"
+
+msgid "Select/drop/paste files here"
+msgstr ""
+
+msgid "Sep"
+msgstr "Вер"
+
+msgid "September"
+msgstr "Вересень"
+
+msgid "Set"
+msgstr "Встановити"
+
+msgid "Show desktop notifications on all replies"
+msgstr ""
+
+msgid "Show desktop notifications when users quote me"
+msgstr ""
+
+msgid "Show formatting toolbar"
+msgstr ""
+
+msgid "Show images"
+msgstr "Показати зображення"
+
+msgid "Show locked threads"
+msgstr "Показати закріплені нитки"
+
+msgid "Show relative time"
+msgstr ""
+
+msgid "Show top boards"
+msgstr ""
+
+msgid "Shrink all images"
+msgstr "Позгортати всі зображення"
+
+msgid "Something went wrong... An unknown error occured!"
+msgstr "Щось пішло не так… Сталася невідома помилка!"
+
+msgid "Spoiler"
+msgstr ""
+
+msgid "Square"
+msgstr ""
+
+msgid "Staff"
+msgstr "Модератор"
+
+msgid "Stop watching this board"
+msgstr "Не стежити за дошкою"
+
+msgid "Stop watching this thread"
+msgstr "Припинити стеження за ниткою"
+
+msgid "Storage: "
+msgstr "Сховище:"
+
+msgid "Strike"
+msgstr ""
+
+msgid "Stroke Color"
+msgstr ""
+
+msgid "Stroke Width"
+msgstr ""
+
+msgid "Style should affect all boards, not just current board"
+msgstr ""
+
+msgid "Style: "
+msgstr "Стиль:"
+
+msgid "Subject"
+msgstr ""
+
+msgid "Sun"
+msgstr "НД"
+
+msgid "Sunday"
+msgstr "Неділя"
+
+msgid "The server took too long to submit your post. Your post was probably still submitted. If it wasn't, BRCHAN might be experiencing issues right now -- please try your post again later. Error information: "
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "There are {0} new posts in this thread."
+msgstr "{0} нових дописів у цій нитці."
+
+msgid "There are {0} new threads."
+msgstr "{0} нових ниток."
+
+msgid "These will be applied on top of whatever theme you choose below."
+msgstr ""
+
+msgid "This will clear all filtering rules including hidden posts."
+msgstr ""
+
+msgid "Thread #"
+msgstr ""
+
+# Що мається на увазі під «pruned»?
+msgid "Thread deleted or pruned"
+msgstr "Нитку видалено або вилучено"
+
+msgid "Thread updated with {0} new post(s)"
+msgstr "Нитку оновлено, зʼявилось {0} допис(ів)"
+
+msgid "Thu"
+msgstr "ЧТ"
+
+msgid "Thursday"
+msgstr "Четвер"
+
+msgid "Tree view"
+msgstr "Перегляд деревом"
+
+msgid "Tripcode"
+msgstr ""
+
+msgid "Tue"
+msgstr "ВТ"
+
+msgid "Tuesday"
+msgstr "Вівторок"
+
+msgid "URL"
+msgstr "URL"
+
+msgid "Unanimate GIFs"
+msgstr "Вимкнути анімацію GIF"
+
+msgid "Underline"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Unhide post"
+msgstr ""
+
+msgid "Unknown error"
+msgstr "Невідома помилка"
+
+msgid "Unpin this board"
+msgstr "Відкріпити дошку"
+
+msgid "Untrusted code pasted here could do malicious things such as spam the site under your IP."
+msgstr ""
+
+msgid "Update"
+msgstr "Оновлення"
+
+msgid "Updating..."
+msgstr "Оновлення…"
+
+msgid "Upload URL"
+msgstr "Адреса завантаження"
+
+msgid "Use tree view by default"
+msgstr ""
+
+msgid "User JS"
+msgstr "Користувацький JS"
+
+msgid "Watch Thread"
+msgstr ""
+
+msgid "Watch this board"
+msgstr "Стежити за дошкою"
+
+msgid "Watch this thread"
+msgstr "Стежити за ниткою"
+
+msgid "WebM"
+msgstr "WebM"
+
+msgid "WebM Settings"
+msgstr "Налаштування WebM"
+
+msgid "Wed"
+msgstr "СР"
+
+msgid "Wednesday"
+msgstr "Середа"
+
+msgid "Working..."
+msgstr ""
+
+msgid "Wrap"
+msgstr ""
+
+msgid "You can include CSS files from remote servers, for example:"
+msgstr "Ви можете включати файли CSS із віддалених серверів, наприклад:"
+
+msgid "You can include JS files from remote servers, for example:"
+msgstr "Ви можете включати файли CSS із віддалених серверів, наприклад:"
+
+msgid "YouTube size"
+msgstr ""
+
+msgid "Your browser does not support HTML5 video."
+msgstr "Ваш браузер не підтримує відео HTML5"
+
+msgid "Your image is too large, it needs to be 128KB or less."
+msgstr ""
+
+msgid "Your image size is %size%/%maxsize%."
+msgstr ""
+
+msgid "[loop]"
+msgstr "[зациклити]"
+
+msgid "[play once]"
+msgstr "[відтворити раз]"
+
+msgid "all"
+msgstr "все"
+
+msgid "am"
+msgstr "am"
+
+msgid "day(s)"
+msgstr "день(дні)"
+
+msgid "disabled"
+msgstr "вимкнено"
+
+msgid "enabled"
+msgstr "увімкнено"
+
+msgid "has since expired. Refresh the page to continue."
+msgstr ""
+
+msgid "hidden"
+msgstr ""
+
+msgid "hide"
+msgstr "приховати"
+
+msgid "hour(s)"
+msgstr "годин(и)"
+
+msgid "in "
+msgstr "в"
+
+msgid "minute(s)"
+msgstr "хвилин(и)"
+
+msgid "never"
+msgstr "ніколи"
+
+msgid "no"
+msgstr ""
+
+msgid "pm"
+msgstr "pm"
+
+msgid "second(s)"
+msgstr "секунд(и)"
+
+msgid "show"
+msgstr "показати"
+
+msgid "system"
+msgstr "система"
+
+msgid "watchlist"
+msgstr ""
+
+msgid "week(s)"
+msgstr "тиждень(тижнів)"
+
+msgid "year(s)"
+msgstr "рік(років)"
+
+msgid "yes"
+msgstr ""
+
+#~ msgid "(hide threads from this board)"
+#~ msgstr "(приховати нитки цієї дошки)"
+
+#~ msgid "(show threads from this board)"
+#~ msgstr "(показати нитки цієї дошки)"
+
+#~ msgid "Brush size"
+#~ msgstr "Розмір пензля"
+
+#~ msgid "Delete"
+#~ msgstr "Видалити"
+
+#~ msgid "Delete file only"
+#~ msgstr "Видалити тільки файл"
+
+#~ msgid "Edit in oekaki"
+#~ msgstr "Відкрити в редакторі оекакі"
+
+#~ msgid "Enter font or leave empty"
+#~ msgstr "Введіть назву шрифту або залиште порожнім"
+
+#~ msgid "Enter here your own Javascript code..."
+#~ msgstr "Введіть власний код Javascript…"
+
+#~ msgid "Enter some text"
+#~ msgstr "Введіть текст"
+
+#~ msgid "Fill"
+#~ msgstr "Залити"
+
+#~ msgid "Get color"
+#~ msgstr "Отримати колір"
+
+#~ msgid ""
+#~ "Have a backup of your storage somewhere, as messing here\n"
+#~ "   may render you this website unusable."
+#~ msgstr ""
+#~ "Створіть десь в іншому місці резервну копію сховища,\n"
+#~ "бо може статись, що після змін тут ви будете не в змозі користуватися цим сайтом."
+
+#~ msgid "Hello!"
+#~ msgstr "Привіт!"
+
+#~ msgid ""
+#~ "If you want to make a redistributable style, be sure to\n"
+#~ "   have a Yotsuba B theme selected."
+#~ msgstr ""
+#~ "Якщо хочете, щоб ваш стиль був переносним,\n"
+#~ "впевніться, що обрано тему Yotsuba B."
+
+#~ msgid "Load"
+#~ msgstr "Завантажити"
+
+#~ msgid "No more threads to display"
+#~ msgstr "Було показано всі нитки"
+
+#~ msgid "Password"
+#~ msgstr "Пароль"
+
+#~ msgid "Posting mode: Replying to <small>&gt;&gt;{0}</small>"
+#~ msgstr "Режим розміщення: Відповідь <small>&gt;&gt;{0}</small>"
+
+#~ msgid "Quick reply"
+#~ msgstr "Відповісти швидко"
+
+#~ msgid "Return"
+#~ msgstr "Повернутися"
+
+#~ msgid "Save"
+#~ msgstr "Зберегти"
+
+#~ msgid "Set text"
+#~ msgstr "Додати текст"
+
+#~ msgid "Spoiler Image"
+#~ msgstr "Спойлерне зображення"
+
+#~ msgid "Submit"
+#~ msgstr "Розмістити"
+
+#~ msgid "Toggle eraser"
+#~ msgstr "Увімкнути стирачку"
+
+#~ msgid "Update custom CSS"
+#~ msgstr "Оновити користувацький CSS"
+
+#~ msgid "Update custom Javascript"
+#~ msgstr "Оновити користувацький JS"
+
+#~ msgid "Use oekaki instead of file?"
+#~ msgstr "Використати оекакі замість файла?"
+
+#~ msgid "User CSS"
+#~ msgstr "Користувацький CSS"
+
+#~ msgid "{0} users"
+#~ msgstr "{0} користувачів"
