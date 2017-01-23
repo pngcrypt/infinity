@@ -150,28 +150,8 @@
 	</ul>
 </form>
 
-<script>
-$('#wf_add').on('click', function() {
-	$('#wf').append('<tr><td><input name="replace[]"></td><td><input name="with[]"></td></tr>');
-});
-
-$('#tag_add').on('click', function() {
-	$('#tags').append('<tr><td><input name="tag_id[]"></td><td><input name="tag_desc[]"></td></tr>');
-});
-
-var board_type = function() {
-	$('.txtboard, .fileboard, .imgboard').hide();
-	$('.'+$('#board_type').val()).show();
-};
-board_type();
-$('#board_type').on('change', board_type);
-
-var country_flags_select = function() {
-	$('#force_flag').hide();
-	if($('#country_flags_select').val() !== 'disabled')
-		$('#force_flag').show();
-};
-country_flags_select();
-$('#country_flags_select').on('change', country_flags_select);
-
-</script>
+{% set ext_scripts = [
+	config.jquery_js,
+	"js/mod/settings.js"
+] %}
+{% include "ext_scripts.html" %}
