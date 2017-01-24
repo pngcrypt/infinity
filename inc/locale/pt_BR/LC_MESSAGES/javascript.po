@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-19 17:13+0300\n"
+"POT-Creation-Date: 2017-01-24 23:25+0300\n"
 "PO-Revision-Date: 2015-04-01 23:22+0000\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/infinity/language/pt_BR/)\n"
@@ -110,6 +110,9 @@ msgstr ""
 msgid "Board"
 msgstr ""
 
+msgid "Board \"{0}\" already in favorites"
+msgstr ""
+
 msgid "Board-specific CSS"
 msgstr ""
 
@@ -187,6 +190,9 @@ msgstr "Dezembro"
 
 msgid "Default volume"
 msgstr "Volume padrão"
+
+msgid "Delete"
+msgstr "Deletar"
 
 msgid "Delete file"
 msgstr ""
@@ -821,6 +827,9 @@ msgstr "desabilitado"
 msgid "enabled"
 msgstr "habilitado"
 
+msgid "has since expired. Refresh the page to continue."
+msgstr ""
+
 msgid "hidden"
 msgstr "escondido"
 
@@ -874,9 +883,6 @@ msgstr ""
 
 #~ msgid "Brush size"
 #~ msgstr "Tamanho do pincel"
-
-#~ msgid "Delete"
-#~ msgstr "Deletar"
 
 #~ msgid "Delete file only"
 #~ msgstr "Deletar somente o arquivo"

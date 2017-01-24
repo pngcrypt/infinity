@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-19 17:13+0300\n"
-"PO-Revision-Date: 2015-04-01 23:22+0000\n"
+"POT-Creation-Date: 2017-01-24 23:25+0300\n"
+"PO-Revision-Date: 2017-01-24 23:27+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/projects/p/infinity/language/ru_RU/)\n"
 "Language: ru_RU\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.11\n"
 
 msgid " ago"
 msgstr " назад"
@@ -109,6 +110,9 @@ msgstr ""
 msgid "Board"
 msgstr "Доска"
 
+msgid "Board \"{0}\" already in favorites"
+msgstr "Доска \"{0}\" уже в избранном"
+
 msgid "Board-specific CSS"
 msgstr "Стиль по умолчанию"
 
@@ -186,6 +190,9 @@ msgstr "Декабрь"
 
 msgid "Default volume"
 msgstr "Громкость по умолчанию"
+
+msgid "Delete"
+msgstr "Удалить"
 
 msgid "Delete file"
 msgstr "Удалить только файл"
@@ -819,6 +826,9 @@ msgstr "выключен"
 
 msgid "enabled"
 msgstr "включён"
+
+msgid "has since expired. Refresh the page to continue."
+msgstr ""
 
 msgid "hidden"
 msgstr "скрыто"
