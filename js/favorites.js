@@ -1,80 +1,95 @@
 /*
  * favorites.js - Allow user to favorite boards and put them in the bar
  *
- * Copyright (c) 2014 Fredrick Brennan <admin@8chan.co>
- *
  * Usage:
- *   $config['additional_javascript'][] = 'js/jquery.min.js';
+ *   Vi::$config['additional_javascript'][] = Vi::$config['jquery_js'];
  *   $config['additional_javascript'][] = 'js/favorites.js';
  *
- * XX: favorites.js may conflict with watch.js and compact-boardlist.js
+ * XX: favorites.js may conflict with watch.js and compact-boardlist.js // todo: check
  */
 
-                               //- migrate back from older code which added operate
-                               //- by default and you couldn't remove it
-if (!localStorage.favorites || JSON.parse(localStorage.favorites)[0] == 'operate') {
-	localStorage.favorites = '[]';
-}
+ /* global Vi, active_page, board_name */
+Vi.favorites = function() {
+	'use strict';
+	var favorites = {
+		items: [],
+		load: fav_load,
+		save: fav_save,
+	}, $boardlist, $fav_star;
 
-function favorite(board) {
-	var favorites = JSON.parse(localStorage.favorites);
-	favorites.push(board);
-	localStorage.favorites = JSON.stringify(favorites);
-};
+	fav_load();
+	fav_save();
+	$(fav_init); // on doc-ready
 
-function unfavorite(board) {
-	var favorites = JSON.parse(localStorage.favorites);
-	var index = $.inArray(board, favorites);
-	if (~index) {
-		favorites.splice(index, 1);
-	}
-	localStorage.favorites = JSON.stringify(favorites);
-};
+	return favorites;
 
-function handle_boards(data) {
-	var boards = new Array();
-	data = JSON.parse(data);
-
-	$.each(data, function(k, v) {
-		boards.push('<a href="/'+v+(window.active_page === 'catalog' ? '/catalog.html' : '')+'">'+v+'</a>');
-	})
-
-	if (boards[0]) {
-		return $('<span class="favorite-boards"></span>').append(' [ '+boards.join(" / ")+' ] ');
-	} else {
-		return $('<span class="favorite-boards"></span>');
-	}	
-}
-
-function add_favorites() {
-	$('.favorite-boards').remove();
-	
-	var boards = handle_boards(localStorage.favorites);
-
-	$('.boardlist').append(boards);
-};
-
-if (active_page == 'thread' || active_page == 'index' || active_page == 'catalog' || active_page == 'ukko') {
-	$(document).ready(function(){
-		var favorites = JSON.parse(localStorage.favorites);
-		var is_board_favorite = ~$.inArray(board_name, favorites);
-
-		$('header>h1').append('<a id="favorite-star" href="#" data-active="'+(is_board_favorite ? 'true' : 'false')+'" style="color: '+(is_board_favorite ? 'yellow' : 'grey')+'; text-decoration:none">\u2605</span>');
-		add_favorites();
-
-		$('#favorite-star').on('click', function(e) {
-			e.preventDefault();
-			if (!$(this).data('active')) {
-				favorite(board_name);
-				add_favorites();
-				$(this).css('color', 'yellow');
-				$(this).data('active', true);
-			} else {
-				unfavorite(board_name);
-				add_favorites();
-				$(this).css('color', 'grey');
-				$(this).data('active', false);
-			}
+	function fav_load() {
+		try {
+			favorites.items = JSON.parse(localStorage.getItem('favorites'));
+		}
+		catch(e) {}
+		if(!Vi.isArray(favorites.items)) {
+			if(Vi.config.favorites_def && Vi.isArray(Vi.config.favorites_def))
+				favorites.items = Vi.config.favorites_def; // get defaults if localstorage is empty
+			else
+				favorites.items = [];
+		}
+		favorites.items = favorites.items.map(function(v) {
+			return String(v).toLowerCase();
 		});
-	});
-}
+	}
+
+	function fav_save() {
+		if(!Vi.isArray(favorites.items))
+			favorites.items = [];
+		else {
+			favorites.items = favorites.items.map(function(v) {
+				return String(v).toLowerCase();
+			});
+		}
+		localStorage.setItem('favorites', JSON.stringify(favorites.items));
+	}
+
+	function fav_init() {
+		$boardlist = $('.boardlist');
+		if($boardlist.length)
+			$boardlist = $('<span class="favorite-boards"/>').appendTo($boardlist);
+		else
+			$boardlist = null;
+
+		if(['thread', 'index', 'catalog', 'ukko'].indexOf(active_page) >= 0) {
+			// add star to board name
+			$('header>h1').append(' <a id="favorite-star" href="#" style="text-decoration:none">\u2605</a>');
+			$fav_star = $('#favorite-star');
+			$fav_star.on('click', function(e) {
+				e.preventDefault();
+				fav_load();
+				var is_fav = favorites.items.indexOf(board_name);
+				if(is_fav < 0)
+					favorites.items.push(board_name);
+				else
+					favorites.items.splice(is_fav, 1);
+				fav_save();
+				fav_update();
+			});
+		}
+
+		$(document).on('favorites_change', fav_update); // event for redraw (from other scripts)
+		fav_update();
+	}
+
+	function fav_update() {
+		// redraw favorites
+		fav_load();
+		if($fav_star) {
+			$fav_star.css('color', favorites.items.indexOf(board_name) < 0 ? 'grey' : 'yellow');
+		}
+		if($boardlist) {
+			var f,links = [];
+			for(f of favorites.items) {
+				links.push('<a href="/' + f + (active_page === 'catalog' ? '/catalog.html' : '') + '">' + f + '</a>');
+			}
+			$boardlist.html(links.length ? ' [ ' + links.join(' / ') + ' ] ' : '');
+		}
+	}
+}();

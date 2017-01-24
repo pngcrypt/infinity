@@ -1,72 +1,133 @@
-$(document).ready(function(){
-//Creating functions
-var generateList = function(){
-	var favStor = [];
-  	for(var i=1; i<favorites.length+1; i++){
-  		favStor.push($("#sortable > div:nth-child("+i+")").html());
-  	}
-	return favStor;
-} //This will generate a list of boards based off of the list on the screen
-function removeBoard(boardNumber){
-	favorites.splice(boardNumber, 1);
-	localStorage.favorites = JSON.stringify(favorites);
-	$("#sortable > div:nth-child("+(boardNumber+1)+")").remove();
-	$("#minusList > div:nth-child("+(favorites.length+1)+")").remove();
-	add_favorites();
-} //This removes a board from favorites, localStorage.favorites and the page
-function addBoard(){
-	$("#sortable").append("<div>"+($("#plusBox").val())+"</div>");
-	$("#minusList").append( $('<div data-board="'+favorites.length+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
-	favorites.push($("#plusBox").val());
-	localStorage.favorites = JSON.stringify(favorites);
-	$("#plusBox").val(""); //Removing text from textbox
-	add_favorites();
-} //This adds the text inside the textbox to favorites, localStorage.favorites and the page
+/* global _, fmt, Vi, Options, alert */
 
-var favorites = JSON.parse(localStorage.favorites);
-Options.add_tab('fav-tab','star',_("Favorites"));
+$(function() {
+	'use strict';
 
-//Pregenerating list of boards 
-var favList = $('<div id="sortable" style="cursor: pointer; display: inline-block">');
-for(var i=0; i<favorites.length; i++){
-    favList.append( $('<div>'+favorites[i]+'</div>') );
-} 
+	if(typeof Options == 'undefined')
+		return;
 
-//Creating list of minus symbols to remove unwanted boards
-var minusList = $('<div id="minusList" style="color: #0000FF; display: inline-block">');
-for(var i=0; i<favorites.length; i++){
-    minusList.append( $('<div data-board="'+i+'" style="cursor: pointer; margin-right: 5px">-</div>').on('click', function(e){removeBoard($(this).data('board'));}) );
-} 
+	var i,favorites;
 
-//Help message so people understand how sorting boards works
-$("<span>"+_("Drag the boards to sort them.")+"</span><br><br>").appendTo(Options.get_tab('fav-tab').content);
+	$('head').append('<style>'+
+		'.fav-tab #sortable {display: inline-block;}'+
+		'.fav-tab .fav-info {margin: 4px; border-bottom: 1px solid grey;}'+
+		'.fav-tab .fav-board {cursor: pointer; padding-left: 16px; position: relative;}'+
+		'.fav-tab .fav-remove {cursor: pointer; position: absolute; margin-left: -12px; color: grey;}'+
+		'.fav-tab .fav-remove:hover {color: red;}'+
+		'.fav-tab .fav-add {margin: 4px;}'+
+		'.fav-tab input[type="button"] {width: 20px; padding: 0; margin: 0; height: 100%;}'+
+	'</style>');
 
-//Adding list of boards and minus symbols to remove boards with
-$(minusList).appendTo(Options.get_tab('fav-tab').content); //Adding the list of minus symbols to the tab
-$(favList).appendTo(Options.get_tab('fav-tab').content);  //Adding the list of favorite boards to the tab
+	fav_load();
 
-//Adding spacing and text box to right boards into
-var addDiv = $("<div id='favs-add-board'>");
-
-var plusBox = $("<input id=\"plusBox\" type=\"text\">").appendTo(addDiv);
-plusBox.keydown(function( event ) {
-	if(event.keyCode == 13){
-		$("#plus").click();
+	// list of boards 
+	var $favList = $('<div id="sortable"/>');
+	for (i = 0; i < favorites.length; i++) {
+		fav_add_item(favorites[i]);
 	}
-});
+	$favList
+		.sortable() //Making boards with sortable id use the sortable jquery function
+		.on('sortstop', function() {
+			// sort names
+			favorites = [];
+			$favList.find('.fav-board').each(function(){
+				favorites.push($(this).data('name'));
+			});
+			fav_save();
+			$(document).trigger('favorites_change');
+		})
+		.on('mouseenter', '.fav-board', function() {
+			// show delete link
+			$(this).prepend($del_link);
+			$del_link.show();
+		})
+		.on('mouseleave', '.fav-board', function() {
+			// hide delete link
+			$favList.append($del_link.hide());
+		});
+	
+	// delete link
+	var $del_link = $('<span class="fav-remove fa fa-times" title="'+ _('Delete') +'"/>')
+		.hide()
+		.on('click', function() {
+			// remove item
+			var $item = $del_link.parent();
+			var bi = favorites.indexOf($item.data('name'));
+			$favList.append($del_link.hide());			
+			$item.remove();
+			if(bi >= 0) {
+				favorites.splice(bi, 1);
+				fav_save();
+				$(document).trigger('favorites_change');
+			}
+		})
+		.appendTo($favList);
 
-//Adding plus symbol to use to add board
-$("<div id=\"plus\">+</div>").css({
-	cursor: "pointer",
-	color: "#0000FF"
-}).on('click', function(e){addBoard()}).appendTo(addDiv);
+	// append div
+	var $divAdd = $('<div class="fav-add"/>');
+	var $inpAdd = $('<input type="text">')
+		.on('keydown', function(ev) {
+			if (ev.keyCode == 13) {
+				$addBtn.click();
+			}
+		})
+		.appendTo($divAdd);
 
-addDiv.appendTo(Options.get_tab('fav-tab').content); //Adding the plus button
+	var $addBtn = $('<input type="button" value="+" title="'+ _('Add') +'"/>')
+		.on("click", function() {
+			// add board
+			var board = $inpAdd.val().trim().toLowerCase();
+			if(board === "")
+				return;
+			if(favorites.indexOf(board) >= 0) {
+				alert(fmt(_('Board "{0}" already in favorites'), [board]));
+				return;
+			}
+			$inpAdd.val("");
+			fav_add_item(board);
+			favorites.push(board);
+			fav_save();
+			$(document).trigger('favorites_change');
+		})
+		.appendTo($divAdd);
 
-favList.sortable(); //Making boards with sortable id use the sortable jquery function
-favList.on('sortstop', function() {
-	favorites = generateList();	
-	localStorage.favorites = JSON.stringify(favorites);
-	add_favorites();
-});
+	// make tab
+	Options.add_tab('fav-tab', 'star', _('Favorites')).content
+		.append('<div class="fav-info">' + _("Drag the boards to sort them.") + "</div>")
+		.append($favList)
+		.append($divAdd);
+
+	return;
+
+	function fav_load() {
+		try {
+			favorites = JSON.parse(localStorage.getItem('favorites'));
+		}
+		catch(e) {}
+		if(!Vi.isArray(favorites)) {
+			if(Vi.config.favorites_def && Vi.isArray(Vi.config.favorites_def))
+				favorites = Vi.config.favorites_def; // get defaults if localstorage is empty
+			else
+				favorites = [];
+		}
+		favorites = favorites.map(function(v) {
+			return String(v).toLowerCase();
+		});
+	}
+
+	function fav_save() {
+		if(!Vi.isArray(favorites))
+			favorites = [];
+		else {
+			favorites = favorites.map(function(v) {
+				return String(v).toLowerCase();
+			});
+		}
+		localStorage.setItem('favorites', JSON.stringify(favorites));
+	}
+
+	function fav_add_item(name) {
+		$favList.append($('<div class="fav-board">' + name + '</div>').data('name', name));
+	}
+
 });

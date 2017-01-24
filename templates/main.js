@@ -6,7 +6,14 @@
  * Compiled on {% endraw %}{{ time()|date("%c") }}{% raw %}
  */
 
-var Vi = {};
+var Vi = {
+	config: {
+		favorites_def: ["b","rus","mod"], // default favorites
+	},
+
+	isDefined: function(v) {return (typeof v !== 'undefined');},
+	isArray: function(v) {return Array.isArray(v);},
+};
 
 /* gettext-compatible _ function, example: alert(_("Hello!")); */
 function _(s) {
