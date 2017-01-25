@@ -9,10 +9,11 @@ class chanCaptcha {
 		$cookie  = $captcha['cookie'];
 		$html    = $captcha['html'];
 
-		$id = self::get_id($_GET);
+		$query = "";
+		$id = self::get_id($_GET, $query);
 
 		setcookie($id, $cookie, time() + Vi::$config['captcha']['expires_in']);
-		echo '<a title="' . _('Click to update') . '" href="?" id="captcha_img">' . $html . '</a>';
+		echo '<a title="' . _('Click to update') . '" href="?' . $query . '" id="captcha_img">' . $html . '</a>';
 		exit;
 	}
 
@@ -37,16 +38,22 @@ class chanCaptcha {
 		return false;
 	}
 
-	public static function get_id($method) {
+	public static function get_id($method, &$query=null) {
 		$id = 'captcha';
+		$q = [];
 
-		if (isset($method['board']) && !empty($method['board'])) {
+		if (isset($method['board']) && !empty($method['board'])) {			
 			$id .= '_' . strval($method['board']);
+			$q[] = "board=".strval($method['board']);
 		}
 
 		if (isset($method['thread'])) {
 			$id .= '_' . intval($method['thread']);
+			$q[] = "thread=".intval($method['thread']);
 		}
+
+		if(!is_null($query))
+			$query = implode('&', $q);
 
 		return preg_replace('/\W/', '', $id); // remove any "non-word" character
 	}
