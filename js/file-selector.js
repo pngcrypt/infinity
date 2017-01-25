@@ -26,7 +26,7 @@ $(document).ready(function () {
 });
 
 // disabled by user, or incompatible browser.
-if (localStorage.file_dragdrop == 'false' || !(window.URL.createObjectURL && window.File))
+if (localStorage.file_dragdrop == 'false' || !(window.URL && window.URL.createObjectURL && window.File))
 	return;
 
 // multipost not enabled

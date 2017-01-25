@@ -85,10 +85,10 @@ Vi.favorites = function() {
 			$fav_star.css('color', favorites.items.indexOf(board_name) < 0 ? 'grey' : 'yellow');
 		}
 		if($boardlist) {
-			var f,links = [];
-			for(f of favorites.items) {
+			var links = [];
+			favorites.items.forEach(function(f) {
 				links.push('<a href="/' + f + (active_page === 'catalog' ? '/catalog.html' : '') + '">' + f + '</a>');
-			}
+			});
 			$boardlist.html(links.length ? ' [ ' + links.join(' / ') + ' ] ' : '');
 		}
 	}

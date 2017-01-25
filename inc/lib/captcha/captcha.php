@@ -12,7 +12,7 @@ class chanCaptcha {
 		$id = self::get_id($_GET);
 
 		setcookie($id, $cookie, time() + Vi::$config['captcha']['expires_in']);
-		echo '<a title="' . _('Click to update') . '" href="" id="captcha_img">' . $html . '</a>';
+		echo '<a title="' . _('Click to update') . '" href="?" id="captcha_img">' . $html . '</a>';
 		exit;
 	}
 
@@ -64,7 +64,7 @@ class chanCaptcha {
 		$captcha->CreateImage($text);
 		$image = ob_get_contents();
 		ob_end_clean();
-		$html = '<image src="data:image/png;base64,' . base64_encode($image) . '">';
+		$html = '<img src="data:image/png;base64,' . base64_encode($image) . '" border="0">';
 
 		self::store_set($cookie, $text);
 
