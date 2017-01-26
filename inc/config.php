@@ -993,7 +993,7 @@ Vi::$config['timezone'] = 'America/Los_Angeles';
 // http://www.php.net/manual/en/function.strftime.php
 Vi::$config['post_date'] = '%m/%d/%y (%a) %H:%M:%S';
 // Same as above, but used for "you are banned' pages.
-Vi::$config['ban_date'] = '%A %e %B, %Y';
+Vi::$config['ban_date'] = '%a %e %b, %Y';
 
 // The names on the post buttons. (On most imageboards, these are both just "Post").
 Vi::$config['button_newtopic'] = _('New Topic');

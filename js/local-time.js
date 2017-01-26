@@ -8,35 +8,42 @@
  *
  * Usage:
  *   // Vi::$config['additional_javascript'][] = 'js/jquery.min.js';
- *   // Vi::$config['additional_javascript'][] = 'js/strftime.min.js';
  *   Vi::$config['additional_javascript'][] = 'js/local-time.js';
  *
  */
 
-$(document).ready(function(){
+/* global _, Vi, Options */
+(function(){
 	'use strict';
 
-	var iso8601 = function(s) {
+	$(function() {
+		if (window.Options && Options.get_tab('general')) {
+			Options.extend_tab('general', '<label id="show-relative-time"><input type="checkbox">' + _('Show relative time') + '</label>');
+
+			$('#show-relative-time>input').on('change', function() {
+				localStorage.show_relative_time = localStorage.show_relative_time === 'true' ? 'false' : 'true';
+				// no need to refresh page
+				do_localtime(document);
+			});
+
+			// allow to work with auto-reload.js, etc.
+			$(document).on('new_post', function(e, post) {
+				do_localtime(post);
+			});
+		}
+
+		do_localtime(document);
+	});
+
+	return;
+
+	function iso8601(s) {
 		s = s.replace(/\.\d\d\d+/,""); // remove milliseconds
 		s = s.replace(/-/,"/").replace(/-/,"/");
 		s = s.replace(/T/," ").replace(/Z/," UTC");
 		s = s.replace(/([\+\-]\d\d)\:?(\d\d)/," $1$2"); // -04:00 -> -0400
 		return new Date(s);
-	};
-	var zeropad = function(num, count) {
-		return [Math.pow(10, count - num.toString().length), num].join('').substr(1);
-	};
-
-	var dateformat = (typeof strftime === 'undefined') ? function(t) {
-		return zeropad(t.getMonth() + 1, 2) + "/" + zeropad(t.getDate(), 2) + "/" + t.getFullYear().toString().substring(2) +
-				" (" + [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")][t.getDay()]  + ") " +
-				// time
-				zeropad(t.getHours(), 2) + ":" + zeropad(t.getMinutes(), 2) + ":" + zeropad(t.getSeconds(), 2);
-
-	} : function(t) {
-		// post_date is defined in templates/main.js
-		return strftime(window.post_date, t, datelocale);
-	};
+	}
 
 	function timeDifference(current, previous) {
 
@@ -63,40 +70,25 @@ $(document).ready(function(){
 		}
 	}
 
-	var do_localtime = function(elem) {	
-		var times = elem.getElementsByTagName('time');
+	function do_localtime(elem) {	
 		var currentTime = Date.now();
+		$('time[datetime]', elem).each(function(){
+			var $t = $(this),
+				dt = $t.attr('datetime'),
+				postTime = new Date(dt),
+				fmt = $t.data('format');
 
-		for(var i = 0; i < times.length; i++) {
-			var t = times[i].getAttribute('datetime');
-			var postTime = new Date(t);
-
-			times[i].setAttribute('data-local', 'true');
+			$(this).data('local', true);
 
 			if (localStorage.show_relative_time === 'true') {
-				times[i].innerHTML = timeDifference(currentTime, postTime.getTime());
-				times[i].setAttribute('title', dateformat(iso8601(t)));
+				$(this)
+					.html(timeDifference(currentTime, postTime.getTime()))
+					.attr('title', Vi.time.dateformat(iso8601(dt), fmt));
 			} else {
-				times[i].innerHTML = dateformat(iso8601(t));
-				times[i].setAttribute('title', timeDifference(currentTime, postTime.getTime()));
+				$(this)
+					.html(Vi.time.dateformat(iso8601(dt), fmt))
+					.attr('title', timeDifference(currentTime, postTime.getTime()));
 			}
-		}
-	};
-
-	if (window.Options && Options.get_tab('general') && window.jQuery) {
-		Options.extend_tab('general', '<label id="show-relative-time"><input type="checkbox">' + _('Show relative time') + '</label>');
-
-		$('#show-relative-time>input').on('change', function() {
-			localStorage.show_relative_time = localStorage.show_relative_time === 'true' ? 'false' : 'true';
-			// no need to refresh page
-			do_localtime(document);
-		});
-
-		// allow to work with auto-reload.js, etc.
-		$(document).on('new_post', function(e, post) {
-			do_localtime(post);
 		});
 	}
-
-	do_localtime(document);
-});
+})();

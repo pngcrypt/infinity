@@ -101,6 +101,12 @@ Vi::$config['minify_html'] = true;
 Vi::$config['minify_js'] = true;
 //Vi::$config['default_stylesheet'] = array('Notsuba', 'notsuba.css');
 Vi::$config['additional_javascript'][] = Vi::$config['jquery_js'];
+
+// new kernel --> don't delete it !
+// Vi::$config['additional_javascript'][] = 'js/Vi/cookie.js';
+Vi::$config['additional_javascript'][] = 'js/Vi/time.js';
+// <-- new kernel
+
 Vi::$config['additional_javascript'][] = 'js/jquery.mixitup.min.js';
 Vi::$config['additional_javascript'][] = 'js/jquery-ui.custom.min.js';
 Vi::$config['additional_javascript'][] = 'js/catalog.js';

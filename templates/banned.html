@@ -8,20 +8,19 @@
 	{% endif %}
 	<p>
 		{% if ban.expires and time() >= ban.expires %}
-			{% trans("You were banned from") %}
+			{% trans("You were banned") %}
 		{% else %}
-			{% trans("You have been banned from") %}
+			{% trans("You have been banned") %}
 		{% endif %}
-			{% if ban.board %}
-				 <strong>{{ config.board_abbreviation|sprintf(ban.board) }}</strong>
-			{% else %}
-				 {% trans("all boards") %}
-			{% endif %}
-			{% if ban.reason %}
-				 {% trans("for the following reason:") %}
-			{% else %}
-				 {% trans("for an unspecified reason.") %}
-			{% endif %}
+		 {% trans %}from board{% plural ban.board ? 1 : 2 %}from all boards{% endtrans %}
+		{% if ban.board %}
+			 <strong>{{ config.board_abbreviation|sprintf(ban.board) }}</strong>
+		{% endif %}
+		{% if ban.reason %}
+			 {% trans("for the following reason:") %}
+		{% else %}
+			 {% trans("for an unspecified reason.") %}
+		{% endif %}
 	</p>
 	{% if ban.reason %}
 		<p class="reason">
@@ -30,25 +29,25 @@
 	{% endif %}
 	<p>
 		{% trans("Your ban was filed on") %} 
-			<strong>{{ ban.created|date(config.ban_date) }}</strong> 
-			{% if config.show_modname %}
-				{% if ban.username %}
-					{% trans("by") %} <strong> {{ ban.username }} </strong>
-				{% else %}
-					{% trans("by") %} <em> 'system' </em>
-				{% endif %}
+		<strong><time datetime="{{ ban.created|dateISO }}" data-format="{{ config.ban_date }}">{{ ban.created|date(config.ban_date) }}</time></strong> 
+		{% if config.show_modname %}
+			{% if ban.username %}
+				{% trans("by") %} <strong> {{ ban.username }} </strong>
+			{% else %}
+				{% trans("by") %} <em> 'system' </em>
 			{% endif %}
-			{% trans("and") %} <span id="expires">	
-		{% if ban.expires and time() >= ban.expires %}
-			{% trans %} has since expired. Refresh the page to continue.{%  endtrans %}
-		{% elseif ban.expires %}
-			{% trans("expires") %} <span id="countdown" data-left="{{ ban.expires - time() }}">{{ ban.expires|until }}</span> {% trans("from now, which is on") %} 
-			<strong>
-				{{ ban.expires|date(config.ban_date) }}
-			</strong>
-		{% else %}
-			<em>{% trans("will not expire") %}</em>.
 		{% endif %}
+		<span id="expires">	
+			{% if ban.expires and time() >= ban.expires %}
+				{% trans %}and has since expired. Refresh the page to continue.{%  endtrans %}
+			{% elseif ban.expires %}
+				{% trans("and expires") %} <span id="countdown" data-left="{{ ban.expires - time() }}">{{ ban.expires|until }}</span> {% trans("from now, which is on") %} 
+				<strong>
+					<time datetime="{{ ban.expires|dateISO }}" data-format="{{ config.ban_date }}">{{ ban.expires|date(config.ban_date) }}</time>
+				</strong>
+			{% else %}
+				<em>{% trans("and will not expire") %}</em>.
+			{% endif %}
 		</span>
 	</p>
 	<p>{% trans("Your IP address is") %} <strong>{{ ban.ip }}</strong>.</p>
@@ -59,7 +58,7 @@
 	
 	{% if post and config.ban_show_post %}
 		<hr>
-		<p>{% trans("You were banned for the following post on") %} {{ board.url }}:</p>
+		<p>{% trans("You were banned for the following post on") %} <strong>{{ board.url }}</strong>:</p>
 		{{ post }}
 		<br>
 	{% endif %}

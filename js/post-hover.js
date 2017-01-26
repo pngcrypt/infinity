@@ -13,7 +13,9 @@
  *
  */
 
-/* global $, _, datelocale, onready */
+/* global _, Vi, onready, strftime */
+
+// todo: timeDifference, dateformat - dups (local-time)
 
 onready(function(){
 'use strict';
@@ -50,7 +52,7 @@ onready(function(){
 
 		var post = false;
 		var hovering = false;
-		link.hover(function(e) {
+		link.hover(function() {
 			hovering = true;
 
 			var highlight_link = function(link, post) {
@@ -339,13 +341,13 @@ onready(function(){
 
 	var dateformat = (typeof strftime === 'undefined') ? function(t) {
 		return zeropad(t.getMonth() + 1, 2) + "/" + zeropad(t.getDate(), 2) + "/" + t.getFullYear().toString().substring(2) +
-				" (" + [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")][t.getDay()]  + ") " +
+				" (" + Vi.time.datelocale.shortDays[t.getDay()]  + ") " +
 				// time
 				zeropad(t.getHours(), 2) + ":" + zeropad(t.getMinutes(), 2) + ":" + zeropad(t.getSeconds(), 2);
 
 	} : function(t) {
 		// post_date is defined in templates/main.js
-		return strftime(window.post_date, t, datelocale);
+		return strftime(window.post_date, t, Vi.time.datelocale);
 	};
 
 	function timeDifference(current, previous) {

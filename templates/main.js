@@ -7,9 +7,22 @@
  */
 
 {% endraw %}
+
+if (typeof board_name === "undefined") {
+	var matches = document.URL.match(/\/([0-9a-zA-Z\+$_\u0080-\uFFFF]{1,58})\/($|{{ config.dir.res|replace({'/': '\\/'}) }}{{ config.file_page|replace({'%d': '\\d+', '.': '\\.'}) }}|{{ config.file_index|replace({'.': '\\.'}) }}|{{ config.dir.res|replace({'/': '\\/'}) }}{{ config.file_page50|replace({'+': '\\+', '%d': '\\d+', '.': '\\.'}) }}|{{ config.file_page|replace({'%d': '\\d+', '.': '\\.'}) }}|{{ config.catalog_link|replace({'.': '\\.'}) }})/);
+	var board_name = (matches ? matches[1] : false);
+}
+
+var post_date = "{{ config.post_date }}";
+if (typeof active_page === "undefined") {
+	active_page = "page";
+}
+
 var Vi = {
 	config: {
 		favorites_def: ["b","rus","mod"], // default favorites
+		board_name: board_name,
+		active_page: active_page,
 		cookie: {
 			js: "{{ config.cookies.js }}"
 		}
@@ -35,6 +48,7 @@ var Vi = {
 };
 {% raw %}
 
+
 /* gettext-compatible _ function, example: alert(_("Hello!")); */
 function _(s) {
 	return (typeof l10n != 'undefined' && typeof l10n[s] != 'undefined') ? l10n[s] : s;
@@ -47,54 +61,6 @@ function _(s) {
 function fmt(s,a) {
 	return s.replace(/\{([0-9]+)\}/g, function(x) { return a[x[1]]; });
 }
-
-function until($timestamp) {
-		var $difference = $timestamp - Date.now()/1000|0, $num;
-		switch(true){
-		case ($difference < 60):
-				return "" + $difference + ' ' + _('second(s)');
-		case ($difference < 3600): //60*60 = 3600
-				return "" + ($num = Math.round($difference/(60))) + ' ' + _('minute(s)');
-		case ($difference < 86400): //60*60*24 = 86400
-				return "" + ($num = Math.round($difference/(3600))) + ' ' + _('hour(s)');
-		case ($difference < 604800): //60*60*24*7 = 604800
-				return "" + ($num = Math.round($difference/(86400))) + ' ' + _('day(s)');
-		case ($difference < 31536000): //60*60*24*365 = 31536000
-				return "" + ($num = Math.round($difference/(604800))) + ' ' + _('week(s)');
-		default:
-				return "" + ($num = Math.round($difference/(31536000))) + ' ' + _('year(s)');
-		}
-}
-
-function ago($timestamp) {
-		var $difference = (Date.now()/1000|0) - $timestamp, $num;
-		switch(true){
-		case ($difference < 60) :
-				return "" + $difference + ' ' + _('second(s)');
-		case ($difference < 3600): //60*60 = 3600 
-				return "" + ($num = Math.round($difference/(60))) + ' ' + _('minute(s)');
-		case ($difference <  86400): //60*60*24 = 86400
-				return "" + ($num = Math.round($difference/(3600))) + ' ' + _('hour(s)');
-		case ($difference < 604800): //60*60*24*7 = 604800
-				return "" + ($num = Math.round($difference/(86400))) + ' ' + _('day(s)');
-		case ($difference < 31536000): //60*60*24*365 = 31536000
-				return "" + ($num = Math.round($difference/(604800))) + ' ' + _('week(s)');
-		default:
-				return "" + ($num = Math.round($difference/(31536000))) + ' ' + _('year(s)');
-		}
-}
-
-var datelocale =
-		{ days: [_('Sunday'), _('Monday'), _('Tuesday'), _('Wednesday'), _('Thursday'), _('Friday'), _('Saturday')]
-		, shortDays: [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat")]
-		, months: [_('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'), _('August'), _('September'), _('October'), _('November'), _('December')]
-		, shortMonths: [_('Jan'), _('Feb'), _('Mar'), _('Apr'), _('May'), _('Jun'), _('Jul'), _('Aug'), _('Sep'), _('Oct'), _('Nov'), _('Dec')]
-		, AM: _('AM')
-		, PM: _('PM')
-		, am: _('am')
-		, pm: _('pm')
-		};
-
 
 function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action) {
 	var handler, div, bg, closebtn, okbtn;
@@ -133,11 +99,6 @@ function alert(a, do_confirm, confirm_ok_action, confirm_cancel_action) {
 }
 
 var saved = {};
-
-if (typeof board_name === "undefined") {
-	var matches = document.URL.match({% endraw %}/\/([0-9a-zA-Z\+$_\u0080-\uFFFF]{1,58})\/($|{{ config.dir.res|replace({'/': '\\/'}) }}{{ config.file_page|replace({'%d': '\\d+', '.': '\\.'}) }}|{{ config.file_index|replace({'.': '\\.'}) }}|{{ config.dir.res|replace({'/': '\\/'}) }}{{ config.file_page50|replace({'+': '\\+', '%d': '\\d+', '.': '\\.'}) }}|{{ config.file_page|replace({'%d': '\\d+', '.': '\\.'}) }}|{{ config.catalog_link|replace({'.': '\\.'}) }})/{% raw %});
-	var board_name = (matches ? matches[1] : false);
-}
 
 function get_cookie(cookie_name) {
 	var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)');
@@ -387,11 +348,6 @@ function ready() {
 }
 
 {% endraw %}
-
-var post_date = "{{ config.post_date }}";
-if (typeof active_page === "undefined") {
-	active_page = "page";
-}
 
 {% if config.google_analytics %}{% raw %}
 
