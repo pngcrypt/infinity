@@ -24,11 +24,12 @@ require dirname(__FILE__) . '/inc/cli.php';
 $start = microtime(true);
 
 // parse command line
-$opts = getopt('qfb:', Array('board:', 'quick', 'full', 'quiet'));
+$opts = getopt('qfb:', Array('board:', 'post:', 'quick', 'full', 'quiet'));
 $options = Array();
 $global_locale = Vi::$default_locale;
 
 $options['board'] = isset($opts['board']) ? $opts['board'] : (isset($opts['b']) ? $opts['b'] : false);
+$options['post'] = isset($opts['post']) ? (int)$opts['post'] : false;
 $options['quiet'] = isset($opts['q']) || isset($opts['quiet']);
 $options['quick'] = isset($opts['quick']);
 $options['full'] = isset($opts['full']) || isset($opts['f']);
@@ -77,19 +78,29 @@ foreach($boards as &$board) {
 		echo "Creating index pages...\n";
 	buildIndex();
 	
-	if($options['quick'])
+	if($options['quick'] && !$options['post'])
 		continue; // do no more
+
+	$thread_sql = NULL;
+	if($options['post']) {
+		$thread_sql = " WHERE `thread`='" . $options['post'] . "'";
+	}
 	
-	if($options['full']) {
-		$query = query(sprintf("SELECT `id` FROM ``posts_%s``", $board['uri'])) or error(db_error());
+	if($options['full'] || $thread_sql) {
+		$query = query(sprintf("SELECT `id` FROM ``posts_%s``" . $thread_sql, $board['uri'])) or error(db_error());
 		while($post = $query->fetch()) {
 			if(!$options['quiet'])
 				echo "Rebuilding post #{$post['id']}...\n";
 			rebuildPost($post['id']);
 		}
 	}
+
+	$post_sql = NULL;
+	if($options['post']) {
+		$post_sql = " AND `post`='" . $options['post'] . "'";
+	}
 	
-	$query = query(sprintf("SELECT `id` FROM ``posts_%s`` WHERE `thread` IS NULL ORDER BY `time` DESC", $board['uri'])) or error(db_error());
+	$query = query(sprintf("SELECT `id` FROM ``posts_%s`` WHERE `thread` IS NULL" . $post_sql . " ORDER BY `time` DESC", $board['uri'])) or error(db_error());
 	while($post = $query->fetch()) {
 		if(!$options['quiet'])
 			echo "Rebuilding thread #{$post['id']}...\n";
@@ -101,5 +112,5 @@ if(!$options['quiet'])
 	printf("Complete! Took %g seconds\n", microtime(true) - $start);
 
 unset($board);
-modLog('Rebuilt everything using tools/rebuild.php');
+//modLog('Rebuilt everything using tools/rebuild.php');
 
