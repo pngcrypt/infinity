@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-24 23:25+0300\n"
+"POT-Creation-Date: 2017-01-26 21:53+0300\n"
 "PO-Revision-Date: 2016-06-19 17:30+0300\n"
 "Last-Translator: kotobenko <aniguysubs@gmail.com>\n"
 "Language-Team: \n"
@@ -819,6 +819,9 @@ msgstr "все"
 msgid "am"
 msgstr "am"
 
+msgid "and has since expired. Refresh the page to continue."
+msgstr ""
+
 msgid "day(s)"
 msgstr "день(дні)"
 
@@ -827,9 +830,6 @@ msgstr "вимкнено"
 
 msgid "enabled"
 msgstr "увімкнено"
-
-msgid "has since expired. Refresh the page to continue."
-msgstr ""
 
 msgid "hidden"
 msgstr ""

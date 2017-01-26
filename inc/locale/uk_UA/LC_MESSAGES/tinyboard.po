@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-24 23:25+0300\n"
+"POT-Creation-Date: 2017-01-26 21:53+0300\n"
 "PO-Revision-Date: 2016-06-19 17:31+0300\n"
 "Last-Translator: kotobenko <aniguysubs@gmail.com>\n"
 "Language-Team: \n"
@@ -1935,8 +1935,8 @@ msgstr ""
 msgid "You have attempted to upload too many images!"
 msgstr "Ви спробували завантажити надто багато зображень!"
 
-msgid "You have been banned from"
-msgstr "Вас заблоковано на"
+msgid "You have been banned"
+msgstr ""
 
 msgid "You have submitted the maximum number of ban appeals allowed. You may not appeal this ban again."
 msgstr "Ви подали максимальну кількість оскаржень, і більше не можете оскаржувати це блокування."
@@ -1984,11 +1984,11 @@ msgstr "Здається, ви не пройшли підтвердження."
 msgid "You submitted an appeal for this ban on"
 msgstr "Ви подали оскарження цього блокування"
 
+msgid "You were banned"
+msgstr ""
+
 msgid "You were banned for the following post on"
 msgstr "Вас було заблоковано за цей допис"
-
-msgid "You were banned from"
-msgstr "Вас було заблоковано на"
 
 msgid "You were banned! ;_;"
 msgstr "Вас було заблоковано! ;_;"
@@ -2039,11 +2039,20 @@ msgstr "всі дошки"
 msgid "and"
 msgstr "і"
 
+msgid "and expires"
+msgstr ""
+
+msgid "and has since expired. Refresh the page to continue."
+msgstr ""
+
 msgid "and it was denied."
 msgstr ". Оскарження відхилено."
 
 msgid "and it was denied. You may not appeal this ban again."
 msgstr ". Оскарження відхилено. Ви не можете знову оскаржувати це блокування."
+
+msgid "and will not expire"
+msgstr ""
 
 msgid "at"
 msgstr "о"
@@ -2081,9 +2090,6 @@ msgstr ""
 msgid "exiftool failed!"
 msgstr "exiftool не спрацювала!"
 
-msgid "expires"
-msgstr "спливає"
-
 msgid "fails left:"
 msgstr ""
 
@@ -2093,11 +2099,14 @@ msgstr ", причину не вказано."
 msgid "for the following reason:"
 msgstr "з такої причини:"
 
+msgid "from board"
+msgid_plural "from all boards"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 msgid "from now, which is on"
 msgstr ""
-
-msgid "has since expired. Refresh the page to continue."
-msgstr "сплив. Оновіть сторінку, аби продовжити."
 
 msgid "hour"
 msgid_plural "hours"
@@ -2195,9 +2204,6 @@ msgstr[0] "тиждень"
 msgstr[1] "тижні"
 msgstr[2] "тижнів"
 
-msgid "will not expire"
-msgstr "не сплине"
-
 msgid "year"
 msgid_plural "years"
 msgstr[0] "рік"
@@ -2273,14 +2279,29 @@ msgstr[2] "років"
 #~ msgid "You are not banned."
 #~ msgstr "Вас не заблоковано."
 
+#~ msgid "You have been banned from"
+#~ msgstr "Вас заблоковано на"
+
 #~ msgid "You have been muted for unoriginal content."
 #~ msgstr "Вас позбавлено права дописувати за неоригінальний контент."
 
+#~ msgid "You were banned from"
+#~ msgstr "Вас було заблоковано на"
+
 #~ msgid "Your request looks automated; Post discarded."
 #~ msgstr "Ваш запит схожий на автоматизований— допис відхилено."
+
+#~ msgid "expires"
+#~ msgstr "спливає"
+
+#~ msgid "has since expired. Refresh the page to continue."
+#~ msgstr "сплив. Оновіть сторінку, аби продовжити."
 
 #~ msgid "hidden"
 #~ msgstr "прихований"
 
 #~ msgid "omitted. Click reply to view."
 #~ msgstr "пропущено. Натисніть «Відповісти», щоб побачити."
+
+#~ msgid "will not expire"
+#~ msgstr "не сплине"

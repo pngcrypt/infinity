@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-24 23:25+0300\n"
+"POT-Creation-Date: 2017-01-26 21:53+0300\n"
 "PO-Revision-Date: 2017-01-13 20:15+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/infinity/language/pt_BR/)\n"
@@ -1929,8 +1929,8 @@ msgstr ""
 msgid "You have attempted to upload too many images!"
 msgstr "Você tentou fazer upload de muitas imagens!"
 
-msgid "You have been banned from"
-msgstr "Você foi banido de"
+msgid "You have been banned"
+msgstr ""
 
 msgid "You have submitted the maximum number of ban appeals allowed. You may not appeal this ban again."
 msgstr "Você excedeu o limite de apelos. Você não pode apelar por este ban novamente."
@@ -1978,11 +1978,11 @@ msgstr "Você errou o codigo de verificação."
 msgid "You submitted an appeal for this ban on"
 msgstr "Você enviou um apelo para que este banimento as"
 
+msgid "You were banned"
+msgstr ""
+
 msgid "You were banned for the following post on"
 msgstr "Você foi banido pela seguinte mensagem as"
-
-msgid "You were banned from"
-msgstr "Você foi banido da"
 
 msgid "You were banned! ;_;"
 msgstr "Você foi banido! ;_;"
@@ -2033,11 +2033,20 @@ msgstr "todas as boards"
 msgid "and"
 msgstr "e"
 
+msgid "and expires"
+msgstr ""
+
+msgid "and has since expired. Refresh the page to continue."
+msgstr ""
+
 msgid "and it was denied."
 msgstr "e foi negado."
 
 msgid "and it was denied. You may not appeal this ban again."
 msgstr "e foi rejeitado. Você não pode apelar esta expulsão novamente."
+
+msgid "and will not expire"
+msgstr ""
 
 msgid "at"
 msgstr "em"
@@ -2074,9 +2083,6 @@ msgstr ""
 msgid "exiftool failed!"
 msgstr "falha na exiftool!"
 
-msgid "expires"
-msgstr "expira"
-
 msgid "fails left:"
 msgstr ""
 
@@ -2086,11 +2092,13 @@ msgstr "por um motivo não especificado."
 msgid "for the following reason:"
 msgstr "pelo seguinte motivo:"
 
+msgid "from board"
+msgid_plural "from all boards"
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "from now, which is on"
 msgstr "por hora, que é as"
-
-msgid "has since expired. Refresh the page to continue."
-msgstr "expirou desde então. recarregue a pagina para continuar."
 
 msgid "hour"
 msgid_plural "hours"
@@ -2184,9 +2192,6 @@ msgid_plural "weeks"
 msgstr[0] "semana"
 msgstr[1] "semanas"
 
-msgid "will not expire"
-msgstr "não vai expirar"
-
 msgid "year"
 msgid_plural "years"
 msgstr[0] "ano"
@@ -2246,11 +2251,26 @@ msgstr[1] "anos"
 #~ msgid "You are not banned."
 #~ msgstr "Você não está banido."
 
+#~ msgid "You have been banned from"
+#~ msgstr "Você foi banido de"
+
 #~ msgid "You have been muted for unoriginal content."
 #~ msgstr "Você foi silenciado por conteúdo repetido."
+
+#~ msgid "You were banned from"
+#~ msgstr "Você foi banido da"
 
 #~ msgid "Your request looks automated; Post discarded."
 #~ msgstr "Sua requisição parece automatizada; Mensagem descartada."
 
+#~ msgid "expires"
+#~ msgstr "expira"
+
+#~ msgid "has since expired. Refresh the page to continue."
+#~ msgstr "expirou desde então. recarregue a pagina para continuar."
+
 #~ msgid "hidden"
 #~ msgstr "oculto"
+
+#~ msgid "will not expire"
+#~ msgstr "não vai expirar"

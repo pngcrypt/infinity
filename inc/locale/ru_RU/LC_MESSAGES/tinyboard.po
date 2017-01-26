@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-24 23:25+0300\n"
-"PO-Revision-Date: 2017-01-19 17:15+0300\n"
+"POT-Creation-Date: 2017-01-26 21:53+0300\n"
+"PO-Revision-Date: 2017-01-26 21:48+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/projects/p/infinity/language/ru_RU/)\n"
 "Language: ru_RU\n"
@@ -1937,8 +1937,8 @@ msgstr ""
 msgid "You have attempted to upload too many images!"
 msgstr "Вы попытались загрузить слишком много изображений!"
 
-msgid "You have been banned from"
-msgstr "Вас забанили в "
+msgid "You have been banned"
+msgstr "Вы забанены"
 
 msgid "You have submitted the maximum number of ban appeals allowed. You may not appeal this ban again."
 msgstr "Ты отправил достаточное количество апелляций. Больше не нужно!"
@@ -1986,11 +1986,11 @@ msgstr "Вы ошиблись при вводе капчи."
 msgid "You submitted an appeal for this ban on"
 msgstr "Ты подал апелляцию на этот бан"
 
-msgid "You were banned for the following post on"
-msgstr "Вы были забанены за постинг"
+msgid "You were banned"
+msgstr "Вы были забанены"
 
-msgid "You were banned from"
-msgstr "Вы были забанены в"
+msgid "You were banned for the following post on"
+msgstr "Вы были забанены за пост в"
 
 msgid "You were banned! ;_;"
 msgstr "Вы были забанены! ;_;"
@@ -2010,7 +2010,7 @@ msgid "Your IP address is listed in %s."
 msgstr "Ваш айпи адрес числится в %s."
 
 msgid "Your ban was filed on"
-msgstr "Вы были забанены "
+msgstr "Бан был выдан"
 
 msgid "Your browser didn't submit an input when it should have."
 msgstr "Ваш браузер не отправляет нужных данных."
@@ -2041,11 +2041,20 @@ msgstr "все доски"
 msgid "and"
 msgstr "и"
 
+msgid "and expires"
+msgstr "и звершится через"
+
+msgid "and has since expired. Refresh the page to continue."
+msgstr "и уже окончен. Обновите страницу, чтобы продолжить."
+
 msgid "and it was denied."
 msgstr "и отклонен."
 
 msgid "and it was denied. You may not appeal this ban again."
 msgstr "и отклонен. Вы не можете обжаловать это бан снова."
+
+msgid "and will not expire"
+msgstr "и не завершится никогда"
 
 msgid "at"
 msgstr "на"
@@ -2083,9 +2092,6 @@ msgstr "пусто"
 msgid "exiftool failed!"
 msgstr "Exiftool не удался!"
 
-msgid "expires"
-msgstr "истекает"
-
 msgid "fails left:"
 msgstr "неудач осталось:"
 
@@ -2095,11 +2101,14 @@ msgstr "по неопределенный причине."
 msgid "for the following reason:"
 msgstr "по следующей причине:"
 
-msgid "from now, which is on"
-msgstr "прямо сейчас, который находится на"
+msgid "from board"
+msgid_plural "from all boards"
+msgstr[0] "на доске"
+msgstr[1] "на всех досках"
+msgstr[2] ""
 
-msgid "has since expired. Refresh the page to continue."
-msgstr "с тех пор истек. Обновите страницу чтобы продолжить."
+msgid "from now, which is on"
+msgstr ". Дата окончания:"
 
 msgid "hour"
 msgid_plural "hours"
@@ -2197,9 +2206,6 @@ msgstr[0] "неделя"
 msgstr[1] "недели"
 msgstr[2] "недель"
 
-msgid "will not expire"
-msgstr "еще не истек"
-
 msgid "year"
 msgid_plural "years"
 msgstr[0] "год"
@@ -2275,14 +2281,26 @@ msgstr[2] "лет"
 #~ msgid "You are not banned."
 #~ msgstr "Вы не забанены."
 
+#~ msgid "You have been banned from"
+#~ msgstr "Вы забанены в:"
+
 #~ msgid "You may upload %max_images% per post."
 #~ msgstr "Вы можете отправить %max_images% файла в сообщении."
+
+#~ msgid "You were banned from"
+#~ msgstr "Вы были забанены в:"
 
 #~ msgid "Your request looks automated; Post discarded."
 #~ msgstr "Ваш запрос похож на автоматический. Пост отклонен."
 
 #~ msgid "also allow video upload"
 #~ msgstr "но разрешить разрузку видео"
+
+#~ msgid "expires"
+#~ msgstr "истекает"
+
+#~ msgid "has since expired. Refresh the page to continue."
+#~ msgstr "с тех пор истек. Обновите страницу чтобы продолжить."
 
 #~ msgid "hidden"
 #~ msgstr "скрыт"

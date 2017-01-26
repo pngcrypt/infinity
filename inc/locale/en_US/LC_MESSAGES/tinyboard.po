@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-24 23:25+0300\n"
+"POT-Creation-Date: 2017-01-26 21:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1926,7 +1926,7 @@ msgstr ""
 msgid "You have attempted to upload too many images!"
 msgstr ""
 
-msgid "You have been banned from"
+msgid "You have been banned"
 msgstr ""
 
 msgid "You have submitted the maximum number of ban appeals allowed. You may not appeal this ban again."
@@ -1975,10 +1975,10 @@ msgstr ""
 msgid "You submitted an appeal for this ban on"
 msgstr ""
 
-msgid "You were banned for the following post on"
+msgid "You were banned"
 msgstr ""
 
-msgid "You were banned from"
+msgid "You were banned for the following post on"
 msgstr ""
 
 msgid "You were banned! ;_;"
@@ -2030,10 +2030,19 @@ msgstr ""
 msgid "and"
 msgstr ""
 
+msgid "and expires"
+msgstr ""
+
+msgid "and has since expired. Refresh the page to continue."
+msgstr ""
+
 msgid "and it was denied."
 msgstr ""
 
 msgid "and it was denied. You may not appeal this ban again."
+msgstr ""
+
+msgid "and will not expire"
 msgstr ""
 
 msgid "at"
@@ -2071,9 +2080,6 @@ msgstr ""
 msgid "exiftool failed!"
 msgstr ""
 
-msgid "expires"
-msgstr ""
-
 msgid "fails left:"
 msgstr ""
 
@@ -2083,10 +2089,12 @@ msgstr ""
 msgid "for the following reason:"
 msgstr ""
 
-msgid "from now, which is on"
-msgstr ""
+msgid "from board"
+msgid_plural "from all boards"
+msgstr[0] ""
+msgstr[1] ""
 
-msgid "has since expired. Refresh the page to continue."
+msgid "from now, which is on"
 msgstr ""
 
 msgid "hour"
@@ -2180,9 +2188,6 @@ msgid "week"
 msgid_plural "weeks"
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "will not expire"
-msgstr ""
 
 msgid "year"
 msgid_plural "years"

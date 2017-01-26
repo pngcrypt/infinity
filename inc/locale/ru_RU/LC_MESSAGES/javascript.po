@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: infinity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-24 23:25+0300\n"
-"PO-Revision-Date: 2017-01-24 23:27+0300\n"
+"POT-Creation-Date: 2017-01-26 21:53+0300\n"
+"PO-Revision-Date: 2017-01-26 21:10+0300\n"
 "Last-Translator: copypaste <admin@8chan.co>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/projects/p/infinity/language/ru_RU/)\n"
 "Language: ru_RU\n"
@@ -818,6 +818,9 @@ msgstr "все"
 msgid "am"
 msgstr ""
 
+msgid "and has since expired. Refresh the page to continue."
+msgstr "и уже окончен. Обновите страницу, чтобы продолжить."
+
 msgid "day(s)"
 msgstr "дн"
 
@@ -827,9 +830,6 @@ msgstr "выключен"
 msgid "enabled"
 msgstr "включён"
 
-msgid "has since expired. Refresh the page to continue."
-msgstr ""
-
 msgid "hidden"
 msgstr "скрыто"
 
@@ -837,13 +837,13 @@ msgid "hide"
 msgstr "скрыть"
 
 msgid "hour(s)"
-msgstr "час."
+msgstr "ч"
 
 msgid "in "
 msgstr "через "
 
 msgid "minute(s)"
-msgstr "мин."
+msgstr "мин"
 
 msgid "never"
 msgstr "никогда"
