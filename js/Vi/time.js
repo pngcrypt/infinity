@@ -4,6 +4,7 @@
 Vi.time = function() {
 	'use strict';
 	var time = {
+		diff: diff,
 		until: until,
 		ago: ago,
 		dateformat : dateformat,
@@ -21,43 +22,34 @@ Vi.time = function() {
 
 	return time;
 
-	function until(timestamp, unix) {
-		var num,
-			diff = unix ? timestamp - Date.now()/1000|0 : (timestamp - Date.now())/1000|0;
-		switch(true){
-			case (diff < 60):
-				return "" + diff + ' ' + _('second(s)');
-			case (diff < 3600): //60*60 = 3600
-				return "" + (num = Math.round(diff/(60))) + ' ' + _('minute(s)');
-			case (diff < 86400): //60*60*24 = 86400
-				return "" + (num = Math.round(diff/(3600))) + ' ' + _('hour(s)');
-			case (diff < 604800): //60*60*24*7 = 604800
-				return "" + (num = Math.round(diff/(86400))) + ' ' + _('day(s)');
-			case (diff < 31536000): //60*60*24*365 = 31536000
-				return "" + (num = Math.round(diff/(604800))) + ' ' + _('week(s)');
-			default:
-				return "" + (num = Math.round(diff/(31536000))) + ' ' + _('year(s)');
-		}
+	function diff(current, previous, justnow, suff) {
+		var num, ret="",
+			d = (current - previous) / 1000 | 0;
+		if(d < 1 && justnow)
+			return _('Just now');
+		else if(d < 60)
+			ret += d + ' ' + _('second(s)');
+		else if(d < 3600) //60*60 = 3600
+			ret += (num = Math.round(d/(60))) + ' ' + _('minute(s)');
+		else if(d < 86400) //60*60*24 = 86400
+			ret += (num = Math.round(d/(3600))) + ' ' + _('hour(s)');
+		else if(d < 604800) //60*60*24*7 = 604800
+			ret += (num = Math.round(d/(86400))) + ' ' + _('day(s)');
+		else if(d < 31536000) //60*60*24*365 = 31536000
+			ret += (num = Math.round(d/(604800))) + ' ' + _('week(s)');
+		else
+			ret += (num = Math.round(d/(31536000))) + ' ' + _('year(s)');
+		if(suff)
+			ret += ' ' + suff;
+		return ret;
 	}
 
-	function ago(timestamp, unix) {
-		var num,
-			diff = unix ? (Date.now()/1000|0) - timestamp : (Date.now() - timestamp)/1000|0;
+	function until(timestamp, justnow, suff) {
+		return diff(timestamp, Date.now(), justnow);
+	}
 
-		switch(true){
-			case (diff < 60) :
-				return "" + diff + ' ' + _('second(s)');
-			case (diff < 3600): //60*60 = 3600
-				return "" + (num = Math.round(diff/(60))) + ' ' + _('minute(s)');
-			case (diff <  86400): //60*60*24 = 86400
-				return "" + (num = Math.round(diff/(3600))) + ' ' + _('hour(s)');
-			case (diff < 604800): //60*60*24*7 = 604800
-				return "" + (num = Math.round(diff/(86400))) + ' ' + _('day(s)');
-			case (diff < 31536000): //60*60*24*365 = 31536000
-				return "" + (num = Math.round(diff/(604800))) + ' ' + _('week(s)');
-			default:
-				return "" + (num = Math.round(diff/(31536000))) + ' ' + _('year(s)');
-		}
+	function ago(timestamp, justnow, suff) {
+		return diff(Date.now(), timestamp, justnow, suff ? _("ago") : "");
 	}
 
 	function dateformat(t, format) {

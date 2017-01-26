@@ -1,4 +1,4 @@
-/* global Vi, _, strftime, device_type */
+/* global Vi, _, device_type */
 
 $(function() {
 	'use strict';
@@ -73,7 +73,7 @@ $(function() {
 				name: _("Set"),
 				width: "100px",
 				fmt: function(f) {
-					return Vi.time.ago(f.created, true) + _(" ago"); // in AGO form
+					return Vi.time.ago(f.created*1000, true, true); // in AGO form
 				}
 			},
 			// duration?
@@ -82,7 +82,7 @@ $(function() {
 				width: "235px",
 				fmt: function(f) {
 					if (!f.expires) return "<em>" + _("never") + "</em>";
-					return strftime(window.post_date, new Date((f.expires | 0) * 1000), Vi.time.datelocale) + ((f.expires < time()) ? "" : " <small>" + _("in ") + Vi.time.until(f.expires|0, true) + "</small>");
+					return Vi.time.dateformat(new Date((f.expires|0) * 1000)) + ((f.expires < time()) ? "" : " <small>" + _("in ") + Vi.time.until((f.expires|0)*1000) + "</small>");
 				}
 			},
 			username: {

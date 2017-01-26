@@ -23,7 +23,7 @@
 			$('#show-relative-time>input').on('change', function() {
 				localStorage.show_relative_time = localStorage.show_relative_time === 'true' ? 'false' : 'true';
 				// no need to refresh page
-				do_localtime(document);
+				do_localtime(document.body);
 			});
 
 			// allow to work with auto-reload.js, etc.
@@ -32,7 +32,7 @@
 			});
 		}
 
-		do_localtime(document);
+		do_localtime(document.body);
 	});
 
 	return;
@@ -45,33 +45,7 @@
 		return new Date(s);
 	}
 
-	function timeDifference(current, previous) {
-
-		var msPerMinute = 60 * 1000;
-		var msPerHour = msPerMinute * 60;
-		var msPerDay = msPerHour * 24;
-		var msPerMonth = msPerDay * 30;
-		var msPerYear = msPerDay * 365;
-
-		var elapsed = current - previous;
-
-		if (elapsed < msPerMinute) {
-			return _('Just now');
-		} else if (elapsed < msPerHour) {
-			return Math.round(elapsed/msPerMinute) + (Math.round(elapsed/msPerMinute)<=1 ? _(' minute ago'):_(' minutes ago'));
-		} else if (elapsed < msPerDay ) {
-			return Math.round(elapsed/msPerHour ) + (Math.round(elapsed/msPerHour)<=1 ? _(' hour ago'):_(' hours ago'));
-		} else if (elapsed < msPerMonth) {
-			return Math.round(elapsed/msPerDay) + (Math.round(elapsed/msPerDay)<=1 ? _(' day ago'):_(' days ago'));
-		} else if (elapsed < msPerYear) {
-			return Math.round(elapsed/msPerMonth) + (Math.round(elapsed/msPerMonth)<=1 ? _(' month ago'):_(' months ago'));
-		} else {
-			return Math.round(elapsed/msPerYear ) + (Math.round(elapsed/msPerYear)<=1 ? _(' year ago'):_(' years ago'));
-		}
-	}
-
 	function do_localtime(elem) {	
-		var currentTime = Date.now();
 		$('time[datetime]', elem).each(function(){
 			var $t = $(this),
 				dt = $t.attr('datetime'),
@@ -80,15 +54,24 @@
 
 			$(this).data('local', true);
 
+
 			if (localStorage.show_relative_time === 'true') {
 				$(this)
-					.html(timeDifference(currentTime, postTime.getTime()))
+					.html(Vi.time.ago(postTime.getTime(), true, true))
 					.attr('title', Vi.time.dateformat(iso8601(dt), fmt));
 			} else {
 				$(this)
 					.html(Vi.time.dateformat(iso8601(dt), fmt))
-					.attr('title', timeDifference(currentTime, postTime.getTime()));
+					.off('mouseenter')
+					.on('mouseenter', update_title);
 			}
 		});
 	}
+
+	function update_title() {
+		// update ago-time in title on mouse enter
+		var d = new Date($(this).attr('datetime'));
+		$(this).attr('title', Vi.time.ago(d.getTime(), true, true));
+	}
+
 })();

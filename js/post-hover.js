@@ -13,12 +13,10 @@
  *
  */
 
-/* global _, Vi, onready, strftime */
+/* global _, Vi */
 
-// todo: timeDifference, dateformat - dups (local-time)
-
-onready(function(){
-'use strict';
+$(function() {
+	'use strict';
 
 	window.init_hover = function() {
 		var link = $(this);
@@ -196,7 +194,7 @@ onready(function(){
 						return (i === 0) ? bytes +' '+ sizes[i] : (bytes / Math.pow(1024, i)).toFixed(2) +' ' +sizes[i];
 					};
 
-					var time = (!localStorage.show_relative_time || localStorage.show_relative_time === 'false') ? dateformat(new Date(data.time*1000)) : timeDifference(Date.now(), data.time*1000);
+					var time = (!localStorage.show_relative_time || localStorage.show_relative_time === 'false') ? Vi.time.dateformat(new Date(data.time*1000)) : Vi.time.ago(data.time*1000, true, true);
 					var $post = $('<div class="post reply hidden" id="reply_'+ data.no +'">')
 								.append($('<p class="intro"></p>')
 									.append('<span class="name">'+ data.name +'</span> ')
@@ -335,46 +333,6 @@ onready(function(){
 		};
 	})();
 
-	var zeropad = function(num, count) {
-		return [Math.pow(10, count - num.toString().length), num].join('').substr(1);
-	};
-
-	var dateformat = (typeof strftime === 'undefined') ? function(t) {
-		return zeropad(t.getMonth() + 1, 2) + "/" + zeropad(t.getDate(), 2) + "/" + t.getFullYear().toString().substring(2) +
-				" (" + Vi.time.datelocale.shortDays[t.getDay()]  + ") " +
-				// time
-				zeropad(t.getHours(), 2) + ":" + zeropad(t.getMinutes(), 2) + ":" + zeropad(t.getSeconds(), 2);
-
-	} : function(t) {
-		// post_date is defined in templates/main.js
-		return strftime(window.post_date, t, Vi.time.datelocale);
-	};
-
-	function timeDifference(current, previous) {
-
-		var msPerMinute = 60 * 1000;
-		var msPerHour = msPerMinute * 60;
-		var msPerDay = msPerHour * 24;
-		var msPerMonth = msPerDay * 30;
-		var msPerYear = msPerDay * 365;
-
-		var elapsed = current - previous;
-
-		if (elapsed < msPerMinute) {
-			return 'Just now';
-		} else if (elapsed < msPerHour) {
-			return Math.round(elapsed/msPerMinute) + (Math.round(elapsed/msPerMinute)<=1 ? ' minute ago':' minutes ago');
-		} else if (elapsed < msPerDay ) {
-			return Math.round(elapsed/msPerHour ) + (Math.round(elapsed/msPerHour)<=1 ? ' hour ago':' hours ago');
-		} else if (elapsed < msPerMonth) {
-			return Math.round(elapsed/msPerDay) + (Math.round(elapsed/msPerDay)<=1 ? ' day ago':' days ago');
-		} else if (elapsed < msPerYear) {
-			return Math.round(elapsed/msPerMonth) + (Math.round(elapsed/msPerMonth)<=1 ? ' month ago':' months ago');
-		} else {
-			return Math.round(elapsed/msPerYear ) + (Math.round(elapsed/msPerYear)<=1 ? ' year ago':' years ago');
-		}
-	}
-	
 	$('div.body a:not([rel="nofollow"])').each(window.init_hover);
 	
 	// allow to work with auto-reload.js, etc.
