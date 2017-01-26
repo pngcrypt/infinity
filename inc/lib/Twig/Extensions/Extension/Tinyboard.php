@@ -21,6 +21,7 @@ class Twig_Extensions_Extension_Tinyboard extends Twig_Extension
 			new Twig_SimpleFilter('remove_markups', 'twig_remove_markups'),
 			new Twig_SimpleFilter('hasPermission', 'twig_hasPermission_filter'),
 			new Twig_SimpleFilter('date', 'twig_date_filter'),
+			new Twig_SimpleFilter('dateISO', 'twig_dateISO_filter'),
 			new Twig_SimpleFilter('remove_whitespace', 'twig_remove_whitespace_filter'),
 			new Twig_SimpleFilter('less_ip', 'twig_less_ip'),
 			new Twig_SimpleFilter('count', 'count'),
@@ -74,6 +75,10 @@ function twig_push_filter($array, $value) {
 
 function twig_remove_whitespace_filter($data) {
 	return preg_replace('/[\t\r\n]/', '', $data);
+}
+
+function twig_dateISO_filter($date) {
+	return gmstrftime("%Y-%m-%dT%H:%M:%SZ", (int) $date);
 }
 
 function twig_date_filter($date, $format) {
