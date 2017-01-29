@@ -33,13 +33,17 @@ $(function() {
 			return;
 		}
 		
-		var board = $(this);
-		while (board.data('board') === undefined) {
+		var board = $(this).parents('[data-board]');
+		/*while (board.data('board') === undefined) {
 			board = board.parent();
-		}
+		}*/
 		var threadid;
 		if (link.is('[data-thread]')) threadid = 0;
-		else threadid = board.attr('id').replace("thread_", "");
+		else {
+			threadid = (board.attr('id') || '').replace("thread_", "");
+			if(!threadid)
+				return;
+		}
 
 		board = board.data('board');
 
@@ -72,13 +76,13 @@ $(function() {
 			};
 
 			var start_hover = function(link) {
-				if(post.is(':visible') &&
+				/*if(post.is(':visible') &&
 						post.offset().top >= $(window).scrollTop() &&
 						post.offset().top + post.height() <= $(window).scrollTop() + $(window).height()) {
 					// post is in view
 					post.addClass('highlighted');
 					highlight_link(link, post);
-				} else {
+				} else {*/
 					var newPost = post.clone();
 					newPost.find('>.reply, >br').remove();
 					newPost.find('a.post_anchor').remove();
@@ -146,7 +150,7 @@ $(function() {
 					}
 
 					newPost.css('top', top);
-				}
+				//}
 			};
 			
 			
@@ -264,8 +268,10 @@ $(function() {
 						});
 						
 						$post.children('p.intro').after($files);
-
 					}
+
+					if(window.emoji)
+						window.emoji.parse($post[0]);
 
 					var mythreadid = (data.resto !== 0) ? data.resto : data.no;
 
